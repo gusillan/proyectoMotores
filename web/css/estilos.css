@@ -1,0 +1,59 @@
+/* 
+    Document   : estilos
+    Created on : 15-sep-2014, 20:46:19
+    Author     : Gustabo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+body {
+    color: #000000;
+    background-color: #FFE4C4;
+    font-family: Tahoma;
+}
+input.mayuscula {
+    text-transform: uppercase;
+}
+
+input.desactivado {
+    color :graytext;
+    background-color: aquamarine;
+}
+
+#menu {
+    background-color: #FFE4C4;
+}
+
+#ventanaEmergente {
+    background-color: white;
+    width : 450px;
+    height : 270px;
+    padding: 20px;
+    margin-left: 550px;
+    top : 120px;
+    border: solid 2px grey;
+    border-radius: 10px;
+    position : fixed;   
+    z-index: 999;
+    display: none;
+}
+#ventanaEmergenteOpciones{ 
+    height: 150px;
+    width: 440px;
+}
+.titulo{
+    background-color: bisque;
+}
+
+input, select {
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        border: 1px solid #000000;
+        padding:  0 15px 0 15px  ;        
+        height: 30px;
+        font-size: 1.1em;
+}
