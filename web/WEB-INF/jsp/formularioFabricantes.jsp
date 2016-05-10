@@ -61,11 +61,12 @@
                         <br>
                         <div class="btn-group col-md-12">
                             <button type="button" class="btn btn-primary" id="alta">Alta</button>
-                            <button type="button" class="btn btn-primary">Baja</button>
+                            <button type="button" class="btn btn-primary" id="pr">Prueba</button>
                             <button type="button" class="btn btn-primary">Modificar</button>
                             <button type="reset" class="btn btn-primary" id="limpiar">Limpiar</button>
                             <button type="button" class="btn btn-primary">Listado</button>
                             <button type="button" class="btn btn-primary" id="salir">Salir</button>
+                            <div id="prueba">gus</div>
                         </div>
                     </div>   
                 </div>
@@ -73,6 +74,9 @@
         </div> 
         <!-- Librería jQuery requerida por los plugins de JavaScript -->
         <script src="js/jquery.js"></script>
+        <script>
+            console.log("Vengo de  "+window.opener.location);
+        </script>
 
         <!-- Todos los plugins JavaScript de Bootstrap (también puedes
              incluir archivos JavaScript individuales de los únicos

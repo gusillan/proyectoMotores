@@ -1,5 +1,5 @@
 $(function() {
-    //var listaGlobal = new Array();
+    
     $('input').keyup(function() {
         this.value = this.value.toUpperCase();
     });
@@ -30,6 +30,7 @@ $(function() {
     $('#baja').click(baja);
     $('#modificar').click(modificar);
     $('#limpiar').click(limpiar);
+    $('#listado').click(listar);
     $('#salir').click(salir);
     $('select#listaMotores').on('dblclick', function() {
         var valor = $(this).val();
@@ -147,6 +148,10 @@ function limpiar() {
     $('#listaMotores').empty();//Borrar Select motores    
     $('#codigo').focus();
 }
+function listar(){
+ 
+    ventanaMarca.document.getElementById("prueba").innerHTML= "HOLA";
+}
 function salir() {
     location.href = 'index.htm';
 }
@@ -212,8 +217,17 @@ function validacion() {
 
 }
 function irMarca() {
-    window.open('formularioFabricante.htm', 'mipagina', 'titlebar=no, menubar=no, toolbar=no, location=no, status=no');
+    var ventanaMarca = window.open('formularioFabricante.htm','miventana', 'titlebar=no, menubar=no, toolbar=no, location=no, status=no');
+    ventanaMarca.document.prueba = "Texto que voy a insertar";
+    //ventanaMarca.document.write(ventanaMarca.strHijo);
+    //setTimeout('cambiarTexto()',3000);
+    
+   
 }
+function cambiarTexto(){
+    
+}
+
 
 function minmax(min, max, dato) {
     if (dato.length > max) {

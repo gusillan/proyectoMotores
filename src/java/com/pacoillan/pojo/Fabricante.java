@@ -1,5 +1,5 @@
 package com.pacoillan.pojo;
-// Generated 08-sep-2015 22:25:07 by Hibernate Tools 3.2.1.GA
+// Generated 10-may-2016 22:57:56 by Hibernate Tools 3.2.1.GA
 
 
 import javax.persistence.Column;
@@ -31,9 +31,6 @@ public class Fabricante  implements java.io.Serializable {
        this.codigo = codigo;
        this.nombre = nombre;
        this.logo = logo;
-    }
-    public Fabricante (String codigo){
-        this.codigo = codigo;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -73,6 +70,9 @@ public class Fabricante  implements java.io.Serializable {
     public void setLogo(String logo) {
         this.logo = logo;
     }
+
+
+
 
 }
 
