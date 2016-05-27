@@ -33,18 +33,6 @@
                         </div>  
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="marca">Código Marca <a href="javascript:irMarca()">+</a></label>
-                                <input type="text" class="form-control" id="marca" name="marca">
-                            </div>          
-                        </div>
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                <label for="marcaMotor">Marca Modelo</label>
-                                <input type="text" class="form-control" id="marcaMotor" disabled>
-                            </div>          
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
                                 <label for="codigo">Código</label>
                                 <input type="text" class="form-control" id="codigo" name="codigo">
                             </div>          
@@ -55,7 +43,18 @@
                                 <input type="text" class="form-control" id="descripcion" name="descripcion">
                             </div>          
                         </div>
-
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="marca">Código Marca <a href="javascript:irMarca()">+</a></label>
+                                <input type="text" class="form-control" id="marca" name="marca">
+                            </div>          
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="marcaModelo">Marca Modelo</label>
+                                <input type="text" class="form-control" id="marcaModelo" disabled>
+                            </div>          
+                        </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="mesInicio">Mes Inicio</label>
@@ -80,14 +79,14 @@
                                 <input type="text" class="form-control" id="yearFin" name="yearFin">
                             </div>          
                         </div>
-                        
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="imagen">Imagen</label>
                                 <input type="text" class="form-control" id="imagen" name="imagen">
                             </div>          
                         </div>
-                        
+
 
                         <br>
                         <div class="btn-group col-md-12">
@@ -135,6 +134,6 @@
              incluir archivos JavaScript individuales de los únicos
              plugins que utilices) -->
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/funcionesFormulario.js"></script>
+        <script src="js/funcionesFormularioModelo.js"></script>
     </body>
 </html>

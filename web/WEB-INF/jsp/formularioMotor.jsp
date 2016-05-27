@@ -28,7 +28,7 @@
         <div class="formulario container">
             <h1>Formulario de Motores</h1>
             <br>
-            <form id="formularioMotores" action="altaMotor.htm" method="post">
+            <form id="formularioMotores" method="post">
                 <div class="col-md-6">
                     <div class="row">  
                         <div class="col-md-12">
@@ -122,6 +122,7 @@
                 </div>-->
                 <div class="btn-group col-md-12">                   
                     <button type="button" class="btn btn-primary" id="Dvolver">Volver</button>
+                    <button type="button" class="btn btn-primary" id="Dseleccionar">Seleccionar</button>
                     <button type="button" class="btn btn-primary" id="Dcontinuar">Continuar con el Alta</button>                     
                 </div>
             </div>
@@ -140,6 +141,6 @@
              incluir archivos JavaScript individuales de los únicos
              plugins que utilices) -->
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/funcionesFormulario.js"></script>
+        <script src="js/funcionesFormularioMotor.js"></script>
     </body>
 </html>

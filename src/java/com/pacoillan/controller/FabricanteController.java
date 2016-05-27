@@ -40,25 +40,7 @@ public class FabricanteController {
         response.sendRedirect("formularioFabricante.htm");
     }
 
-    @RequestMapping("consultaFabricantes.htm")
-    public ModelAndView consultaFabricantes(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String codigo = (request.getParameter("codigo").toUpperCase());
-        System.out.println("el codigo es " + codigo);
-        List<Fabricante> lista = fabricanteDao.listadoPorCampoExacto("codigo", codigo);
-        if (lista.size() == 0) {
-            System.out.println("No existe codigo");
-            mv.addObject("fab", new Fabricante(codigo));
-        } else if (lista.size() == 1) {
-            System.out.println("El fabricante es " + lista.get(0).getNombre());
-            mv.addObject("fab", lista.get(0));
-        } else if (lista.size() > 1) {
-            System.out.println("Hay mas de uno");
-
-        }
-        mv.setViewName("formularioFabricante");
-        return mv;
-
-    }
+    
 
     @RequestMapping("consultaFabricante.htm")
     public void consultaFabricante(HttpServletRequest request, HttpServletResponse response) throws IOException {

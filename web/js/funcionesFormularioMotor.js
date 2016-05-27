@@ -1,5 +1,5 @@
 $(function() {
-    
+
     $('input').keyup(function() {
         this.value = this.value.toUpperCase();
     });
@@ -32,17 +32,16 @@ $(function() {
     $('#limpiar').click(limpiar);
     $('#listado').click(listar);
     $('#salir').click(salir);
-    $('select#listaMotores').on('dblclick', function() {
-        var valor = $(this).val();
-        rellenaForm(listaGlobal[valor]);
-        $('#listaMotores').empty();
-        $('#dialog').dialog("close");
-    });
-    $('#codigo').focus();
+
+    $('select#listaMotores').on('dblclick', seleccionarOpcion);
     $('#Dvolver').click(volverDialog);
+    $('#Dseleccionar').click(seleccionarOpcion);
     $('#Dcontinuar').click(continuarAlta);
 
+    $('#codigo').focus();
+
 });
+
 function continuarAlta() {
     $('#listaMotores').empty();
     $('#dialog').dialog("close");
@@ -53,15 +52,21 @@ function volverDialog() {
     $('#dialog').dialog("close");
     limpiar();
 }
+function seleccionarOpcion() {
+    var opcion = $('#listaMotores').val();
+    rellenaForm(listaGlobal[opcion]);
+    $('#listaMotores').empty();
+    $('#dialog').dialog("close");
+}
 function compruebaCodigo(codigo) {
-    $.getJSON('consultaCodigoMotor.htm', {codigo: codigo}, rellenaFormulario);
+    $.getJSON('consultaCodigoMotor.htm', {codigo: codigo}, procesaRespuesta);
 }
 function compruebaAntesDeAlta() {
     var codigo = $('#codigo').val();
     //Opción si el codigo está vacio
     $.getJSON('consultaCodigoMotor.htm', {codigo: codigo}, consultarAlta);
 }
-function rellenaFormulario(listaMotor) {
+function procesaRespuesta(listaMotor) {
     console.log("respuesta ajax " + listaMotor);
     if (listaMotor.length == 1) {
         console.log("SOLO HAY UNO");
@@ -93,29 +98,38 @@ function consultarAlta(listaMotor) {
         var r = confirm("Confirme que desea dar de alta un código repetido?");
         if (r == true) {
             console.log('CONFIRMADO');
-            alta();
+            if (validacion()) {
+                alta();
+            }
+
         } else {
             console.log('NEGATIVO');
             limpiar();
         }
     } else {
         console.log("Codigo nuevo _introducir datos");
-        alta();
-    }
-}
-function alta() {
-    if (validacion()) {
-        var r = confirm('Confirma el alta?');
-        if (r == true) {
-            $('#formularioMotores').submit();
+        if (confirmarAlta()) {
+            alta();
         } else {
             $('#descripcion').focus();
         }
-
+    }
+}
+function confirmarAlta() {
+    if (validacion()) {
+        var resp = confirm('Confirma el alta?');
+        if (resp == true) {
+            return true;
+        } else {
+            return false;
+        }
     } else {
         console.log("ERROR DE VALIDACION");
     }
-
+}
+function alta() {
+    $('#formularioMotores').attr('action', 'altaMotor.htm');
+    $('#formularioMotores').submit();
 }
 function baja() {
     if (validacion()) {
@@ -148,9 +162,8 @@ function limpiar() {
     $('#listaMotores').empty();//Borrar Select motores    
     $('#codigo').focus();
 }
-function listar(){
- 
-    ventanaMarca.document.getElementById("prueba").innerHTML= "HOLA";
+function listar() {
+    alert ('Listado de Motores');  
 }
 function salir() {
     location.href = 'index.htm';
@@ -158,10 +171,13 @@ function salir() {
 function ventanaOpciones(listaMotor) {
     listaGlobal = listaMotor;
     $.each(listaGlobal, function(indice, motor) {
-        $('#listaMotores').append('<option value=' + indice + '>' + motor.idMotor + ' - ' + motor.descripcion + ' ' + motor.kw + ' KW</option>');
+        $('#listaMotores').append('<option value=' + indice + '>' + motor.idMotor + ' - ' + motor.fabricante.nombre + ' - ' + motor.descripcion + ' ' + motor.kw + ' KW</option>');
     });
+    $('#listaMotores > option[value="0"]').attr('selected', 'selected');
     $('#dialog').dialog({
-        modal: true
+        modal: true,
+        width: 450,
+        height: 220
     });
 }
 function compruebaMarca(marca) {
@@ -217,15 +233,15 @@ function validacion() {
 
 }
 function irMarca() {
-    var ventanaMarca = window.open('formularioFabricante.htm','miventana', 'titlebar=no, menubar=no, toolbar=no, location=no, status=no');
+    var ventanaMarca = window.open('formularioFabricante.htm', 'miventana', 'titlebar=no, menubar=no, toolbar=no, location=no, status=no');
     ventanaMarca.document.prueba = "Texto que voy a insertar";
     //ventanaMarca.document.write(ventanaMarca.strHijo);
     //setTimeout('cambiarTexto()',3000);
-    
-   
+
+
 }
-function cambiarTexto(){
-    
+function cambiarTexto() {
+
 }
 
 

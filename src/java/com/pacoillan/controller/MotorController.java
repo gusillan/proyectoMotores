@@ -32,16 +32,6 @@ public class MotorController {
         return "formularioMotor";
     }
 
-    @RequestMapping("comprobarCodigoMotor.htm")
-    public void comprobarCodigoMotor(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/plain");
-        response.setCharacterEncoding("UTF-8");
-        PrintWriter out = response.getWriter();
-        String respuesta = "";
-        String combustible = request.getParameter("codigo");
-        System.out.println("combustible -> " + combustible);
-    }
-
     @RequestMapping("altaMotor.htm")
     public ModelAndView altaMotor(@ModelAttribute Motor motor, HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -81,25 +71,7 @@ public class MotorController {
         return mv;        
     }
 
-    @RequestMapping("consultaMotor.htm")
-    public ModelAndView consultaMotor(HttpServletRequest request, HttpServletResponse response) {
-        String codigoMotor = request.getParameter("codigo").toUpperCase();
-        System.out.println("el codigo es " + codigoMotor);
-        List<Motor> listaMotores = motorDao.listadoPorCampoExacto("codigo", codigoMotor);
-        if (listaMotores.size() == 1) {
-            mv.setViewName("formularioMotores_7");
-            mv.addObject("mot", listaMotores.get(0));
-            System.out.println("MOtor " + listaMotores.get(0).getDescripcion());
-        } else {
-            mv.setViewName("formularioMotores_7");
-            mv.addObject("mot", new Motor(codigoMotor));
-            System.out.println("ERRORRRRRRR");
-        }
-
-        return mv;
-
-    }
-
+   
     @RequestMapping("consultaCodigoMotor.htm")
     public void consultaCodigoMotor(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -125,30 +97,7 @@ public class MotorController {
         out.println(lista);
     }
 
-    @RequestMapping("consultaCombustible.htm")
-    public void consultaCombustible(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/plain");
-        response.setCharacterEncoding("UTF-8");
-        PrintWriter out = response.getWriter();
-        String respuesta = "";
-        String combustible = request.getParameter("combustible");
-        System.out.println("combustible -> " + combustible);
-
-        if (combustible.equals("D")) {
-            respuesta = "DIESEL";
-        } else if (combustible.equals("G")) {
-            respuesta = "GASOLINA";
-        } else if (combustible.equals("H")) {
-            respuesta = "HIBRIDO";
-        } else if (combustible.equals("E")) {
-            respuesta = "ELECTRICO";
-        } else if (combustible.isEmpty()) {
-            System.out.println("ITS NULL");
-            respuesta = "";
-        }
-        System.out.println("respuesta " + respuesta);
-        out.println(respuesta);
-    }
+   
 
     @RequestMapping("listaMotores.htm")
     public void listaMotores(HttpServletRequest request, HttpServletResponse response, @ModelAttribute Motor motor, @RequestBody String jsonEntrada)
@@ -167,37 +116,6 @@ public class MotorController {
         response.setContentType("text/xml;charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.println(lista);
-    }
-
-    @RequestMapping("listaFabricantes.htm")
-    public void listaFabricantes(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String codigo = request.getParameter("cFabricante").toUpperCase();
-        System.out.println("Datos " + codigo);
-        response.setContentType("text/plain;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-
-        List<Fabricante> lista = fabricanteDao.listadoPorCampoExacto("codigo", codigo);
-        Fabricante f = lista.get(0);
-        Gson gson = new Gson();
-        String fabr = gson.toJson(f);
-        System.out.println("Json -> " + fabr);
-        out.println(fabr);
-        /*if (lista.isEmpty()){
-         System.out.println("No existe codigo");
-         Gson gson = new Gson();
-         String ff = gson.toJson(new Fabricante());
-         System.out.println("Json -> "+ff);
-         out.println(ff);
-         }else if (lista.size()==1){
-         System.out.println("El fabricante es "+lista.get(0).getNombre()+" "+lista.get(0).getLogo());
-         Fabricante f = lista.get(0);
-         Gson gson = new Gson();
-         String fabr = gson.toJson(f);
-         System.out.println("Json -> "+fabr);
-         out.println(fabr);                                 
-         }else if (lista.size()>1){
-         System.out.println("Hay mas de uno");
-            
-         }  */
-    }
+    }    
+    
 }

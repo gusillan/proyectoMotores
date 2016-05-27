@@ -81,24 +81,7 @@ public class ModeloController {
         return mv;
     }
 
-    @RequestMapping("consultaModelo.htm")
-    public ModelAndView consultaModelo(HttpServletRequest request, HttpServletResponse response) {
-        String codigoModelo = request.getParameter("codigo").toUpperCase();
-        System.out.println("el codigo es " + codigoModelo);
-        List<Modelo> listaModelos = modeloDao.listadoPorCampoExacto("codigo", codigoModelo);
-        if (listaModelos.size() == 1) {
-            mv.setViewName("formularioModeloe");
-            mv.addObject("mot", listaModelos.get(0));
-            System.out.println("MOtor " + listaModelos.get(0).getDescripcion());
-        } else {
-            mv.setViewName("formularioModelo");
-            mv.addObject("mot", new Modelo(codigoModelo));
-            System.out.println("ERRORRRRRRR");
-        }
-
-        return mv;
-
-    }
+    
 
     @RequestMapping("consultaCodigoModelo.htm")
     public void consultaCodigoModelo(HttpServletRequest request, HttpServletResponse response)
@@ -110,6 +93,7 @@ public class ModeloController {
         String codigoModelo = (request.getParameter("codigo").toUpperCase());
         System.out.println("Codigo -> " + codigoModelo);
         List<Modelo> listaModelos = modeloDao.listadoPorCampoExacto("codigo", codigoModelo);
+        System.out.println("Listado" + listaModelos);
         if (listaModelos.isEmpty()) {
             //Modelo m = new Modelo(codigoModelo);
             //Fabricante f = new Fabricante();
