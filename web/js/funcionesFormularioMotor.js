@@ -91,6 +91,7 @@ function rellenaForm(motor) {
     $('#cv').val(cv.toFixed(2));
     $('#marca').val(motor.fabricante.codigo);
     $('#marcaMotor').val(motor.fabricante.nombre);
+    $('#imgLogo').attr("src","img/"+motor.fabricante.logo);
 }
 function consultarAlta(listaMotor) {
     console.log("respuesta Ajax " + listaMotor.length);
@@ -159,7 +160,8 @@ function modificar() {
 }
 function limpiar() {
     $('#formularioMotores')[0].reset();
-    $('#listaMotores').empty();//Borrar Select motores    
+    $('#listaMotores').empty();//Borrar Select motores  
+    $('#imgLogo').attr('src',"img/logo.png");
     $('#codigo').focus();
 }
 function listar() {
@@ -183,6 +185,7 @@ function ventanaOpciones(listaMotor) {
 function compruebaMarca(marca) {
     $.getJSON("consultaFabricante.htm", {codigoFabricante: marca}, function(fabricante) {
         $('#marcaMotor').val(fabricante[0].nombre);
+        $('#imgLogo').attr('src','img/'+fabricante[0].logo);
     });
 }
 function validacion() {

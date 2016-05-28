@@ -11,7 +11,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Plantilla básica de Bootstrap</title>
+        <title>Formulario de Motores</title>
 
         <!-- CSS de Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -31,12 +31,21 @@
             <form id="formularioMotores" method="post">
                 <div class="col-md-6">
                     <div class="row">  
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="idMotor">ID Motor</label>
                                 <input type="text" class="form-control" id="idMotor" name="idMotor">
                             </div>          
-                        </div>      
+                        </div> 
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="centrado">
+                                    <img id="imgLogo" src="img/logo.png" />
+                                </div>
+                            </div>          
+                        </div>
+                    </div>
+                    <div class="row">  
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="codigo">Código</label>
@@ -49,7 +58,8 @@
                                 <input type="text" class="form-control" id="descripcion" name="descripcion">
                             </div>          
                         </div>
-
+                    </div>
+                    <div class="row"> 
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="combustible">Tipo Combustible</label>
@@ -62,6 +72,8 @@
                                 </select>                               
                             </div>          
                         </div>
+                    </div>
+                    <div class="row">       
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="cilindrada">Cilindrada (c.c.)</label>
@@ -79,7 +91,9 @@
                                 <label for="cv">Potencia (cv)</label>
                                 <input type="text" class="form-control" id="cv" disabled>
                             </div>          
-                        </div>         
+                        </div>  
+                    </div>
+                    <div class="row"> 
 
                         <div class="col-md-4">
                             <div class="form-group">
@@ -93,8 +107,10 @@
                                 <input type="text" class="form-control" id="marcaMotor" disabled>
                             </div>          
                         </div>
+                    </div>
 
-                        <br>
+                    <br>
+                    <div class="row"> 
                         <div class="btn-group col-md-12">
                             <button type="button" class="btn btn-primary" id="alta">Alta</button>
                             <button type="button" class="btn btn-primary" id="baja">Baja</button>
@@ -104,6 +120,7 @@
                             <button type="button" class="btn btn-primary" id="salir">Salir</button>
                         </div>
                     </div>
+
 
                 </div>
             </form>
