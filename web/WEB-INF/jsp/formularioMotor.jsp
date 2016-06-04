@@ -40,7 +40,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="centrado">
-                                    <img id="imgLogo" src="img/logo.png" />
+                                    <img id="imgLogo" src="img/marcas/logo.png" height="60"/>
                                 </div>
                             </div>          
                         </div>
@@ -159,5 +159,6 @@
              plugins que utilices) -->
         <script src="js/bootstrap.min.js"></script>
         <script src="js/funcionesFormularioMotor.js"></script>
+        <script src="js/funcionesComunes.js"></script>
     </body>
 </html>

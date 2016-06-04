@@ -21,16 +21,16 @@ public class Modelo implements java.io.Serializable, Comparable {
     private String codigo;
     private Fabricante fabricante;
     private String descripcion;
-    private int mesInicio;
-    private int yearInicio;
-    private int mesFin;
-    private int yearFin;
+    private String mesInicio;
+    private String yearInicio;
+    private String mesFin;
+    private String yearFin;
     private String imagen;
 
     public Modelo() {
     }
 
-    public Modelo(String codigo, Fabricante fabricante, String descripcion, int mesInicio, int yearInicio, int mesFin, int yearFin, String imagen) {
+    public Modelo(String codigo, Fabricante fabricante, String descripcion, String mesInicio, String yearInicio, String mesFin, String yearFin, String imagen) {
         this.codigo = codigo;
         this.fabricante = fabricante;
         this.descripcion = descripcion;
@@ -81,38 +81,38 @@ public class Modelo implements java.io.Serializable, Comparable {
     }
 
     @Column(name = "mesInicio", nullable = false)
-    public int getMesInicio() {
+    public String getMesInicio() {
         return this.mesInicio;
     }
 
-    public void setMesInicio(int mesInicio) {
+    public void setMesInicio(String mesInicio) {
         this.mesInicio = mesInicio;
     }
 
     @Column(name = "yearInicio", nullable = false)
-    public int getYearInicio() {
+    public String getYearInicio() {
         return this.yearInicio;
     }
 
-    public void setYearInicio(int yearInicio) {
+    public void setYearInicio(String yearInicio) {
         this.yearInicio = yearInicio;
     }
 
     @Column(name = "mesFin", nullable = false)
-    public int getMesFin() {
+    public String getMesFin() {
         return this.mesFin;
     }
 
-    public void setMesFin(int mesFin) {
+    public void setMesFin(String mesFin) {
         this.mesFin = mesFin;
     }
 
     @Column(name = "yearFin", nullable = false)
-    public int getYearFin() {
+    public String getYearFin() {
         return this.yearFin;
     }
 
-    public void setYearFin(int yearFin) {
+    public void setYearFin(String yearFin) {
         this.yearFin = yearFin;
     }
 

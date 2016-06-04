@@ -22,7 +22,7 @@
         <div class="formulario container">
             <h1>Formulario de Modelo de Vehículo</h1>
             <br>
-            <form id="formularioModelo" action="altaModelo.htm" method="post">
+            <form id="formularioModelo" method="post">
                 <div class="col-md-6">
                     <div class="row">  
                         <div class="col-md-12">
@@ -30,7 +30,10 @@
                                 <label for="idModelo">ID Modelo</label>
                                 <input type="text" class="form-control" id="idModelo" name="idModelo">
                             </div>          
-                        </div>  
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="codigo">Código</label>
@@ -43,6 +46,8 @@
                                 <input type="text" class="form-control" id="descripcion" name="descripcion">
                             </div>          
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="marca">Código Marca <a href="javascript:irMarca()">+</a></label>
@@ -55,12 +60,16 @@
                                 <input type="text" class="form-control" id="marcaModelo" disabled>
                             </div>          
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="mesInicio">Mes Inicio</label>
                                 <input type="text" class="form-control" id="mesInicio" name="mesInicio">                          
                             </div>          
                         </div>
+
+
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="yearInicio">Año Inicio</label>
@@ -79,16 +88,32 @@
                                 <input type="text" class="form-control" id="yearFin" name="yearFin">
                             </div>          
                         </div>
-
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="imagen">Imagen</label>
                                 <input type="text" class="form-control" id="imagen" name="imagen">
                             </div>          
                         </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="centrado">
+                                    <img id="imgLogo" src="img/marcas/logo.png" height="70" />
+                                </div>
+                            </div>          
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <div class="centrado">
+                                    <img id="imgModelo" src="img/modelos/generico.png" height="130" />
+                                </div>
+                            </div>          
+                        </div>
+                    </div>
 
-
-                        <br>
+                    <br>
+                    <div class="row">
                         <div class="btn-group col-md-12">
                             <button type="button" class="btn btn-primary" id="alta">Alta</button>
                             <button type="button" class="btn btn-primary" id="baja">Baja</button>
@@ -99,23 +124,21 @@
                         </div>
                     </div>
 
+
                 </div>
             </form>
-            <div class="row" id="dialog" title="Listado de Motores" style="display:none;">  
+            <div class="row" id="dialog" title="Listado de Modelos" style="display:none;">  
                 <div class="col-md-12">
                     <div class="form-group">
-                        <select class="form-control" id="listaMotores" size="4">
+                        <select class="form-control" id="listaModelos" size="4">
 
                         </select>                        
                     </div>          
                 </div>
-                <!--<div class="col-md-12">
-                    <div id="dialog" title="Título de mi dialogo" style="display:none;">
-                        <p>Contenido</p>                       
-                    </div>          
-                </div>-->
+
                 <div class="btn-group col-md-12">                   
                     <button type="button" class="btn btn-primary" id="Dvolver">Volver</button>
+                    <button type="button" class="btn btn-primary" id="Dseleccionar">Seleccionar</button>
                     <button type="button" class="btn btn-primary" id="Dcontinuar">Continuar con el Alta</button>                     
                 </div>
             </div>
@@ -135,5 +158,6 @@
              plugins que utilices) -->
         <script src="js/bootstrap.min.js"></script>
         <script src="js/funcionesFormularioModelo.js"></script>
+        <script src="js/funcionesComunes.js"></script>
     </body>
 </html>

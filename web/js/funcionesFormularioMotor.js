@@ -20,15 +20,15 @@ $(function() {
     $('#marca').blur(function() {
         var marca = this.value;
         if (vacio(marca)) {
-            console.log("Campo Marca Vacio");
+            $('#marcaMotor').val('');
+            $('#imgLogo').attr('src', "img/marcas/logo.png");
         } else {
-            console.log("Envio datos -> : " + marca);
             compruebaMarca(marca);
         }
     });
     $('#alta').click(compruebaAntesDeAlta);
-    $('#baja').click(baja);
-    $('#modificar').click(modificar);
+    $('#baja').click(confirmarBaja);
+    $('#modificar').click(confirmarModificacion);
     $('#limpiar').click(limpiar);
     $('#listado').click(listar);
     $('#salir').click(salir);
@@ -69,14 +69,12 @@ function compruebaAntesDeAlta() {
 function procesaRespuesta(listaMotor) {
     console.log("respuesta ajax " + listaMotor);
     if (listaMotor.length == 1) {
-        console.log("SOLO HAY UNO");
         var motor = listaMotor[0];
         rellenaForm(motor);
     } else if (listaMotor.length > 1) {
-        console.log("HAY MAS DE UNO");
         ventanaOpciones(listaMotor);
     } else if (listaMotor.length < 1) {
-        console.log("NO EXISTE");
+
     }
 }
 function rellenaForm(motor) {
@@ -91,24 +89,19 @@ function rellenaForm(motor) {
     $('#cv').val(cv.toFixed(2));
     $('#marca').val(motor.fabricante.codigo);
     $('#marcaMotor').val(motor.fabricante.nombre);
-    $('#imgLogo').attr("src","img/"+motor.fabricante.logo);
+    $('#imgLogo').attr("src", "img/marcas/" + motor.fabricante.logo);
 }
 function consultarAlta(listaMotor) {
-    console.log("respuesta Ajax " + listaMotor.length);
     if (listaMotor.length > 0) {
         var r = confirm("Confirme que desea dar de alta un código repetido?");
         if (r == true) {
-            console.log('CONFIRMADO');
             if (validacion()) {
                 alta();
             }
-
         } else {
-            console.log('NEGATIVO');
             limpiar();
         }
     } else {
-        console.log("Codigo nuevo _introducir datos");
         if (confirmarAlta()) {
             alta();
         } else {
@@ -116,56 +109,27 @@ function consultarAlta(listaMotor) {
         }
     }
 }
-function confirmarAlta() {
-    if (validacion()) {
-        var resp = confirm('Confirma el alta?');
-        if (resp == true) {
-            return true;
-        } else {
-            return false;
-        }
-    } else {
-        console.log("ERROR DE VALIDACION");
-    }
-}
+
 function alta() {
     $('#formularioMotores').attr('action', 'altaMotor.htm');
     $('#formularioMotores').submit();
 }
 function baja() {
-    if (validacion()) {
-        var r = confirm('Seguro que desea darlo de baja?');
-        if (r == true) {
-            $('#formularioMotores').attr('action', 'bajaMotor.htm');
-            $('#formularioMotores').submit();
-        } else {
-            $('#descripcion').focus();
-        }
-    }
+    $('#formularioMotores').attr('action', 'bajaMotor.htm');
+    $('#formularioMotores').submit();
 }
-
 function modificar() {
-    if (validacion()) {
-        var r = confirm('Confirma la modificacion?');
-        if (r == true) {
-            $('#formularioMotores').attr('action', 'modificarMotor.htm');
-            $('#formularioMotores').submit();
-        } else {
-            $('#descripcion').focus();
-        }
-
-    } else {
-        console.log("ERROR DE VALIDACION");
-    }
+    $('#formularioMotores').attr('action', 'modificarMotor.htm');
+    $('#formularioMotores').submit();
 }
 function limpiar() {
     $('#formularioMotores')[0].reset();
     $('#listaMotores').empty();//Borrar Select motores  
-    $('#imgLogo').attr('src',"img/logo.png");
+    $('#imgLogo').attr('src', "img/marcas/logo.png");
     $('#codigo').focus();
 }
 function listar() {
-    alert ('Listado de Motores');  
+    alert('Listado de Motores');
 }
 function salir() {
     location.href = 'index.htm';
@@ -185,7 +149,7 @@ function ventanaOpciones(listaMotor) {
 function compruebaMarca(marca) {
     $.getJSON("consultaFabricante.htm", {codigoFabricante: marca}, function(fabricante) {
         $('#marcaMotor').val(fabricante[0].nombre);
-        $('#imgLogo').attr('src','img/'+fabricante[0].logo);
+        $('#imgLogo').attr('src', 'img/marcas/' + fabricante[0].logo);
     });
 }
 function validacion() {
@@ -232,55 +196,11 @@ function validacion() {
     else {
         return true;
     }
-
-
 }
 function irMarca() {
     var ventanaMarca = window.open('formularioFabricante.htm', 'miventana', 'titlebar=no, menubar=no, toolbar=no, location=no, status=no');
     ventanaMarca.document.prueba = "Texto que voy a insertar";
     //ventanaMarca.document.write(ventanaMarca.strHijo);
     //setTimeout('cambiarTexto()',3000);
-
-
-}
-function cambiarTexto() {
-
-}
-
-
-function minmax(min, max, dato) {
-    if (dato.length > max) {
-        console.log("excedido limite máximo");
-        return false;
-    } else if (dato.length < min) {
-        console.log("inferior al mínimo");
-        return false;
-    }
-    return true;
-}
-function dni(dato) {
-    var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
-
-    if (!(/^\d{8}[A-Z]$/.test(dato))) {
-        return false;
-    }
-
-    if (dato.charAt(8) !== letras[(dato.substring(0, 8)) % 23]) {
-        return false;
-    }
-}
-function numero(dato) {
-    if (/^([0-9])*$/.test(dato)) {
-        return true;
-    } else {
-        return false;
-    }
-}
-function vacio(dato) {
-    if (dato.length < 1) {
-        return true;
-    } else {
-        return false;
-    }
 }
 
