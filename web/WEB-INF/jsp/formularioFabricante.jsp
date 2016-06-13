@@ -1,130 +1,121 @@
-<%@page import="com.pacoillan.pojo.Motor"%>
+<%-- 
+    Document   : formularioMotoresBootstrap
+    Created on : 25-ene-2016, 23:11:16
+    Author     : Gustavo
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Formulario Fabricante</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Formulario Fabricantes</title>
 
-        <link rel="stylesheet" href="css/estilos.css" type="text/css" />
+        <!-- CSS de Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/estilos2.css" rel="stylesheet">
 
-        
-        <script type="text/javascript" src="js/jquery.js"></script>
-        
-
-        <script>
-            function verificarCodigo(codigo){
-                if (codigo.value!=''){
-                   comprobarCodigoFabricante(codigo);
-                }                
-            }
-            function comprobarCodigoFabricante(codigo){
-                document.getElementById("formFabricante").action = "consultaFabricante.htm";
-                document.getElementById("formFabricante").submit();
-            }
-            function formularioBajaModifica(){
-                document.getElementById("botonAlta").disabled = true;
-                document.getElementById("botonBaja").disabled = false;
-                document.getElementById("botonModificar").disabled = false;
-                document.getElementById("codigo").focus();
-            }
-            function formularioAlta(){
-                document.getElementById("botonAlta").disabled = false;
-                document.getElementById("botonBaja").disabled = true;
-                document.getElementById("botonModificar").disabled = true;
-                document.getElementById("codigo").focus();
-            }
-            function comprobarEntrada(){
-                if ("${fab.nombre}"!=''){   
-                    alert ("modificacion o baja");
-                    formularioBajaModifica();
-                }else{
-                    alert ("hay que dar de alta"); 
-                    formularioAlta();       
-                }
-            }
-            
-            window.onload = function(){
-                comprobarEntrada();
-            }
-           
-        </script>    
-        
-
+        <!-- librerías opcionales que activan el soporte de HTML5 para IE8 -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
     </head>
     <body>
-        <h1>Formulario de Fabricante</h1>
-        
-        
-        
-        <br>
-        
-        
-        <form name="formFabricante" id="formFabricante" action="" method="POST" >
-            <fieldset><legend>Datos de Fabricante</legend>
-                
-                <p><label>ID Fabricante : </label><input name="id_fabricante" 
-                                                         id="id_fabricante" 
-                                                         size="4"
-                                                         value="${fab.idFabricante}"/>
-                <p><label>Codigo Fabricante : </label><input name="codigo"  
-                                                             id="codigo" 
-                                                             size="5" 
-                                                             onBlur="verificarCodigo(this);" 
-                                                             onkeyup="this.value = this.value.toUpperCase();" 
-                                                             class="mayuscula"
-                                                             value ="${fab.codigo}"/></p>
-                <p><label>Nombre Fabricante : </label><input name="nombre"  
-                                                             id="nombre" 
-                                                             size="15" 
-                                                             onkeyup="this.value = this.value.toUpperCase();" 
-                                                             class="mayuscula"
-                                                             value ="${fab.nombre}"/></p>
-                <p><label>Logotipo : </label><input name="logotipo" 
-                                                    id="logo" 
-                                                    size="30"
-                                                    onblur="cambiarLogo(this);"
-                                                    onkeyup="this.value = this.value.toUpperCase();" 
-                                                    class="mayuscula"
-                                                    value="${fab.logo}"/> <img id="imagenLogo" src="img/${fab.logo}"/></p>
-               
 
-            </fieldset>
+        <div class="formulario container">
+            <h1>Formulario de Fabricantes</h1>
+            <br>
+            <form id="formularioFabrciantes" >
+                <div class="row"> 
+                    <div class="col-md-6" id="pantallaI">
+                        <div class="row">  
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="idFabrciante">ID Fabricante</label>
+                                    <input type="text" class="form-control" id="idFabricante" name="idFabricante">
+                                </div>          
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="codigo">Código</label>
+                                    <input type="text" class="form-control" id="codigo" name="codigo">
+                                </div>          
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="descripcion">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre">
+                                </div>          
+                            </div>
+                        </div>
+                        <div class="row">    
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="logo">Logotipo</label>
+                                    <input type="text" class="form-control" id="logo" name="logo">
+                                </div>          
+                            </div>
+                        </div>
 
-            <fieldset style color="black"><legend>Menú de opciones</legend>
-                <div id="menu">
-                    <input type="button" 
-                           value="Alta" 
-                           id="botonAlta"                          
-                           onclick="formMarcaAlta();"/>
-                    <input type="button" 
-                           value="Baja" 
-                           id="botonBaja"                          
-                           onclick="formMarcaBaja();" />
-                    <input type="submit" 
-                           value="Modificar" 
-                           id="botonModificar" 
-                           onclick="formMarcaModificar();"/>
-                    <input type="reset" 
-                           value="Cancelar" 
-                           id="borrarFormulario" 
-                           onclick="formMarcaInicio();"/>                    
-                    <input type="button" 
-                           value="Listado" 
-                           onclick="window.location.href = 'listaMarca.htm';"/> 
-                    <br><br>
-                    <input type="button" 
-                           value="Volver" 
-                           id="volver" 
-                           onclick="vuelta();"/>
-                    <input type="button" 
-                           value="Inicio" 
-                           id="inicio" 
-                           onclick="window.location.href='index.htm';"/>
+
+                        <br>
+                        <div class="row">
+                            <div class="btn-group col-md-12">
+                                <button type="button" class="btn btn-primary" id="alta">Alta</button>
+                                <button type="button" class="btn btn-primary" id="baja">Baja</button>
+                                <button type="button" class="btn btn-primary" id="modificar">Modificar</button>
+                                <button type="reset" class="btn btn-primary" id="limpiar">Limpiar</button>
+                                <button type="button" class="btn btn-primary" id="listado">Listado</button>
+                                <button type="button" class="btn btn-primary" id="salir">Salir</button>                            
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+
+                    <div class="col-md-6" id="pantallaD">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="centrado">
+                                    <img id="imgLogo" src="img/marcas/logo.png" height="100" />
+                                </div>
+                            </div>          
+                        </div>
+                    </div>
                 </div>
-            </fieldset>
-            <br>           
-        </form>
 
-    </body>
-</html>
+
+                <% String str = (String) request.getAttribute("peticion");%>
+                <% String cierre = (String) request.getAttribute("cierre");%>
+               
+                <script>
+                    function salir() {       
+                        
+                      
+
+                        if ('<%=cierre%>'==="close") {
+                            window.close();
+                        } else {
+                            location.href = '<%=str%>';
+                        }
+
+
+                    }
+                </script>
+
+                <!-- Librería jQuery requerida por los plugins de JavaScript -->
+                <script src="js/jquery.js"></script>
+
+
+                <!-- Todos los plugins JavaScript de Bootstrap (también puedes
+                     incluir archivos JavaScript individuales de los únicos
+                     plugins que utilices) -->
+                <script src="js/bootstrap.min.js"></script>
+                <script src="js/funcionesComunes.js"></script>
+                <script src="js/funcionesFormularioFabricante.js"></script>
+                </body>
+                </html>

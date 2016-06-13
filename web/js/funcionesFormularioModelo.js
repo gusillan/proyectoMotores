@@ -223,12 +223,3 @@ function validacion() {
     return true;
 
 }
-
-function irMarca() {
-    var ventanaMarca = window.open('formularioFabricante.htm', 'miventana', 'titlebar=no, menubar=no, toolbar=no, location=no, status=no');
-    ventanaMarca.document.prueba = "Texto que voy a insertar";
-    //ventanaMarca.document.write(ventanaMarca.strHijo);
-    //setTimeout('cambiarTexto()',3000);
-
-
-}

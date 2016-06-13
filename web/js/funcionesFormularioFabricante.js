@@ -3,7 +3,6 @@ $(function() {
     $('input').keyup(function() {
         this.value = this.value.toUpperCase();
     });
-
     $('#codigo').blur(function() {
         var codigo = this.value;
         if (vacio(codigo)) {
@@ -13,41 +12,36 @@ $(function() {
         }
     });
 
-    $('#alta').click();
+    $('#alta').click(confirmarAlta);
     $('#limpiar').click(limpiar);
     $('#salir').click(salir);
+    
+    $('#codigo').focus();
 
 
 });
 
 
 function compruebaCodigo(codigo) {
-    $.getJSON('consultaCodigoMotor.htm', {codigo: codigo}, rellenaFormulario);
+    $.getJSON('consultaFabricante.htm', {codigoFabricante: codigo}, procesaRespuesta).fail(limpiar);
 }
+
 function compruebaAntesDeAlta(codigo) {
     $.getJSON('consultaCodigoMotor.htm', {codigo: codigo}, consultarAlta);
 }
-function rellenaFormulario(listaMotor) {
-    console.log("respuesta ajax" + listaMotor);
-    if (listaMotor.length == 1) {
-        var motor = listaMotor[0];
-        $('#idMotor').val(motor.idMotor);
-        $('#codigo').val(motor.codigo);
-        $('#descripcion').val(motor.descripcion);
-        $('#combustible').val(motor.combustible);
-        compruebaCombustible(motor.combustible);
-        $('#cilindrada').val(motor.cilindrada);
-        $('#kw').val(motor.kw);
-        var kw = $('#kw').val();
-        var cv = kw * 1.36;
-        $('#cv').val(cv.toFixed(2));
-        $('#marca').val(motor.fabricante.codigo);
-        $('#marcaMotor').val(motor.fabricante.nombre);
-    } else if (listaMotor.length > 1) {
-        console.log("HAY MAS DE UNO");
-    } else {
-        console.log("No existe");
-    }
+
+function procesaRespuesta(listaFabricante) {
+    var fabricante = listaFabricante[0];
+    rellenaForm(fabricante);
+}
+
+function rellenaForm(fabricante) {
+    $('#idFabricante').val(fabricante.idFabricante);
+    $('#codigo').val(fabricante.codigo);
+    $('#nombre').val(fabricante.nombre);
+    $('#logo').val(fabricante.logo);
+    $('#imgLogo').attr("src", "img/marcas/" + fabricante.logo);
+
 }
 function consultarAlta(listaMotor) {
     console.log("respuesta Ajax " + listaMotor);
@@ -67,12 +61,14 @@ function alta() {
 
 }
 function limpiar() {
+    $('#imgLogo').attr('src', "img/marcas/logo.png");
     $('#codigo').focus();
 }
-function salir() {
-    location.href = 'index.htm';
-}
 
+/*function salir() {
+    location.href = '/ProyectoMotores/index.htm';
+    //location.href = ;
+}*/
 function compruebaMarca(marca) {
     $.getJSON("consultaFabricante.htm", {codigoFabricante: marca}, function(fabricante) {
         $('#marcaMotor').val(fabricante[0].nombre);

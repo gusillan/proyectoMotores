@@ -9,7 +9,12 @@ import com.pacoillan.DAO.FabricanteDAO;
 import com.pacoillan.pojo.Fabricante;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +34,19 @@ public class FabricanteController {
     FabricanteDAO fabricanteDao;
 
     @RequestMapping("formularioFabricante.htm")
-    public ModelAndView formularioFabricante(HttpServletRequest request, HttpServletResponse response) {
-        mv.setViewName("formularioFabricantes");
+    public ModelAndView formularioFabricante(HttpServletRequest request, HttpServletResponse response) throws MalformedURLException, IOException {
+        System.out.println("tipo de cierre " + request.getParameter("cierre"));
+        String cierre = request.getParameter("cierre");
+        System.out.println("atributo de peticion " + request.getHeader("referer"));
+        String peticion = request.getHeader("referer");
+        URL url = new URL(peticion);
+        String archivo = url.getFile();
+        System.out.println("Archivo : " + archivo);
+
+        request.setAttribute("peticion", archivo);
+        request.setAttribute("cierre", cierre);
+
+        mv.setViewName("formularioFabricante");
         return mv;
     }
 
@@ -40,8 +56,6 @@ public class FabricanteController {
         response.sendRedirect("formularioFabricante.htm");
     }
 
-    
-
     @RequestMapping("consultaFabricante.htm")
     public void consultaFabricante(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/json");
@@ -49,27 +63,13 @@ public class FabricanteController {
         PrintWriter out = response.getWriter();
         String codigoFabricante = request.getParameter("codigoFabricante");
         System.out.println("Codigo fabricante " + codigoFabricante);
-        Gson json = new Gson();
-
-        List<Fabricante> lista = fabricanteDao.listadoPorCampoExacto("codigo", codigoFabricante);
-        if (lista.size() == 0) {
-            System.out.println("No existe codigo");
-            Fabricante f = new Fabricante();
-            lista.add(f);
-            String listaFabricantes = json.toJson(lista);
-            System.out.println("LIsta fabricantes " + listaFabricantes);
-            out.println(listaFabricantes);
-        } else if (lista.size() == 1) {
-            System.out.println("El fabricante es " + lista.get(0).getNombre());
-            String listaFabricantes = json.toJson(lista);
-            System.out.println("LIsta fabricantes " + listaFabricantes);
-            out.println(listaFabricantes);
-        } else if (lista.size() > 1) {
-            System.out.println("Hay mas de uno");
-
+        List<Fabricante> listaFabricantes = fabricanteDao.listadoPorCampoExacto("codigo", codigoFabricante);
+        if (listaFabricantes.isEmpty()) {
+            out.println();
+        } else {
+            Gson gson = new Gson();
+            String lista = gson.toJson(listaFabricantes);
+            out.println(lista);
         }
-
-
-
     }
 }

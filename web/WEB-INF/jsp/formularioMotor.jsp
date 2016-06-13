@@ -117,7 +117,7 @@
                             <button type="button" class="btn btn-primary" id="modificar">Modificar</button>
                             <button type="button" class="btn btn-primary" id="limpiar">Limpiar</button>
                             <button type="button" class="btn btn-primary" id="listado">Listado</button>
-                            <button type="button" class="btn btn-primary" id="salir">Salir</button>
+                            <button type="button" class="btn btn-primary" id="salir" value="salir">Salir</button>
                         </div>
                     </div>
 
@@ -142,11 +142,12 @@
                     <button type="button" class="btn btn-primary" id="Dseleccionar">Seleccionar</button>
                     <button type="button" class="btn btn-primary" id="Dcontinuar">Continuar con el Alta</button>                     
                 </div>
+
             </div>
 
 
         </div>
-
+        
         <!-- Librería jQuery requerida por los plugins de JavaScript -->
         <script src="js/jquery.js"></script>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
