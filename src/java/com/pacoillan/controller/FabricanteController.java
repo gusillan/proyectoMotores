@@ -51,9 +51,12 @@ public class FabricanteController {
     }
 
     @RequestMapping("altaFabricante.htm")
-    public void altaFabricante(Fabricante fabricante, HttpServletResponse response) throws IOException {
+    public ModelAndView altaFabricante(Fabricante fabricante, HttpServletResponse response) throws IOException {
+        System.out.println("alta de fabricante "+fabricante.getNombre());
         fabricanteDao.create(fabricante);
-        response.sendRedirect("formularioFabricante.htm");
+        mv.setViewName("formularioFabricante");
+        return mv;
+        //response.sendRedirect("formularioFabricante.htm");
     }
 
     @RequestMapping("consultaFabricante.htm")

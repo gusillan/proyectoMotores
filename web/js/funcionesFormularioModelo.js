@@ -54,27 +54,14 @@ function seleccionarOpcion() {
     $('#dialog').dialog("close");
 }
 function compruebaCodigo(codigo) {
-    $.getJSON('consultaCodigoModelo.htm', {codigo: codigo}, rellenaFormulario);
+    $.getJSON('consultaCodigoModelo.htm', {codigo: codigo}, procesaRespuesta);
 }
 function compruebaAntesDeAlta() {
     var codigo = $('#codigo').val();
     //Opción si el codigo está vacio
     $.getJSON('consultaCodigoModelo.htm', {codigo: codigo}, consultarAlta);
 }
-function rellenaFormulario(listaModelos) {
-    console.log("respuesta ajax " + listaModelos);
-    if (listaModelos.length == 1) {
-        console.log("SOLO HAY UNO");
-        var modelo = listaModelos[0];
-        console.log(modelo.descripcion);
-        rellenaForm(modelo);
-    } else if (listaModelos.length > 1) {
-        console.log("HAY MAS DE UNO");
-        ventanaOpciones(listaModelos);
-    } else if (listaModelos.length < 1) {
-        console.log("NO EXISTE");
-    }
-}
+
 function rellenaForm(modelo) {
     $('#idModelo').val(modelo.idModelo);
     $('#codigo').val(modelo.codigo);
@@ -130,6 +117,8 @@ function limpiar() {
     $('#listaModelos').empty();//Borrar Select motores 
     $('#imgLogo').attr('src', "img/marcas/logo.png");
     $('#imgModelo').attr('src', "img/modelos/generico.png");
+    $('#baja').attr('disabled',false);
+    $('#modificar').attr('disabled',false); 
     $('#codigo').focus();
 }
 function listar() {

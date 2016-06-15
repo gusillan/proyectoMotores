@@ -66,17 +66,7 @@ function compruebaAntesDeAlta() {
     //Opción si el codigo está vacio
     $.getJSON('consultaCodigoMotor.htm', {codigo: codigo}, consultarAlta);
 }
-function procesaRespuesta(listaMotor) {
-    console.log("respuesta ajax " + listaMotor);
-    if (listaMotor.length == 1) {
-        var motor = listaMotor[0];
-        rellenaForm(motor);
-    } else if (listaMotor.length > 1) {
-        ventanaOpciones(listaMotor);
-    } else if (listaMotor.length < 1) {
 
-    }
-}
 function rellenaForm(motor) {
     $('#idMotor').val(motor.idMotor);
     $('#codigo').val(motor.codigo);
@@ -126,6 +116,8 @@ function limpiar() {
     $('#formularioMotores')[0].reset();
     $('#listaMotores').empty();//Borrar Select motores  
     $('#imgLogo').attr('src', "img/marcas/logo.png");
+    $('#baja').attr('disabled',false);
+    $('#modificar').attr('disabled',false);    
     $('#codigo').focus();
 }
 function listar() {

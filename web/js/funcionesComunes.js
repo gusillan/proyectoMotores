@@ -88,6 +88,19 @@ function confirmarModificacion() {
     }
 }
 
+function procesaRespuesta(listaObjetos) {
+    if (listaObjetos.length == 1) {
+        var objeto = listaObjetos[0];
+        rellenaForm(objeto);
+    } else if (listaObjetos.length > 1) {
+        ventanaOpciones(listaObjetos);
+    } else if (listaObjetos.length < 1) {
+        $('#baja').attr('disabled',true);
+        $('#modificar').attr('disabled',true);
+    }
+}
+
+
 function irMarca() {    
     var ventanaMarca = window.open('formularioFabricante.htm?cierre=close', 'miventana', 'titlebar=no, menubar=no, toolbar=no, location=no, status=no, width=1000, height=500');  
 }

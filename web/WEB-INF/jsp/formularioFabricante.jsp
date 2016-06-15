@@ -28,7 +28,7 @@
         <div class="formulario container">
             <h1>Formulario de Fabricantes</h1>
             <br>
-            <form id="formularioFabrciantes" >
+            <form id="formularioFabricantes"  method="post">
                 <div class="row"> 
                     <div class="col-md-6" id="pantallaI">
                         <div class="row">  
