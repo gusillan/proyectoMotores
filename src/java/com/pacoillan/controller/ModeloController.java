@@ -32,14 +32,26 @@ public class ModeloController {
         return "formularioModelo";
     }
 
-    @RequestMapping("comprobarCodigoModelo.htm")
-    public void comprobarCodigoModelo(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/plain");
+    @RequestMapping("consultaCodigoModelo.htm")
+    public void consultaCodigoModelo(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+
+        response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        String respuesta = "";
-        String combustible = request.getParameter("codigo");
-        System.out.println("combustible -> " + combustible);
+        String codigoModelo = (request.getParameter("codigo").toUpperCase());
+        System.out.println("Codigo -> " + codigoModelo);
+        List<Modelo> listaModelos = modeloDao.listadoPorCampoExacto("codigo", codigoModelo);
+        System.out.println("Listado" + listaModelos);
+        if (listaModelos.isEmpty()) {
+            out.println();
+        } else {
+            Collections.sort(listaModelos);
+        }
+        Gson gson = new Gson();
+        String lista = gson.toJson(listaModelos);
+        System.out.println("Lista Respuesta " + lista);
+        out.println(lista);
     }
 
     @RequestMapping("altaModelo.htm")
@@ -50,6 +62,8 @@ public class ModeloController {
         List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         modelo.setFabricante(fabricante);
+        String imagenMinuscula = modelo.getImagen().toLowerCase();
+        modelo.setImagen(imagenMinuscula);
         modeloDao.create(modelo);
         mv.setViewName("formularioModelo");
         return mv;
@@ -76,55 +90,10 @@ public class ModeloController {
         List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         modelo.setFabricante(fabricante);
+        String imagenMinuscula = modelo.getImagen().toLowerCase();
+        modelo.setImagen(imagenMinuscula);
         modeloDao.update(modelo);
         mv.setViewName("formularioModelo");
         return mv;
-    }
-
-    
-
-    @RequestMapping("consultaCodigoModelo.htm")
-    public void consultaCodigoModelo(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        PrintWriter out = response.getWriter();
-        String codigoModelo = (request.getParameter("codigo").toUpperCase());
-        System.out.println("Codigo -> " + codigoModelo);
-        List<Modelo> listaModelos = modeloDao.listadoPorCampoExacto("codigo", codigoModelo);
-        System.out.println("Listado" + listaModelos);
-        if (listaModelos.isEmpty()) {
-            //Modelo m = new Modelo(codigoModelo);
-            //Fabricante f = new Fabricante();
-            //m.setFabricante(f);
-            //listaModelos.add(m);
-            out.println();
-        } else {
-            Collections.sort(listaModelos);
-        }
-        Gson gson = new Gson();
-        String lista = gson.toJson(listaModelos);
-        System.out.println("Lista Respuesta " + lista);
-        out.println(lista);
-    }
-
-    @RequestMapping("listaModelos.htm")
-    public void listaModelos(HttpServletRequest request, HttpServletResponse response, @ModelAttribute Modelo modelo, @RequestBody String jsonEntrada)
-            throws IOException {
-        Gson gson = new Gson();
-        Modelo m = gson.fromJson(jsonEntrada, Modelo.class);
-        System.out.println("Objeto recibido " + jsonEntrada);
-        System.out.println("Objeto JAVA " + m.getCodigo() + " " + m.getDescripcion());
-        List<Modelo> listaModelos;
-        listaModelos = modeloDao.listadoPorCampo("codigo", m.getCodigo());
-        //listaModelos = modeloDao.listAll();       
-        Collections.sort(listaModelos);
-
-        String lista = gson.toJson(listaModelos);
-        System.out.println("Modelos JSON " + lista);
-        response.setContentType("text/xml;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.println(lista);
     }
 }

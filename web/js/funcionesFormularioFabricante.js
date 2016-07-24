@@ -11,7 +11,10 @@ $(function() {
             compruebaCodigo(codigo);
         }
     });
-    $('#alta').click(consultarAlta);
+    $('#logo').blur(function() {
+        $('#imgLogo').attr("src", "img/marcas/" + ($('#logo').val()).toLowerCase());
+    });
+    $('#alta').click(validarAlta);
     $('#baja').click(confirmarBaja);
     $('#modificar').click(confirmarModificacion);
     $('#limpiar').click(limpiar);
@@ -41,34 +44,69 @@ function rellenaForm(fabricante) {
     $('#imgLogo').attr("src", "img/marcas/" + fabricante.logo);
 
 }
-function consultarAlta() {
 
-    if (confirmarAlta()) {
-        alta();
-    } else {
-        limpiar();
-    }
-
-}
-function alta() {
+function validarAlta() {
     if (validacion()) {
         console.log("ALTA");
-        $('#formularioFabricantes').attr('action', 'altaFabricante.htm');
-        $('#formularioFabricantes').submit();       
+        if (confirmarAlta()) {
+            alta();
+        } else {
+            limpiar();
+        }
     } else {
         console.log("ERROR DE VALIDACION");
     }
 }
+function alta() {
+    codigo = $('#codigo').val();
+    nombre = $('#nombre').val();
+    logo = $('#logo').val();
+    //$.load('altaFabricante.htm', {codigo: codigo,nombre : nombre,logo : logo}, altaOK);//.fail(limpiar);
+    $.ajax({
+        url: 'altaFabricante.htm',
+        data: {codigo: codigo, nombre: nombre, logo: logo},
+        type: 'POST',
+        success: limpiar
+    });
+}
+
+function baja() {
+    idFabricante = $('#idFabricante').val();
+    codigo = $('#codigo').val();
+    nombre = $('#nombre').val();
+    logo = $('#logo').val();
+    $.ajax({
+        url: 'bajaFabricante.htm',
+        data: {idFabricante : idFabricante,codigo: codigo, nombre: nombre, logo: logo},
+        type: 'POST',
+        success: limpiar
+    });
+}
+
+function modificar() {
+    idFabricante = $('#idFabricante').val();
+    codigo = $('#codigo').val();
+    nombre = $('#nombre').val();
+    logo = $('#logo').val();
+    $.ajax({
+        url: 'modificaFabricante.htm',
+        data: {idFabricante : idFabricante,codigo: codigo, nombre: nombre, logo: logo},
+        type: 'POST',
+        success: limpiar
+    });
+}
+
+
 function limpiar() {
+    $('#formularioFabricantes')[0].reset();
     $('#imgLogo').attr('src', "img/marcas/logo.png");
     $('#alta').attr('disabled', false);
     $('#codigo').focus();
 }
 
-/*function salir() {
- location.href = '/ProyectoMotores/index.htm';
- //location.href = ;
- }*/
+function salir() {
+    window.history.back();
+}
 function compruebaMarca(marca) {
     $.getJSON("consultaFabricante.htm", {codigoFabricante: marca}, function(fabricante) {
         $('#marcaMotor').val(fabricante[0].nombre);
@@ -76,15 +114,18 @@ function compruebaMarca(marca) {
 }
 function validacion() {
     if (vacio($('#codigo').val())) {
-        console.log("Campo codigo VACIO");
+        alert("Campo codigo VACIO");
+        $('#codigo').focus();
         return false;
     }
     if (vacio($('#nombre').val())) {
-        console.log("Campo nombre VACIO");
+        alert("Campo nombre VACIO");
+        $('#nombre').focus();
         return false;
     }
     if (vacio($('#logo').val())) {
-        console.log("Campo logotipo VACIO");
+        alert("Campo logotipo VACIO");
+        $('#logo').focus();
         return false;
     }
     else {

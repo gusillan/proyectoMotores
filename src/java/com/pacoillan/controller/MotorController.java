@@ -65,13 +65,12 @@ public class MotorController {
             throws IOException {
         List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
-        motor.setFabricante(fabricante);        
+        motor.setFabricante(fabricante);
         motorDao.update(motor);
         mv.setViewName("formularioMotor");
-        return mv;        
+        return mv;
     }
 
-   
     @RequestMapping("consultaCodigoMotor.htm")
     public void consultaCodigoMotor(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -97,8 +96,6 @@ public class MotorController {
         out.println(lista);
     }
 
-   
-
     @RequestMapping("listaMotores.htm")
     public void listaMotores(HttpServletRequest request, HttpServletResponse response, @ModelAttribute Motor motor, @RequestBody String jsonEntrada)
             throws IOException {
@@ -116,6 +113,5 @@ public class MotorController {
         response.setContentType("text/xml;charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.println(lista);
-    }    
-    
+    }
 }

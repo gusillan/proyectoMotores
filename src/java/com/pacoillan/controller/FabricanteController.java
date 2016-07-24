@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -51,11 +52,17 @@ public class FabricanteController {
     }
 
     @RequestMapping("altaFabricante.htm")
-    public ModelAndView altaFabricante(Fabricante fabricante, HttpServletResponse response) throws IOException {
-        System.out.println("alta de fabricante "+fabricante.getNombre());
+    public void altaFabricante(Fabricante fabricante, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("******** ALTA ***************");
+        System.out.println("alta de codigo " + fabricante.getCodigo());
+        System.out.println("alta de fabricante " + fabricante.getNombre());
+        System.out.println("alta de logo " + fabricante.getLogo());
+        String logoMinuscula = fabricante.getLogo().toLowerCase();
+        fabricante.setLogo(logoMinuscula);
+
         fabricanteDao.create(fabricante);
-        mv.setViewName("formularioFabricante");
-        return mv;
+        //mv.setViewName("formularioFabricante");
+        //return mv;
         //response.sendRedirect("formularioFabricante.htm");
     }
 
@@ -75,4 +82,15 @@ public class FabricanteController {
             out.println(lista);
         }
     }
+
+    @RequestMapping("bajaFabricante.htm")
+    public void bajaFabricante(Fabricante fabricante, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        fabricanteDao.delete(fabricante);
+    }
+    
+    @RequestMapping("modificaFabricante.htm")
+    public void modificaFabricante(Fabricante fabricante, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        fabricanteDao.update(fabricante);
+    }
+    
 }

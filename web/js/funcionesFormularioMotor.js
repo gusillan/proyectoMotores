@@ -72,10 +72,10 @@ function rellenaForm(motor) {
     $('#codigo').val(motor.codigo);
     $('#descripcion').val(motor.descripcion);
     $('#combust option[value="' + motor.combustible + '"]').prop('selected', true);
-    $('#cilindrada').val(motor.cilindrada);
+    $('#cilindrada').val(motor.cilindrada);  
     $('#kw').val(motor.kw);
     var kw = $('#kw').val();
-    var cv = kw * 1.36;
+    var cv = kw * 1.36;    
     $('#cv').val(cv.toFixed(2));
     $('#marca').val(motor.fabricante.codigo);
     $('#marcaMotor').val(motor.fabricante.nombre);
@@ -95,7 +95,7 @@ function consultarAlta(listaMotor) {
         if (confirmarAlta()) {
             alta();
         } else {
-            $('#descripcion').focus();
+//                $('#descripcion').focus();
         }
     }
 }
@@ -175,7 +175,7 @@ function validacion() {
         $('#kw').focus();
         return false;
     }
-    if (!numero($('#kw').val())) {
+    if (!numeroDecimal($('#kw').val())) {
         alert("El campo KW debe ser un número entero");
         $('#kw').focus();
         return false;

@@ -28,13 +28,13 @@
         <div class="formulario container">
             <h1>Formulario de Fabricantes</h1>
             <br>
-            <form id="formularioFabricantes"  method="post">
+            <form id="formularioFabricantes">
                 <div class="row"> 
                     <div class="col-md-6" id="pantallaI">
                         <div class="row">  
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="idFabrciante">ID Fabricante</label>
+                                    <label for="idFabricante">ID Fabricante</label>
                                     <input type="text" class="form-control" id="idFabricante" name="idFabricante">
                                 </div>          
                             </div> 
@@ -71,7 +71,8 @@
                                 <button type="button" class="btn btn-primary" id="modificar">Modificar</button>
                                 <button type="reset" class="btn btn-primary" id="limpiar">Limpiar</button>
                                 <button type="button" class="btn btn-primary" id="listado">Listado</button>
-                                <button type="button" class="btn btn-primary" id="salir">Salir</button>                            
+                                <button type="button" class="btn btn-primary" id="salir">Salir</button> 
+                                
                             </div>
                         </div>
                         </form>
@@ -88,25 +89,7 @@
                     </div>
                 </div>
 
-
-                <% String str = (String) request.getAttribute("peticion");%>
-                <% String cierre = (String) request.getAttribute("cierre");%>
-               
-                <script>
-                    function salir() {       
-                        
-                      
-
-                        if ('<%=cierre%>'==="close") {
-                            window.close();
-                        } else {
-                            location.href = '<%=str%>';
-                        }
-
-
-                    }
-                </script>
-
+                
                 <!-- Librería jQuery requerida por los plugins de JavaScript -->
                 <script src="js/jquery.js"></script>
 

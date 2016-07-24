@@ -97,7 +97,8 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="marca">Código Marca <a href="javascript:irMarca()">+</a></label>
+                                <!--<label for="marca">Código Marca <a href="javascript:irMarca()">+</a></label>-->
+                                <label for="marca">Código Marca <a href="formularioFabricante.htm">+</a></label>
                                 <input type="text" class="form-control" id="marca" name="marca">
                             </div>          
                         </div>

@@ -10,7 +10,14 @@ function minmax(min, max, dato) {
 }
 
 function numero(dato) {
-    if (/^([0-9])*$/.test(dato)) {
+    if (/^([0-9])*$/.test(dato)) { // usada hasta ahora /^([0-9])*$/   /^-?[0-9]+([,\.][0-9]*)?$/
+        return true;
+    } else {
+        return false;
+    }
+}
+function numeroDecimal(dato){
+    if (/^[0-9]+([,\.][0-9]*)?$/.test(dato)) {
         return true;
     } else {
         return false;
@@ -102,5 +109,11 @@ function procesaRespuesta(listaObjetos) {
 
 
 function irMarca() {    
-    var ventanaMarca = window.open('formularioFabricante.htm?cierre=close', 'miventana', 'titlebar=no, menubar=no, toolbar=no, location=no, status=no, width=1000, height=500');  
+    //var ventanaMarca = window.open('formularioFabricante.htm?cierre=close', 'miventana', 'titlebar=no, menubar=no, toolbar=no, location=no, status=no, width=1000, height=500');  
+    
+}
+
+function pad(str,max){
+    str = str.toString();
+    return str.length < max ? pad("0" + str , max) : str;   
 }

@@ -23,6 +23,7 @@ $(function() {
             compruebaMarca(marca);
         }
     });
+    
     $('#alta').click(compruebaAntesDeAlta);
     $('#baja').click(confirmarBaja);
     $('#modificar').click(confirmarModificacion);
@@ -171,6 +172,8 @@ function validacion() {
             $('#mesInicio').focus();
             return false;
         }
+        mesInicio = $('#mesInicio').val();
+        $('#mesInicio').val(pad(mesInicio,2));
     }
     if (!vacio($('#yearInicio').val())) {
         if (!numero($('#yearInicio').val())) {
@@ -195,6 +198,8 @@ function validacion() {
             $('#mesFin').focus();
             return false;
         }
+        mesFin = $('#mesFin').val();
+        $('#mesFin').val(pad(mesFin,2));
     }
     if (!vacio($('#yearFin').val())) {
         if (!numero($('#yearFin').val())) {
@@ -208,6 +213,10 @@ function validacion() {
             return false;
         }
     }
+    /*if ($('#yearFin').val()<$('#yearInicio').val()){
+        alert("El año de finalización no puede ser inferior al de inicio");
+        return false;
+    }*/ /*Problema cuando no ponemos año de finalizacion de produccion*/
     console.log("ADELANTE");
     return true;
 
