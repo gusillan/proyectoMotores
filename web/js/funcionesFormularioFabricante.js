@@ -31,6 +31,7 @@ function compruebaCodigo(codigo) {
 }
 
 function procesaRespuestaUnica(listaFabricante) {
+    console.log('llega aqui');
     var fabricante = listaFabricante[0];
     rellenaForm(fabricante);
     $('#alta').attr('disabled', true);
@@ -103,6 +104,10 @@ function limpiar() {
     $('#alta').attr('disabled', false);
     $('#codigo').focus();
 }
+
+
+
+    
 
 function salir() {
     window.history.back();

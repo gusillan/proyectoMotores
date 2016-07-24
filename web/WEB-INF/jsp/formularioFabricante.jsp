@@ -35,7 +35,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="idFabricante">ID Fabricante</label>
-                                    <input type="text" class="form-control" id="idFabricante" name="idFabricante">
+                                    <input type="text" class="form-control" id="idFabricante" name="idFabricante" disabled>
                                 </div>          
                             </div> 
                         </div>
