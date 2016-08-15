@@ -21,13 +21,15 @@ $(function() {
     $('#salir').click(salir);
 
     $('#codigo').focus();
-
-
 });
 
-
 function compruebaCodigo(codigo) {
-    $.getJSON('consultaFabricante.htm', {codigoFabricante: codigo}, procesaRespuestaUnica)//.fail(limpiar);
+    $.getJSON('consultaFabricante.htm', {codigoFabricante: codigo}, procesaRespuestaUnica).fail(anulaBajaModificar);
+}
+
+function anulaBajaModificar(){
+    $('#baja').attr('disabled',true);
+    $('#modificar').attr('disabled',true);  
 }
 
 function procesaRespuestaUnica(listaFabricante) {
@@ -43,7 +45,6 @@ function rellenaForm(fabricante) {
     $('#nombre').val(fabricante.nombre);
     $('#logo').val(fabricante.logo);
     $('#imgLogo').attr("src", "img/marcas/" + fabricante.logo);
-
 }
 
 function validarAlta() {
@@ -62,7 +63,6 @@ function alta() {
     codigo = $('#codigo').val();
     nombre = $('#nombre').val();
     logo = $('#logo').val();
-    //$.load('altaFabricante.htm', {codigo: codigo,nombre : nombre,logo : logo}, altaOK);//.fail(limpiar);
     $.ajax({
         url: 'altaFabricante.htm',
         data: {codigo: codigo, nombre: nombre, logo: logo},
@@ -97,26 +97,25 @@ function modificar() {
     });
 }
 
-
 function limpiar() {
     $('#formularioFabricantes')[0].reset();
     $('#imgLogo').attr('src', "img/marcas/logo.png");
     $('#alta').attr('disabled', false);
+    $('#baja').attr('disabled',false);
+    $('#modificar').attr('disabled',false);  
     $('#codigo').focus();
-}
-
-
-
-    
+}   
 
 function salir() {
     window.history.back();
 }
+
 function compruebaMarca(marca) {
     $.getJSON("consultaFabricante.htm", {codigoFabricante: marca}, function(fabricante) {
         $('#marcaMotor').val(fabricante[0].nombre);
     });
 }
+
 function validacion() {
     if (vacio($('#codigo').val())) {
         alert("Campo codigo VACIO");

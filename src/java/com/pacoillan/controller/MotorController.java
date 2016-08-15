@@ -33,42 +33,32 @@ public class MotorController {
     }
 
     @RequestMapping("altaMotor.htm")
-    public ModelAndView altaMotor(@ModelAttribute Motor motor, HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+    public void altaMotor(Motor motor, HttpServletRequest request, HttpServletResponse response) {
 
-        motor.setIdMotor(null);
         List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         motor.setFabricante(fabricante);
         motorDao.create(motor);
-        mv.setViewName("formularioMotor");
-        return mv;
+
     }
 
     @RequestMapping("bajaMotor.htm")
-    public ModelAndView bajaMotor(@ModelAttribute Motor motor,
-            HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+    public void bajaMotor(Motor motor, HttpServletRequest request, HttpServletResponse response) {
+
         List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         motor.setFabricante(fabricante);
-        //Fabricante mymarca = fabricanteDao.read(Integer.parseInt(request.getParameter("marcaMotor")));
-        //motor.setFabricante(mymarca);
         motorDao.delete(motor);
-        mv.setViewName("formularioMotor");
-        return mv;
     }
 
     @RequestMapping("modificarMotor.htm")
-    public ModelAndView modificarMotor(@ModelAttribute Motor motor,
-            HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+    public void modificarMotor(Motor motor, HttpServletRequest request, HttpServletResponse response) {
+        
         List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         motor.setFabricante(fabricante);
         motorDao.update(motor);
-        mv.setViewName("formularioMotor");
-        return mv;
+       
     }
 
     @RequestMapping("consultaCodigoMotor.htm")

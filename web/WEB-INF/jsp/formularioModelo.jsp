@@ -28,7 +28,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="idModelo">ID Modelo</label>
-                                <input type="text" class="form-control" id="idModelo" name="idModelo">
+                                <input type="text" class="form-control" id="idModelo" name="idModelo" disabled>
                             </div>          
                         </div>
                     </div>

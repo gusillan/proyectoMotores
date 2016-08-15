@@ -28,7 +28,7 @@
         <div class="formulario container">
             <h1>Formulario de Motores</h1>
             <br>
-            <form id="formularioMotores" method="post">
+            <form id="formularioMotores">
                 <div class="col-md-6">
                     <div class="row">  
                         <div class="col-md-6">
@@ -97,8 +97,7 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <!--<label for="marca">Código Marca <a href="javascript:irMarca()">+</a></label>-->
-                                <label for="marca">Código Marca <a href="formularioFabricante.htm">+</a></label>
+                                <label for="marca">Código Marca <a href="javascript:irMarca()">+</a></label>                                
                                 <input type="text" class="form-control" id="marca" name="marca">
                             </div>          
                         </div>

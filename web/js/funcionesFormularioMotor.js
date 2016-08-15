@@ -101,16 +101,59 @@ function consultarAlta(listaMotor) {
 }
 
 function alta() {
-    $('#formularioMotores').attr('action', 'altaMotor.htm');
-    $('#formularioMotores').submit();
+        
+    codigo = $('#codigo').val();
+    descripcion = $('#descripcion').val();
+    combustible = $('#combust').val();
+    cilindrada = $('#cilindrada').val();
+    kw = $('#kw').val();
+    marca = $('#marca').val();
+    
+    $.ajax({
+        url: 'altaMotor.htm',
+        data: {codigo: codigo, descripcion: descripcion,combustible : combustible,
+               cilindrada : cilindrada,kw : kw, marca : marca},
+        type: 'POST',
+        success: limpiar
+    });      
 }
 function baja() {
-    $('#formularioMotores').attr('action', 'bajaMotor.htm');
-    $('#formularioMotores').submit();
+    
+    idMotor = $('#idMotor').val();
+    codigo = $('#codigo').val();
+    descripcion = $('#descripcion').val();
+    combustible = $('#combust').val();
+    cilindrada = $('#cilindrada').val();
+    kw = $('#kw').val();
+    marca = $('#marca').val();
+    
+    $.ajax({
+        url: 'bajaMotor.htm',
+        data: {idMotor : idMotor,codigo: codigo, descripcion: descripcion,
+               combustible : combustible, cilindrada : cilindrada,
+               kw : kw, marca : marca},
+        type: 'POST',
+        success: limpiar
+    });      
 }
 function modificar() {
-    $('#formularioMotores').attr('action', 'modificarMotor.htm');
-    $('#formularioMotores').submit();
+    
+    idMotor = $('#idMotor').val();
+    codigo = $('#codigo').val();
+    descripcion = $('#descripcion').val();
+    combustible = $('#combust').val();
+    cilindrada = $('#cilindrada').val();
+    kw = $('#kw').val();
+    marca = $('#marca').val();
+    
+    $.ajax({
+        url: 'modificarMotor.htm',
+        data: {idMotor : idMotor,codigo: codigo, descripcion: descripcion,
+               combustible : combustible, cilindrada : cilindrada,
+               kw : kw, marca : marca},
+        type: 'POST',
+        success: limpiar
+    });      
 }
 function limpiar() {
     $('#formularioMotores')[0].reset();

@@ -107,10 +107,8 @@ function procesaRespuesta(listaObjetos) {
     }
 }
 
-
 function irMarca() {    
-    //var ventanaMarca = window.open('formularioFabricante.htm?cierre=close', 'miventana', 'titlebar=no, menubar=no, toolbar=no, location=no, status=no, width=1000, height=500');  
-    
+    location.href="formularioFabricante.htm";    
 }
 
 function pad(str,max){

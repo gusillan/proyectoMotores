@@ -23,19 +23,19 @@ $(function() {
             compruebaMarca(marca);
         }
     });
-    
+
     $('#alta').click(compruebaAntesDeAlta);
     $('#baja').click(confirmarBaja);
     $('#modificar').click(confirmarModificacion);
     $('#limpiar').click(limpiar);
     $('#listado').click(listar);
     $('#salir').click(salir);
-    
-    $('select#listaModelos').on('dblclick', seleccionarOpcion);   
+
+    $('select#listaModelos').on('dblclick', seleccionarOpcion);
     $('#Dvolver').click(volverDialog);
     $('#Dseleccionar').click(seleccionarOpcion);
-    $('#Dcontinuar').click(continuarAlta); 
-    
+    $('#Dcontinuar').click(continuarAlta);
+
     $('#codigo').focus();
 });
 function continuarAlta() {
@@ -99,27 +99,77 @@ function consultarAlta(listaMotor) {
     }
 }
 
+
+
 function alta() {
-    $('#formularioModelo').attr('action', 'altaModelo.htm');
-    $('#formularioModelo').submit();
+    codigo = $('#codigo').val();
+    descripcion = $('#descripcion').val();
+    marca = $('#marca').val();
+    mesInicio = $('#mesInicio').val();
+    yearInicio = $('#yearInicio').val();
+    mesFin = $('#mesFin').val();
+    yearFin = $('#yearFin').val();
+    imagen = $('#imagen').val();
+    
+    $.ajax({
+        url: 'altaModelo.htm',
+        data: {codigo: codigo, descripcion: descripcion, marca: marca, 
+               mesInicio : mesInicio, yearInicio : yearInicio, mesFin: mesFin,
+               yearFin : yearFin, imagen : imagen},
+        type: 'POST',
+        success: limpiar
+    });
 }
 
 function baja() {
-    $('#formularioModelo').attr('action', 'bajaModelo.htm');
-    $('#formularioModelo').submit();
+    idModelo = $('#idModelo').val();
+    codigo = $('#codigo').val();
+    descripcion = $('#descripcion').val();
+    marca = $('#marca').val();
+    mesInicio = $('#mesInicio').val();
+    yearInicio = $('#yearInicio').val();
+    mesFin = $('#mesFin').val();
+    yearFin = $('#yearFin').val();
+    imagen = $('#imagen').val();
+    
+    $.ajax({
+        url: 'bajaModelo.htm',
+        data: {idModelo : idModelo,codigo: codigo, descripcion: descripcion,
+        marca : marca,mesInicio : mesInicio, yearInicio : yearInicio, mesFin: mesFin,
+               yearFin : yearFin, imagen : imagen},
+        type: 'POST',
+        success: limpiar
+    });     
 }
 
 function modificar() {
-    $('#formularioModelo').attr('action', 'modificarModelo.htm');
-            $('#formularioModelo').submit();        
+    idModelo = $('#idModelo').val();
+    codigo = $('#codigo').val();
+    descripcion = $('#descripcion').val();
+    marca = $('#marca').val();
+    mesInicio = $('#mesInicio').val();
+    yearInicio = $('#yearInicio').val();
+    mesFin = $('#mesFin').val();
+    yearFin = $('#yearFin').val();
+    imagen = $('#imagen').val();
+    
+    $.ajax({
+        url: 'modificaModelo.htm',
+        data: {idModelo : idModelo,codigo: codigo, descripcion: descripcion,
+        marca : marca,mesInicio : mesInicio, yearInicio : yearInicio, mesFin: mesFin,
+               yearFin : yearFin, imagen : imagen},
+        type: 'POST',
+        success: limpiar
+    });     
+   
 }
 function limpiar() {
     $('#formularioModelo')[0].reset();
     $('#listaModelos').empty();//Borrar Select motores 
     $('#imgLogo').attr('src', "img/marcas/logo.png");
     $('#imgModelo').attr('src', "img/modelos/generico.png");
-    $('#baja').attr('disabled',false);
-    $('#modificar').attr('disabled',false); 
+    $('#baja').attr('disabled', false);
+    $('#modificar').attr('disabled', false);
     $('#codigo').focus();
 }
 function listar() {
@@ -173,7 +223,7 @@ function validacion() {
             return false;
         }
         mesInicio = $('#mesInicio').val();
-        $('#mesInicio').val(pad(mesInicio,2));
+        $('#mesInicio').val(pad(mesInicio, 2));
     }
     if (!vacio($('#yearInicio').val())) {
         if (!numero($('#yearInicio').val())) {
@@ -199,7 +249,7 @@ function validacion() {
             return false;
         }
         mesFin = $('#mesFin').val();
-        $('#mesFin').val(pad(mesFin,2));
+        $('#mesFin').val(pad(mesFin, 2));
     }
     if (!vacio($('#yearFin').val())) {
         if (!numero($('#yearFin').val())) {
@@ -214,9 +264,9 @@ function validacion() {
         }
     }
     /*if ($('#yearFin').val()<$('#yearInicio').val()){
-        alert("El año de finalización no puede ser inferior al de inicio");
-        return false;
-    }*/ /*Problema cuando no ponemos año de finalizacion de produccion*/
+     alert("El año de finalización no puede ser inferior al de inicio");
+     return false;
+     }*/ /*Problema cuando no ponemos año de finalizacion de produccion*/
     console.log("ADELANTE");
     return true;
 
