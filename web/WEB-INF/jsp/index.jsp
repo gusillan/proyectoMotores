@@ -17,5 +17,7 @@
         <br>
         <a href ="formularioModelo.htm">3 - Formulario de Modelo</a><br>        
         <br>
+        <a href="formularioEntidad.htm">4 - Formulario de Entidad</a><br>
+        <br>
     </body>
 </html>

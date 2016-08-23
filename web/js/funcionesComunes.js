@@ -16,7 +16,7 @@ function numero(dato) {
         return false;
     }
 }
-function numeroDecimal(dato){
+function numeroDecimal(dato) {
     if (/^[0-9]+([,\.][0-9]*)?$/.test(dato)) {
         return true;
     } else {
@@ -44,6 +44,109 @@ function dni(dato) {
     }
 }
 
+function validateDNI(dni) {
+    var numero, let, letra;
+    var expresion_regular_dni = /^[XYZ]?\d{5,8}[A-Z]$/;
+
+    dni = dni.toUpperCase();
+
+    if (expresion_regular_dni.test(dni) === true) {
+        numero = dni.substr(0, dni.length - 1);
+        numero = numero.replace('X', 0);
+        numero = numero.replace('Y', 1);
+        numero = numero.replace('Z', 2);
+        let = dni.substr(dni.length - 1, 1);
+        numero = numero % 23;
+        letra = 'TRWAGMYFPDXBNJZSQVHLCKET';
+        letra = letra.substring(numero, numero + 1);
+        if (letra != let) {
+            //alert('Dni erroneo, la letra del NIF no se corresponde');
+            return false;
+        } else {
+            //alert('Dni correcto');
+            return true;
+        }
+    } else {
+        //alert('Dni erroneo, formato no válido');
+        return false;
+    }
+}
+function formatearDni(dni) {
+    dni = dni.toUpperCase();
+    var expresion_regular_letras = /^[a-zA-Z]+$/;
+    var primera = dni.substring(0, 1);
+    if (expresion_regular_letras.test(primera)) {
+        console.log("LETRA " + primera);
+        if (primera == 'X' || primera == 'Y' || primera == 'Z') {
+            console.log("EXTRANJERO"); //****** SI DNI EXTRANJERO
+
+        } else {
+            console.log("EMPRESA");   //******* SI CIF EMPRESA
+            if (dni.length == 9) {
+                console.log("CORRECTO");
+            } else {
+                console.log("INCORRECTO");
+            }
+        }
+    } else {
+        console.log("NUMERO " + primera); //***** SI DNI NORMALIZADO
+        dni = comprobarDNI(dni);
+        if (dni="ERROR1"){
+            alert("LETRA DNI ERRONEA");
+        }else{
+            return dni;
+        }
+    }
+    console.log("primera " + dni.substring(0, 1));
+    console.log("última " + dni.substring(dni.length - 1, dni.length));
+}
+function comprobarCIF(cif) {
+
+}
+function comprobarDNI(dni) {
+    var ultima = dni.substring(dni.length - 1, dni.length);
+    var digitos = dni.length;
+    var expresion_regular_letras = /^[a-zA-Z]+$/;
+
+    if (expresion_regular_letras.test(ultima)) {
+        console.log("tiene letra al final . Añadir 0 si es necesario y comprobarla");
+        dniSinLetra = dni.substring(0,dni.length-1);
+        console.log("DNI sin Letra "+dniSinLetra);
+        console.log ("comparativa "+ultima+" - "+dniLetra(dniSinLetra));
+        if (ultima == dniLetra(dniSinLetra)) {
+            console.log("Letra DNI correcta");
+            dni = pad(dni, 9);
+            return dni;
+        } else {
+            alert("Letra DNI ERRONEA");
+            return "ERROR1"; // LETRA DNI ERRONEA
+
+        }
+    } else {
+        console.log("No tiene letra.Añadir 0 y calcularla");
+        dni = dni + dniLetra(dni);
+        dni = pad(dni, 9);
+        console.log("DNI DEFINITIVO " + dni);
+        return dni;
+    }
+    if (digitos < 9) {
+        dni = pad(dni, 9);
+        console.log(dni);
+    } else {
+
+    }
+
+}
+function dniLetra(dni) {
+    cadena = "TRWAGMYFPDXBNJZSQVHLCKET";
+    posicion = dni % 23;
+    letra = cadena.substring(posicion, posicion + 1);
+    return letra;
+
+}
+function comprobarEXT(dni) {
+
+}
 function mes(mes) {
     if (mes < 1 || mes > 12) {
         return true;
@@ -102,16 +205,16 @@ function procesaRespuesta(listaObjetos) {
     } else if (listaObjetos.length > 1) {
         ventanaOpciones(listaObjetos);
     } else if (listaObjetos.length < 1) {
-        $('#baja').attr('disabled',true);
-        $('#modificar').attr('disabled',true);
+        $('#baja').attr('disabled', true);
+        $('#modificar').attr('disabled', true);
     }
 }
 
-function irMarca() {    
-    location.href="formularioFabricante.htm";    
+function irMarca() {
+    location.href = "formularioFabricante.htm";
 }
 
-function pad(str,max){
+function pad(str, max) {
     str = str.toString();
-    return str.length < max ? pad("0" + str , max) : str;   
+    return str.length < max ? pad("0" + str, max) : str;
 }
