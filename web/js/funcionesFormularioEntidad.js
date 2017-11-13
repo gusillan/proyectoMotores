@@ -4,28 +4,37 @@ $(function() {
     $('input').keyup(function() {
         this.value = this.value.toUpperCase();
     });
-
-    $('#dni').blur(function() {
+    /*$('#dni').blur(function() {
+        alert ("hola");
         var dni = this.value;
-        if (vacio(dni)) {
+        alert ("dni "+dni);
+        /*if (vacio(dni)) {
             console.log("Campo DNI / CIF Vacio");
         } else {
-            dniFormateado = formatearDni(dni);
-            $('#dni').val(dniFormateado);
-            compruebaDni(dniFormateado);
-        }
-    });
 
-    $('#alta').click(compruebaAntesDeAlta);
-    $('#baja').click(confirmarBaja);
+            compruebaDni(dni);
+
+        }   
+
+    });*/
+    
+    //$('#buscarNombre').click(buscarNombre);
+    //$('#alta').click(compruebaAntesDeAlta);
+    //$('#baja').click(confirmarBaja);
     $('#modificar').click(confirmarModificacion);
     $('#limpiar').click(limpiar);
     $('#listado').click(listar);
     $('#salir').click(salir);
-
     $('#dni').focus();
 });
 
+function buscarNombre(){
+    var nombre = $('#nombre').val();
+    $.getJSON('consultaPorNombre.htm', {nombre: nombre}, procesaR);
+}
+function procesaR(){
+    alert("Proceso de respuesta");
+}
 function continuarAlta() {
     $('#listaModelos').empty();
     $('#dialog').dialog("close");
@@ -44,7 +53,7 @@ function seleccionarOpcion() {
 }
 function compruebaDni(dni) {
     if (validarDNI(dni)) {
-        alert("DNI CORRECTO");
+        alert("DNI CORRECTORRR");
         $.getJSON('consultaDni.htm', {dni: dni}, procesaRespuesta);
     } else {
         alert("DNI ERRONEO!!!!!");

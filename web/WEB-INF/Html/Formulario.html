@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <title>Alta cliente</title>
+  <meta charset="utf-8" />
+
+
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> 
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/alta_cliente.css" />
+
+
+  <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>  
+  <script src="js/global.js" type="text/javascript"></script> 
+  <script src="js/alta_cliente.js" type="text/javascript"></script> 
+
+  <!-- <script src="js/comunes.js" type="text/javascript"></script> --> 
+  <!-- <script src="js/formulario.js" type="text/javascript"></script> -->
+
+
+</head>
+
+<body>
+
+  <header class="header">
+    <h1>Alta cliente</h1>       
+  </header>
+
+  <section>
+    <form name="formEntidad">
+      <div class="referenceGrid">              
+        <label for="idEntidad">Código</label>
+        <input type="text" class="inputtxt" id="idEntidad" name="idEntidad" size="5" maxlength="6" disabled="true">
+      </div> 
+      <div class="dniGrid">              
+        <label for="dni">DNI/CIF</label>
+        <input type="text" class="inputtxt" id="dni" name="dni" pattern="[0-9]{8}[A-Z]{1}" maxlength="9" required>
+      </div> 
+      <div class="nameGrid">              
+        <label for="nombre">Nombre</label>
+          <input type="text" class="inputtxt" id="nombre" name="nombre" size="45" maxlength="40" required><!--
+       --><input type="button" class="inputButton" value="Buscar" id="buscarNombre">
+      </div>             
+      <div class="addressGrid">              
+        <label for="direccion">Dirección</label>
+        <input type="text" class="inputtxt" id="direccion" name="direccion" size="55" maxlength="50">
+      </div>
+      <div class="postcodeGrid">              
+        <label for="cpostal">Código Postal</label>
+        <input type="text" class="inputtxt" id="cpostal" name="cpostal" pattern="[0-9]{5}" maxlength="5">
+      </div>  
+      <div class="cityGrid">              
+        <label for="poblacion">Población</label>
+        <input type="text" class="inputtxt" id="poblacion" name="poblacion" size="40" maxlength="35">
+      </div>
+      <div class="telephoneGrid">              
+        <label for="telefono">Teléfono</label>
+        <input type="tel" class="inputtxt" id="telefono" name="telefono" pattern="[0-9]{9}" maxlength="9">
+      </div>
+      <div class="mobilGrid">              
+        <label for="movil">Móvil</label>
+        <input type="tel" class="inputtxt" id="movil" name="movil" pattern="[0-9]{9}" maxlength="9">
+      </div>
+      <div class="emailGrid">              
+        <label for="email">Email</label>
+        <input type="email" class="inputtxt" id="email" name="email" size="55" maxlength="50">
+      </div>
+
+
+      <navbar class="navbar">
+        <input type="button" value="Alta" id="alta"><!--
+     --><input type="button" value="Baja" id="baja"><!--
+     --><input type="button" value="Modificar" id="modificar"><!--
+     --><input type="reset" value="Limpiar Formulario" id="limpiar"><!--
+     --><input type="button" value="Listados" id="listados"><!--
+     --><input type="button" value="Salir" id="salir">             
+      <navbar>
+
+    </form>
+
+  </section>
+</body>
+
+
+<div class="cover">
+  
+</div>
+<section class="lightbox">
+  <header class="lightboxFilter">
+    <div>
+      <label>Nombre</label>
+      <input type="text" class="inputtxt" id="nameSearch">
+    </div>
+    <div>
+      <label>Población</label>
+      <input type="text" class="inputtxt" id="citySearch">
+    </div>            
+  </header>
+  <section class="lightboxTable">
+    <div class="tableRowHeader">
+      <div class="tableItem itemName">Nombre</div>
+      <div class="tableItem itemCity">Población</div>
+    </div>
+    <div class="lightboxTableData">
+      <!-- Aqui se añade la lista de items -->      
+    </div>
+  </section>
+  <footer class="lightboxFooter">
+    <input type="button" class="button" value="Seleccionar" id="selectName">
+    <input type="button" class="button" value="Cancelar" id="cancelName">
+  </footer>
+
+</section>
+
+
+
+
+</html>

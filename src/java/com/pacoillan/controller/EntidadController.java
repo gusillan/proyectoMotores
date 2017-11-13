@@ -58,36 +58,52 @@ public class EntidadController {
         System.out.println("Lista Respuesta " + lista);
         out.println(lista);
     }
+    
+    
+    @RequestMapping("consultaPorNombre.htm")
+    public void consultaPorNombre(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        String nombre = (request.getParameter("nombre").toUpperCase());
+        System.out.println("Nombre a consultar  -> " + nombre);
+        List<Entidad> listaEntidades = entidadDao.listadoPorCampo("nombre", nombre);
+        System.out.println("Entidades listadas "+listaEntidades.size());
+        System.out.println("Listado" + listaEntidades);
+        if (listaEntidades.isEmpty()) {
+            out.println();
+        } else {
+            //Collections.sort(listaEntidades);
+        }
+        Gson gson = new Gson();
+        String lista = gson.toJson(listaEntidades);
+        System.out.println("Lista Respuesta " + lista);
+        out.println(lista);
+    }
 
     @RequestMapping("altaEntidad.htm")
-    public void altaEntidad( Modelo modelo, HttpServletRequest request, HttpServletResponse response) {
+    public void altaEntidad( Entidad entidad, HttpServletRequest request, HttpServletResponse response) {
                 
-        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
-        Fabricante fabricante = (Fabricante) fabricantes.get(0);
-        System.out.println(fabricante.getNombre());
-        modelo.setFabricante(fabricante);
-        String imagenMinuscula = modelo.getImagen().toLowerCase();
-        modelo.setImagen(imagenMinuscula);
-        modeloDao.create(modelo);
+        
+        System.out.println("Dar de alta a : "+entidad.getNombre());
+        entidadDao.create(entidad);
         
     }
 
     @RequestMapping("bajaEntidad.htm")
-    public void bajaEntidad(Modelo modelo,HttpServletRequest request, HttpServletResponse response) {
-                
-        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
-        Fabricante fabricante = (Fabricante) fabricantes.get(0);
-        modelo.setFabricante(fabricante);
-        modeloDao.delete(modelo);
+    public void bajaEntidad(Entidad entidad,HttpServletRequest request, HttpServletResponse response) {
+        
+        entidadDao.delete(entidad);
     }
 
     @RequestMapping("modificaEntidad.htm")
-    public void modificaEntidad(Modelo modelo, HttpServletRequest request, HttpServletResponse response) {
+    public void modificaEntidad(Entidad entidad, HttpServletRequest request, HttpServletResponse response) {
               
-        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
-        Fabricante fabricante = (Fabricante) fabricantes.get(0);
-        modelo.setFabricante(fabricante);
-        modeloDao.update(modelo);
+        System.out.println("Entidad "+entidad.getNombre());
+        System.out.println("Direccion "+entidad.getDireccion()+" poblacion "+entidad.getPoblacion());
+        entidadDao.update(entidad);
         
     }    
 }

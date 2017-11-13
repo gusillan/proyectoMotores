@@ -5,7 +5,13 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Formulario Modelo de Vehículo</title>
+        
+        <meta http-equiv="Pragma" content="no-cache">
+
+        <meta http-equiv="expires" content="0" >
+        
+        
+        <title>Formulario Entidades</title>
 
         <!-- CSS de Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -20,7 +26,7 @@
     <body>
 
         <div class="formulario container">
-            <h1>Formulario de Entidades</h1>
+            <h1>Formulario Entidades</h1>
             <br>
             <form id="formularioEntidad">
                 <div class="col-md-6">
@@ -39,26 +45,31 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-9">
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" name="nombre">
                             </div>          
-                        </div>                        
+                        </div>   
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-default" id="buscarNombre">Buscar</button>
+                            </div>          
+                        </div> 
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="direccion">Dirección</label>
-                                <input type="text" class="form-control" id="direccion" name="direccion">
+                                <input type="text" class="form-control" id="direccion" name="direccion" maxlength="50" size="55">
                             </div>          
                         </div>                        
                     </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="cPostal">Código Postal</label>
-                                <input type="text" class="form-control" id="cPostal" name="cPostal">
+                                <label for="cpostal">Código Postal</label>
+                                <input type="text" class="form-control" id="cpostal" name="cpostal">
                             </div>          
                         </div>
                         <div class="col-md-8">
@@ -139,7 +150,7 @@
              incluir archivos JavaScript individuales de los únicos
              plugins que utilices) -->
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/funcionesFormularioEntidad.js"></script>
+        <script src="js/funcionesFormularioEntidadN.js"></script>
         <script src="js/funcionesComunes.js"></script>
     </body>
 </html>

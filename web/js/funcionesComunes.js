@@ -1,3 +1,11 @@
+
+// Variables globales *******
+
+var dniFormateado;
+var expresion_regular_letras = /^[a-zA-Z]+$/;
+
+//***************************
+
 function minmax(min, max, dato) {
     if (dato.length > max) {
         console.log("excedido limite máximo");
@@ -30,7 +38,6 @@ function vacio(dato) {
         return false;
     }
 }
-
 
 function dni(dato) {
     var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
@@ -73,46 +80,57 @@ function validateDNI(dni) {
 }
 function formatearDni(dni) {
     dni = dni.toUpperCase();
-    var expresion_regular_letras = /^[a-zA-Z]+$/;
-    var primera = dni.substring(0, 1);
-    if (expresion_regular_letras.test(primera)) {
-        console.log("LETRA " + primera);
-        if (primera == 'X' || primera == 'Y' || primera == 'Z') {
-            console.log("EXTRANJERO"); //****** SI DNI EXTRANJERO
+    if (dni.length > 9) {
+        alert("El DNI/CIF no puede tener mas de 9 cifras");
+        return false;
+    } else {
+        var primera = dni.substring(0, 1);
+        if (expresion_regular_letras.test(primera)) {
+            console.log("LETRA " + primera);
+            if (primera == 'X' || primera == 'Y' || primera == 'Z') {
+                console.log("EXTRANJERO"); //****** DNI EXTRANJERO
 
-        } else {
-            console.log("EMPRESA");   //******* SI CIF EMPRESA
-            if (dni.length == 9) {
-                console.log("CORRECTO");
             } else {
-                console.log("INCORRECTO");
+                console.log("EMPRESA");   //******* CIF EMPRESA
+                if (dni.length == 9) {
+                    console.log("CORRECTO");
+                } else {
+                    console.log("INCORRECTO");
+                    alert("El CIF debe tener 9 cifras");
+                    return false;
+                }
+            }
+        } else {
+            console.log("NUMERO " + primera); //***** DNI NORMALIZADO
+            dni = comprobarDNI(dni);
+            if (dni = "ERROR1") {
+                alert("LETRA DNI ERRONEA");
+            } else {
+                return dni;
             }
         }
-    } else {
-        console.log("NUMERO " + primera); //***** SI DNI NORMALIZADO
-        dni = comprobarDNI(dni);
-        if (dni="ERROR1"){
-            alert("LETRA DNI ERRONEA");
-        }else{
-            return dni;
-        }
+        console.log("primera " + dni.substring(0, 1));
+        console.log("última " + dni.substring(dni.length - 1, dni.length));
     }
-    console.log("primera " + dni.substring(0, 1));
-    console.log("última " + dni.substring(dni.length - 1, dni.length));
+
 }
 function comprobarCIF(cif) {
 
 }
+
+function validarDNI(){
+    return true;
+}
+   
 function comprobarDNI(dni) {
     var ultima = dni.substring(dni.length - 1, dni.length);
     var digitos = dni.length;
-    var expresion_regular_letras = /^[a-zA-Z]+$/;
-
+    
     if (expresion_regular_letras.test(ultima)) {
         console.log("tiene letra al final . Añadir 0 si es necesario y comprobarla");
-        dniSinLetra = dni.substring(0,dni.length-1);
-        console.log("DNI sin Letra "+dniSinLetra);
-        console.log ("comparativa "+ultima+" - "+dniLetra(dniSinLetra));
+        dniSinLetra = dni.substring(0, dni.length - 1);
+        console.log("DNI sin Letra " + dniSinLetra);
+        console.log("comparativa " + ultima + " - " + dniLetra(dniSinLetra));
         if (ultima == dniLetra(dniSinLetra)) {
             console.log("Letra DNI correcta");
             dni = pad(dni, 9);
@@ -214,6 +232,7 @@ function irMarca() {
     location.href = "formularioFabricante.htm";
 }
 
+// Funcion que rellena 0 por la izquierda
 function pad(str, max) {
     str = str.toString();
     return str.length < max ? pad("0" + str, max) : str;

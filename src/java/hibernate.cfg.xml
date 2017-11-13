@@ -10,5 +10,6 @@
     <mapping class="com.pacoillan.pojo.Motor" file="" jar="" package="" resource=""/>
     <mapping class="com.pacoillan.pojo.Fabricante" file="" jar="" package="" resource="l"/>
     <mapping class="com.pacoillan.pojo.Entidad" file="" jar="" package="" resource=""/>
+    <mapping resource="com/pacoillan/pojo/Vehiculo.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

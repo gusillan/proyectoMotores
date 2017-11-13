@@ -167,7 +167,7 @@ function listar() {
     alert('Listado de Motores');
 }
 function salir() {
-    location.href = 'index.htm';
+    window.history.back();
 }
 function ventanaOpciones(listaMotor) {
     listaGlobal = listaMotor;
