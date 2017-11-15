@@ -4,18 +4,21 @@
 
 <head>
   <title>Formulario Entidad</title>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<!--   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
   <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/global.css" />
   <link rel="stylesheet" href="css/alta_cliente.css" />
-
+ -->
 
   <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>  
   <script src="js/global.js" type="text/javascript"></script> 
   <script src="js/alta_cliente.js" type="text/javascript"></script> 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <!-- <script src="js/comunes.js" type="text/javascript"></script> --> 
   <!-- <script src="js/formulario.js" type="text/javascript"></script> -->
@@ -25,63 +28,116 @@
 
 <body>
 
-  <header class="header">
-    <h1>Formulario de Entidades</h1>       
-  </header>
+  <div class="formulario container">
+    
+    <div class="page-header">
+      <h1>Formulario Entidades</h1>      
+    </div>
 
-  <section>
     <form name="formEntidad">
-      <div class="referenceGrid">              
-        <label for="idEntidad">Código</label>
-        <input type="text" class="inputtxt" id="idEntidad" name="idEntidad" size="5" maxlength="6" disabled="true">
-      </div> 
-      <div class="dniGrid">              
-        <label for="dni">DNI/CIF</label>
-        <input type="text" class="inputtxt" id="dni" name="dni" pattern="[0-9]{8}[A-Z]{1}" maxlength="9" required>
-      </div> 
-      <div class="nameGrid">              
-        <label for="nombre">Nombre</label>
-          <input type="text" class="inputtxt" id="nombre" name="nombre" size="45" maxlength="40" required><!--
-       --><input type="button" class="inputButton" value="Buscar" id="buscarNombre">
-      </div>             
-      <div class="addressGrid">              
-        <label for="direccion">Dirección</label>
-        <input type="text" class="inputtxt" id="direccion" name="direccion" size="55" maxlength="50">
-      </div>
-      <div class="postcodeGrid">              
-        <label for="cpostal">Código Postal</label>
-        <input type="text" class="inputtxt" id="cpostal" name="cpostal" pattern="[0-9]{5}" maxlength="5">
-      </div>  
-      <div class="cityGrid">              
-        <label for="poblacion">Población</label>
-        <input type="text" class="inputtxt" id="poblacion" name="poblacion" size="40" maxlength="35">
-      </div>
-      <div class="telephoneGrid">              
-        <label for="telefono">Teléfono</label>
-        <input type="tel" class="inputtxt" id="telefono" name="telefono" pattern="[0-9]{9}" maxlength="9">
-      </div>
-      <div class="mobilGrid">              
-        <label for="movil">Móvil</label>
-        <input type="tel" class="inputtxt" id="movil" name="movil" pattern="[0-9]{9}" maxlength="9">
-      </div>
-      <div class="emailGrid">              
-        <label for="email">Email</label>
-        <input type="email" class="inputtxt" id="email" name="email" size="55" maxlength="50">
-      </div>
+    
+      <div class="row">
+        <div class="col-md-2">
+          <div class="form-group">
+            <label for="idEntidad" class="">Código</label>
+            <input type="text" class="form-control inputtxt" id="idEntidad" name="idEntidad" size="5" maxlength="6" disabled="true">
+          </div>               
+        </div>
+        <div class="col-md-2">              
+          <div class="form-group">
+            <label for="dni">DNI/CIF</label>
+            <input type="text" class="form-control inputtxt" id="dni" name="dni" pattern="[0-9]{8}[A-Z]{1}" maxlength="9" required>
+          </div>               
+        </div>         
+      </div><!--row-->
+
+      <div class="row">
+        <div class="col-md-8">              
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <div class="input-group">
+              <input type="text" class="form-control inputtxt" id="nombre" name="nombre" size="45" maxlength="40" required>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-primary" id="buscarNombre">Buscar</button>
+              </span>
+            </div><!-- /input-group -->
+          </div>               
+        </div>             
+      </div><!--row-->
+
+      <div class="row">
+        <div class="col-md-8">              
+          <div class="form-group">
+            <label for="direccion">Dirección</label>
+            <input type="text" class="form-control inputtxt" id="direccion" name="direccion" size="55" maxlength="50">
+          </div>               
+        </div>
+      </div><!--row-->
+
+      <div class="row">
+        <div class="col-md-2">              
+          <div class="form-group">
+            <label for="cpostal">Código Postal</label>
+            <input type="text" class="form-control inputtxt" id="cpostal" name="cpostal" pattern="[0-9]{5}" maxlength="5">
+          </div>
+        </div>  
+        <div class="col-md-6">              
+          <div class="form-group">
+            <label for="poblacion">Población</label>
+            <input type="text" class="form-control inputtxt" id="poblacion" name="poblacion" size="40" maxlength="35">
+          </div>
+        </div>
+      </div><!--row-->
+
+      <div class="row">
+        <div class="col-md-2">              
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" class="form-control inputtxt" id="telefono" name="telefono" pattern="[0-9]{9}" maxlength="9">
+          </div>
+        </div>
+        <div class="col-md-2">              
+          <div class="form-group">
+            <label for="movil">Móvil</label>
+            <input type="tel" class="form-control inputtxt" id="movil" name="movil" pattern="[0-9]{9}" maxlength="9">
+          </div>
+        </div>
+        <div class="col-md-4">              
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control inputtxt" id="email" name="email" size="55" maxlength="50">
+          </div>
+        </div>
+      </div><!--row-->
 
 
-      <navbar class="navbar">
-        <input type="button" value="Alta" id="alta"><!--
-     --><input type="button" value="Baja" id="baja"><!--
-     --><input type="button" value="Modificar" id="modificar"><!--
-     --><input type="reset" value="Limpiar Formulario" id="limpiar"><!--
-     --><input type="button" value="Listados" id="listados"><!--
-     --><input type="button" value="Salir" id="salir">             
-      <navbar>
+
+      <div class="row">
+        <div class="col-md-8">              
+          <div class="form-group">
+            <label for="informacion">Información</label>
+            <textarea class="form-control inputtxt" id="informacion" name="informacion" rows="3"></textarea>
+          </div>               
+        </div>
+      </div><!--row-->
+
+
+
+      <nav class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+          <input type="button" class="btn btn-primary navbar-btn" value="Alta" id="alta" >
+          <input type="button" class="btn btn-primary navbar-btn" value="Baja" id="baja">
+          <input type="button" class="btn btn-primary navbar-btn" value="Modificar" id="modificar">
+          <input type="reset" class="btn btn-primary navbar-btn" value="Limpiar Formulario" id="limpiar">
+          <input type="button" class="btn btn-primary navbar-btn" value="Listados" id="listados">
+          <input type="button" class="btn btn-primary navbar-btn" value="Salir" id="salir">             
+        </div>
+      </nav>
+
+
 
     </form>
-
-  </section>
+  </div>
 </body>
 
 
