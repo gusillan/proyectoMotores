@@ -62,5 +62,9 @@
     <bean id="entidad" class="com.pacoillan.DAOHibernate.EntidadDAOHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    
+    <bean id="cpostal" class="com.pacoillan.DAOHibernate.CpostalDAOHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
 </beans>
