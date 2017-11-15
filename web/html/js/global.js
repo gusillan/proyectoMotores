@@ -31,3 +31,10 @@ $("document").ready(function(){
 
 });
 
+function vacio(dato) {
+    if (dato.length < 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
