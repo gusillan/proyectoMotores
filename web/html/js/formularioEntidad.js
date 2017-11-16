@@ -6,6 +6,13 @@
 $("document").ready(function() {
 
 
+
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#filtrarNombre').focus()
+    });
+
+
+
     $("#dni").change(function() {
         console.log("change");
         if (this.value != null) {
@@ -15,13 +22,13 @@ $("document").ready(function() {
         }
     });
 
-    $("#buscarNombre").click(function() {
+/*    $("#buscarNombre").click(function() {
         openLightbox();
-    });
+    });*/
 
-    $("#cancelName").click(function() {
+/*    $("#cancelName").click(function() {
         closeLightbox();
-    });
+    });*/
 
 
     $("#citySearch, #nameSearch").keyup(function() {
