@@ -6,36 +6,43 @@
 $("document").ready(function() {
 
 
+    $("#dni").change(function() {
+        if (this.value != null) {
+            this.value = rellenaDNI(this);
+            consultaDNI(this.value);
+        }
+    });
+
+
+    $("#buscarNombre").click(function() {
+        consultaNombre();
+    });
+
+    $("#cancelarModal").click(function(){
+        $('#myModal').modal('hide');
+        $("#tableNames tr").remove();       
+    });
+
 
     $('#myModal').on('shown.bs.modal', function () {
       $('#filtrarNombre').focus()
     });
 
 
+    $("#filtrarNombre, #filtrarPoblacion").keyup(function() {
+        filtrarNombre($("#filtrarNombre").val(), $("#filtrarPoblacion").val());
+    });
 
-    $("#dni").change(function() {
-        console.log("change");
-        if (this.value != null) {
-            this.value = fillDni(this);
-            console.log("fill");
-            consultaEntidad(this.value);
+    $("#seleccionarNombre").click(function(){
+        idEntidad = $("#tableNames tr.o-selected").attr("data-idEntidad");
+        for (var i = 0; i < clientesJson.length; i++) {
+            if (clientesJson[i].idEntidad == idEntidad) {
+                seleccionaEntidad(clientesJson[i]);
+                $('#myModal').modal('hide');
+                $("#tableNames tr").remove();
+            }
         }
     });
-
-/*    $("#buscarNombre").click(function() {
-        openLightbox();
-    });*/
-
-/*    $("#cancelName").click(function() {
-        closeLightbox();
-    });*/
-
-
-    $("#citySearch, #nameSearch").keyup(function() {
-        filterName($("#nameSearch").val(), $("#citySearch").val());
-    });
-
-
 
 
 });
@@ -46,10 +53,7 @@ $("document").ready(function() {
 
 /*  Campo DNI
  *********************************************************/
-function fillDni(dniField) {
-    console.log(dniField);
-    console.log(dniField.value);
-
+function rellenaDNI(dniField) {
     dniValue = dniField.value
     if (isNumber(dniValue)) {
         while (dniValue.length < 8) {
@@ -87,106 +91,15 @@ function dniLetra(dni) {
     return letra;
 }
 
-
-
-/*  Lightbox
- *********************************************************/
-var clientesJson = [];      //Json obtenido de los clientes
-
-
-function openLightbox() {
-    getNames();
-    $(".cover, .lightbox").css("display", "block");
-}
-
-function closeLightbox() {
-    $(".cover, .lightbox").css("display", "none");
-    $(".lightboxTableData .tableRow").remove();
-}
-
-function filterName(name, city) {
-    for (var i = 0; i < clientesJson.length; i++) {
-        var idEntidad = clientesJson[i].idEntidad;
-        if (clientesJson[i].nombre.includes(name) && clientesJson[i].poblacion.includes(city)) {
-            $('.tableRow[data-idEntidad="' + idEntidad + '"]').show();
-        } else {
-            $('.tableRow[data-idEntidad="' + idEntidad + '"]').hide();
-        }
-    }
-}
-
-
-function getNames() {
-    console.log("estas aqui");
-    console.log("buscar " + $('#nombre').val());
-
-    $.ajax({
-        url: 'http://localhost:8084/ProyectoMotores/consultaPorNombre.htm',
-        data: {nombre: $('#nombre').val()},
-        type: 'POST',
-        dataType: 'json',
-        success: rellenarLista
-    });
-}
-
-function rellenarLista(clientesJson) {
-    console.log("Funcion rellenarLista activada");
-    console.log(clientesJson);
-    var items = [];
-    for (var i = 0; i < clientesJson.length; i++) {
-        items.push('<div class="tableRow" data-idEntidad="' + clientesJson[i].idEntidad
-                + '"><div class="tableItem itemName">' + clientesJson[i].nombre
-                + '</div><div class="tableItem itemCity">' + clientesJson[i].poblacion
-                + '</div></div>'
-                );
-    }
-    $(".lightboxTableData").append(items);
-
-    //Una vez puesto los elementos en el html se pone el listener
-    $(".tableRow").click(function() {
-        $(".tableRow").css("background-color", "");
-        $(this).css("background-color", "red");
-        idEntidad = $(this).attr("data-idEntidad");
-        for (var i = 0; i < clientesJson.length; i++) {
-            if (clientesJson[i].idEntidad == idEntidad) {
-                selectName(clientesJson[i]);
-                closeLightbox();
-            }
-        }
-    });
-
-
-
-}
-
-
-
-function selectName(obj) {
-    $("#nombre").val(obj.nombre);
-    $("#direccion").val(obj.direccion);
-    $("#cpostal").val(obj.cpostal);
-    $("#poblacion").val(obj.poblacion);
-    $("#dni").val(obj.dni);
-    /*Hay que forzar otra vez la comprobacion del dni porque el evento change
-     no detecta el cambio al hacerlo automaticamente por codigo*/
-    $("#dni").each(function() {
-        this.value = fillDni(this);
-    });
-    $("#telefono").val(obj.telefono);
-    $("#movil").val(obj.movil);
-    $("#email").val(obj.email);
-}
-
-function consultaEntidad(dni) {
+function consultaDNI(dni) {
     console.log("consultar entidad con dni " + dni);
-    $.getJSON('../consultaDni.htm', {dni: dni}, procesaRespuesta);
+    $.getJSON('../consultaDni.htm', {dni: dni}, respuestaConsultaDNI);
 }
 
-
-function procesaRespuesta(listaObjetos) {
+function respuestaConsultaDNI(listaObjetos) {
     if (listaObjetos.length == 1) {
         var objeto = listaObjetos[0];
-        selectName(objeto);
+        seleccionaEntidad(objeto);
     } else if (listaObjetos.length > 1) {
         ventanaOpciones(listaObjetos);
         console.log("Existen varias entidades con ese DNI.Consultar al administrador de la BBDD");
@@ -196,3 +109,98 @@ function procesaRespuesta(listaObjetos) {
         //$('#modificar').attr('disabled', true);
     }
 }
+
+
+
+
+/*  Busqueda por nombre
+ *********************************************************/
+var clientesJson = [];      //Json obtenido de los clientes
+
+
+
+function consultaNombre() {
+    $.ajax({
+        url: 'http://localhost:8084/ProyectoMotores/consultaPorNombre.htm',
+        data: {nombre: $('#nombre').val()},
+        type: 'POST',
+        dataType: 'json',
+        success: respuestaConsultaNombre
+    });
+}
+
+
+function respuestaConsultaNombre(responseJson){
+    clientesJson = responseJson;
+    if (clientesJson.length == 0) {
+        console.log("Error: la consulta del nombre no ha obtenido ningun resultado");
+    }else if (clientesJson.length == 1) {
+        seleccionaEntidad( clientesJson[0] );
+    }else{
+        $('#myModal').modal('show');    //Abre la ventana Modal con la lista
+        rellenaListaNombres();
+    }
+}
+
+
+function rellenaListaNombres() {  
+    var items = [];
+    for (var i = 0; i < clientesJson.length; i++) {
+        items.push('<tr data-idEntidad="' + clientesJson[i].idEntidad
+                + '"><td>' + clientesJson[i].nombre
+                + '</td"><td>' + clientesJson[i].poblacion
+                + '</td></tr>'
+                );
+    }
+    $("#tableNames").append(items);
+
+    //Una vez puesto los elementos en el html se pone el listener
+    $("#tableNames tr").dblclick(function(){
+        idEntidad = $(this).attr("data-idEntidad");
+        for (var i = 0; i < clientesJson.length; i++) {
+            if (clientesJson[i].idEntidad == idEntidad) {
+                seleccionaEntidad(clientesJson[i]);
+                $('#myModal').modal('hide');
+                $("#tableNames tr").remove();
+            }
+        }
+    });
+    $("#tableNames tr").click(function() { 
+        $("#tableNames tr").removeClass("o-selected");
+        $(this).addClass("o-selected");
+    });
+}
+
+
+
+function filtrarNombre(name, city) {
+    for (var i = 0; i < clientesJson.length; i++) {
+        var idEntidad = clientesJson[i].idEntidad;
+        if (clientesJson[i].nombre.includes(name) && clientesJson[i].poblacion.includes(city)) {
+            $('#tableNames tr[data-idEntidad="' + idEntidad + '"]').show();
+        } else {
+            $('#tableNames tr[data-idEntidad="' + idEntidad + '"]').hide();
+        }
+    }
+}
+
+
+function seleccionaEntidad(obj) {
+    $("#nombre").val(obj.nombre);
+    $("#direccion").val(obj.direccion);
+    $("#cpostal").val(obj.cpostal);
+    $("#poblacion").val(obj.poblacion);
+    $("#dni").val(obj.dni);
+    /*Hay que forzar otra vez la comprobacion del dni porque el evento change
+     no detecta el cambio al hacerlo automaticamente por codigo*/
+    $("#dni").each(function() {
+        this.value = rellenaDNI(this);
+    });
+    $("#telefono").val(obj.telefono);
+    $("#movil").val(obj.movil);
+    $("#email").val(obj.email);
+}
+
+
+
+

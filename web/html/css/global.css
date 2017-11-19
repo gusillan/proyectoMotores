@@ -1,41 +1,25 @@
 
 
 
-
-
-
-
-
-.c-navbar-btn{
-	margin: auto 40px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*	Variables
 *********************************************************/
 
 :root{
-	--primary-color: #fff;
-	--secondary-color: #3366ff;
-	--warning-color: rgba(255,255,0,0.3);;
-	--dark-color: #333;
-	--hover-color: rgba(255,255,255,0.3);
-	--button-height: 30px;		/*input-height + 4px(2x2px de border)*/
-	--input-height: 26px;
-	--font-size: 16px;
 	--spacing: 16px;
+	--gray-darker:   #222;
+	--gray-dark:     #333;
+	--gray:          #555;
+	--gray-light:    #777;
+	--gray-lighter:  #eee;
+	--brand-primary: #337ab7;
+	--brand-success: #5cb85c;
+	--brand-info:    #5bc0de;
+	--brand-warning: #f0ad4e;
+	--brand-danger:  #d9534f;
 }
+
+
+
 
 
 
@@ -43,65 +27,9 @@
 
 /*	Elementos principales html
 *********************************************************/
-
-
-html, input{
-	font-family: 'Lato', sans-serif;
-	color: var(--dark-color);
-	font-size: var(--font-size);
-	line-height: var(--font-size);
-}
-
-.header{
-	background-color: var(--secondary-color);
-	font-size: calc( var(--font-size)*2);
-	height: calc( var(--button-height)*2);
-	line-height: calc( var(--button-height)*2);
-	text-align: center;
-}
-
-navbar{
-	background-color: var(--secondary-color);
-	bottom: 0; /* Position the navbar at the top of the page */
-	border-top: solid 1px var(--dark-color);
-	border-bottom: solid 1px var(--dark-color);
-	height: calc( var(--button-height)*2);
-	line-height: calc( var(--button-height)*2);
-	position: fixed; /* Set the navbar to fixed position */
-	text-align: center;
-	width: 100%; /* Full width */
-}
-
-form{
-	display: grid;
-	padding: 32px 16px;
-	grid-template-columns: 50% 50%;
-	grid-template-rows: repeat(5, 50px);
-	margin-bottom: calc( var(--button-height)*2);   /*Aqui el height del navbar*/
-}
-
 input{
-	height: var(--input-height);
 	text-transform: uppercase;
 }
-
-input:invalid{
-	background: var(--warning-color);
-}
-
-
-label{
-	display: inline-block;
-	width: 120px;
-	text-align: right;
-	padding-right: 20px;
-}
-
-
-
-
-
-
 
 
 
@@ -109,167 +37,11 @@ label{
 /*	Clases
 *********************************************************/
 
-/* Links inside the navbar */
-.navbar input, .inputButton, .button{
-	background-color: rgba(0,0,0,0.3);
-	border: solid 1px var(--dark-color);
-/*	border-left: none;
-*/	color: white;
-	display: inline-block;
-	height: var(--input-height);
-	text-align: center;
-	text-decoration: none;
-	vertical-align: top;
-}
-.inputButton{
-	height: var(--button-height);
-}
-.navbar input{
-    border: solid 1px var(--dark-color);
-    margin: 16px 40px;
-    text-align: center;
-    height: 30px;
-    padding: 0 20px;	
-}
-.navbar input:hover, .inputButton:hover {
-	background-color: var(--hover-color);
+.g-space{
+	margin: 100px;
 }
 
-
-.referenceGrid{
-	color: red;
-	grid-column-start: 1;
-	grid-column-end: span 2;
+.table-hover tbody tr:hover{
+	background: var(--brand-primary);
+	color: var(--gray-lighter);
 }
-
-.addressGrid{
-	grid-column-start: 1;
-	grid-column-end: span 2;	
-}
-
-.inputtxt{
-	padding: 0 7px; 
-}
-
-
-
-
-/* lightbox */
-.cover{
-	background: rgba(0,0,0,0.8);
-	display: none;
-	height: 100%;
-	left: 0;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 100;
-}
-
-.lightbox{
-    background: var(--secondary-color);
-    box-sizing: border-box;
-    border-radius: 3px;
-    display: none;
-    left: 10%;
-    padding: var(--spacing);
-    position: fixed;
-    top: 20%;
-    width: 80%;
-    z-index: 999;
-}
-
-.lightboxFilter div{
-	display: inline-block;
-	margin: var(--spacing);
-}
-
-.lightboxTable{
-    background: var(--dark-color);
-    margin: var(--spacing) auto;
-    width: 90%;
-}
-.lightboxTableData{
-    background: var(--dark-color);
-    height: 160px;
-    overflow: auto;
-}
-
-.tableRow{
-	padding: var(--spacing);
-	background-color: #fff;
-}
-.tableRowHeader{
-	padding: var(--spacing);
-	background-color: var(--dark-color);
-	color: #fff;
-}
-.tableRow:nth-child(even) {
-    background-color: #bbb;
-}
-.tableItem{
-	display: inline-block;
-	width: 48%;
-}
-
-.lightboxFooter{
-	width: 90%;
-	margin: var(--spacing) auto;
-	text-align: center;
-}
-
-.lightboxFooter .button{
-	margin: var(--spacing);
-}
-
-
-
-
-
-/*	Ids
-*********************************************************/
-
-
-
-
-
-
-
-/*----------------------------------*/
-/*form{
-	font : 14px verdana;
-}
-
-input{
-	border-radius: 0.4em;
-	font: 16px verdana;	
-	padding : 10px;
-}
-
-label{
-	font : 16px verdana;
-	font-weight: bold;
-	color : blue;
-	padding : 1em;
-}
-
-.grupo-form{
-	padding: 10px 0;
-}
-
-.grupo-form25{
-	width: 25%;
-	float: left;
-	padding: 10px 0;
-}
-
-.grupo-form50{
-	width: 50%;
-	float: left;
-	padding: 10px 0;
-}
-
-.inputtxt{
-	text-transform: uppercase;
-}
-*/

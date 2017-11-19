@@ -5,16 +5,7 @@
 *********************************************************/
 
 :root{
-/*	--primary-color: #fff;
-	--secondary-color: #3366ff;
-	--warning-color: rgba(255,255,0,0.3);;
-	--dark-color: #333;
-	--hover-color: rgba(255,255,255,0.3);
-	--button-height: 30px;
-	--input-height: 26px;
-	--font-size: 16px;
-*/	--spacing: 16px;
-
+	--spacing: 16px;
 	--gray-darker:   #222;
 	--gray-dark:     #333;
 	--gray:          #555;
@@ -30,14 +21,6 @@
 
 
 
-/*	Elementos principales html
-*********************************************************/
-input{
-	text-transform: uppercase;
-}
-
-
-
 
 /*	Clases
 *********************************************************/
@@ -49,9 +32,8 @@ input{
 	width: 960px;
 }
 
-.table-hover tbody tr:hover{
-	background: var(--brand-primary);
-	color: var(--gray-lighter);
+.o-selected{
+	background: var(--brand-success) !important;
 }
 
 

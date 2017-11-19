@@ -9,10 +9,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="css/overload.css">
-<!--   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
-  <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/overload.css">
+<!--   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
   <link rel="stylesheet" href="css/alta_cliente.css" />
  -->
 
@@ -59,7 +58,7 @@
             <div class="input-group">
               <input type="text" class="form-control inputtxt" id="nombre" name="nombre" size="45" maxlength="40" required>
               <span class="input-group-btn">
-                <button type="button" class="btn btn-primary" id="buscarNombre" data-toggle="modal" data-target="#myModal">Buscar</button>
+                <button type="button" class="btn btn-primary" id="buscarNombre">Buscar</button>
               </span>
             </div><!-- /input-group -->
           </div>               
@@ -122,7 +121,7 @@
         </div>
       </div><!--row-->
 
-
+      <div class="g-space"></div>
 
       <nav class="navbar navbar-inverse navbar-fixed-bottom">
         <div class="container">
@@ -148,7 +147,6 @@
   <div class="modal-dialog o-modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Buscar por nombre</h4>
       </div>
       <div class="modal-body">
@@ -173,60 +171,20 @@
               <th>Poblacion</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="tableNames">
             <!-- Aqui se añade la lista de items -->
-            <tr>
-              <td>MARY</td>
-              <td>GUADAMUR</td>
-            </tr>
-            <tr>
-              <td>JULY</td>
-              <td>POLAN</td>
-            </tr>  
+
           </tbody>
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" id="cancelarModal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="seleccionarNombre">Seleccionar</button>
       </div>
     </div><!--modal-content-->
   </div>
 </div>
 
-
-
-
-<div class="cover">
-  
-</div>
-<section class="lightbox">
-  <header class="lightboxFilter">
-    <div>
-      <label>Nombre</label>
-      <input type="text" class="inputtxt" id="nameSearch">
-    </div>
-    <div>
-      <label>Población</label>
-      <input type="text" class="inputtxt" id="citySearch">
-    </div>            
-  </header>
-  <section class="lightboxTable">
-    <div class="tableRowHeader">
-      <div class="tableItem itemName">Nombre</div>
-      <div class="tableItem itemCity">Población</div>
-    </div>
-    <div class="lightboxTableData">
-      <!-- Aqui se añade la lista de items -->
- 
-    </div>
-  </section>
-  <footer class="lightboxFooter">
-    <input type="button" class="button" value="Seleccionar" id="selectName">
-    <input type="button" class="button" value="Cancelar" id="cancelName">
-  </footer>
-
-</section>
 
 
 
