@@ -5,6 +5,7 @@
  *********************************************************/
 $("document").ready(function() {
 
+    $("#dni").focus();
 
     $("#dni").change(function() {
         if (this.value != null) {
@@ -101,7 +102,7 @@ function respuestaConsultaDNI(listaObjetos) {
         var objeto = listaObjetos[0];
         seleccionaEntidad(objeto);
     } else if (listaObjetos.length > 1) {
-        ventanaOpciones(listaObjetos);
+        //ventanaOpciones(listaObjetos);
         console.log("Existen varias entidades con ese DNI.Consultar al administrador de la BBDD");
     } else if (listaObjetos.length < 1) {
         console.log("No existe ninguna entidad con ese DNI");
@@ -186,6 +187,7 @@ function filtrarNombre(name, city) {
 
 
 function seleccionaEntidad(obj) {
+    $("#idEntidad").val(obj.idEntidad);
     $("#nombre").val(obj.nombre);
     $("#direccion").val(obj.direccion);
     $("#cpostal").val(obj.cpostal);

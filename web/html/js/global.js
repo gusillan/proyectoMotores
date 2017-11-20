@@ -28,6 +28,11 @@ $("document").ready(function(){
             console.log("Todo OK"); 
         }
     });
+    $("#baja").click(baja);
+    $("#modificar").click(modificar);
+    $("#limpiar").click(limpiar);
+    $("#listados").click(listados);
+    $("#salir").click(salir);
 
 });
 
@@ -37,4 +42,27 @@ function vacio(dato) {
     } else {
         return false;
     }
+}
+
+function baja(){
+    console.log("Pulsado el boton de BAJA");
+    
+}
+
+function modificar(){
+    console.log("Pulsado el boton de MODIFICAR");
+    
+}
+
+function limpiar(){
+    console.log("Pulsado el boton de LIMPIAR");
+}
+
+function listados(){
+    console.log("Pulsado el boton de LISTADOS");
+}
+
+function salir(){
+    console.log("Pulsado el boton de SALIR");
+    window.history.back();
 }
