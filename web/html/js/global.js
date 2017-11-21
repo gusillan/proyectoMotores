@@ -14,27 +14,10 @@ $("document").ready(function(){
     });
 
 
-    $(".g-input").on('valid', function(){
-        console.log("validando");
-    });
-
 
     /*comprueba las validaciones html*/
     $("#alta").click(function(){ 
-        var value = true
-        $( ".g-input" ).each(function( index ) {
-            if( !this.validity.valid ){
-                console.log("Hay algun campo incorrecto");
-                var mensajeValidacion = "Complete el campo correctamente"
-                $(this).popover({content:mensajeValidacion, trigger:"focus"});
-                $(this).popover('show');
-                value = false;
-                return false;
-            }
-        });
-        if (value){
-            console.log("Todo OK"); 
-        }
+        validarFormulario();
     });
     $("#baja").click(baja);
     $("#modificar").click(modificar);
@@ -43,6 +26,33 @@ $("document").ready(function(){
     $("#salir").click(salir);
 
 });
+
+
+function validarFormulario(){
+    var value = true
+    $( ".g-input" ).each(function( index ) {
+        if( !this.validity.valid ){
+/*            console.log("Hay algun campo incorrecto");
+            var mensajeValidacion=""
+            if (this.value == "") {
+                mensajeValidacion = "Campo vacio"
+            }else if (true) {}{
+                mensajeValidacion = "Complete el campo correctamente"
+            }
+*/
+
+            $(this).popover({template:'<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title o-popover-title"></h3><div class="popover-content o-popover-content"></div></div>', trigger:"focus"});
+            $(this).popover('show');
+            value = false;
+            return false;
+        }
+    });
+    if (value){
+        console.log("Todo OK"); 
+    }
+}
+
+
 
 function vacio(dato) {
     if (dato.length < 1) {
@@ -74,3 +84,23 @@ function salir(){
     console.log("Pulsado el boton de SALIR");
     window.history.back();
 }
+
+
+
+/*  Plugins para Jquery
+ *********************************************************/
+$.fn.enterKey = function (fnc) {
+    return this.each(function () {
+        $(this).keypress(function (ev) {
+            var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+            if (keycode == '13') {
+                fnc.call(this, ev);
+            }
+        })
+    })
+}
+
+//USO
+/*$("#input").enterKey(function () {
+    alert('Enter!');
+});*/

@@ -6,15 +6,16 @@
 $("document").ready(function() {
 
 
-    $(".g-input").blur(function(){
-        validar(this);
-    });
-    $(".g-input").keyup(function(){
-        validar(this);
-    });
-
-
     $("#dni").focus();
+
+
+    $('.g-input[data-toggle="popover"]').blur(function(){
+        validarCampoConPatron(this);
+    });
+    $('.g-input[data-toggle="popover"]').keyup(function(){
+        validarCampoConPatron(this);
+    });
+
 
     $("#dni").change(function() {
         if (this.value != null) {
@@ -61,7 +62,7 @@ $("document").ready(function() {
 
 /*  Validaciones
  *********************************************************/
-function validar(inputToValidate){
+function validarCampoConPatron(inputToValidate){
     if( inputToValidate.validity.valid ){
         console.log("Campo Validado");
         $(inputToValidate).popover('destroy');
@@ -75,25 +76,26 @@ function validar(inputToValidate){
  *********************************************************/
 function rellenaDNI(dniField) {
     dniValue = dniField.value
+    var customMessage = ""
     if (isNumber(dniValue)) {
         while (dniValue.length < 8) {
             dniValue = "0" + dniValue;
         }
         dniValue = dniValue + dniLetra(dniValue);
-        dniField.setCustomValidity("");
     } else if (isNumber(dniValue.substring(0, dniValue.length - 1))) {
         while (dniValue.length < 9) {
             dniValue = "0" + dniValue;
         }
         if (dniLetra(dniValue.substring(0, dniValue.length - 1)) != dniValue.charAt(dniValue.length - 1)) {
-            dniField.setCustomValidity("La letra no se corresponde con el número del DNI");
-        } else {
-            dniField.setCustomValidity("");
+            customMessage = "La letra no se corresponde con el número del DNI";
         }
     } else {
-        console.log("Error: El valor introducido en el dni no es correcto");
-        dniField.setCustomValidity("El valor introducido en el dni no es correcto");
+        customMessage = "Debe de contener 9 dígitos númericos y una letra";
     }
+
+    dniField.setCustomValidity(customMessage);
+    dniField.title = customMessage;
+    $(dniField).popover({template:'<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title o-popover-title"></h3><div class="popover-content o-popover-content"></div></div>'});
 
     return dniValue;
 }
@@ -120,7 +122,6 @@ function respuestaConsultaDNI(listaObjetos) {
         var objeto = listaObjetos[0];
         seleccionaEntidad(objeto);
     } else if (listaObjetos.length > 1) {
-        //ventanaOpciones(listaObjetos);
         console.log("Existen varias entidades con ese DNI.Consultar al administrador de la BBDD");
     } else if (listaObjetos.length < 1) {
         console.log("No existe ninguna entidad con ese DNI");
@@ -166,7 +167,7 @@ function rellenaListaNombres() {
     var items = [];
     for (var i = 0; i < clientesJson.length; i++) {
         items.push('<tr data-idEntidad="' + clientesJson[i].idEntidad
-                + '"><td>' + clientesJson[i].nombre
+                + '" tabindex="0"><td>' + clientesJson[i].nombre
                 + '</td"><td>' + clientesJson[i].poblacion
                 + '</td></tr>'
                 );
@@ -185,6 +186,10 @@ function rellenaListaNombres() {
         }
     });
     $("#tableNames tr").click(function() { 
+        $("#tableNames tr").removeClass("o-selected");
+        $(this).addClass("o-selected");
+    });
+    $("#tableNames tr").enterKey(function() { 
         $("#tableNames tr").removeClass("o-selected");
         $(this).addClass("o-selected");
     });

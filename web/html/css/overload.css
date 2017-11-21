@@ -36,7 +36,14 @@
 	background: var(--brand-success) !important;
 }
 
+.o-popover-content{
+	padding: 0;
+}
 
+.o-popover-title{
+	background-color: transparent;
+	border: none;
+}
 
 
 

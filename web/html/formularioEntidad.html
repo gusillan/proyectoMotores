@@ -43,7 +43,7 @@
         <div class="col-md-2">              
           <div class="form-group">
             <label for="dni">DNI/CIF</label>
-            <input type="text" class="form-control g-input" id="dni" name="dni" pattern="[0-9]{8}[A-Z]{1}" maxlength="9" required>
+            <input type="text" class="form-control g-input" id="dni" name="dni" pattern="[0-9]{8}[A-Z]{1}" maxlength="9" required title="Debe de contener 9 dígitos númericos y una letra" data-toggle="popover">
           </div>               
         </div>         
       </div><!--row-->
@@ -75,7 +75,7 @@
         <div class="col-md-2">              
           <div class="form-group">
             <label for="cpostal">Código Postal</label>
-            <input type="text" class="form-control g-input" id="cpostal" name="cpostal" pattern="[0-9]{5}" maxlength="5">
+            <input type="text" class="form-control g-input" id="cpostal" name="cpostal" pattern="[0-9]{5}" maxlength="5" title="Debe de contener 5 dígitos númericos" data-toggle="popover">
           </div>
         </div>  
         <div class="col-md-6">              
@@ -90,19 +90,19 @@
         <div class="col-md-2">              
           <div class="form-group">
             <label for="telefono">Teléfono</label>
-            <input type="tel" class="form-control g-input" id="telefono" name="telefono" pattern="[0-9]{9}" maxlength="9">
+            <input type="tel" class="form-control g-input" id="telefono" name="telefono" pattern="[0-9]{9}" maxlength="9" title="Debe de contener 9 dígitos númericos" data-toggle="popover">
           </div>
         </div>
         <div class="col-md-2">              
           <div class="form-group">
             <label for="movil">Móvil</label>
-            <input type="tel" class="form-control g-input" id="movil" name="movil" pattern="[0-9]{9}" maxlength="9">
+            <input type="tel" class="form-control g-input" id="movil" name="movil" pattern="[0-9]{9}" maxlength="9" title="Debe de contener 9 dígitos númericos" data-toggle="popover">
           </div>
         </div>
         <div class="col-md-4">              
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control g-input" id="email" name="email" size="55" maxlength="50">
+            <input type="email" class="form-control g-input" id="email" name="email" size="55" maxlength="50" title="Debe de tener el formato de email con @ y terminación .com o .es" data-toggle="popover">
           </div>
         </div>
       </div><!--row-->
