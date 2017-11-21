@@ -16,6 +16,7 @@
 	--brand-info:    #5bc0de;
 	--brand-warning: #f0ad4e;
 	--brand-danger:  #d9534f;
+	--color-invalid: #ffffcc;
 }
 
 
@@ -27,8 +28,16 @@
 
 /*	Elementos principales html
 *********************************************************/
-input{
+body{
+    font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+}
+
+.g-input{
 	text-transform: uppercase;
+}
+.g-input:invalid{
+	background: var(--color-invalid);
 }
 
 
@@ -41,7 +50,7 @@ input{
 	margin: 100px;
 }
 
-.table-hover tbody tr:hover{
+.g-table-hover tbody tr:hover{
 	background: var(--brand-primary);
 	color: var(--gray-lighter);
 }

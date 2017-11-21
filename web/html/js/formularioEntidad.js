@@ -5,6 +5,15 @@
  *********************************************************/
 $("document").ready(function() {
 
+
+    $(".g-input").blur(function(){
+        validar(this);
+    });
+    $(".g-input").keyup(function(){
+        validar(this);
+    });
+
+
     $("#dni").focus();
 
     $("#dni").change(function() {
@@ -45,9 +54,19 @@ $("document").ready(function() {
         }
     });
 
-
 });
 
+
+
+
+/*  Validaciones
+ *********************************************************/
+function validar(inputToValidate){
+    if( inputToValidate.validity.valid ){
+        console.log("Campo Validado");
+        $(inputToValidate).popover('destroy');
+    }    
+}
 
 
 
@@ -67,8 +86,7 @@ function rellenaDNI(dniField) {
             dniValue = "0" + dniValue;
         }
         if (dniLetra(dniValue.substring(0, dniValue.length - 1)) != dniValue.charAt(dniValue.length - 1)) {
-            console.log("Error: La letra no se corresponde con el numero del dni");
-            dniField.setCustomValidity("La letra no se corresponde con el numero del dni");
+            dniField.setCustomValidity("La letra no se corresponde con el número del DNI");
         } else {
             dniField.setCustomValidity("");
         }

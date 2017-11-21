@@ -6,20 +6,28 @@ $("document").ready(function(){
 
 
     /*hacer mayusculas*/
-    $(".inputtxt").blur(function(){
+    $(".g-input").blur(function(){
         this.value = this.value.toUpperCase();
     });
-    $(".inputtxt").keyup(function(){
+    $(".g-input").keyup(function(){
         this.value = this.value.toUpperCase();
+    });
+
+
+    $(".g-input").on('valid', function(){
+        console.log("validando");
     });
 
 
     /*comprueba las validaciones html*/
     $("#alta").click(function(){ 
         var value = true
-        $( ".inputtxt" ).each(function( index ) {
+        $( ".g-input" ).each(function( index ) {
             if( !this.validity.valid ){
                 console.log("Hay algun campo incorrecto");
+                var mensajeValidacion = "Complete el campo correctamente"
+                $(this).popover({content:mensajeValidacion, trigger:"focus"});
+                $(this).popover('show');
                 value = false;
                 return false;
             }
