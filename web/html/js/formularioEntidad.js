@@ -6,8 +6,6 @@
 $("document").ready(function() {
 
 
-    $("#dni").focus();
-
 
     $('.g-input[data-toggle="popover"]').blur(function(){
         validarCampoConPatron(this);
@@ -25,9 +23,9 @@ $("document").ready(function() {
     });
 
 
-    $("#buscarNombre").click(function() {
-        consultaNombre();
-    });
+    $("#nombre").enterKey( consultaNombre );
+    $("#buscarNombre").click( consultaNombre );
+
 
     $("#cancelarModal").click(function(){
         $('#myModal').modal('hide');
@@ -36,9 +34,11 @@ $("document").ready(function() {
 
 
     $('#myModal').on('shown.bs.modal', function () {
-      $('#filtrarNombre').focus()
+      $('#filtrarNombre').focus();
     });
-
+    $('#myModal').on('hidden.bs.modal', function () {
+      $('#direccion').focus();
+    });
 
     $("#filtrarNombre, #filtrarPoblacion").keyup(function() {
         filtrarNombre($("#filtrarNombre").val(), $("#filtrarPoblacion").val());
@@ -54,6 +54,7 @@ $("document").ready(function() {
             }
         }
     });
+
 
 });
 
