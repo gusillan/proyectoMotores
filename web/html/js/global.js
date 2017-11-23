@@ -29,20 +29,23 @@ $("document").ready(function(){
     $("#salir").click(salir);
 
 
-/*    $("form").keypress(function (ev) {
+    $("form").keypress(function (ev) {
         var keycode = (ev.keyCode ? ev.keyCode : ev.which);
-        if (keycode == '97' || keycode == '65') {           // A
-            alta();
-        }else if (keycode == '98' || keycode == '66') {     // B
-            baja();
-        }else if (keycode == '109' || keycode == '77') {    // M
-            modificar();
-        }else if (keycode == '108' || keycode == '76') {    // L
-            limpiar();
-        }else if (keycode == '115' || keycode == '83') {    // S
-            salir();
+        if (ev.shiftKey){                                       // Shift + ...
+            ev.preventDefault();
+            if (keycode == '97' || keycode == '65') {           // A
+                alta();
+            }else if (keycode == '98' || keycode == '66') {     // B
+                baja();
+            }else if (keycode == '109' || keycode == '77') {    // M
+                modificar();
+            }else if (keycode == '108' || keycode == '76') {    // L
+                limpiar();
+            }else if (keycode == '115' || keycode == '83') {    // S
+                salir();
+            }
         }
-    });*/
+    });
 
 });
 
@@ -75,7 +78,7 @@ function vacio(dato) {
 
 
 function alta(){
-    console.log("Pulsado el boton de BAJA");   
+    console.log("Pulsado el boton de ALTA");   
 }
 
 function baja(){
@@ -88,6 +91,7 @@ function modificar(){
 
 function limpiar(){
     console.log("Pulsado el boton de LIMPIAR");
+    $('form')[0].reset();
 }
 
 function listados(){
