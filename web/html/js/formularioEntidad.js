@@ -227,6 +227,59 @@ function seleccionaEntidad(obj) {
     $("#email").val(obj.email);
 }
 
+// Funciones Básicas
 
 
+function limpiar(){
+    $("#formEntidad")[0].reset();
+    $("#dni").focus();
+}
 
+/*function alta(){
+        
+    idEntidad = $('#idEntidad').val();
+    dni = $('#dni').val();
+    nombre = $('#nombre').val();
+    direccion = $('#direccion').val();
+    cpostal = $('#cpostal').val();
+    poblacion = $('#poblacion').val();
+    movil = $('#movil').val();
+    telefono = $('#telefono').val();
+    email = $('#email').val();
+    
+    console.log("Alta de "+nombre);
+    
+    $.ajax({
+        url: '../altaEntidad.htm',
+        data: {idEntidad: idEntidad, dni: dni, nombre: nombre, direccion: direccion,
+            cpostal: cpostal, poblacion: poblacion, movil: movil, telefono: telefono,
+            email: email},
+        type: 'POST',
+        success: limpiar
+    });
+}*/
+
+function alta(){
+        
+    var data = $("#formEntidad").serialize();
+   
+    console.log("Data "+data);
+    $.ajax({
+        url: '../altaEntidad.htm',
+        data: data,
+        type: 'POST',
+        success: limpiar
+    });
+   
+}
+
+function formToObject(form) {
+  var arrayForm = $(form).serializeArray();
+  var objectForm = {};
+
+  arrayForm.forEach(function (obj, index) {
+    objectForm[obj.name] = obj.value;
+  });
+  
+  return objectForm;
+}

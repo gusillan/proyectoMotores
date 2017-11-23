@@ -58,7 +58,9 @@ function validarFormulario(){
         }
     });
     if (value){
-        console.log("Todo OK"); 
+        console.log("Todo OK");
+        console.log("Pasamos a dar de alta...");
+        alta();
     }
 }
 
