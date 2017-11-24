@@ -91,11 +91,6 @@ function modificar(){
     console.log("Pulsado el boton de MODIFICAR"); 
 }
 
-function limpiar(){
-    console.log("Pulsado el boton de LIMPIAR");
-    $('form')[0].reset();
-}
-
 function listados(){
     console.log("Pulsado el boton de LISTADOS");
 }
