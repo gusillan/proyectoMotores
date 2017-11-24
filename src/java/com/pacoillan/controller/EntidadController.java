@@ -92,12 +92,14 @@ public class EntidadController {
     @RequestMapping("bajaEntidad.htm")
     public void bajaEntidad(Entidad entidad,HttpServletRequest request, HttpServletResponse response) {
         
+        System.out.println("Dar de baja la entidad n "+entidad.getIdEntidad()+" nombre "+entidad.getNombre());
         entidadDao.delete(entidad);
     }
 
     @RequestMapping("modificaEntidad.htm")
     public void modificaEntidad(Entidad entidad, HttpServletRequest request, HttpServletResponse response) {
-              
+         
+        System.out.println("Id "+entidad.getIdEntidad());
         System.out.println("Entidad "+entidad.getNombre());
         System.out.println("Direccion "+entidad.getDireccion()+" poblacion "+entidad.getPoblacion());
         entidadDao.update(entidad);

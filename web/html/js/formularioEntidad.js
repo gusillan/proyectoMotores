@@ -235,15 +235,34 @@ function limpiar(){
     $("#dni").focus();
 }
 
-function alta(){
-        
+function alta(){        
     var data = $("#formEntidad").serialize();   
-    console.log("Data "+data);
     $.ajax({
         url: '../altaEntidad.htm',
         data: data,
         type: 'POST',
         success: limpiar
-    });
-   
+    });   
+}
+
+function baja(){        
+    var data = $("#formEntidad").serialize();   
+    $.ajax({
+        url: '../bajaEntidad.htm',
+        data: data,
+        type: 'POST',
+        success: limpiar
+    });   
+}
+
+function modificar(){
+    console.log("confirmar");
+    
+    var data = $("#formEntidad").serialize();
+    $.ajax({
+        url: '../modificaEntidad.htm',
+        data: data,
+        type: 'POST',
+        success: limpiar
+    });  
 }
