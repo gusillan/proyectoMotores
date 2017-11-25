@@ -28,11 +28,12 @@ public class Entidad  implements java.io.Serializable {
      private String telefono;
      private String movil;
      private String email;
+     private String informacion;
 
     public Entidad() {
     }
 
-    public Entidad(String nombre, String direccion, String cpostal, String poblacion, String dni, String telefono, String movil, String email) {
+    public Entidad(String nombre, String direccion, String cpostal, String poblacion, String dni, String telefono, String movil, String email, String informacion) {
        this.nombre = nombre;
        this.direccion = direccion;
        this.cpostal = cpostal;
@@ -41,6 +42,7 @@ public class Entidad  implements java.io.Serializable {
        this.telefono = telefono;
        this.movil = movil;
        this.email = email;
+       this.informacion = informacion;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -124,6 +126,15 @@ public class Entidad  implements java.io.Serializable {
     
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    @Column(name="informacion", length=2000)
+    public String getInformacion() {
+        return this.informacion;
+    }
+    
+    public void setInformacion(String informacion) {
+        this.informacion = informacion;
     }
 
 

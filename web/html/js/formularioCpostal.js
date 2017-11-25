@@ -61,3 +61,59 @@ function consultarCpostal(cpostal){
 function procesaRespuesta(){
     console.log("procesando...");
 }
+
+function consultaCpostal(){
+    var cpost = $("#cpostal").val();
+    console.log("Consultar "+cpost);
+    $.ajax({
+        url: '../consultaCpostal.htm',
+        data: {codigo : cpost},
+        type: 'POST',
+        success: rellenarCpostal
+    });
+}
+function rellenarCpostal(respuesta){
+    if (respuesta.length > 0){
+        poblacion = respuesta[0];
+        $("#poblacion").val(poblacion.poblacion);
+    }    
+}
+
+/* Funciones Básicas Botones
+ **********************************************************/
+function limpiar() {
+    $("#formCpostal").reset();
+    $("#codigo").focus();
+}
+
+function alta() {
+    var data = $("#formCpostal").serialize();
+    $.ajax({
+        url: '../altaCpostal.htm',
+        data: data,
+        type: 'POST',
+        success: limpiar
+    });
+}
+
+function baja() {
+    // Confirmar Baja
+    var data = $("#formCpostal").serialize();
+    $.ajax({
+        url: '../bajaCpostal.htm',
+        data: data,
+        type: 'POST',
+        success: limpiar
+    });
+}
+
+function modificar() {
+    // Confirmar Modificación
+    var data = $("#formCpostal").serialize();
+    $.ajax({
+        url: '../modificaCpostal.htm',
+        data: data,
+        type: 'POST',
+        success: limpiar
+    });
+}

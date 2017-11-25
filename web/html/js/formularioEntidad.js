@@ -19,7 +19,7 @@ $("document").ready(function() {
         }
     });
 
-    $("#nombre").enterKey(consultaNombre);
+    //$("#nombre").enterKey(consultaNombre);
     $("#buscarNombre").click(consultaNombre);
 
     $("#cancelarModal").click(function() {
@@ -222,6 +222,7 @@ function seleccionaEntidad(obj) {
     $("#telefono").val(obj.telefono);
     $("#movil").val(obj.movil);
     $("#email").val(obj.email);
+    $("#informacion").val(obj.informacion);
 }
 
 /* Funciones Básicas Botones
