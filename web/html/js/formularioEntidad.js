@@ -5,15 +5,12 @@
  *********************************************************/
 $("document").ready(function() {
 
-
-
-    $('.g-input[data-toggle="popover"]').blur(function(){
+    $('.g-input[data-toggle="popover"]').blur(function() {
         validarCampoConPatron(this);
     });
-    $('.g-input[data-toggle="popover"]').keyup(function(){
+    $('.g-input[data-toggle="popover"]').keyup(function() {
         validarCampoConPatron(this);
     });
-
 
     $("#dni").change(function() {
         if (this.value != null) {
@@ -22,29 +19,27 @@ $("document").ready(function() {
         }
     });
 
+    $("#nombre").enterKey(consultaNombre);
+    $("#buscarNombre").click(consultaNombre);
 
-    $("#nombre").enterKey( consultaNombre );
-    $("#buscarNombre").click( consultaNombre );
-
-
-    $("#cancelarModal").click(function(){
+    $("#cancelarModal").click(function() {
         $('#myModal').modal('hide');
-        $("#tableNames tr").remove();       
+        $("#tableNames tr").remove();
     });
 
 
-    $('#myModal').on('shown.bs.modal', function () {
-      $('#filtrarNombre').focus();
+    $('#myModal').on('shown.bs.modal', function() {
+        $('#filtrarNombre').focus();
     });
-    $('#myModal').on('hidden.bs.modal', function () {
-      $('#direccion').focus();
+    $('#myModal').on('hidden.bs.modal', function() {
+        $('#direccion').focus();
     });
 
     $("#filtrarNombre, #filtrarPoblacion").keyup(function() {
         filtrarNombre($("#filtrarNombre").val(), $("#filtrarPoblacion").val());
     });
 
-    $("#seleccionarNombre").click(function(){
+    $("#seleccionarNombre").click(function() {
         idEntidad = $("#tableNames tr.o-selected").attr("data-idEntidad");
         for (var i = 0; i < clientesJson.length; i++) {
             if (clientesJson[i].idEntidad == idEntidad) {
@@ -54,6 +49,8 @@ $("document").ready(function() {
             }
         }
     });
+    
+    $("#cpostal").blur(consultaCpostal);
 
 
 });
@@ -63,11 +60,11 @@ $("document").ready(function() {
 
 /*  Validaciones
  *********************************************************/
-function validarCampoConPatron(inputToValidate){
-    if( inputToValidate.validity.valid ){
+function validarCampoConPatron(inputToValidate) {
+    if (inputToValidate.validity.valid) {
         console.log("Campo Validado");
         $(inputToValidate).popover('destroy');
-    }    
+    }
 }
 
 
@@ -96,7 +93,7 @@ function rellenaDNI(dniField) {
 
     dniField.setCustomValidity(customMessage);
     dniField.title = customMessage;
-    $(dniField).popover({template:'<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title o-popover-title"></h3><div class="popover-content o-popover-content"></div></div>'});
+    $(dniField).popover({template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title o-popover-title"></h3><div class="popover-content o-popover-content"></div></div>'});
 
     return dniValue;
 }
@@ -151,20 +148,20 @@ function consultaNombre() {
 }
 
 
-function respuestaConsultaNombre(responseJson){
+function respuestaConsultaNombre(responseJson) {
     clientesJson = responseJson;
     if (clientesJson.length == 0) {
         console.log("Error: la consulta del nombre no ha obtenido ningun resultado");
-    }else if (clientesJson.length == 1) {
-        seleccionaEntidad( clientesJson[0] );
-    }else{
+    } else if (clientesJson.length == 1) {
+        seleccionaEntidad(clientesJson[0]);
+    } else {
         $('#myModal').modal('show');    //Abre la ventana Modal con la lista
         rellenaListaNombres();
     }
 }
 
 
-function rellenaListaNombres() {  
+function rellenaListaNombres() {
     var items = [];
     for (var i = 0; i < clientesJson.length; i++) {
         items.push('<tr data-idEntidad="' + clientesJson[i].idEntidad
@@ -176,7 +173,7 @@ function rellenaListaNombres() {
     $("#tableNames").append(items);
 
     //Una vez puesto los elementos en el html se pone el listener
-    $("#tableNames tr").dblclick(function(){
+    $("#tableNames tr").dblclick(function() {
         idEntidad = $(this).attr("data-idEntidad");
         for (var i = 0; i < clientesJson.length; i++) {
             if (clientesJson[i].idEntidad == idEntidad) {
@@ -186,11 +183,11 @@ function rellenaListaNombres() {
             }
         }
     });
-    $("#tableNames tr").click(function() { 
+    $("#tableNames tr").click(function() {
         $("#tableNames tr").removeClass("o-selected");
         $(this).addClass("o-selected");
     });
-    $("#tableNames tr").enterKey(function() { 
+    $("#tableNames tr").enterKey(function() {
         $("#tableNames tr").removeClass("o-selected");
         $(this).addClass("o-selected");
     });
@@ -227,42 +224,64 @@ function seleccionaEntidad(obj) {
     $("#email").val(obj.email);
 }
 
-// Funciones Básicas
-
-
-function limpiar(){
+/* Funciones Básicas Botones
+ **********************************************************/
+function limpiar() {
     $("#formEntidad")[0].reset();
     $("#dni").focus();
 }
 
-function alta(){        
-    var data = $("#formEntidad").serialize();   
+function alta() {
+    var data = $("#formEntidad").serialize();
     $.ajax({
         url: '../altaEntidad.htm',
         data: data,
         type: 'POST',
         success: limpiar
-    });   
+    });
 }
 
-function baja(){        
-    var data = $("#formEntidad").serialize();   
+function baja() {
+    // Confirmar Baja
+    var data = $("#formEntidad").serialize();
     $.ajax({
         url: '../bajaEntidad.htm',
         data: data,
         type: 'POST',
         success: limpiar
-    });   
+    });
 }
 
-function modificar(){
-    console.log("confirmar");
-    
+function modificar() {
+    // Confirmar Modificación
     var data = $("#formEntidad").serialize();
     $.ajax({
         url: '../modificaEntidad.htm',
         data: data,
         type: 'POST',
         success: limpiar
-    });  
+    });
 }
+
+/* Codigo Postal
+ * ********************************************************/
+
+
+function consultaCpostal(){
+    var cpost = $("#cpostal").val();
+    console.log("Consultar "+cpost);
+    $.ajax({
+        url: '../consultaCpostal.htm',
+        data: {codigo : cpost},
+        type: 'POST',
+        success: rellenarCpostal
+    });
+}
+function rellenarCpostal(respuesta){
+    if (respuesta.length > 0){
+        poblacion = respuesta[0];
+        $("#poblacion").val(poblacion.poblacion);
+    }    
+}
+   
+
