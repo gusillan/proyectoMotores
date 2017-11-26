@@ -25,7 +25,7 @@ $("document").ready(function(){
     $("#baja").click(baja);
     $("#modificar").click(modificar);
     $("#limpiar").click(limpiar);
-    $("#listados").click(listados);
+    $("#listado").click(listado);
     $("#salir").click(salir);
 
 
@@ -91,8 +91,8 @@ function modificar(){
     console.log("Pulsado el boton de MODIFICAR"); 
 }
 
-function listados(){
-    console.log("Pulsado el boton de LISTADOS");
+function listado(){
+    console.log("Pulsado el boton de LISTADO");
 }
 
 function salir(){

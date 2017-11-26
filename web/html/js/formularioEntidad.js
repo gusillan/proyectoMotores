@@ -19,7 +19,7 @@ $("document").ready(function() {
         }
     });
 
-    $("#nombre").enterKey(consultaNombre);
+    //$("#nombre").enterKey(consultaNombre);
     $("#buscarNombre").click(consultaNombre);
 
     $("#cancelarModal").click(function() {

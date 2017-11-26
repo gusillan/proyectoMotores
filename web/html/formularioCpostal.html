@@ -2,59 +2,68 @@
 
 <html lang="es">
 
-<head>
-  <title>Formulario Entidad</title>
-  <meta charset="utf-8" />
+    <head>
+        <title>Formulario Entidad</title>
+        <meta charset="utf-8" />
 
 
- <!-- ESTILOS CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-  <!--<link rel="stylesheet" href="css/bootstrap.min.css" />-->
-  <link rel="stylesheet" href="css/global.css" />
-  <link rel="stylesheet" href="css/overload.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" > 
+        <!-- ESTILOS CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <!--<link rel="stylesheet" href="css/bootstrap.min.css" />-->
+        <link rel="stylesheet" href="css/global.css" />
+        <link rel="stylesheet" href="css/overload.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" > 
 
-<!-- JAVASCRIPT -->
-  <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>  
-  <script src="js/global.js" type="text/javascript"></script> 
-  <script src="js/formularioCpostal.js" type="text/javascript"></script> 
-  <script src="js/bootstrap-confirmation.js" type="text/javascript"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-  <!-- <script src="js/comunes.js" type="text/javascript"></script> --> 
-  <!-- <script src="js/formulario.js" type="text/javascript"></script> -->
+        <!-- JAVASCRIPT -->
+        <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>  
+        <script src="js/global.js" type="text/javascript"></script> 
+        <script src="js/formularioCpostal.js" type="text/javascript"></script> 
+        <script src="js/bootstrap-confirmation.js" type="text/javascript"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-</head>
+        <!-- <script src="js/comunes.js" type="text/javascript"></script> --> 
+        <!-- <script src="js/formulario.js" type="text/javascript"></script> -->
 
-<body>
-    <header class="header">
-    <h1>Formulario de Códigos Postales</h1>       
-  </header>
 
-  <section>
-    <form name="formCpostal" id ="formCpostal">
-      <div class="referenceGrid">              
-        <label for="codigo">Código Postal</label>
-        <input type="text" class="inputtxt" id="codigo" name="codigo" size="5" maxlength="6">
-      </div> 
-      <div class="dniGrid">              
-        <label for="poblacion">Población</label>
-        <input type="text" class="inputtxt" id="poblacion" name="poblacion"  maxlength="25">
-      </div> 
-      
-      <navbar class="navbar">
-        <input type="button" value="Alta" id="alta"><!--
-     --><input type="button" value="Baja" id="baja"><!--
-     --><input type="button" value="Modificar" id="modificar"><!--
-     --><input type="button" value="Limpiar Formulario" id="limpiar"><!--
-     --><input type="button" value="Listados" id="listados"><!--
-     --><input type="button" value="Salir" id="salir">
-     <button class="btn btn-default" data-toggle="confirmation">Confirmacion</button>
-      </navbar>
+    </head>
 
-    </form>
+    <body>
 
-  </section>
-</body>
+        <div class="formulario container">
+
+            <div class="page-header">
+                <h1>Formulario de Códigos Postales</h1>       
+            </div>
+
+            <form name="formCpostal" id ="formCpostal">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="codigo">Código Postal</label>
+                        <input type="text" class="form-control" id="codigo" name="codigo" size="5" maxlength="6">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <label for="poblacion">Población</label>
+                        <input type="text" class="form-control" id="poblacion" name="poblacion" size="35" maxlength="30">
+                    </div>
+                </div>
+
+                <div class="g-space"></div>
+
+                <nav class="navbar navbar-inverse navbar-fixed-bottom">
+                    <div class="container">
+                        <button type="button" class="btn btn-primary navbar-btn o-navbar-btn" id="alta">Alta</button>
+                        <button type="button" class="btn btn-primary navbar-btn o-navbar-btn" id="baja">Baja</button>
+                        <button type="button" class="btn btn-primary navbar-btn o-navbar-btn" id="modificar">Modificar</button>
+                        <button type="button" class="btn btn-primary navbar-btn o-navbar-btn" id="limpiar">Limpiar</button>
+                        <button type="button" class="btn btn-primary navbar-btn o-navbar-btn" id="listado">Listado</button>
+                        <button type="button" class="btn btn-primary navbar-btn o-navbar-btn" id="salir">Salir</button>
+                    </div>
+                </nav>
+                
+            </form>
+        </div>
+
+    </body>
