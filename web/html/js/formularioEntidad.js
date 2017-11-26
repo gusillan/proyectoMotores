@@ -19,7 +19,7 @@ $("document").ready(function() {
         }
     });
 
-    //$("#nombre").enterKey(consultaNombre);
+    $("#nombre").enterKey(consultaNombre);
     $("#buscarNombre").click(consultaNombre);
 
     $("#cancelarModal").click(function() {
@@ -62,7 +62,6 @@ $("document").ready(function() {
  *********************************************************/
 function validarCampoConPatron(inputToValidate) {
     if (inputToValidate.validity.valid) {
-        console.log("Campo Validado");
         $(inputToValidate).popover('destroy');
     }
 }
@@ -171,6 +170,7 @@ function rellenaListaNombres() {
                 );
     }
     $("#tableNames").append(items);
+    $('#tableNames tr:odd').addClass("striped");
 
     //Una vez puesto los elementos en el html se pone el listener
     $("#tableNames tr").dblclick(function() {
@@ -204,6 +204,8 @@ function filtrarNombre(name, city) {
             $('#tableNames tr[data-idEntidad="' + idEntidad + '"]').hide();
         }
     }
+    $('#tableNames tr').removeClass("striped");
+    $('#tableNames tr:visible:odd').addClass("striped");
 }
 
 

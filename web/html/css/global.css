@@ -54,3 +54,7 @@ body{
 	background: var(--brand-primary);
 	color: var(--gray-lighter);
 }
+
+tr.striped{
+	background: var(--gray-lighter);
+}
