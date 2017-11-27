@@ -2,87 +2,87 @@
 
 $(function() {
 
-	$("#codigo").focus();
+    $("#codigo").focus();
 
-    $("#codigo").blur(function(){
-    	if (vacio($("#codigo"))){
-    		console.log("Codigo Postal vacio");
-    	}else{
-    		console.log("Codigo "+$("#codigo").val());
-    		consultarCpostal($("#codigo").val());
-    	}
+    $("#codigo").blur(function() {
+        if (vacio($("#codigo"))) {
+            console.log("Codigo Postal vacio");
+        } else {
+            console.log("Codigo " + $("#codigo").val());
+            consultarCpostal($("#codigo").val());
+        }
 
     });
 
 
-    $("#alta").click(function(){
-    	console.log("Pulsaste boton ALTA");	
-	});
+    $("#alta").click(function() {
+        console.log("Pulsaste boton ALTA");
+    });
 
-    $("#baja").click(function(){
-    	console.log("Pulsaste boton BAJA");	
-	});
+    $("#baja").click(function() {
+        console.log("Pulsaste boton BAJA");
+    });
 
-	$("#modificar").click(function(){
-    	console.log("Pulsaste boton MODIFICA");	
-	});
+    $("#modificar").click(function() {
+        console.log("Pulsaste boton MODIFICA");
+    });
 
-	$("#limpiar").click(function(){
-    	console.log("Pulsaste boton LIMPIAR");	
-	});
+    $("#limpiar").click(function() {
+        console.log("Pulsaste boton LIMPIAR");
+    });
 
-	$("#listados").click(function(){
-    	console.log("Pulsaste boton LISTADOS");	
-	});
+    $("#listados").click(function() {
+        console.log("Pulsaste boton LISTADOS");
+    });
 
-	$("#salir").click(function(){
-    	console.log("Pulsaste boton SALIR");	
-	});
+    $("#salir").click(function() {
+        console.log("Pulsaste boton SALIR");
+    });
 
-	$("#buscarNombre").click(function(){
-    	console.log("Pulsaste boton BUSCAR POR NOMBRE");	
-	});
-   
+    $("#buscarNombre").click(function() {
+        console.log("Pulsaste boton BUSCAR POR NOMBRE");
+    });
+
 });
 
 /* Funciones de interaccion con Back-End */
 
-function consultarCpostal(cpostal){
-	if (!vacio($("#codigo"))){
-		console.log("Interaccion con BE "+cpostal);
-                 $.getJSON('../consultaCpostal.htm', {codigo: cpostal}, procesaRespuesta);
-	}else{
-		$("#codigo").focus();
-		console.log ("CPOstal erroneo.No se consulta con BE");		
-	}	
-	
-} 
+function consultarCpostal(cpostal) {
+    if (!vacio($("#codigo"))) {
+        console.log("Interaccion con BE " + cpostal);
+        $.getJSON('../consultaCpostal.htm', {codigo: cpostal}, procesaRespuesta);
+    } else {
+        $("#codigo").focus();
+        console.log("CPOstal erroneo.No se consulta con BE");
+    }
 
-function procesaRespuesta(){
+}
+
+function procesaRespuesta() {
     console.log("procesando...");
 }
 
-function consultaCpostal(){
+function consultaCpostal() {
     var cpost = $("#cpostal").val();
-    console.log("Consultar "+cpost);
+    console.log("Consultar " + cpost);
     $.ajax({
         url: '../consultaCpostal.htm',
-        data: {codigo : cpost},
+        data: {codigo: cpost},
         type: 'POST',
         success: rellenarCpostal
     });
 }
-function rellenarCpostal(respuesta){
-    if (respuesta.length > 0){
+function rellenarCpostal(respuesta) {
+    if (respuesta.length > 0) {
         poblacion = respuesta[0];
         $("#poblacion").val(poblacion.poblacion);
-    }    
+    }
 }
 
 /* Funciones Básicas Botones
  **********************************************************/
 function limpiar() {
-    $("#formCpostal").reset();
+    $("#formCpostal")[0].reset();
     $("#codigo").focus();
 }
 

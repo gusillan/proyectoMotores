@@ -52,7 +52,7 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
     public T update(T objeto) {
         session = sessionFactory.openSession();
         tx = session.beginTransaction();
-        session.update(objeto);
+        session.saveOrUpdate(objeto);
         tx.commit();
         session.close();
         return objeto;
