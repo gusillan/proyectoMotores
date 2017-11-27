@@ -11,7 +11,7 @@
     <body>
         <h1>Ficheros Maestros</h1>
         <br>
-        <a href ="formularioFabricante.htm">1 - Formulario de Fabricante</a><br>        
+        <a href ="html/formularioFabricante.html">1 - Formulario de Fabricante</a><br>        
         <br>        
         <a href ="formularioMotor.htm">2 - Formulario de Motor</a><br>        
         <br>

@@ -46,7 +46,8 @@ public class FabricanteController {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        String codigoFabricante = request.getParameter("codigoFabricante");
+        String codigoFabricante = request.getParameter("codigo");
+        System.out.println("Vamos a consultar el codigo "+codigoFabricante);
         List<Fabricante> listaFabricantes = fabricanteDao.listadoPorCampoExacto("codigo", codigoFabricante);
         if (listaFabricantes.isEmpty()) {
             out.println();

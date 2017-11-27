@@ -1,4 +1,10 @@
+/*  Listener
+ *********************************************************/
+$("document").ready(function() {
 
+    $("#codigo").blur(consultaCodigo);
+
+});
 
 /* Funciones Básicas Botones
  **********************************************************/
@@ -36,7 +42,18 @@ function modificar() {
     });
 }
 
-function limpiar() {
-    $("#formFabricante")[0].reset();
-    $("#codigo").focus();
+/* Funciones adicionales
+ ********************************************************/
+
+function consultaCodigo() {
+    if ($("#codigo").val().length > 0) {
+        console.log("vamos a consultar el código " + this.value);
+        var codigo = this.value;
+        $.getJSON('../consultaFabricante.htm', {codigo: codigo}, respuestaConsultaFabricante);
+
+    }
+}
+
+function respuestaConsultaFabricante(obj){
+    console.log("Respuesta "+obj[0].nombre);
 }

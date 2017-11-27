@@ -1,6 +1,4 @@
 
-
-
 /*  Listener
  *********************************************************/
 $("document").ready(function() {
@@ -19,14 +17,12 @@ $("document").ready(function() {
         }
     });
 
-    //$("#nombre").enterKey(consultaNombre);
     $("#buscarNombre").click(consultaNombre);
 
     $("#cancelarModal").click(function() {
         $('#myModal').modal('hide');
         $("#tableNames tr").remove();
     });
-
 
     $('#myModal').on('shown.bs.modal', function() {
         $('#filtrarNombre').focus();
@@ -43,19 +39,61 @@ $("document").ready(function() {
         idEntidad = $("#tableNames tr.o-selected").attr("data-idEntidad");
         for (var i = 0; i < clientesJson.length; i++) {
             if (clientesJson[i].idEntidad == idEntidad) {
-                seleccionaEntidad(clientesJson[i]);
+                rellenaFormulario(clientesJson[i]);
                 $('#myModal').modal('hide');
                 $("#tableNames tr").remove();
             }
         }
     });
-    
+
     $("#cpostal").blur(consultaCpostal);
 
 
 });
 
+/* Funciones Básicas Botones
+ **********************************************************/
 
+function alta() {
+
+    if (validarFormulario()) {
+        var data = $("#formEntidad").serialize();
+        $.ajax({
+            url: '../altaEntidad.htm',
+            data: data,
+            type: 'POST',
+            success: limpiar
+        });
+    } else {
+        console.log("Formulario no valido");
+    }
+}
+
+function baja() {
+    // Confirmar Baja    
+    var data = $("#formEntidad").serialize();
+    $.ajax({
+        url: '../bajaEntidad.htm',
+        data: data,
+        type: 'POST',
+        success: limpiar
+    });
+}
+
+function modificar() {
+    // Confirmar Modificación
+    if (validarFormulario()) {
+        var data = $("#formEntidad").serialize();
+        $.ajax({
+            url: '../modificaEntidad.htm',
+            data: data,
+            type: 'POST',
+            success: limpiar
+        });
+    } else {
+        console.log("Formulario no valido");
+    }
+}
 
 
 /*  Validaciones
@@ -65,9 +103,6 @@ function validarCampoConPatron(inputToValidate) {
         $(inputToValidate).popover('destroy');
     }
 }
-
-
-
 
 /*  Campo DNI
  *********************************************************/
@@ -117,7 +152,7 @@ function consultaDNI(dni) {
 function respuestaConsultaDNI(listaObjetos) {
     if (listaObjetos.length == 1) {
         var objeto = listaObjetos[0];
-        seleccionaEntidad(objeto);
+        rellenaFormulario(objeto);
     } else if (listaObjetos.length > 1) {
         console.log("Existen varias entidades con ese DNI.Consultar al administrador de la BBDD");
     } else if (listaObjetos.length < 1) {
@@ -128,13 +163,9 @@ function respuestaConsultaDNI(listaObjetos) {
 }
 
 
-
-
 /*  Busqueda por nombre
  *********************************************************/
 var clientesJson = [];      //Json obtenido de los clientes
-
-
 
 function consultaNombre() {
     $.ajax({
@@ -146,19 +177,17 @@ function consultaNombre() {
     });
 }
 
-
 function respuestaConsultaNombre(responseJson) {
     clientesJson = responseJson;
     if (clientesJson.length == 0) {
         console.log("Error: la consulta del nombre no ha obtenido ningun resultado");
     } else if (clientesJson.length == 1) {
-        seleccionaEntidad(clientesJson[0]);
+        rellenaFormulario(clientesJson[0]);
     } else {
         $('#myModal').modal('show');    //Abre la ventana Modal con la lista
         rellenaListaNombres();
     }
 }
-
 
 function rellenaListaNombres() {
     var items = [];
@@ -177,7 +206,7 @@ function rellenaListaNombres() {
         idEntidad = $(this).attr("data-idEntidad");
         for (var i = 0; i < clientesJson.length; i++) {
             if (clientesJson[i].idEntidad == idEntidad) {
-                seleccionaEntidad(clientesJson[i]);
+                rellenaFormulario(clientesJson[i]);
                 $('#myModal').modal('hide');
                 $("#tableNames tr").remove();
             }
@@ -193,8 +222,6 @@ function rellenaListaNombres() {
     });
 }
 
-
-
 function filtrarNombre(name, city) {
     for (var i = 0; i < clientesJson.length; i++) {
         var idEntidad = clientesJson[i].idEntidad;
@@ -208,8 +235,7 @@ function filtrarNombre(name, city) {
     $('#tableNames tr:visible:odd').addClass("striped");
 }
 
-
-function seleccionaEntidad(obj) {
+function rellenaFormulario(obj) {
     $("#idEntidad").val(obj.idEntidad);
     $("#nombre").val(obj.nombre);
     $("#direccion").val(obj.direccion);
@@ -227,64 +253,25 @@ function seleccionaEntidad(obj) {
     $("#informacion").val(obj.informacion);
 }
 
-/* Funciones Básicas Botones
- **********************************************************/
-function limpiar() {
-    $("#formEntidad")[0].reset();
-    $("#dni").focus();
-}
-
-function alta() {
-    var data = $("#formEntidad").serialize();
-    $.ajax({
-        url: '../altaEntidad.htm',
-        data: data,
-        type: 'POST',
-        success: limpiar
-    });
-}
-
-function baja() {
-    // Confirmar Baja
-    var data = $("#formEntidad").serialize();
-    $.ajax({
-        url: '../bajaEntidad.htm',
-        data: data,
-        type: 'POST',
-        success: limpiar
-    });
-}
-
-function modificar() {
-    // Confirmar Modificación
-    var data = $("#formEntidad").serialize();
-    $.ajax({
-        url: '../modificaEntidad.htm',
-        data: data,
-        type: 'POST',
-        success: limpiar
-    });
-}
-
 /* Codigo Postal
  * ********************************************************/
 
-
-function consultaCpostal(){
+function consultaCpostal() {
     var cpost = $("#cpostal").val();
-    console.log("Consultar "+cpost);
+    console.log("Consultar " + cpost);
     $.ajax({
         url: '../consultaCpostal.htm',
-        data: {codigo : cpost},
+        data: {codigo: cpost},
         type: 'POST',
         success: rellenarCpostal
     });
 }
-function rellenarCpostal(respuesta){
-    if (respuesta.length > 0){
+
+function rellenarCpostal(respuesta) {
+    if (respuesta.length > 0) {
         poblacion = respuesta[0];
         $("#poblacion").val(poblacion.poblacion);
-    }    
+    }
 }
-   
+
 
