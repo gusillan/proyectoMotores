@@ -31,16 +31,18 @@ public class CpostalController {
     CpostalDAO CpostalDao;
 
     
-    @RequestMapping("altaCpostal.htm")
+    @RequestMapping("guardarCpostal.htm")
     public void altaCpostal(Cpostal cpostal, HttpServletRequest request, HttpServletResponse response) throws IOException {
         String codigo = request.getParameter("codigo");
-        String poblacion = request.getParameter("poblacion");       
+        String poblacion = request.getParameter("poblacion");
+        System.out.println("Alta de "+codigo+" "+poblacion);
+        CpostalDao.update(cpostal);
     }
 
     @RequestMapping("consultaCpostal.htm")
     public void consultaCpostal(HttpServletRequest request, HttpServletResponse response) throws IOException {
         
-        System.out.println("Codgo Postal "+request.getParameter("codigo"));
+        System.out.println("Codigo Postal "+request.getParameter("codigo"));
         
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

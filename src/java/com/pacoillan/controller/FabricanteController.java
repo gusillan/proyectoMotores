@@ -27,7 +27,6 @@ public class FabricanteController {
     ModelAndView mv = new ModelAndView();
     @Autowired
     FabricanteDAO fabricanteDao;
-
     
     @RequestMapping("guardaFabricante.htm")
     public void guardaFabricante(Fabricante fabricante, HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -42,7 +41,6 @@ public class FabricanteController {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         String codigoFabricante = request.getParameter("codigo");
-        System.out.println("Vamos a consultar el codigo "+codigoFabricante);
         List<Fabricante> listaFabricantes = fabricanteDao.listadoPorCampoExacto("codigo", codigoFabricante);
         if (listaFabricantes.isEmpty()) {
             out.println();

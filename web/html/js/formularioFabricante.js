@@ -23,7 +23,6 @@ function guardar() {
     } else {
         console.log("Formulario no válido");
     }
-
 }
 
 function baja() {
@@ -50,6 +49,21 @@ function consultaCodigo() {
     }
 }
 
-function respuestaConsultaFabricante(obj) {
-    console.log("Respuesta " + obj[0].nombre);
+function respuestaConsultaFabricante(listaObjetos) {
+    
+    if (listaObjetos.length == 1) {
+        var objeto = listaObjetos[0];
+        rellenaFormulario(objeto);
+    } else if (listaObjetos.length > 1) {
+        console.log("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
+    } else if (listaObjetos.length < 1) {
+        console.log("No existe ningun fabricante con ese Codigo");        
+    }
+}
+
+function rellenaFormulario(obj){
+    $("#idFabricante").val(obj.idFabricante);
+    $("#codigo").val(obj.codigo);
+    $("#nombre").val(obj.nombre);
+    $("#logo").val(obj.logo);
 }
