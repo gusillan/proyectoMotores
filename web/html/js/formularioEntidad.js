@@ -54,7 +54,7 @@ $("document").ready(function() {
 /* Funciones Básicas Botones
  **********************************************************/
 
-function alta() {
+function guardar() {
 
     if (validarFormulario()) {
         var data = $("#formEntidad").serialize();
@@ -79,22 +79,6 @@ function baja() {
         success: limpiar
     });
 }
-
-function modificar() {
-    // Confirmar Modificación
-    if (validarFormulario()) {
-        var data = $("#formEntidad").serialize();
-        $.ajax({
-            url: '../modificaEntidad.htm',
-            data: data,
-            type: 'POST',
-            success: limpiar
-        });
-    } else {
-        console.log("Formulario no valido");
-    }
-}
-
 
 /*  Validaciones
  *********************************************************/

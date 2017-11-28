@@ -28,17 +28,12 @@ public class FabricanteController {
     @Autowired
     FabricanteDAO fabricanteDao;
 
-    @RequestMapping("formularioFabricante.htm")
-    public ModelAndView formularioFabricante(HttpServletRequest request, HttpServletResponse response) {
-        mv.setViewName("formularioFabricante");
-        return mv;
-    }
-
-    @RequestMapping("altaFabricante.htm")
-    public void altaFabricante(Fabricante fabricante, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    
+    @RequestMapping("guardaFabricante.htm")
+    public void guardaFabricante(Fabricante fabricante, HttpServletRequest request, HttpServletResponse response) throws IOException {
         String logoMinuscula = fabricante.getLogo().toLowerCase();
         fabricante.setLogo(logoMinuscula);
-        fabricanteDao.create(fabricante);
+        fabricanteDao.update(fabricante);
     }
 
     @RequestMapping("consultaFabricante.htm")
@@ -61,10 +56,5 @@ public class FabricanteController {
     @RequestMapping("bajaFabricante.htm")
     public void bajaFabricante(Fabricante fabricante, HttpServletRequest request, HttpServletResponse response) throws IOException {        
         fabricanteDao.delete(fabricante);
-    }
-
-    @RequestMapping("modificaFabricante.htm")
-    public void modificaFabricante(Fabricante fabricante, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        fabricanteDao.update(fabricante);
-    }
+    }    
 }

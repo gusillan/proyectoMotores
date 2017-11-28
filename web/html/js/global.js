@@ -21,9 +21,8 @@ $("document").ready(function() {
 
 
     /* Comprueba los botones con funciones básicas */
-    $("#alta").click(alta);
+    $("#guardar").click(guardar);
     $("#baja").click(baja);
-    $("#modificar").click(modificar);
     $("#limpiar").click(limpiar);
     $("#listado").click(listado);
     $("#salir").click(salir);
@@ -34,13 +33,10 @@ $("document").ready(function() {
         if (ev.shiftKey){                                       // Shift + ...
             if (keycode == '97' || keycode == '65') {           // A
                 ev.preventDefault();
-                alta();               
+                guardar();               
             }else if (keycode == '98' || keycode == '66') {     // B
                 ev.preventDefault();
                 baja();
-            }else if (keycode == '109' || keycode == '77') {    // M
-                ev.preventDefault();
-                modificar();
             }else if (keycode == '108' || keycode == '76') {    // L
                 ev.preventDefault();
                 limpiar();

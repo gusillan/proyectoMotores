@@ -10,14 +10,20 @@ $("document").ready(function() {
  **********************************************************/
 
 
-function alta() {
-    var data = $("#formFabricante").serialize();
-    $.ajax({
-        url: '../altaFabricante.htm',
-        data: data,
-        type: 'POST',
-        success: limpiar
-    });
+function guardar() {
+
+    if (validarFormulario()) {
+        var data = $("#formFabricante").serialize();
+        $.ajax({
+            url: '../guardaFabricante.htm',
+            data: data,
+            type: 'POST',
+            success: limpiar
+        });
+    } else {
+        console.log("Formulario no válido");
+    }
+
 }
 
 function baja() {
@@ -31,16 +37,6 @@ function baja() {
     });
 }
 
-function modificar() {
-    // Confirmar Modificación
-    var data = $("#formFabricante").serialize();
-    $.ajax({
-        url: '../modificaFabricante.htm',
-        data: data,
-        type: 'POST',
-        success: limpiar
-    });
-}
 
 /* Funciones adicionales
  ********************************************************/
@@ -54,6 +50,6 @@ function consultaCodigo() {
     }
 }
 
-function respuestaConsultaFabricante(obj){
-    console.log("Respuesta "+obj[0].nombre);
+function respuestaConsultaFabricante(obj) {
+    console.log("Respuesta " + obj[0].nombre);
 }
