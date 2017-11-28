@@ -31,23 +31,23 @@ $("document").ready(function() {
     /* Atajos de teclado */
     $("form").keypress(function(ev) {
         var keycode = (ev.keyCode ? ev.keyCode : ev.which);
-        if (ev.shiftKey) {                                       // Shift + ...
+        if (ev.shiftKey){                                       // Shift + ...
             if (keycode == '97' || keycode == '65') {           // A
                 ev.preventDefault();
-                alta();
-            } else if (keycode == '98' || keycode == '66') {     // B
+                alta();               
+            }else if (keycode == '98' || keycode == '66') {     // B
                 ev.preventDefault();
                 baja();
-            } else if (keycode == '109' || keycode == '77') {    // M
+            }else if (keycode == '109' || keycode == '77') {    // M
                 ev.preventDefault();
                 modificar();
-            } else if (keycode == '108' || keycode == '76') {    // L
+            }else if (keycode == '108' || keycode == '76') {    // L
                 ev.preventDefault();
                 limpiar();
-            } else if (keycode == '115' || keycode == '83') {    // S
+            }else if (keycode == '115' || keycode == '83') {    // S
                 ev.preventDefault();
                 salir();
-            }
+            }            
         }
     });
 });
