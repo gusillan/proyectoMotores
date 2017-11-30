@@ -13,7 +13,7 @@
         <br>
         <a href ="html/formularioFabricante.html">1 - Formulario de Fabricante</a><br>        
         <br>        
-        <a href ="formularioMotor.htm">2 - Formulario de Motor</a><br>        
+        <a href ="html/formularioMotor.html">2 - Formulario de Motor</a><br>        
         <br>
         <a href ="formularioModelo.htm">3 - Formulario de Modelo</a><br>        
         <br>

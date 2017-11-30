@@ -27,11 +27,7 @@ public class MotorController {
     @Autowired
     FabricanteDAO fabricanteDao;
 
-    @RequestMapping("formularioMotor.htm")
-    public String formularioMotor() {
-        return "formularioMotor";
-    }
-
+    
     @RequestMapping("altaMotor.htm")
     public void altaMotor(Motor motor, HttpServletRequest request, HttpServletResponse response) {
 

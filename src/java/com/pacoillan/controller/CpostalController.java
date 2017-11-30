@@ -6,9 +6,7 @@ package com.pacoillan.controller;
 
 import com.google.gson.Gson;
 import com.pacoillan.DAO.CpostalDAO;
-import com.pacoillan.DAO.FabricanteDAO;
 import com.pacoillan.pojo.Cpostal;
-import com.pacoillan.pojo.Fabricante;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
