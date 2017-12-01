@@ -16,6 +16,22 @@ $("document").ready(function() {
 /* Funciones Básicas Botones
  **********************************************************/
 
+function guardar() {
+
+    if (validarFormulario()) {
+        var data = $("#formMotor").serialize();
+        console.log("Serializada "+data);
+        $.ajax({
+            url: '../guardaMotor.htm',
+            data: data,
+            type: 'POST',
+            success: limpiar
+        });
+    } else {
+        console.log("Formulario no valido");
+    }
+}
+
 /* Funciones adicionales
  ********************************************************/
 
@@ -79,4 +95,5 @@ function respuestaConsultaMarca(listaObjetos) {
 
 function rellenaMarca(marca){
     $("#marcaMotor").val(marca.nombre);
+    $("#imgLogo").attr("src", "..img/marcas/" + marca.logo);
 }

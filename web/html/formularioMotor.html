@@ -34,7 +34,7 @@
                 <h1>Formulario Motores</h1>      
             </div>
 
-            <form name="formMotores" id="formMotores">
+            <form name="formMotor" id="formMotor">
 
                 <div class="row">
                     <div class="col-md-2">
@@ -79,19 +79,19 @@
                     <div class="col-md-2">              
                         <div class="form-group">
                             <label for="cilindrada">Cilindrada (c.c.)</label>
-                            <input type="text" class="form-control g-input" id="cilindrada" name="cilindrada" pattern="[0-9]{3}" maxlength="4" title="nº de c.c." data-toggle="popover">
+                            <input type="text" class="form-control g-input" id="cilindrada" name="cilindrada" pattern="[0-9]{4}" maxlength="4" title="nº de c.c." data-toggle="popover">
                         </div>
                     </div>
                     <div class="col-md-2">              
                         <div class="form-group">
                             <label for="kw">Potencia (KW)</label>
-                            <input type="text" class="form-control g-input" id="kw" name="kw" pattern="[0-9]{3}" maxlength="3" title="Potencia en KW" data-toggle="popover">
+                            <input type="text" class="form-control g-input" id="kw" name="kw" pattern="[0-9]{2}" maxlength="2" title="Potencia en KW" data-toggle="popover">
                         </div>
                     </div>
                     <div class="col-md-4">              
                         <div class="form-group">
                             <label for="cv">Potencia (CV)</label>
-                            <input type="text" class="form-control g-input" id="cv" name="cv" maxlength="5" readonly="readonly">
+                            <input type="text" class="form-control g-input" id="cv" readonly="readonly">
                         </div>
                     </div>
                 </div><!--row-->
@@ -99,14 +99,17 @@
                     <div class="col-md-2">              
                         <div class="form-group">
                             <label for="codigo">Código Marca</label>
-                            <input type="text" class="form-control g-input" id="idMarca" name="idMarca"  maxlength="10">
+                            <input type="text" class="form-control g-input" id="idMarca" name="idMarca" maxlength="10">
                         </div>
                     </div>  
-                    <div class="col-md-6">              
+                    <div class="col-md-2">              
                         <div class="form-group">
                             <label for="descripcion">Marca Motor</label>
-                            <input type="text" class="form-control g-input" id="marcaMotor" name="marcaMotor" maxlength="20" readonly="readonly">
+                            <input type="text" class="form-control g-input" id="marcaMotor" readonly="readonly">
                         </div>
+                    </div>
+                    <div class="col-md-2">
+                        
                     </div>
                 </div><!--row-->
 
@@ -117,7 +120,7 @@
 
                 <nav class="navbar navbar-inverse navbar-fixed-bottom">
                     <div class="container">
-                        <input type="button" class="btn btn-primary  navbar-btn o-navbar-btn" value="Guardar" id="guardar" >
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Guardar" id="guardar" >
                         <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Baja" id="baja">
                         <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Limpiar Formulario" id="limpiar">
                         <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Listado" id="listado">

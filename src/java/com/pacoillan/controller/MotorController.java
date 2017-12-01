@@ -28,13 +28,14 @@ public class MotorController {
     FabricanteDAO fabricanteDao;
 
     
-    @RequestMapping("altaMotor.htm")
-    public void altaMotor(Motor motor, HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping("guardaMotor.htm")
+    public void guardaMotor(Motor motor, HttpServletRequest request, HttpServletResponse response) {
 
-        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
-        Fabricante fabricante = (Fabricante) fabricantes.get(0);
-        motor.setFabricante(fabricante);
-        motorDao.create(motor);
+        System.out.println("motor "+motor.getDescripcion()+" marca "+motor.getFabricante().getCodigo());
+        //List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
+        //Fabricante fabricante = (Fabricante) fabricantes.get(0);
+        //motor.setFabricante(fabricante);
+        //motorDao.create(motor);
 
     }
 
@@ -47,16 +48,7 @@ public class MotorController {
         motorDao.delete(motor);
     }
 
-    @RequestMapping("modificarMotor.htm")
-    public void modificarMotor(Motor motor, HttpServletRequest request, HttpServletResponse response) {
-        
-        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
-        Fabricante fabricante = (Fabricante) fabricantes.get(0);
-        motor.setFabricante(fabricante);
-        motorDao.update(motor);
-       
-    }
-
+   
     @RequestMapping("consultaCodigoMotor.htm")
     public void consultaCodigoMotor(HttpServletRequest request, HttpServletResponse response)
             throws IOException {

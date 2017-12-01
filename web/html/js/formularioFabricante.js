@@ -66,4 +66,5 @@ function rellenaFormulario(obj){
     $("#codigo").val(obj.codigo);
     $("#nombre").val(obj.nombre);
     $("#logo").val(obj.logo);
+    $('#imgLogo').attr("src", "img/marcas/" + obj.logo);
 }
