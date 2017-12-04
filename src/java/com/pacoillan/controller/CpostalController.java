@@ -36,6 +36,17 @@ public class CpostalController {
         System.out.println("Alta de "+codigo+" "+poblacion);
         CpostalDao.update(cpostal);
     }
+    
+    
+    @RequestMapping("bajaCpostal.htm")
+    public void bajaMotor(Cpostal cpostal, HttpServletRequest request, HttpServletResponse response) {
+
+        //List cpostales = CpostalDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
+        //Fabricante fabricante = (Fabricante) fabricantes.get(0);
+        //motor.setFabricante(fabricante);
+        CpostalDao.delete(cpostal);
+    }
+
 
     @RequestMapping("consultaCpostal.htm")
     public void consultaCpostal(HttpServletRequest request, HttpServletResponse response) throws IOException {
