@@ -24,6 +24,13 @@ $("document").ready(function() {
         }
     });
 
+    
+
+    $("#cpostal").blur(consultaCpostal);
+
+    
+
+    //Modal************ 
     $("#buscarNombre").click(consultaNombre);
 
     $("#cancelarModal").click(function() {
@@ -52,8 +59,8 @@ $("document").ready(function() {
             }
         }
     });
-
-    $("#cpostal").blur(consultaCpostal);
+    //***********Modal
+    
 
 
 });

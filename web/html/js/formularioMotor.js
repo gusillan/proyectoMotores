@@ -49,6 +49,16 @@ $("document").ready(function() {
     });
     //***********Modal
 
+
+    $("#nuevoMotorBotonGroup").click(function(){      
+        var codigo = $("#codigo").val();
+        limpiar();
+        $('#descripcion').focus();
+        $("#codigo").val(codigo);
+        $("#nuevoMotorBotonGroup").addClass("hide");
+    });
+    
+
 });
 
 
@@ -113,7 +123,8 @@ function rellenaFormulario(obj) {
     $("#idMarca").val(obj.idMotor);
     $("#codigoMarca").val(obj.fabricante.codigo);
     $("#marcaMotor").val(obj.fabricante.nombre);
-    
+
+    $("#nuevoMotorBotonGroup").removeClass("hide"); 
 }
 
 function consultarMarca() {

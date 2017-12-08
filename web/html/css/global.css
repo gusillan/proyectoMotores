@@ -58,3 +58,7 @@ body{
 tr.striped{
 	background: var(--gray-lighter);
 }
+
+.hide{
+	display: none;
+}
