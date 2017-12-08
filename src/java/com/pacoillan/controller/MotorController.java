@@ -29,20 +29,21 @@ public class MotorController {
 
     
     @RequestMapping("guardaMotor.htm")
-    public void guardaMotor(Motor motor, HttpServletRequest request, HttpServletResponse response) {
-
-        System.out.println("motor "+motor.getDescripcion()+" marca "+motor.getFabricante().getCodigo());
-        //List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
-        //Fabricante fabricante = (Fabricante) fabricantes.get(0);
-        //motor.setFabricante(fabricante);
-        //motorDao.create(motor);
+    public void guardaMotor(Motor motor,HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("Codigo Marca "+request.getParameter("codigoMarca"));
+        System.out.println("Motor "+motor.getDescripcion());
+        //System.out.println("motor "+motor.getDescripcion()+" marca "+motor.getFabricante().getCodigo());
+        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMarca"));
+        Fabricante fabricante = (Fabricante) fabricantes.get(0);
+        motor.setFabricante(fabricante);
+        motorDao.create(motor);
 
     }
 
     @RequestMapping("bajaMotor.htm")
     public void bajaMotor(Motor motor, HttpServletRequest request, HttpServletResponse response) {
 
-        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
+        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMarca"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         motor.setFabricante(fabricante);
         motorDao.delete(motor);
