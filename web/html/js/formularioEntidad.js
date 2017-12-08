@@ -1,4 +1,11 @@
 
+
+/*  Variables globales
+ *********************************************************/
+var clientesJson = [];      //Json obtenido de los clientes
+
+
+
 /*  Listener
  *********************************************************/
 $("document").ready(function() {
@@ -149,7 +156,6 @@ function respuestaConsultaDNI(listaObjetos) {
 
 /*  Busqueda por nombre
  *********************************************************/
-var clientesJson = [];      //Json obtenido de los clientes
 
 function consultaNombre() {
     $.ajax({

@@ -1,3 +1,14 @@
+
+
+
+/*  Variables globales
+ *********************************************************/
+var listaMotoresJson = [];      //Json obtenido de los Motores
+
+
+
+
+
 /*  Listener
  *********************************************************/
 $("document").ready(function() {
@@ -11,7 +22,37 @@ $("document").ready(function() {
         $('#cv').val(cv.toFixed(2));
     });
 
+
+
+    //Modal************ 
+    $("#cancelarModal").click(function() {
+        $('#myModal').modal('hide');
+        $("#tableItems tr").remove();
+    });
+
+    $('#myModal').on('shown.bs.modal', function() {
+        $("#tableItems tr")[0].focus();
+    });
+    $('#myModal').on('hidden.bs.modal', function() {
+        $('#descripcion').focus();
+    });
+
+    $("#seleccionarItem").click(function() {
+        idMotor = $("#tableItems tr.o-selected").attr("data-idMotor");
+        for (var i = 0; i < listaMotoresJson.length; i++) {
+            if (listaMotoresJson[i].idMotor == idMotor) {
+                rellenaFormulario(listaMotoresJson[i]);
+                $('#myModal').modal('hide');
+                $("#tableItems tr").remove();
+            }
+        }
+    });
+    //***********Modal
+
 });
+
+
+
 
 /* Funciones Básicas Botones
  **********************************************************/
@@ -52,6 +93,7 @@ function respuestaConsultaMotores(listaObjetos) {
     } else if (listaObjetos.length > 1) {
         console.log("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
         console.log("Esta es la lista " + listaObjetos);
+        $('#myModal').modal('show');    //Abre la ventana Modal con la lista
         rellenaListaMotores(listaObjetos);
     } else if (listaObjetos.length < 1) {
         console.log("No existe ningun fabricante con ese Codigo");
@@ -105,36 +147,38 @@ function rellenaMarca(marca) {
 /* Rellenar lista de motores 
  **********************************************************/
 function rellenaListaMotores(listaMotores) {
-    console.log("Has llegado a la rutina "+listaMotores[0].descripcion);
+    listaMotoresJson = listaMotores;
     
     var items = [];
     for (var i = 0; i < listaMotores.length; i++) {
         items.push('<tr data-idMotor="' + listaMotores[i].idMotor
                 + '" tabindex="0"><td>' + listaMotores[i].codigo
                 + '</td"><td>' + listaMotores[i].descripcion
+                + '</td"><td>' + listaMotores[i].kw
+                + '</td"><td>' + listaMotores[i].fabricante.nombre
                 + '</td></tr>'
                 );
     }
-    $("#tableNames").append(items);
-    $('#tableNames tr:odd').addClass("striped");
+    $("#tableItems").append(items);
+    $('#tableItems tr:odd').addClass("striped");
 
     //Una vez puesto los elementos en el html se pone el listener
-    $("#tableNames tr").dblclick(function() {
+    $("#tableItems tr").dblclick(function() {
         idMotor = $(this).attr("data-idMotor");
         for (var i = 0; i < listaMotores.length; i++) {
             if (listaMotores[i].idMotor == idMotor) {
                 rellenaFormulario(listaMotores[i]);
                 $('#myModal').modal('hide');
-                $("#tableNames tr").remove();
+                $("#tableItems tr").remove();
             }
         }
     });
-    $("#tableNames tr").click(function() {
-        $("#tableNames tr").removeClass("o-selected");
+    $("#tableItems tr").click(function() {
+        $("#tableItems tr").removeClass("o-selected");
         $(this).addClass("o-selected");
     });
-    $("#tableNames tr").enterKey(function() {
-        $("#tableNames tr").removeClass("o-selected");
+    $("#tableItems tr").enterKey(function() {
+        $("#tableItems tr").removeClass("o-selected");
         $(this).addClass("o-selected");
     });
 }
