@@ -35,7 +35,7 @@ $("document").ready(function() {
 
     $("#cancelarModal").click(function() {
         $('#myModal').modal('hide');
-        $("#tableNames tr").remove();
+        $("#tableItems tr").remove();
     });
 
     $('#myModal').on('shown.bs.modal', function() {
@@ -50,12 +50,12 @@ $("document").ready(function() {
     });
 
     $("#seleccionarNombre").click(function() {
-        idEntidad = $("#tableNames tr.o-selected").attr("data-idEntidad");
+        idEntidad = $("#tableItems tr.o-selected").attr("data-idEntidad");
         for (var i = 0; i < clientesJson.length; i++) {
             if (clientesJson[i].idEntidad == idEntidad) {
                 rellenaFormulario(clientesJson[i]);
                 $('#myModal').modal('hide');
-                $("#tableNames tr").remove();
+                $("#tableItems tr").remove();
             }
         }
     });
@@ -68,9 +68,9 @@ $("document").ready(function() {
 /* Funciones Básicas Botones
  **********************************************************/
 
-function guardar() {
-    console.log("Accion de guardar");
+function guardar() { 
     if (validarFormulario()) {
+        console.log("Accion de guardar");
         var data = $("#formEntidad").serialize();
         $.ajax({
             url: '../altaEntidad.htm',
@@ -78,8 +78,6 @@ function guardar() {
             type: 'POST',
             success: limpiar
         });
-    } else {
-        console.log("Formulario no valido");
     }
 }
 
@@ -195,41 +193,55 @@ function rellenaListaNombres() {
                 + '</td></tr>'
                 );
     }
-    $("#tableNames").append(items);
-    $('#tableNames tr:odd').addClass("striped");
+    $("#tableItems").append(items);
+    $('#tableItems tr:odd').addClass("striped");
 
     //Una vez puesto los elementos en el html se pone el listener
-    $("#tableNames tr").dblclick(function() {
+    $("#tableItems tr").dblclick(function() {
         idEntidad = $(this).attr("data-idEntidad");
         for (var i = 0; i < clientesJson.length; i++) {
             if (clientesJson[i].idEntidad == idEntidad) {
                 rellenaFormulario(clientesJson[i]);
                 $('#myModal').modal('hide');
-                $("#tableNames tr").remove();
+                $("#tableItems tr").remove();
             }
         }
     });
-    $("#tableNames tr").click(function() {
-        $("#tableNames tr").removeClass("o-selected");
+    $("#tableItems tr").click(function() {
+        $("#tableItems tr").removeClass("o-selected");
         $(this).addClass("o-selected");
     });
-    $("#tableNames tr").enterKey(function() {
-        $("#tableNames tr").removeClass("o-selected");
+    $("#tableItems tr").enterKey(function() {
+        $("#tableItems tr").removeClass("o-selected");
         $(this).addClass("o-selected");
     });
+    /* teclas de arriba y abajo en modal*/  
+    $("#tableItems tr").keydown(function(ev) {
+        var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+        var items = $("#tableItems tr")
+        var index = items.index(this);
+        if (keycode == '38' && index >= 1 ) {
+            ev.preventDefault();
+            items[index - 1].focus();
+        }else if(keycode == '40' && index < items.length-1 ) {
+            ev.preventDefault();
+            items[index + 1].focus();
+        }
+    });
+
 }
 
 function filtrarNombre(name, city) {
     for (var i = 0; i < clientesJson.length; i++) {
         var idEntidad = clientesJson[i].idEntidad;
         if (clientesJson[i].nombre.includes(name) && clientesJson[i].poblacion.includes(city)) {
-            $('#tableNames tr[data-idEntidad="' + idEntidad + '"]').show();
+            $('#tableItems tr[data-idEntidad="' + idEntidad + '"]').show();
         } else {
-            $('#tableNames tr[data-idEntidad="' + idEntidad + '"]').hide();
+            $('#tableItems tr[data-idEntidad="' + idEntidad + '"]').hide();
         }
     }
-    $('#tableNames tr').removeClass("striped");
-    $('#tableNames tr:visible:odd').addClass("striped");
+    $('#tableItems tr').removeClass("striped");
+    $('#tableItems tr:visible:odd').addClass("striped");
 }
 
 function rellenaFormulario(obj) {

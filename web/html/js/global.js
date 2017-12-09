@@ -8,9 +8,9 @@ var confirmationOpt = {
     placement: 'top',
     popout: true,
     btnOkLabel: 'Si',
-    btnOkIcon: '',
     btnCancelLabel: 'No',
-    btnCancelIcon: ''
+    //btnOkIcon: '',
+    //btnCancelIcon: ''
 };
 
 
@@ -83,24 +83,9 @@ $("document").ready(function() {
     });
 
 
-    /* teclas de arriba y abajo en modal*/
-/*    $("#tableItems").keypress(function(ev) {
-        var keycode = (ev.keyCode ? ev.keyCode : ev.which);
-            if (keycode == '38' || keycode == '65') {           // ^
-                ev.preventDefault();
-                guardar();               
-            }else if (keycode == '40' || keycode == '66') {     // .
-                ev.preventDefault();
-                baja();
-            }else if (keycode == '108' || keycode == '76') {    // L
-                ev.preventDefault();
-                limpiar();
-            }else if (keycode == '115' || keycode == '83') {    // S
-                ev.preventDefault();
-                salir();
-            }            
-        }
-    });*/
+    $("#tableItems").on("append", function(){
+        console.log("estoy aquiii");
+    });
 
 
 });
@@ -132,7 +117,7 @@ function vacio(dato) {
         return false;
     }
 }
-
+    
 function limpiar() {
     $("form")[0].reset();
     $(".g-img").attr("src","");
@@ -155,7 +140,7 @@ $.fn.enterKey = function(fnc) {
             if (keycode == '13') {
                 fnc.call(this, ev);
             }
-        })
+        })  
     })
 }
 //USO
