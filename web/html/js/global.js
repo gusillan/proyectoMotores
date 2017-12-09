@@ -8,7 +8,7 @@ var confirmationOpt = {
     placement: 'top',
     popout: true,
     btnOkLabel: 'Si',
-    btnCancelLabel: 'No',
+    btnCancelLabel: 'No'
     //btnOkIcon: '',
     //btnCancelIcon: ''
 };
@@ -30,7 +30,7 @@ $("document").ready(function() {
     });
     /* Utilizar ENTER para pasar de un campo a otro */
     $(".g-input").enterKey(function() {
-        var inputs = $(".g-input")
+        var inputs = $(".g-input");
         var index = inputs.index(this);
         inputs[index + 1].focus();
     });
@@ -92,7 +92,7 @@ $("document").ready(function() {
 
 
 function validarFormulario() {
-    var value = true
+    var value = true;
     $(".g-input").each(function(index) {
         if (!this.validity.valid) {
             $(this).popover({template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title o-popover-title"></h3><div class="popover-content o-popover-content"></div></div>', trigger: "focus"});
@@ -119,10 +119,11 @@ function vacio(dato) {
 }
     
 function limpiar() {
-    $("form")[0].reset();
+    $("form")[0].reset();   
     $(".g-img").attr("src","");
     $(".g-hideByDefault").addClass("g-hide");
     $(".g-input").first().focus();
+    $("#baja").attr("disabled",true);
 }
 
 function salir() {
@@ -140,9 +141,9 @@ $.fn.enterKey = function(fnc) {
             if (keycode == '13') {
                 fnc.call(this, ev);
             }
-        })  
-    })
-}
+        });  
+    });
+};
 //USO
 /*$("#input").enterKey(function () {
  alert('Enter!');

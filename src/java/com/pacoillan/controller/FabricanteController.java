@@ -43,14 +43,14 @@ public class FabricanteController {
         String codigoFabricante = request.getParameter("codigo");
         List<Fabricante> listaFabricantes = fabricanteDao.listadoPorCampoExacto("codigo", codigoFabricante);
         System.out.println(listaFabricantes);
-        if (listaFabricantes.isEmpty()) {
-            out.println();
-        } else {
+        //if (listaFabricantes.isEmpty()) {
+        //    out.println();
+        //} else {
             Gson gson = new Gson();
             String lista = gson.toJson(listaFabricantes);
             System.out.println(lista);
             out.println(lista);
-        }
+        //}
     }
 
     @RequestMapping("bajaFabricante.htm")

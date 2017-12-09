@@ -6,12 +6,12 @@ $(function() {
     $("#codigo").focus();
 
     $("#codigo").blur(function() {
-        if (vacio($("#codigo"))) {
-            console.log("Codigo Postal vacio");
-        } else {
+        if ($("#codigo").val().length > 0){
             console.log("Codigor " + this.value);
             consultaCpostal(this.value);
-        }
+        }else{           
+            console.log("Codigo Postal vacio");
+        } 
     });
 
 });
@@ -63,6 +63,7 @@ function rellenarCpostal(respuesta) {
     if (respuesta.length > 0) {
         poblacion = respuesta[0];
         $("#poblacion").val(poblacion.poblacion);
+        $("#baja").attr("disabled",false);
     }
 }
 

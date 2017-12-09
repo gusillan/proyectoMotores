@@ -83,6 +83,17 @@ function guardar() {
     }
 }
 
+function baja() {
+    // Confirmar Baja
+    var data = $("#formMotor").serialize();
+    $.ajax({
+        url: '../bajaMotor.htm',
+        data: data,
+        type: 'POST',
+        success: limpiar
+    });
+}
+
 /* Funciones adicionales
  ********************************************************/
 
@@ -123,9 +134,8 @@ function rellenaFormulario(obj) {
     $("#idMarca").val(obj.idMotor);
     $("#codigoMarca").val(obj.fabricante.codigo);
     $("#marcaMotor").val(obj.fabricante.nombre);
-
-    $("#logoMarca").attr("src", "img/marcas/"+obj.fabricante.logo);  //RESOLVER PORQUE EL SERVIDOR NO CARGA LAS IMAGENES DE LA CARPETA
-    
+    $("#logoMarca").attr("src", "img/marcas/"+obj.fabricante.logo);  
+    $("#baja").attr("disabled",false);
     $("#nuevoMotorBotonGroup").removeClass("g-hide"); 
 }
 
