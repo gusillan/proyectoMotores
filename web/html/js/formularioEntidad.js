@@ -248,6 +248,7 @@ function rellenaFormulario(obj) {
     $("#movil").val(obj.movil);
     $("#email").val(obj.email);
     $("#informacion").val(obj.informacion);
+    $("#baja").attr("disabled",false);
 }
 
 /* Codigo Postal

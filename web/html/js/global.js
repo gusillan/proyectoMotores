@@ -95,9 +95,11 @@ function vacio(dato) {
     }
 }
 function limpiar() {
-    $("form")[0].reset();
+    $("form")[0].reset();   
     $(".g-img").attr("src","");
-    $(".g-input").first().focus();
+    $(".g-input").first().focus();    
+    $("#baja").attr("disabled",true);
+    $("#nuevoMotorBotonGroup").addClass("g-hide");
 }
 
 function salir() {
