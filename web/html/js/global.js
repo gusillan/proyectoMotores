@@ -9,8 +9,8 @@ var confirmationOpt = {
     popout: true,
     btnOkLabel: 'Si',
     btnCancelLabel: 'No'
-    //btnOkIcon: '',
-    //btnCancelIcon: ''
+            //btnOkIcon: '',
+            //btnCancelIcon: ''
 };
 
 
@@ -39,21 +39,21 @@ $("document").ready(function() {
 
 
     /* Botones con funciones básicas */
-    $("#guardar").click(function (){
-        if ( validarFormulario() ){
+    $("#guardar").click(function() {
+        if (validarFormulario()) {
             confirmationOpt.onConfirm = guardar;
             $(this).confirmation(confirmationOpt);
-            $(this).confirmation('show');     
-        }else{
+            $(this).confirmation('show');
+        } else {
             $(this).confirmation('destroy');  //No funciona. no se elimina una vez se encuentre asignado.  
         }
     });
-    $("#baja").click(function (){
-        if ( validarFormulario() ){
+    $("#baja").click(function() {
+        if (validarFormulario()) {
             confirmationOpt.onConfirm = baja;
             $(this).confirmation(confirmationOpt);
-            $(this).confirmation('show');     
-        }else{
+            $(this).confirmation('show');
+        } else {
             $(this).confirmation('destroy');  //No funciona. no se elimina una vez se encuentre asignado.  
         }
     });
@@ -65,25 +65,25 @@ $("document").ready(function() {
     /* Atajos de teclado */
     $("form").keypress(function(ev) {
         var keycode = (ev.keyCode ? ev.keyCode : ev.which);
-        if (ev.shiftKey){                                       // Shift + ...
+        if (ev.shiftKey) {                                       // Shift + ...
             if (keycode == '97' || keycode == '65') {           // A
                 ev.preventDefault();
-                guardar();               
-            }else if (keycode == '98' || keycode == '66') {     // B
+                guardar();
+            } else if (keycode == '98' || keycode == '66') {     // B
                 ev.preventDefault();
                 baja();
-            }else if (keycode == '108' || keycode == '76') {    // L
+            } else if (keycode == '108' || keycode == '76') {    // L
                 ev.preventDefault();
                 limpiar();
-            }else if (keycode == '115' || keycode == '83') {    // S
+            } else if (keycode == '115' || keycode == '83') {    // S
                 ev.preventDefault();
                 salir();
-            }            
+            }
         }
     });
 
 
-    $("#tableItems").on("append", function(){
+    $("#tableItems").on("append", function() {
         console.log("estoy aquiii");
     });
 
@@ -105,7 +105,7 @@ function validarFormulario() {
     if (value) {
         console.log("Formulario OK");
         return true;
-    }else{
+    } else {
         return false;
     }
 }
@@ -117,13 +117,13 @@ function vacio(dato) {
         return false;
     }
 }
-    
+
 function limpiar() {
-    $("form")[0].reset();   
-    $(".g-img").attr("src","");
+    $("form")[0].reset();
+    $(".g-img").attr("src", "");
     $(".g-hideByDefault").addClass("g-hide");
     $(".g-input").first().focus();
-    $("#baja").attr("disabled",true);
+    $("#baja").attr("disabled", true);
 }
 
 function salir() {
@@ -141,7 +141,7 @@ $.fn.enterKey = function(fnc) {
             if (keycode == '13') {
                 fnc.call(this, ev);
             }
-        });  
+        });
     });
 };
 //USO
