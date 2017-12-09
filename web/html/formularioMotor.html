@@ -61,7 +61,7 @@
                     <div class="col-md-6">              
                         <div class="form-group">
                             <label for="descripcion">Descripción</label>
-                            <input type="text" class="form-control g-input" id="descripcion" name="descripcion" maxlength="40">
+                            <input type="text" class="form-control g-input" id="descripcion" name="descripcion" maxlength="40" required>
                         </div>
                     </div>
                 </div><!--row-->
@@ -85,13 +85,13 @@
                     <div class="col-md-2">              
                         <div class="form-group">
                             <label for="cilindrada">Cilindrada (c.c.)</label>
-                            <input type="text" class="form-control g-input" id="cilindrada" name="cilindrada" pattern="[0-9]{4}" maxlength="4" title="nº de c.c." data-toggle="popover">
+                            <input type="text" class="form-control g-input" id="cilindrada" name="cilindrada" pattern="[0-9]{3,4}" maxlength="4" title="nº de c.c." data-toggle="popover">
                         </div>
                     </div>
                     <div class="col-md-2">              
                         <div class="form-group">
                             <label for="kw">Potencia (KW)</label>
-                            <input type="text" class="form-control g-input" id="kw" name="kw" pattern="[0-9]{2,3}" maxlength="3" title="Potencia en KW" data-toggle="popover">
+                            <input type="text" class="form-control g-input" id="kw" name="kw" pattern="[0-9.]{2,5}" maxlength="5" title="Potencia en KW" data-toggle="popover">
                         </div>
                     </div>
                     <div class="col-md-2">              
@@ -115,7 +115,7 @@
                         </div>
                     </div>
 	                <div class="col-md-2">
-	                	<img id="logoMarca" src="" class="g-img">
+	                	<img id="logoMarca" src="ford.png" class="g-img">
 	                </div>
                 </div><!--row-->
 
