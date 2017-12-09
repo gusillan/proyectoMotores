@@ -55,7 +55,7 @@
                     <div class="col-md-2">              
                         <div class="form-group">
                             <label for="codigo">Código</label>
-                            <input type="text" class="form-control g-input" id="codigo" name="codigo"  maxlength="10">
+                            <input type="text" class="form-control g-input" id="codigo" name="codigo"  maxlength="10" required>
                         </div>
                     </div>  
                     <div class="col-md-6">              
@@ -91,10 +91,10 @@
                     <div class="col-md-2">              
                         <div class="form-group">
                             <label for="kw">Potencia (KW)</label>
-                            <input type="text" class="form-control g-input" id="kw" name="kw" pattern="[0-9]{2}" maxlength="2" title="Potencia en KW" data-toggle="popover">
+                            <input type="text" class="form-control g-input" id="kw" name="kw" pattern="[0-9]{2,3}" maxlength="3" title="Potencia en KW" data-toggle="popover">
                         </div>
                     </div>
-                    <div class="col-md-4">              
+                    <div class="col-md-2">              
                         <div class="form-group">
                             <label for="cv">Potencia (CV)</label>
                             <input type="text" class="form-control g-input" id="cv" readonly="readonly">
@@ -108,16 +108,17 @@
                             <input type="text" class="form-control g-input" id="codigoMarca" name="codigoMarca" maxlength="10">
                         </div>
                     </div>  
-                    <div class="col-md-2">              
+                    <div class="col-md-4">              
                         <div class="form-group">
                             <label for="descripcion">Marca Motor</label>
                             <input type="text" class="form-control g-input" id="marcaMotor" readonly="readonly">
                         </div>
                     </div>
-                    <div class="col-md-2">
-
-                    </div>
+	                <div class="col-md-2">
+	                	<img id="logoMarca" src="" class="g-img">
+	                </div>
                 </div><!--row-->
+
 
                
 

@@ -59,6 +59,10 @@ tr.striped{
 	background: var(--gray-lighter);
 }
 
-.hide{
+.g-hide{
 	display: none;
+}
+
+.g-img{
+	width: 100%;
 }

@@ -55,9 +55,9 @@ $("document").ready(function() {
         limpiar();
         $('#descripcion').focus();
         $("#codigo").val(codigo);
-        $("#nuevoMotorBotonGroup").addClass("hide");
+        $("#nuevoMotorBotonGroup").addClass("g-hide");
     });
-    
+
 
 });
 
@@ -124,7 +124,9 @@ function rellenaFormulario(obj) {
     $("#codigoMarca").val(obj.fabricante.codigo);
     $("#marcaMotor").val(obj.fabricante.nombre);
 
-    $("#nuevoMotorBotonGroup").removeClass("hide"); 
+    //$("#logoMarca").attr("src", ""+obj.fabricante.logo);  //RESOLVER PORQUE EL SERVIDOR NO CARGA LAS IMAGENES DE LA CARPETA
+    
+    $("#nuevoMotorBotonGroup").removeClass("g-hide"); 
 }
 
 function consultarMarca() {
