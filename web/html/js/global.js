@@ -46,6 +46,27 @@ $("document").ready(function() {
             }            
         }
     });
+
+
+    /* teclas de arriba y abajo en modal*/
+/*    $("#tableItems").keypress(function(ev) {
+        var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+            if (keycode == '38' || keycode == '65') {           // ^
+                ev.preventDefault();
+                guardar();               
+            }else if (keycode == '40' || keycode == '66') {     // .
+                ev.preventDefault();
+                baja();
+            }else if (keycode == '108' || keycode == '76') {    // L
+                ev.preventDefault();
+                limpiar();
+            }else if (keycode == '115' || keycode == '83') {    // S
+                ev.preventDefault();
+                salir();
+            }            
+        }
+    });*/
+
 });
 
 
@@ -100,3 +121,4 @@ $.fn.enterKey = function(fnc) {
 /*$("#input").enterKey(function () {
  alert('Enter!');
  });*/
+
