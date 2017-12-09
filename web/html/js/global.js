@@ -1,6 +1,24 @@
-/****** Funciones comunes ******/
 
 
+/*  Variables globales
+ *********************************************************/
+var confirmationOpt = {
+    rootSelector: 'input[type=button]',
+    title: '¿Seguro?',
+    placement: 'top',
+    popout: true,
+    btnOkLabel: 'Si',
+    btnOkIcon: '',
+    btnCancelLabel: 'No',
+    btnCancelIcon: ''
+};
+
+
+
+
+
+/*  Listener
+ *********************************************************/
 $("document").ready(function() {
 
     /* Hacer mayusculas */
@@ -20,12 +38,29 @@ $("document").ready(function() {
     $(".g-input").first().focus();
 
 
-    /* Comprueba los botones con funciones básicas */
-    $("#guardar").click(guardar);
-    $("#baja").click(baja);
+    /* Botones con funciones básicas */
+    $("#guardar").click(function (){
+        if ( validarFormulario() ){
+            confirmationOpt.onConfirm = guardar;
+            $(this).confirmation(confirmationOpt);
+            $(this).confirmation('show');     
+        }else{
+            $(this).confirmation('destroy');  //No funciona. no se elimina una vez se encuentre asignado.  
+        }
+    });
+    $("#baja").click(function (){
+        if ( validarFormulario() ){
+            confirmationOpt.onConfirm = baja;
+            $(this).confirmation(confirmationOpt);
+            $(this).confirmation('show');     
+        }else{
+            $(this).confirmation('destroy');  //No funciona. no se elimina una vez se encuentre asignado.  
+        }
+    });
     $("#limpiar").click(limpiar);
     $("#listado").click(listado);
     $("#salir").click(salir);
+
 
     /* Atajos de teclado */
     $("form").keypress(function(ev) {
@@ -67,6 +102,7 @@ $("document").ready(function() {
         }
     });*/
 
+
 });
 
 
@@ -77,13 +113,15 @@ function validarFormulario() {
             $(this).popover({template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title o-popover-title"></h3><div class="popover-content o-popover-content"></div></div>', trigger: "focus"});
             $(this).popover('show');
             value = false;
+            console.log("Formulario No valido");
             return false;
         }
     });
     if (value) {
         console.log("Formulario OK");
-        console.log("Pasamos a dar de alta...");
         return true;
+    }else{
+        return false;
     }
 }
 
@@ -94,9 +132,11 @@ function vacio(dato) {
         return false;
     }
 }
+
 function limpiar() {
     $("form")[0].reset();
     $(".g-img").attr("src","");
+    $(".g-hideByDefault").addClass("g-hide");
     $(".g-input").first().focus();
 }
 

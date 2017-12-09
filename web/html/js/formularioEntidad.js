@@ -69,7 +69,7 @@ $("document").ready(function() {
  **********************************************************/
 
 function guardar() {
-
+    console.log("Accion de guardar");
     if (validarFormulario()) {
         var data = $("#formEntidad").serialize();
         $.ajax({
@@ -84,7 +84,7 @@ function guardar() {
 }
 
 function baja() {
-    // Confirmar Baja    
+    console.log("Accion de baja");
     var data = $("#formEntidad").serialize();
     $.ajax({
         url: '../bajaEntidad.htm',
