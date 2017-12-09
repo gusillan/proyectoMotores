@@ -96,6 +96,7 @@ function vacio(dato) {
 }
 function limpiar() {
     $("form")[0].reset();
+    $(".g-img").attr("src","");
     $(".g-input").first().focus();
 }
 

@@ -124,7 +124,7 @@ function rellenaFormulario(obj) {
     $("#codigoMarca").val(obj.fabricante.codigo);
     $("#marcaMotor").val(obj.fabricante.nombre);
 
-    //$("#logoMarca").attr("src", ""+obj.fabricante.logo);  //RESOLVER PORQUE EL SERVIDOR NO CARGA LAS IMAGENES DE LA CARPETA
+    $("#logoMarca").attr("src", "img/marcas/"+obj.fabricante.logo);  //RESOLVER PORQUE EL SERVIDOR NO CARGA LAS IMAGENES DE LA CARPETA
     
     $("#nuevoMotorBotonGroup").removeClass("g-hide"); 
 }
@@ -154,7 +154,7 @@ function respuestaConsultaMarca(listaObjetos) {
 
 function rellenaMarca(marca) {
     $("#marcaMotor").val(marca.nombre);
-    $("#imgLogo").attr("src", "..img/marcas/" + marca.logo);
+    $("#logoMarca").attr("src", "img/marcas/" + marca.logo);
 }
 
 /* Rellenar lista de motores 
