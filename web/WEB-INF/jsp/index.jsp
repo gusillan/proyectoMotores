@@ -15,7 +15,7 @@
         <br>        
         <a href ="html/formularioMotor.html">2 - Formulario de Motor</a><br>        
         <br>
-        <a href ="formularioModelo.htm">3 - Formulario de Modelo</a><br>        
+        <a href ="html/formularioModelo.html">3 - Formulario de Modelo</a><br>        
         <br>
         <a href="html/formularioEntidad.html">4 - Formulario de Entidad</a><br>
         <br>

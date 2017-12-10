@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+        <title>Formulario Modelo</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- ESTILOS CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/global.css" />
+        <link rel="stylesheet" href="css/overload.css">
+
+        <!-- JAVASCRIPT -->
+        <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>  
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap-confirmation.min.js" type="text/javascript"></script> 
+        <script src="js/global.js" type="text/javascript"></script> 
+        <script src="js/formularioModelo.js" type="text/javascript"></script> 
+        <script src="js/jquery.maskedinput.js" type="text/javascript"></script> 
+
+
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <div class="page-header">
+                <h1>Formulario Modelo</h1>      
+            </div>
+
+            <form name="formModelo" id="formModelo">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="idModelo" class="">ID Modelo</label>
+                            <input type="text" class="form-control" id="idModelo" name="idMModelo" size="5" maxlength="6" readonly="readonly">
+                        </div>               
+                    </div>               
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="codigo">Código</label>
+                            <input type="text" class="form-control g-input" id="codigo" name="codigo"  maxlength="9" required>
+                        </div>               
+                    </div>   
+                    <div class="col-md-6">              
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control g-input" id="descripcion" name="descripcion" size="45" maxlength="40" required title="Complete el nombre">
+                            </div><!-- /input-group -->
+                        </div>               
+                    </div>             
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="codigoFabricante">Código Marca</label>
+                            <input type="text" class="form-control g-input" id="codigoFabricante" name="codigoFabricante" size="5" maxlength="5">
+                        </div>               
+                    </div>
+                    <div class="col-md-4">              
+                        <div class="form-group">
+                            <label for="fabricante">Marca Modelo</label>
+                            <input type="text" class="form-control g-input" id="fabricante" name="fabricante" size="25" maxlength="25" readonly>
+                        </div>               
+                    </div>
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="fechaInicio">Fecha Inicio</label>
+                            <input type="text" class="form-control g-input" id="fechaInicio" name="fechaInicio">
+                        </div>
+                    </div>  
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="fechaFin">Fecha Fin</label>
+                            <input type="text" class="form-control g-input" id="fechaFin" name="fechaFin">
+                        </div>
+                    </div>
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="col-md-4">              
+                        <div class="form-group">
+                            <label for="imagen">Archivo Imagen</label>
+                            <input type="text" class="form-control g-input" id="imagen" name="imagen">
+                        </div>
+                    </div>
+                    
+                </div><!--row-->
+
+
+
+                <div class="row">
+                    <div class="col-md-8">              
+                        <div class="form-group">
+                            <label for="informacion">Información</label>
+                            <textarea class="form-control" id="informacion" name="informacion" rows="3"></textarea>
+                        </div>               
+                    </div>
+                </div><!--row-->
+
+                <div class="g-space"></div>
+
+                <nav class="navbar navbar-inverse navbar-fixed-bottom">
+                    <div class="container">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Guardar" id="guardar" >
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Baja" id="baja" disabled>
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Limpiar Formulario" id="limpiar">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Listado" id="listado">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Salir" id="salir">  
+
+                    </div>
+                </nav>
+
+
+
+            </form>
+        </div>
+    </body>
+
+
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog o-modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Buscar por nombre</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">              
+                            <div class="form-group">
+                                <label for="filtrarNombre">Nombre</label>
+                                <input type="text" class="form-control g-input" id="filtrarNombre" name="filtrarNombre">
+                            </div>
+                        </div>
+                        <div class="col-md-6">              
+                            <div class="form-group">
+                                <label for="filtrarPoblacion">Poblacion</label>
+                                <input type="text" class="form-control g-input" id="filtrarPoblacion" name="filtrarPoblacion">
+                            </div>
+                        </div>          
+                    </div><!--row-->
+                    <table class="table g-table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Poblacion</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableItems">
+                            <!-- Aqui se añade la lista de items -->
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="cancelarModal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="seleccionarNombre">Seleccionar</button>
+                </div>
+            </div><!--modal-content-->
+        </div>
+    </div>
+
+
+
+
+
+</html>

@@ -25,16 +25,16 @@ public class ModeloController {
     @Autowired
     FabricanteDAO fabricanteDao;
 
-    @RequestMapping("formularioModelo.htm")
-    public String formularioModelo() {
-        return "formularioModelo";
-    }
+    
 
-    @RequestMapping("consultaCodigoModelo.htm")
-    public void consultaCodigoModelo(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping("consultaModelo.htm")
+    public void consultaModelo(Modelo modelo,HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        response.setContentType("application/json");
+        System.out.println("Codigo "+request.getParameter("codigo"));
+        System.out.println("Fecha i "+request.getParameter("fechaInicio"));
+        System.out.println("Fecha f "+request.getParameter("fechaFin"));
+        /*response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         String codigoModelo = (request.getParameter("codigo").toUpperCase());
@@ -49,19 +49,23 @@ public class ModeloController {
         Gson gson = new Gson();
         String lista = gson.toJson(listaModelos);
         System.out.println("Lista Respuesta " + lista);
-        out.println(lista);
+        out.println(lista);*/
     }
 
-    @RequestMapping("altaModelo.htm")
-    public void altaModelo( Modelo modelo, HttpServletRequest request, HttpServletResponse response) {
-                
-        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
+    @RequestMapping("guardaModelo.htm")
+    public void guardaModelo( HttpServletRequest request, HttpServletResponse response) {
+        
+        
+        System.out.println("Codigo "+request.getParameter("codigo"));
+        System.out.println("Fecha i "+request.getParameter("fechaInicio"));
+        System.out.println("Fecha f "+request.getParameter("fechaFin"));
+        /*List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         System.out.println(fabricante.getNombre());
         modelo.setFabricante(fabricante);
         String imagenMinuscula = modelo.getImagen().toLowerCase();
         modelo.setImagen(imagenMinuscula);
-        modeloDao.create(modelo);
+        modeloDao.create(modelo);*/
         
     }
 
