@@ -59,6 +59,16 @@ $("document").ready(function() {
     });
 
 
+
+    $('#subeImagenes').change( function(){
+        console.log("Funcion change");
+        var files = $('#subeImagenes')[0].files;
+        for(var i = 0; i < files.length; i++) {
+            resizeAndUpload(files[i]);
+        }
+    });
+
+
 });
 
 
@@ -218,4 +228,51 @@ function rellenaListaMotores(listaMotores) {
             items[index + 1].focus();
         }
     });
+}
+
+
+
+
+
+/* Subir imagen
+ **********************************************************/
+function resizeAndUpload(file) {
+    console.log("Redimension de imagen");
+    var reader = new FileReader();
+    reader.onloadend = function() {
+ 
+        var tempImg = new Image();
+        tempImg.src = reader.result;
+        tempImg.onload = function() {
+     
+            var MAX_WIDTH = 320;
+            var MAX_HEIGHT = 214;
+            var tempW = tempImg.width;
+            var tempH = tempImg.height;
+            if (tempW > tempH) {
+                if (tempW > MAX_WIDTH) {
+                   tempH *= MAX_WIDTH / tempW;
+                   tempW = MAX_WIDTH;
+                }
+            } else {
+                if (tempH > MAX_HEIGHT) {
+                   tempW *= MAX_HEIGHT / tempH;
+                   tempH = MAX_HEIGHT;
+                }
+            }
+     
+            var canvas = document.createElement('canvas');
+            canvas.width = tempW;
+            canvas.height = tempH;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(this, 0, 0, tempW, tempH);
+            var dataURL = canvas.toDataURL("image/jpeg");
+
+            $("img.previstaImagen").attr("src", dataURL);
+            
+            //Post dataurl to the server with AJAX
+        }
+     
+    }
+    reader.readAsDataURL(file);
 }
