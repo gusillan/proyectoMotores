@@ -7,7 +7,7 @@ $("document").ready(function() {
     $("#fechaFin").mask("99/9999");
 
     $("#codigo").blur(consultaCodigo);
-    $("#codigoMarca").blur(consultarMarca);
+    $("#codigoFabricante").blur(consultarMarca);
 
 
 });
@@ -46,8 +46,9 @@ function baja() {
  ********************************************************/
 
 function consultaCodigo() {
-    if ($("#codigo").val().length > 0) {
+    if (!vacio($("#codigo"))) {
         console.log("vamos a consultar el código " + this.value);
+        console.log($("#codigo").val().length)
         var codigo = this.value;
         $.getJSON('../consultaModelo.htm', {codigo: codigo}, respuestaConsultaModelo);
 
@@ -66,18 +67,23 @@ function respuestaConsultaModelo(listaObjetos) {
         rellenaListaMotores(listaObjetos);
     } else if (listaObjetos.length < 1) {
         console.log("No existe ningun fabricante con ese Codigo");
+        
+        
     }
 }
 function rellenaFormulario(obj) {
     $("#idModelo").val(obj.idModelo);
     $("#codigo").val(obj.codigo);
+    $("#codigo").attr("disabled",true);
     $("#descripcion").val(obj.descripcion);
+    $("#codigoFabricante").val(obj.fabricante.codigo);
+    $("#fabricante").val(obj.fabricante.nombre);
 
     $("#baja").attr("disabled", false);
 
 }
 function consultarMarca() {
-    var marca = $("#codigoMarca").val()
+    var marca = $("#codigoFabricante").val()
     console.log("Consultar marca " + marca);
     $.ajax({
         url: '../consultaFabricante.htm',
@@ -96,10 +102,12 @@ function respuestaConsultaMarca(listaObjetos) {
         console.log("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
     } else if (listaObjetos.length < 1) {
         console.log("No existe ningun fabricante con ese Codigo");
+        $("#fabricante").val('');
+        $("#codigoFabricante").val('');
     }
 }
 
 function rellenaMarca(marca) {
-    $("#marcaMotor").val(marca.nombre);
+    $("#fabricante").val(marca.nombre);
     $("#logoMarca").attr("src", "img/marcas/" + marca.logo);
 }
