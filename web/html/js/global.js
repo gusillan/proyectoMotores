@@ -110,8 +110,8 @@ function validarFormulario() {
     }
 }
 
-function vacio(dato) {
-    if (dato.length < 1) {
+function vacio(campo) {
+    if (campo.val()=="" || campo.val() == null || /^\s*$/.test(campo.val())) {
         return true;
     } else {
         return false;
@@ -122,6 +122,7 @@ function limpiar() {
     $("form")[0].reset();
     $(".g-img").attr("src", "");
     $(".g-hideByDefault").addClass("g-hide");
+    $(".g-input").attr("disabled",false);
     $(".g-input").first().focus();
     $("#baja").attr("disabled", true);
 }
