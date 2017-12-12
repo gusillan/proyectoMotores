@@ -65,3 +65,11 @@ tr.striped{
 .g-img{
 	height: 59px;
 }
+
+.g-previstaImagen{
+	display: block;
+	min-height: 59px;
+	border: 1px solid #333;
+	border-radius: 3px;
+	margin-bottom: 26px;
+}
