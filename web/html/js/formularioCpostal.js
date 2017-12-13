@@ -6,12 +6,12 @@ $(function() {
     $("#codigo").focus();
 
     $("#codigo").blur(function() {
-        if ($("#codigo").val().length > 0){
+        if ($("#codigo").val().length > 0) {
             console.log("Codigor " + this.value);
             consultaCpostal(this.value);
-        }else{           
+        } else {
             console.log("Codigo Postal vacio");
-        } 
+        }
     });
 
 });
@@ -30,20 +30,13 @@ function guardar() {
 }
 
 function baja() {
-    var respuesta = confirm("Desear dar de baja?")// Confirmar Baja
-    if (respuesta) {
-        console.log("Ha dicho SI");
-        var data = $("#formCpostal").serialize();
-        $.ajax({
-            url: '../bajaCpostal.htm',
-            data: data,
-            type: 'POST',
-            success: limpiar
-        });
-    } else {
-        console.log("Ha dicho NO");
-    }
-
+    var data = $("#formCpostal").serialize();
+    $.ajax({
+        url: '../bajaCpostal.htm',
+        data: data,
+        type: 'POST',
+        success: limpiar
+    });
 }
 
 
@@ -63,7 +56,7 @@ function rellenarCpostal(respuesta) {
     if (respuesta.length > 0) {
         poblacion = respuesta[0];
         $("#poblacion").val(poblacion.poblacion);
-        $("#baja").attr("disabled",false);
+        $("#baja").attr("disabled", false);
     }
 }
 
