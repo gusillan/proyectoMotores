@@ -10,9 +10,9 @@ $("document").ready(function() {
     $("#codigoFabricante").blur(consultarMarca);
 
 
-    $('#subeImagenes').change( function(){
+    $('#imagen').change( function(){
         console.log("Funcion change");
-        var files = $('#subeImagenes')[0].files;
+        var files = $('#imagen')[0].files;
         for(var i = 0; i < files.length; i++) {
             resizeAndUpload(files[i]);
         }
@@ -57,7 +57,7 @@ function baja() {
 function consultaCodigo() {
     if (!vacio($("#codigo"))) {
         console.log("vamos a consultar el código " + this.value);
-        console.log($("#codigo").val().length)
+        console.log($("#codigo").val().length);
         var codigo = this.value;
         $.getJSON('../consultaModelo.htm', {codigo: codigo}, respuestaConsultaModelo);
 
@@ -66,7 +66,7 @@ function consultaCodigo() {
 
 function respuestaConsultaModelo(listaObjetos) {
 
-    if (listaObjetos.length == 1) {
+    if (listaObjetos.length === 1) {
         var objeto = listaObjetos[0];
         rellenaFormulario(objeto);
     } else if (listaObjetos.length > 1) {
@@ -92,7 +92,7 @@ function rellenaFormulario(obj) {
 
 }
 function consultarMarca() {
-    var marca = $("#codigoFabricante").val()
+    var marca = $("#codigoFabricante").val();
     console.log("Consultar marca " + marca);
     $.ajax({
         url: '../consultaFabricante.htm',
@@ -104,7 +104,7 @@ function consultarMarca() {
 
 function respuestaConsultaMarca(listaObjetos) {
 
-    if (listaObjetos.length == 1) {
+    if (listaObjetos.length === 1) {
         var objeto = listaObjetos[0];
         rellenaMarca(objeto);
     } else if (listaObjetos.length > 1) {
@@ -135,8 +135,8 @@ function resizeAndUpload(file) {
         tempImg.src = reader.result;
         tempImg.onload = function() {
      
-            var MAX_WIDTH = 320;
-            var MAX_HEIGHT = 214;
+            var MAX_WIDTH = 360;
+            var MAX_HEIGHT = 186;
             var tempW = tempImg.width;
             var tempH = tempImg.height;
             if (tempW > tempH) {
@@ -156,13 +156,14 @@ function resizeAndUpload(file) {
             canvas.height = tempH;
             var ctx = canvas.getContext("2d");
             ctx.drawImage(this, 0, 0, tempW, tempH);
-            var dataURL = canvas.toDataURL("image/jpeg");
+            var dataURL = canvas.toDataURL("image/png");
 
-            $("img.g-previstaImagen").attr("src", dataURL);
+            $("#previstaImagen").attr("src", dataURL);
+            //$("#imagen").val(dataURL);
             
             //Post dataurl to the server with AJAX
-        }
+        };
      
-    }
+    };
     reader.readAsDataURL(file);
 }
