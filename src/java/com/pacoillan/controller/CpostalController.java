@@ -28,16 +28,14 @@ public class CpostalController {
     @Autowired
     CpostalDAO CpostalDao;
 
-    
     @RequestMapping("guardarCpostal.htm")
     public void altaCpostal(Cpostal cpostal, HttpServletRequest request, HttpServletResponse response) throws IOException {
         String codigo = request.getParameter("codigo");
         String poblacion = request.getParameter("poblacion");
-        System.out.println("Alta de "+codigo+" "+poblacion);
+        System.out.println("Alta de " + codigo + " " + poblacion);
         CpostalDao.update(cpostal);
     }
-    
-    
+
     @RequestMapping("bajaCpostal.htm")
     public void bajaMotor(Cpostal cpostal, HttpServletRequest request, HttpServletResponse response) {
 
@@ -47,26 +45,20 @@ public class CpostalController {
         CpostalDao.delete(cpostal);
     }
 
-
     @RequestMapping("consultaCpostal.htm")
     public void consultaCpostal(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        
-        System.out.println("Codigo Postal "+request.getParameter("codigo"));
-        
+
+        System.out.println("Codigo Postal " + request.getParameter("codigo"));
+
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         String codigo = request.getParameter("codigo");
         List<Cpostal> listaCpostal = CpostalDao.listadoPorCampoExacto("codigo", codigo);
-        if (listaCpostal.isEmpty()) {
-            out.println();
-        } else {
-            Gson gson = new Gson();
-            String lista = gson.toJson(listaCpostal);
-            System.out.println(lista);
-            out.println(lista);
-        }
-    }
+        Gson gson = new Gson();
+        String lista = gson.toJson(listaCpostal);
+        System.out.println(lista);
+        out.println(lista);
 
-    
+    }
 }

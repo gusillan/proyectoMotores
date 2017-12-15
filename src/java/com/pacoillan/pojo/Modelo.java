@@ -21,23 +21,19 @@ public class Modelo implements java.io.Serializable, Comparable {
     private String codigo;
     private Fabricante fabricante;
     private String descripcion;
-    private String mesInicio;
-    private String yearInicio;
-    private String mesFin;
-    private String yearFin;
+    private String fechaInicio;
+    private String fechaFin;
     private String imagen;
 
     public Modelo() {
     }
 
-    public Modelo(String codigo, Fabricante fabricante, String descripcion, String mesInicio, String yearInicio, String mesFin, String yearFin, String imagen) {
+    public Modelo(String codigo, Fabricante fabricante, String descripcion, String fechaInicio, String fechaFin, String imagen) {
         this.codigo = codigo;
         this.fabricante = fabricante;
         this.descripcion = descripcion;
-        this.mesInicio = mesInicio;
-        this.yearInicio = yearInicio;
-        this.mesFin = mesFin;
-        this.yearFin = yearFin;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
         this.imagen = imagen;
     }
 
@@ -80,40 +76,22 @@ public class Modelo implements java.io.Serializable, Comparable {
         this.descripcion = descripcion;
     }
 
-    @Column(name = "mesInicio", nullable = false)
-    public String getMesInicio() {
-        return this.mesInicio;
+    @Column(name = "fechaInicio", nullable = false)
+    public String getFechaInicio() {
+        return this.fechaInicio;
     }
 
-    public void setMesInicio(String mesInicio) {
-        this.mesInicio = mesInicio;
+    public void setFechaInicio(String fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
-    @Column(name = "yearInicio", nullable = false)
-    public String getYearInicio() {
-        return this.yearInicio;
+    @Column(name = "fechaFin", nullable = false)
+    public String getFechaFin() {
+        return this.fechaFin;
     }
 
-    public void setYearInicio(String yearInicio) {
-        this.yearInicio = yearInicio;
-    }
-
-    @Column(name = "mesFin", nullable = false)
-    public String getMesFin() {
-        return this.mesFin;
-    }
-
-    public void setMesFin(String mesFin) {
-        this.mesFin = mesFin;
-    }
-
-    @Column(name = "yearFin", nullable = false)
-    public String getYearFin() {
-        return this.yearFin;
-    }
-
-    public void setYearFin(String yearFin) {
-        this.yearFin = yearFin;
+    public void setFechaFin(String fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     @Column(name = "imagen", nullable = false, length = 20)

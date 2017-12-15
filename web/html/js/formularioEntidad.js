@@ -24,11 +24,12 @@ $("document").ready(function() {
         }
     });
 
-    
+
 
     $("#cpostal").blur(consultaCpostal);
+    $("#telefono").mask("999 999 999", {placeholder: " "});
+    $("#movil").mask("999 999 999", {placeholder: " "});
 
-    
 
     //Modal************ 
     $("#buscarNombre").click(consultaNombre);
@@ -60,7 +61,7 @@ $("document").ready(function() {
         }
     });
     //***********Modal
-    
+
 
 
 });
@@ -68,7 +69,7 @@ $("document").ready(function() {
 /* Funciones Básicas Botones
  **********************************************************/
 
-function guardar() { 
+function guardar() {
     if (validarFormulario()) {
         console.log("Accion de guardar");
         var data = $("#formEntidad").serialize();
@@ -163,13 +164,19 @@ function respuestaConsultaDNI(listaObjetos) {
  *********************************************************/
 
 function consultaNombre() {
-    $.ajax({
-        url: 'http://localhost:8084/ProyectoMotores/consultaPorNombre.htm',
-        data: {nombre: $('#nombre').val()},
-        type: 'POST',
-        dataType: 'json',
-        success: respuestaConsultaNombre
-    });
+    if ($("#nombre").val().length>2) {
+        console.log("Campo nombre RELLENO "+$("#nombre").val().length ) ;
+        $.ajax({
+            url: 'http://localhost:8084/ProyectoMotores/consultaPorNombre.htm',
+            data: {nombre: $('#nombre').val()},
+            type: 'POST',
+            dataType: 'json',
+            success: respuestaConsultaNombre
+        });
+    } else {
+        console.log("Campo nombre debe tener 3 o mas caracteres");
+    }
+
 }
 
 function respuestaConsultaNombre(responseJson) {
@@ -186,6 +193,7 @@ function respuestaConsultaNombre(responseJson) {
 
 function rellenaListaNombres() {
     var items = [];
+    $("#cantidad").text("("+clientesJson.length+")");
     for (var i = 0; i < clientesJson.length; i++) {
         items.push('<tr data-idEntidad="' + clientesJson[i].idEntidad
                 + '" tabindex="0"><td>' + clientesJson[i].nombre
@@ -215,15 +223,15 @@ function rellenaListaNombres() {
         $("#tableItems tr").removeClass("o-selected");
         $(this).addClass("o-selected");
     });
-    /* teclas de arriba y abajo en modal*/  
+    /* teclas de arriba y abajo en modal*/
     $("#tableItems tr").keydown(function(ev) {
         var keycode = (ev.keyCode ? ev.keyCode : ev.which);
         var items = $("#tableItems tr")
         var index = items.index(this);
-        if (keycode == '38' && index >= 1 ) {
+        if (keycode == '38' && index >= 1) {
             ev.preventDefault();
             items[index - 1].focus();
-        }else if(keycode == '40' && index < items.length-1 ) {
+        } else if (keycode == '40' && index < items.length - 1) {
             ev.preventDefault();
             items[index + 1].focus();
         }
@@ -260,7 +268,7 @@ function rellenaFormulario(obj) {
     $("#movil").val(obj.movil);
     $("#email").val(obj.email);
     $("#informacion").val(obj.informacion);
-    $("#baja").attr("disabled",false);
+    $("#baja").attr("disabled", false);
 }
 
 /* Codigo Postal
@@ -278,9 +286,12 @@ function consultaCpostal() {
 }
 
 function rellenarCpostal(respuesta) {
+    console.log(respuesta);
     if (respuesta.length > 0) {
         poblacion = respuesta[0];
         $("#poblacion").val(poblacion.poblacion);
+    } else {
+        $("#poblacion").val("");
     }
 }
 

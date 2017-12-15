@@ -51,26 +51,27 @@ public class ModeloController {
     }
 
     @RequestMapping("guardaModelo.htm")
-    public void guardaModelo( HttpServletRequest request, HttpServletResponse response) {
+    public void guardaModelo(Modelo modelo,HttpServletRequest request, HttpServletResponse response) {
         
         
         System.out.println("Codigo "+request.getParameter("codigo"));
         System.out.println("Fecha i "+request.getParameter("fechaInicio"));
         System.out.println("Fecha f "+request.getParameter("fechaFin"));
-        /*List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
+        System.out.println("Codigo Fab "+request.getParameter("codigoFabricante"));
+        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoFabricante"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         System.out.println(fabricante.getNombre());
         modelo.setFabricante(fabricante);
         String imagenMinuscula = modelo.getImagen().toLowerCase();
         modelo.setImagen(imagenMinuscula);
-        modeloDao.create(modelo);*/
+        modeloDao.create(modelo);
         
     }
 
     @RequestMapping("bajaModelo.htm")
     public void bajaModelo(Modelo modelo,HttpServletRequest request, HttpServletResponse response) {
                 
-        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
+        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoFabricante"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         modelo.setFabricante(fabricante);
         modeloDao.delete(modelo);

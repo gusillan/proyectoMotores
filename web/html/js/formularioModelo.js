@@ -76,6 +76,8 @@ function respuestaConsultaModelo(listaObjetos) {
         rellenaListaMotores(listaObjetos);
     } else if (listaObjetos.length < 1) {
         console.log("No existe ningun fabricante con ese Codigo");
+        $("#descripcion").val("");
+        $("#idModelo").val("")
         
         
     }
@@ -83,11 +85,12 @@ function respuestaConsultaModelo(listaObjetos) {
 function rellenaFormulario(obj) {
     $("#idModelo").val(obj.idModelo);
     $("#codigo").val(obj.codigo);
-    $("#codigo").attr("disabled",true);
     $("#descripcion").val(obj.descripcion);
     $("#codigoFabricante").val(obj.fabricante.codigo);
-    $("#fabricante").val(obj.fabricante.nombre);
-
+    $("#marcaModelo").val(obj.fabricante.nombre);
+    $("#fechaInicio").val(obj.fechaInicio);
+    $("#fechaFin").val(obj.fechaFin);
+    $("#imagen").val(obj.imagen);
     $("#baja").attr("disabled", false);
 
 }
@@ -117,7 +120,7 @@ function respuestaConsultaMarca(listaObjetos) {
 }
 
 function rellenaMarca(marca) {
-    $("#fabricante").val(marca.nombre);
+    $("#marcaModelo").val(marca.nombre);
     $("#logoMarca").attr("src", "img/marcas/" + marca.logo);
 }
 
