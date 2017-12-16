@@ -41,8 +41,8 @@ $("document").ready(function() {
 
 /*    $('#myModal').on('shown.bs.modal', function() {
         $('#filtrarNombre').focus();
-    });*/
-/*    $('#myModal').on('hidden.bs.modal', function() {
+    });
+    $('#myModal').on('hidden.bs.modal', function() {
         $('#direccion').focus();
     });*/
 
@@ -236,6 +236,7 @@ function filtrarNombre(name, city) {
             $('#tableItems tr[data-idEntidad="' + idEntidad + '"]').hide();
         }
     }
+    updateFocusables();
     $('#tableItems tr').removeClass("striped");
     $('#tableItems tr:visible:odd').addClass("striped");
 }

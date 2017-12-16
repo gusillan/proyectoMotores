@@ -14,8 +14,6 @@ var confirmationOpt = {
 };
 
 
-var focusablesPrincipales = "button, textarea, select, input:not(:disabled):not([readonly])";    //Selecionna los input, botones y textarea
-var focusablesModal = ".modal tr[tabindex], .modal .g-input, .modal button";             //Selecionna los filtros, los items, y botones del modal
 
 
 
@@ -31,25 +29,19 @@ $("document").ready(function() {
         this.value = this.value.toUpperCase();
     });
 
-    /* Coloca el foco en el primer input */
-    $(".g-input").first().focus();
 
+    // Refresca que elementos son enfocables y pone el foco en el primero;
+    updateFocusables();
+    $(".g-focusable").first().focus();
 
-    /* Control por flechas en los elementos enfocables*/
-    $(focusablesPrincipales).addClass("g-focusable");
-    $(".g-focusable").bind("keydown", focusable);
+    //Acciones cuando se abre y se cierra el modal
     $('#myModal').on('shown.bs.modal', function() {         // Cuando se abre el modal el control de flechas pasa al modal
-        $(".g-focusable").unbind("keydown", focusable);
-        $(".g-focusable").removeClass("g-focusable");
-        $(focusablesModal).addClass("g-focusable");      
-        $(".g-focusable").bind("keydown", focusable);
+        updateFocusables();
         $('.g-focusable').first().focus();
     });  
     $('#myModal').on('hidden.bs.modal', function() {        // Se cierra el modal y el control de flechas pasa al formulario principal
-        $(".g-focusable").unbind("keydown", focusable);
-        $(".g-focusable").removeClass("g-focusable");
-        $(focusablesPrincipales).addClass("g-focusable");      
-        $(".g-focusable").bind("keydown", focusable);
+        updateFocusables();
+        $('.g-focusable').first().focus();
     });
 
 
@@ -105,6 +97,7 @@ $("document").ready(function() {
         }
     });
 
+
 });
 
 
@@ -144,8 +137,8 @@ function limpiar() {
     $("form")[0].reset();
     $(".g-img").attr("src", "");
     $(".g-hideByDefault").addClass("g-hide");
-    $(".g-input").first().focus();
     $("#baja").attr("disabled", true);
+    $(".g-focusable").first().focus();
 }
 
 
@@ -159,7 +152,25 @@ function salir() {
 
 /*  Helpers
  *********************************************************/
-function focusable(ev){                                            //Funcion para moverte con las flechas arriba y abajo
+
+//Cambio de los elementos enfocables
+var focusablesPrincipales = "button, textarea, select, input:not(:disabled):not([readonly])";
+var focusablesModal = ".modal tr[tabindex]:visible, .modal .g-input, .modal button";
+function updateFocusables(){                                          //Funciona para actualizar los elementos enfocables
+    if ( $('#myModal').is(':visible') ){
+        $(".g-focusable").off("keydown", focusableMove);
+        $(".g-focusable").removeClass("g-focusable");
+        $(focusablesModal).addClass("g-focusable");      
+        $(".g-focusable").on("keydown", focusableMove);
+    }else{
+        $(".g-focusable").off("keydown", focusableMove);
+        $(".g-focusable").removeClass("g-focusable");
+        $(focusablesPrincipales).addClass("g-focusable");      
+        $(".g-focusable").on("keydown", focusableMove);
+    }
+}
+//navegacion por los elementos enfocables con las flechas arriba y abajo
+function focusableMove(ev){                                        
     var keycode = (ev.keyCode ? ev.keyCode : ev.which);
     if (keycode == '38' || keycode == '40') {
         ev.preventDefault();
@@ -173,6 +184,7 @@ function focusable(ev){                                            //Funcion par
         }
     }
 };
+
 
 
 
