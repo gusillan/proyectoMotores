@@ -103,7 +103,7 @@ tr.striped{
 	background: var(--gray-lighter);
 }
 
-.g-hide{
+.g-hideByDefault{
 	display: none;
 }
 

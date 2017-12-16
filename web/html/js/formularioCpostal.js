@@ -57,6 +57,7 @@ function rellenarCpostal(respuesta) {
         poblacion = respuesta[0];
         $("#poblacion").val(poblacion.poblacion);
         $("#baja").attr("disabled", false);
+        updateFocusables();
     }
 }
 

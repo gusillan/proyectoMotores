@@ -69,6 +69,7 @@ function rellenaFormulario(obj){
     $("#logo").val(obj.logo);
     $('#imgLogo').attr("src", "img/marcas/" + obj.logo);
     $("#baja").attr("disabled",false);
+    updateFocusables();
 }
 
 function rellenarLogo(){

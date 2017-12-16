@@ -258,6 +258,8 @@ function rellenaFormulario(obj) {
     $("#email").val(obj.email);
     $("#informacion").val(obj.informacion);
     $("#baja").attr("disabled", false);
+    updateFocusables();
+
 }
 
 /* Codigo Postal

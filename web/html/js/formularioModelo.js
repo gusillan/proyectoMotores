@@ -92,6 +92,7 @@ function rellenaFormulario(obj) {
     $("#fechaFin").val(obj.fechaFin);
     $("#imagen").val(obj.imagen);
     $("#baja").attr("disabled", false);
+    updateFocusables();
 
 }
 function consultarMarca() {

@@ -55,7 +55,9 @@ $("document").ready(function() {
         limpiar();
         $('#descripcion').focus();
         $("#codigo").val(codigo);
-        $("#nuevoMotorBotonGroup").addClass("g-hide");
+        $("#nuevoMotorBotonGroup").hide();
+        $("#nuevoMotorBotonGroup input").attr("disabled", true);
+        updateFocusables();
     });
 
 
@@ -135,8 +137,10 @@ function rellenaFormulario(obj) {
     $("#codigoMarca").val(obj.fabricante.codigo);
     $("#marcaMotor").val(obj.fabricante.nombre);
     $("#logoMarca").attr("src", "img/marcas/"+obj.fabricante.logo);  
+    $("#nuevoMotorBotonGroup").show();
+    $("#nuevoMotorBotonGroup input").attr("disabled", false);
     $("#baja").attr("disabled",false);
-    $("#nuevoMotorBotonGroup").removeClass("g-hide"); 
+    updateFocusables();
 }
 
 function consultarMarca() {

@@ -98,6 +98,7 @@ $("document").ready(function() {
     });
 
 
+
 });
 
 
@@ -136,8 +137,10 @@ function vacio(campo) {
 function limpiar() {
     $("form")[0].reset();
     $(".g-img").attr("src", "");
-    $(".g-hideByDefault").addClass("g-hide");
+    $(".g-hideByDefault").hide();
+    $(".g-hideByDefault input").attr("disabled", true);
     $("#baja").attr("disabled", true);
+    updateFocusables();
     $(".g-focusable").first().focus();
 }
 
@@ -154,7 +157,7 @@ function salir() {
  *********************************************************/
 
 //Cambio de los elementos enfocables
-var focusablesPrincipales = "button, textarea, select, input:not(:disabled):not([readonly])";
+var focusablesPrincipales = "button:not(:disabled), textarea, select, input:not(:disabled):not([readonly])";
 var focusablesModal = ".modal tr[tabindex]:visible, .modal .g-input, .modal button";
 function updateFocusables(){                                          //Funciona para actualizar los elementos enfocables
     if ( $('#myModal').is(':visible') ){
