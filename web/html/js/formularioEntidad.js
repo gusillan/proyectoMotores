@@ -39,12 +39,12 @@ $("document").ready(function() {
         $("#tableItems tr").remove();
     });
 
-    $('#myModal').on('shown.bs.modal', function() {
+/*    $('#myModal').on('shown.bs.modal', function() {
         $('#filtrarNombre').focus();
-    });
-    $('#myModal').on('hidden.bs.modal', function() {
+    });*/
+/*    $('#myModal').on('hidden.bs.modal', function() {
         $('#direccion').focus();
-    });
+    });*/
 
     $("#filtrarNombre, #filtrarPoblacion").keyup(function() {
         filtrarNombre($("#filtrarNombre").val(), $("#filtrarPoblacion").val());
@@ -223,19 +223,7 @@ function rellenaListaNombres() {
         $("#tableItems tr").removeClass("o-selected");
         $(this).addClass("o-selected");
     });
-    /* teclas de arriba y abajo en modal*/
-    $("#tableItems tr").keydown(function(ev) {
-        var keycode = (ev.keyCode ? ev.keyCode : ev.which);
-        var items = $("#tableItems tr")
-        var index = items.index(this);
-        if (keycode == '38' && index >= 1) {
-            ev.preventDefault();
-            items[index - 1].focus();
-        } else if (keycode == '40' && index < items.length - 1) {
-            ev.preventDefault();
-            items[index + 1].focus();
-        }
-    });
+
 
 }
 

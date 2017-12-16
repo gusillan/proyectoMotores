@@ -14,6 +14,8 @@ var confirmationOpt = {
 };
 
 
+var focusablesPrincipales = "button, textarea, select, input:not(:disabled):not([readonly])";    //Selecionna los input, botones y textarea
+var focusablesModal = ".modal tr[tabindex], .modal .g-input, .modal button";             //Selecionna los filtros, los items, y botones del modal
 
 
 
@@ -28,17 +30,38 @@ $("document").ready(function() {
     $(".g-input").keyup(function() {
         this.value = this.value.toUpperCase();
     });
-    /* Utilizar ENTER para pasar de un campo a otro */
+
+    /* Coloca el foco en el primer input */
+    $(".g-input").first().focus();
+
+
+    /* Control por flechas en los elementos enfocables*/
+    $(focusablesPrincipales).addClass("g-focusable");
+    $(".g-focusable").bind("keydown", focusable);
+    $('#myModal').on('shown.bs.modal', function() {         // Cuando se abre el modal el control de flechas pasa al modal
+        $(".g-focusable").unbind("keydown", focusable);
+        $(".g-focusable").removeClass("g-focusable");
+        $(focusablesModal).addClass("g-focusable");      
+        $(".g-focusable").bind("keydown", focusable);
+        $('.g-focusable').first().focus();
+    });  
+    $('#myModal').on('hidden.bs.modal', function() {        // Se cierra el modal y el control de flechas pasa al formulario principal
+        $(".g-focusable").unbind("keydown", focusable);
+        $(".g-focusable").removeClass("g-focusable");
+        $(focusablesPrincipales).addClass("g-focusable");      
+        $(".g-focusable").bind("keydown", focusable);
+    });
+
+
+    /* Utilizar ENTER para pasar al siguiente input*/
     $(".g-input").enterKey(function() {
         var inputs = $(".g-input");
         var index = inputs.index(this);
         inputs[index + 1].focus();
     });
-    /* Coloca el foco en el primer input */
-    $(".g-input").first().focus();
 
 
-    /* Botones con funciones básicas */
+    /* Botones de las funciones básicas del formulario*/
     $("#guardar").click(function() {
         if (validarFormulario()) {
             confirmationOpt.onConfirm = guardar;
@@ -82,13 +105,8 @@ $("document").ready(function() {
         }
     });
 
-
-    $("#tableItems").on("append", function() {
-        console.log("estoy aquiii");
-    });
-
-
 });
+
 
 
 function validarFormulario() {
@@ -110,6 +128,8 @@ function validarFormulario() {
     }
 }
 
+
+
 function vacio(campo) {
     if (campo.val()=="" || campo.val() == null || /^\s*$/.test(campo.val())) {
         return true;
@@ -117,6 +137,8 @@ function vacio(campo) {
         return false;
     }
 }
+
+
 
 function limpiar() {
     $("form")[0].reset();
@@ -126,10 +148,33 @@ function limpiar() {
     $("#baja").attr("disabled", true);
 }
 
+
+
 function salir() {
     console.log("Pulsado el boton de SALIR");
     window.history.back();
 }
+
+
+
+/*  Helpers
+ *********************************************************/
+function focusable(ev){                                            //Funcion para moverte con las flechas arriba y abajo
+    var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+    if (keycode == '38' || keycode == '40') {
+        ev.preventDefault();
+        var items = $(".g-focusable");
+        var index = items.index(this);        
+        if (keycode == '38' && index >= 1 ) {
+            items[index - 1].focus();
+        }else if(keycode == '40' && index < items.length-1 ) {
+            ev.preventDefault();
+            items[index + 1].focus();
+        }
+    }
+};
+
+
 
 
 /*  Plugins para Jquery
@@ -144,8 +189,5 @@ $.fn.enterKey = function(fnc) {
         });
     });
 };
-//USO
-/*$("#input").enterKey(function () {
- alert('Enter!');
- });*/
+
 
