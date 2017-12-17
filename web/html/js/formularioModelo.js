@@ -10,9 +10,11 @@ $("document").ready(function() {
     $("#codigoFabricante").blur(consultarMarca);
 
 
-    $('#imagen').change( function(){
-        console.log("Funcion change");
-        var files = $('#imagen')[0].files;
+    $('#archivo').change( function(){
+        
+        var files = $('#archivo')[0].files;
+        console.log("Funcion change "+files[0].value);
+        $('#imagen').val(files[0].name);        
         for(var i = 0; i < files.length; i++) {
             resizeAndUpload(files[i]);
         }
@@ -25,7 +27,8 @@ $("document").ready(function() {
  **********************************************************/
 
 function guardar() {
-
+    var archivo = document.getElementById("archivo").files[0].name;
+    $("#imagen").val(archivo);
     if (validarFormulario()) {
         var data = $("#formModelo").serialize();
         console.log("Serializada " + data);
@@ -91,6 +94,7 @@ function rellenaFormulario(obj) {
     $("#fechaInicio").val(obj.fechaInicio);
     $("#fechaFin").val(obj.fechaFin);
     $("#imagen").val(obj.imagen);
+    $("#imagenModelo").attr("src","img/imagenesVehiculos/"+obj.imagen);
     $("#baja").attr("disabled", false);
     updateFocusables();
 
@@ -162,7 +166,7 @@ function resizeAndUpload(file) {
             ctx.drawImage(this, 0, 0, tempW, tempH);
             var dataURL = canvas.toDataURL("image/png");
 
-            $("#previstaImagen").attr("src", dataURL);
+            $("#imagenModelo").attr("src", dataURL);
             //$("#imagen").val(dataURL);
             
             //Post dataurl to the server with AJAX
