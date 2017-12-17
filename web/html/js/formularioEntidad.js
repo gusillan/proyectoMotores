@@ -50,7 +50,7 @@ $("document").ready(function() {
         filtrarNombre($("#filtrarNombre").val(), $("#filtrarPoblacion").val());
     });
 
-    $("#seleccionarNombre").click(function() {
+/*    $("#seleccionarNombre").click(function() {
         idEntidad = $("#tableItems tr.o-selected").attr("data-idEntidad");
         for (var i = 0; i < clientesJson.length; i++) {
             if (clientesJson[i].idEntidad == idEntidad) {
@@ -59,7 +59,22 @@ $("document").ready(function() {
                 $("#tableItems tr").remove();
             }
         }
-    });
+    });*/
+
+
+
+    opcionesVentanaEmergente = {
+        modal: 'entidadModal',
+        titulo: 'Busqueda por nombre',
+        campos: ['nombre','poblacion'],
+        campoID: 'idEntidad',
+        campos: ['nombre','poblacion']
+    };
+    ventanaEntidad = new VentanaEmergente( opcionesVentanaEmergente );
+
+/*    $("#buscarNombre").click(function() {
+        $('#entidadModal').modal('show');
+    });*/
     //***********Modal
 
 

@@ -34,6 +34,8 @@ $("document").ready(function() {
     updateFocusables();
     $(".g-focusable").first().focus();
 
+
+
     //Acciones cuando se abre y se cierra el modal
     $('#myModal').on('shown.bs.modal', function() {         // Cuando se abre el modal el control de flechas pasa al modal
         updateFocusables();
@@ -153,13 +155,13 @@ function salir() {
 
 
 
-/*  Helpers
- *********************************************************/
 
-//Cambio de los elementos enfocables
+
+/*  Mover el foco con las flechas
+ *********************************************************/
 var focusablesPrincipales = "button:not(:disabled), textarea, select, input:not(:disabled):not([readonly])";
 var focusablesModal = ".modal tr[tabindex]:visible, .modal .g-input, .modal button";
-function updateFocusables(){                                          //Funciona para actualizar los elementos enfocables
+function updateFocusables(){                                   //Funciona para actualizar los elementos enfocables
     if ( $('#myModal').is(':visible') ){
         $(".g-focusable").off("keydown", focusableMove);
         $(".g-focusable").removeClass("g-focusable");
@@ -172,8 +174,7 @@ function updateFocusables(){                                          //Funciona
         $(".g-focusable").on("keydown", focusableMove);
     }
 }
-//navegacion por los elementos enfocables con las flechas arriba y abajo
-function focusableMove(ev){                                        
+function focusableMove(ev){                                    //flechas arriba y abajo
     var keycode = (ev.keyCode ? ev.keyCode : ev.which);
     if (keycode == '38' || keycode == '40') {
         ev.preventDefault();
@@ -187,6 +188,74 @@ function focusableMove(ev){
         }
     }
 };
+
+
+
+
+/*  Ventana emergente (modal)
+ *********************************************************/
+function VentanaEmergente(opciones){
+
+    var conf = $.extend({
+        modal   : 'miModal', 
+        titulo  : 'Titulo',
+        campos  : ['Campo1','Campo2','Campo3'],
+        campoID : 'Campo1',
+        filtros : ['Campo1']
+    }, opciones);
+
+
+    //$( "#b" ).load( "article.html #target" );
+    $.get("ventanaEmergente.html", function(data){
+        ventanaEmergente = data.replace(/@modal/g, conf.modal);
+        ventanaEmergente = ventanaEmergente.replace(/@titulo/g, conf.titulo);
+
+        $('body').append(ventanaEmergente);
+        var head = '';
+        for (var i = 0; i < conf.campos.length; i++) {
+            head += '<th>'+capitalize( conf.campos[i] )+'</th>';
+        }
+        $('#'+conf.modal+'-head').html(head);
+
+    });
+
+
+};
+
+function rellenarVentanaEmergente(lista, modal){
+    var items = [];
+    //$("#cantidad").text("("+clientesJson.length+")");
+    for (var i = 0; i < clientesJson.length; i++) {
+        items.push('<tr data-idEntidad="' + clientesJson[i].idEntidad
+                + '" tabindex="0"><td>' + clientesJson[i].nombre
+                + '</td"><td>' + clientesJson[i].poblacion
+                + '</td></tr>'
+                );
+    }
+    $("#tableItems").append(items);
+    $('#tableItems tr:odd').addClass("striped");
+
+    //Una vez puesto los elementos en el html se pone el listener
+    $("#tableItems tr").dblclick(function() {
+        idEntidad = $(this).attr("data-idEntidad");
+        for (var i = 0; i < clientesJson.length; i++) {
+            if (clientesJson[i].idEntidad == idEntidad) {
+                rellenaFormulario(clientesJson[i]);
+                $('#myModal').modal('hide');
+                $("#tableItems tr").remove();
+            }
+        }
+    });
+    $("#tableItems tr").click(function() {
+        $("#tableItems tr").removeClass("o-selected");
+        $(this).addClass("o-selected");
+    });
+    $("#tableItems tr").enterKey(function() {
+        $("#tableItems tr").removeClass("o-selected");
+        $(this).addClass("o-selected");
+    });
+
+}
 
 
 
@@ -206,3 +275,10 @@ $.fn.enterKey = function(fnc) {
 };
 
 
+
+/*  Helpers
+ *********************************************************/
+//Poner en mayuscula la primera letra del string
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
