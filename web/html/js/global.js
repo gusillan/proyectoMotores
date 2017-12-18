@@ -196,39 +196,118 @@ function focusableMove(ev){                                    //flechas arriba 
  *********************************************************/
 function VentanaEmergente(opciones){
 
-    var conf = $.extend({
+/*    this.opciones = $.extend({
         modal   : 'miModal', 
         titulo  : 'Titulo',
         campos  : ['Campo1','Campo2','Campo3'],
         campoID : 'Campo1',
         filtros : ['Campo1']
-    }, opciones);
+    }, opciones);*/
+
+    this.modal = opciones.modal;
+    this.titulo = opciones.titulo;
+    this.campos = opciones.campos;
+    this.campoID = opciones.campoID;
+    this.filtros = opciones.filtros;
+
+    this.json = [];
 
 
+    //Para este constructor hay que utilizar opciones porque this no funciona aqui.
     //$( "#b" ).load( "article.html #target" );
     $.get("ventanaEmergente.html", function(data){
-        ventanaEmergente = data.replace(/@modal/g, conf.modal);
-        ventanaEmergente = ventanaEmergente.replace(/@titulo/g, conf.titulo);
+        ventanaEmergente = data.replace(/@modal/g, opciones.modal);
+        ventanaEmergente = ventanaEmergente.replace(/@titulo/g, opciones.titulo);
 
         $('body').append(ventanaEmergente);
         var head = '';
-        for (var i = 0; i < conf.campos.length; i++) {
-            head += '<th>'+capitalize( conf.campos[i] )+'</th>';
+        for (var i = 0; i < opciones.campos.length; i++) {
+            head += '<th>'+capitalize( opciones.campos[i] )+'</th>';
         }
-        $('#'+conf.modal+'-head').html(head);
+        $('#'+opciones.modal+'-head').html(head);
+     
+        //listener iniciales
+        $('#'+opciones.modal).on('shown.bs.modal', function() {
+            $('#'+opciones.modal+'-items tr')[0].focus();
+        });
+        $('#'+opciones.modal+'-cancelar').click(function() {
+            $('#'+opciones.modal).modal('hide');
+            $('#'+opciones.modal+'-items tr').remove();
+        });
 
     });
 
+};
+
+VentanaEmergente.prototype.abrir = function( json ) {
+    console.log('Abrir ' + this.modal);
+    this.json = json;
+    var modal = this.modal;
+    var campoID = this.campoID;
+
+    for (var i = this.campos.length - 1; i >= 0; i--) {
+        if(! json[0].hasOwnProperty( this.campos[i] ) ){
+            console.error("El campo '"+this.campos[i]+"'del modal no se encuentra en el Json recibido");
+            return 1;
+        }else{
+            console.log("El campo",this.campos[i]," es correcto");
+        }
+    }
+
+    var lista = '';
+    //$("#cantidad").text("("+json.length+")");
+    for (var i = 0; i < json.length; i++) {
+        lista += '<tr data-'+this.campoID+'="' + json[i][this.campoID]+ '" tabindex="0">';
+        for (var j = 0; j < this.campos.length; j++) {
+            lista += '<td>' + json[i][this.campos[j]] + '</td>';
+        }
+        lista += '</tr>';
+    }
+
+    $('#'+modal+'-items').html(lista);
+    $('#'+modal+'-items tr:odd').addClass("striped");
+    $('#'+modal).modal('show');
+
+
+
+    //Una vez puesto los elementos en el html se pone el listener de los elem de la lista
+    $('#'+modal+'-items tr').dblclick(function() {
+        seleccionCampoID = $(this).attr("data-"+campoID);
+        for (var i = 0; i < json.length; i++) {
+            if (json[i][campoID] == seleccionCampoID) {
+                rellenaFormulario(json[i]);
+                $('#'+modal).modal('hide');
+                $('#'+modal+'-items tr').remove();
+            }
+        }
+    });
+    $('#'+modal+'-items tr').click(function() {
+        $('#'+modal+'-items tr').removeClass("o-selected");
+        $(this).addClass("o-selected");
+    });
+    $('#'+modal+'-items tr').enterKey(function() {
+        $('#'+modal+'-items tr').removeClass("o-selected");
+        $(this).addClass("o-selected");
+    });
 
 };
+/*VentanaEmergente.prototype.cerrar = function() {
+    console.log('Cerrar ' + this.modal);
+};
+VentanaEmergente.prototype.filtrar = function() {
+    console.log('Filtrar ' + this.modal);
+};
+*/
+
+
 
 function rellenarVentanaEmergente(lista, modal){
     var items = [];
-    //$("#cantidad").text("("+clientesJson.length+")");
-    for (var i = 0; i < clientesJson.length; i++) {
-        items.push('<tr data-idEntidad="' + clientesJson[i].idEntidad
-                + '" tabindex="0"><td>' + clientesJson[i].nombre
-                + '</td"><td>' + clientesJson[i].poblacion
+    //$("#cantidad").text("("+json.length+")");
+    for (var i = 0; i < json.length; i++) {
+        items.push('<tr data-idEntidad="' + json[i].idEntidad
+                + '" tabindex="0"><td>' + json[i].nombre
+                + '</td"><td>' + json[i].poblacion
                 + '</td></tr>'
                 );
     }
@@ -238,9 +317,9 @@ function rellenarVentanaEmergente(lista, modal){
     //Una vez puesto los elementos en el html se pone el listener
     $("#tableItems tr").dblclick(function() {
         idEntidad = $(this).attr("data-idEntidad");
-        for (var i = 0; i < clientesJson.length; i++) {
-            if (clientesJson[i].idEntidad == idEntidad) {
-                rellenaFormulario(clientesJson[i]);
+        for (var i = 0; i < json.length; i++) {
+            if (json[i].idEntidad == idEntidad) {
+                rellenaFormulario(json[i]);
                 $('#myModal').modal('hide');
                 $("#tableItems tr").remove();
             }

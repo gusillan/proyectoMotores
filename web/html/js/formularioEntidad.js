@@ -3,7 +3,13 @@
 /*  Variables globales
  *********************************************************/
 var clientesJson = [];      //Json obtenido de los clientes
-
+ventanaEntidad = new VentanaEmergente({
+        modal: 'entidadModal',
+        titulo: 'Busqueda por nombre',
+        campos: ['nombre','poblacion'],
+        campoID: 'idEntidad',
+        campos: ['nombre','poblacion']        
+    });
 
 
 /*  Listener
@@ -63,14 +69,10 @@ $("document").ready(function() {
 
 
 
-    opcionesVentanaEmergente = {
-        modal: 'entidadModal',
-        titulo: 'Busqueda por nombre',
-        campos: ['nombre','poblacion'],
-        campoID: 'idEntidad',
-        campos: ['nombre','poblacion']
-    };
-    ventanaEntidad = new VentanaEmergente( opcionesVentanaEmergente );
+
+    
+
+
 
 /*    $("#buscarNombre").click(function() {
         $('#entidadModal').modal('show');
@@ -201,8 +203,10 @@ function respuestaConsultaNombre(responseJson) {
     } else if (clientesJson.length == 1) {
         rellenaFormulario(clientesJson[0]);
     } else {
-        $('#myModal').modal('show');    //Abre la ventana Modal con la lista
-        rellenaListaNombres();
+        //$('#myModal').modal('show');    //Abre la ventana Modal con la lista
+        //rellenaListaNombres();
+
+        ventanaEntidad.abrir( responseJson );
     }
 }
 
