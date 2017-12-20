@@ -210,7 +210,7 @@ function VentanaEmergente(opciones){
     this.campoID = opciones.campoID;
     this.filtros = opciones.filtros;
 
-    this.json = [];
+    this.json = {};
 
 
     //Para este constructor hay que utilizar opciones porque this no funciona aqui.
@@ -230,6 +230,9 @@ function VentanaEmergente(opciones){
         $('#'+opciones.modal).on('shown.bs.modal', function() {
             $('#'+opciones.modal+'-items tr')[0].focus();
         });
+        $('#'+opciones.modal).on('hidden.bs.modal', function() {
+            $(".g-focusable").first().focus();
+        });
         $('#'+opciones.modal+'-cancelar').click(function() {
             $('#'+opciones.modal).modal('hide');
             $('#'+opciones.modal+'-items tr').remove();
@@ -245,6 +248,7 @@ VentanaEmergente.prototype.abrir = function( json ) {
     var modal = this.modal;
     var campoID = this.campoID;
 
+    //validar
     for (var i = this.campos.length - 1; i >= 0; i--) {
         if(! json[0].hasOwnProperty( this.campos[i] ) ){
             console.error("El campo '"+this.campos[i]+"'del modal no se encuentra en el Json recibido");
@@ -253,9 +257,14 @@ VentanaEmergente.prototype.abrir = function( json ) {
             console.log("El campo",this.campos[i]," es correcto");
         }
     }
+    if(! json[0].hasOwnProperty( this.campoID ) ){
+        console.error("El campoID '"+this.campoID+"'del modal no se encuentra en el Json recibido");
+        return 1;
+    }
 
+    //crear lista html
     var lista = '';
-    //$("#cantidad").text("("+json.length+")");
+    $('#'+modal+'-cantidad').text(json.length+" ");
     for (var i = 0; i < json.length; i++) {
         lista += '<tr data-'+this.campoID+'="' + json[i][this.campoID]+ '" tabindex="0">';
         for (var j = 0; j < this.campos.length; j++) {
@@ -272,7 +281,7 @@ VentanaEmergente.prototype.abrir = function( json ) {
 
     //Una vez puesto los elementos en el html se pone el listener de los elem de la lista
     $('#'+modal+'-items tr').dblclick(function() {
-        seleccionCampoID = $(this).attr("data-"+campoID);
+        var seleccionCampoID = $(this).attr("data-"+campoID);
         for (var i = 0; i < json.length; i++) {
             if (json[i][campoID] == seleccionCampoID) {
                 rellenaFormulario(json[i]);
@@ -281,6 +290,18 @@ VentanaEmergente.prototype.abrir = function( json ) {
             }
         }
     });
+    $('#'+modal+'-seleccionar').click(function() {
+        var seleccionCampoID = $('#'+modal+'-items tr.o-selected').attr("data-"+campoID);
+        for (var i = 0; i < json.length; i++) {
+            if (json[i][campoID] == seleccionCampoID) {
+                rellenaFormulario(json[i]);
+                $('#'+modal).modal('hide');
+                $('#'+modal+'-items tr').remove();
+            }
+        }
+    }); 
+
+
     $('#'+modal+'-items tr').click(function() {
         $('#'+modal+'-items tr').removeClass("o-selected");
         $(this).addClass("o-selected");

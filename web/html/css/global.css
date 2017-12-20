@@ -121,3 +121,8 @@ tr.striped{
     width: 100%;
     height: auto;
 }
+
+.g-modal-coincidencias{
+    float: left;
+}
+

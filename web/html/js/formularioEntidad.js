@@ -69,18 +69,6 @@ $("document").ready(function() {
 
 
 
-
-    
-
-
-
-/*    $("#buscarNombre").click(function() {
-        $('#entidadModal').modal('show');
-    });*/
-    //***********Modal
-
-
-
 });
 
 /* Funciones Básicas Botones
@@ -209,7 +197,7 @@ function respuestaConsultaNombre(responseJson) {
         ventanaEntidad.abrir( responseJson );
     }
 }
-
+/*
 function rellenaListaNombres() {
     var items = [];
     $("#cantidad").text("("+clientesJson.length+")");
@@ -223,7 +211,6 @@ function rellenaListaNombres() {
     $("#tableItems").append(items);
     $('#tableItems tr:odd').addClass("striped");
 
-    //Una vez puesto los elementos en el html se pone el listener
     $("#tableItems tr").dblclick(function() {
         idEntidad = $(this).attr("data-idEntidad");
         for (var i = 0; i < clientesJson.length; i++) {
@@ -242,9 +229,7 @@ function rellenaListaNombres() {
         $("#tableItems tr").removeClass("o-selected");
         $(this).addClass("o-selected");
     });
-
-
-}
+}*/
 
 function filtrarNombre(name, city) {
     for (var i = 0; i < clientesJson.length; i++) {
