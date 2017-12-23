@@ -2,13 +2,12 @@
 
 /*  Variables globales
  *********************************************************/
-var clientesJson = [];      //Json obtenido de los clientes
 ventanaEntidad = new VentanaEmergente({
         modal: 'entidadModal',
         titulo: 'Busqueda por nombre',
         campos: ['nombre','poblacion'],
         campoID: 'idEntidad',
-        campos: ['nombre','poblacion']        
+        filtros: ['nombre','poblacion']        
     });
 
 
@@ -39,34 +38,6 @@ $("document").ready(function() {
 
     //Modal************ 
     $("#buscarNombre").click(consultaNombre);
-
-    $("#cancelarModal").click(function() {
-        $('#myModal').modal('hide');
-        $("#tableItems tr").remove();
-    });
-
-/*    $('#myModal').on('shown.bs.modal', function() {
-        $('#filtrarNombre').focus();
-    });
-    $('#myModal').on('hidden.bs.modal', function() {
-        $('#direccion').focus();
-    });*/
-
-    $("#filtrarNombre, #filtrarPoblacion").keyup(function() {
-        filtrarNombre($("#filtrarNombre").val(), $("#filtrarPoblacion").val());
-    });
-
-/*    $("#seleccionarNombre").click(function() {
-        idEntidad = $("#tableItems tr.o-selected").attr("data-idEntidad");
-        for (var i = 0; i < clientesJson.length; i++) {
-            if (clientesJson[i].idEntidad == idEntidad) {
-                rellenaFormulario(clientesJson[i]);
-                $('#myModal').modal('hide');
-                $("#tableItems tr").remove();
-            }
-        }
-    });*/
-
 
 
 });
@@ -191,59 +162,10 @@ function respuestaConsultaNombre(responseJson) {
     } else if (clientesJson.length == 1) {
         rellenaFormulario(clientesJson[0]);
     } else {
-        //$('#myModal').modal('show');    //Abre la ventana Modal con la lista
-        //rellenaListaNombres();
-
-        ventanaEntidad.abrir( responseJson );
+        ventanaEntidad.abrir( responseJson );   //Abre la ventana Modal con la lista
     }
 }
-/*
-function rellenaListaNombres() {
-    var items = [];
-    $("#cantidad").text("("+clientesJson.length+")");
-    for (var i = 0; i < clientesJson.length; i++) {
-        items.push('<tr data-idEntidad="' + clientesJson[i].idEntidad
-                + '" tabindex="0"><td>' + clientesJson[i].nombre
-                + '</td"><td>' + clientesJson[i].poblacion
-                + '</td></tr>'
-                );
-    }
-    $("#tableItems").append(items);
-    $('#tableItems tr:odd').addClass("striped");
 
-    $("#tableItems tr").dblclick(function() {
-        idEntidad = $(this).attr("data-idEntidad");
-        for (var i = 0; i < clientesJson.length; i++) {
-            if (clientesJson[i].idEntidad == idEntidad) {
-                rellenaFormulario(clientesJson[i]);
-                $('#myModal').modal('hide');
-                $("#tableItems tr").remove();
-            }
-        }
-    });
-    $("#tableItems tr").click(function() {
-        $("#tableItems tr").removeClass("o-selected");
-        $(this).addClass("o-selected");
-    });
-    $("#tableItems tr").enterKey(function() {
-        $("#tableItems tr").removeClass("o-selected");
-        $(this).addClass("o-selected");
-    });
-}*/
-
-function filtrarNombre(name, city) {
-    for (var i = 0; i < clientesJson.length; i++) {
-        var idEntidad = clientesJson[i].idEntidad;
-        if (clientesJson[i].nombre.includes(name) && clientesJson[i].poblacion.includes(city)) {
-            $('#tableItems tr[data-idEntidad="' + idEntidad + '"]').show();
-        } else {
-            $('#tableItems tr[data-idEntidad="' + idEntidad + '"]').hide();
-        }
-    }
-    updateFocusables();
-    $('#tableItems tr').removeClass("striped");
-    $('#tableItems tr:visible:odd').addClass("striped");
-}
 
 function rellenaFormulario(obj) {
     $("#idEntidad").val(obj.idEntidad);

@@ -35,18 +35,6 @@ $("document").ready(function() {
     $(".g-focusable").first().focus();
 
 
-
-    //Acciones cuando se abre y se cierra el modal
-    $('#myModal').on('shown.bs.modal', function() {         // Cuando se abre el modal el control de flechas pasa al modal
-        updateFocusables();
-        $('.g-focusable').first().focus();
-    });  
-    $('#myModal').on('hidden.bs.modal', function() {        // Se cierra el modal y el control de flechas pasa al formulario principal
-        updateFocusables();
-        $('.g-focusable').first().focus();
-    });
-
-
     /* Utilizar ENTER para pasar al siguiente input*/
     $(".g-input").enterKey(function() {
         var inputs = $(".g-input");
@@ -162,7 +150,7 @@ function salir() {
 var focusablesPrincipales = "button:not(:disabled), textarea, select, input:not(:disabled):not([readonly])";
 var focusablesModal = ".modal tr[tabindex]:visible, .modal .g-input, .modal button";
 function updateFocusables(){                                   //Funciona para actualizar los elementos enfocables
-    if ( $('#myModal').is(':visible') ){
+    if ( $('.modal').is(':visible') ){
         $(".g-focusable").off("keydown", focusableMove);
         $(".g-focusable").removeClass("g-focusable");
         $(focusablesModal).addClass("g-focusable");      
@@ -204,6 +192,8 @@ function VentanaEmergente(opciones){
         filtros : ['Campo1']
     }, opciones);*/
 
+    miVentana = this;
+
     this.modal = opciones.modal;
     this.titulo = opciones.titulo;
     this.campos = opciones.campos;
@@ -211,10 +201,9 @@ function VentanaEmergente(opciones){
     this.filtros = opciones.filtros;
 
     this.json = {};
-
+    this.arrayID = [];
 
     //Para este constructor hay que utilizar opciones porque this no funciona aqui.
-    //$( "#b" ).load( "article.html #target" );
     $.get("ventanaEmergente.html", function(data){
         ventanaEmergente = data.replace(/@modal/g, opciones.modal);
         ventanaEmergente = ventanaEmergente.replace(/@titulo/g, opciones.titulo);
@@ -225,12 +214,35 @@ function VentanaEmergente(opciones){
             head += '<th>'+capitalize( opciones.campos[i] )+'</th>';
         }
         $('#'+opciones.modal+'-head').html(head);
+
+
+        //crear filtros
+        if (opciones.filtros.length >= 1) {
+            var columnasFiltros = 12 / opciones.filtros.length;
+            var filtros = '';
+            for (var i = 0; i < opciones.filtros.length; i++) {
+                var nombreFiltro = opciones.modal+'-'+opciones.filtros[i];
+                filtros += '<div class="col-md-'+columnasFiltros+'"><div class="form-group">';
+                filtros += '<label for="'+nombreFiltro+'">'+capitalize( opciones.filtros[i] )+'</label>'
+                filtros += '<input type="text" class="form-control g-input '+opciones.modal+'-filter" id="'+nombreFiltro+'" name="'+nombreFiltro+'">'
+                filtros += '</div></div>';
+            }
+            $('#'+opciones.modal+'-filtros').html(filtros);
+        }
+
+        $('.'+opciones.modal+'-filter').keyup(function() {
+            this.value = this.value.toUpperCase();
+            miVentana.filtrar();
+        });
+
      
         //listener iniciales
         $('#'+opciones.modal).on('shown.bs.modal', function() {
+             updateFocusables();
             $('#'+opciones.modal+'-items tr')[0].focus();
         });
         $('#'+opciones.modal).on('hidden.bs.modal', function() {
+             updateFocusables();
             $(".g-focusable").first().focus();
         });
         $('#'+opciones.modal+'-cancelar').click(function() {
@@ -242,11 +254,50 @@ function VentanaEmergente(opciones){
 
 };
 
+
+
+VentanaEmergente.prototype.filtrar = function() {
+    var json = this.json;
+    var modal = this.modal;
+    var campoID = this.campoID;
+    var filtros = this.filtros;
+    
+    for (var i = 0; i < json.length; i++) {
+       var valCampoID = json[i][campoID];
+        console.log("valCampoID: "+valCampoID);
+        $('#'+modal+'-items tr[data-'+campoID+'="' + valCampoID + '"]').show();
+        for (var j = 0; j < filtros.length; j++) {
+            var nombreFiltro = modal+'-'+filtros[j];
+            console.log("nombreFiltro: "+nombreFiltro);
+            console.log("filtro: "+json[i][filtros[j]] );
+            stringValue = String( json[i][filtros[j]] );
+            if (! stringValue.includes( $('#'+nombreFiltro).val() ) ){
+                $('#'+modal+'-items tr[data-'+campoID+'="' + valCampoID + '"]').hide();
+                continue;
+            }
+        }
+    }
+
+    var cantidadFiltrada = $('#'+modal+'-items tr:visible').length;
+    if (cantidadFiltrada < json.length) {
+        $('#'+modal+'-cantidadFiltrada').text(cantidadFiltrada+" de ");        
+    }else{
+        $('#'+modal+'-cantidadFiltrada').text("");             
+    }
+
+    $('#'+modal+'-items tr').removeClass("striped");
+    $('#'+modal+'-items tr:visible:odd').addClass("striped");
+
+    updateFocusables();
+}
+
+
 VentanaEmergente.prototype.abrir = function( json ) {
-    console.log('Abrir ' + this.modal);
+    console.log( json );
     this.json = json;
     var modal = this.modal;
     var campoID = this.campoID;
+
 
     //validar
     for (var i = this.campos.length - 1; i >= 0; i--) {
@@ -312,50 +363,11 @@ VentanaEmergente.prototype.abrir = function( json ) {
     });
 
 };
-/*VentanaEmergente.prototype.cerrar = function() {
-    console.log('Cerrar ' + this.modal);
-};
-VentanaEmergente.prototype.filtrar = function() {
-    console.log('Filtrar ' + this.modal);
-};
-*/
 
 
 
-function rellenarVentanaEmergente(lista, modal){
-    var items = [];
-    //$("#cantidad").text("("+json.length+")");
-    for (var i = 0; i < json.length; i++) {
-        items.push('<tr data-idEntidad="' + json[i].idEntidad
-                + '" tabindex="0"><td>' + json[i].nombre
-                + '</td"><td>' + json[i].poblacion
-                + '</td></tr>'
-                );
-    }
-    $("#tableItems").append(items);
-    $('#tableItems tr:odd').addClass("striped");
 
-    //Una vez puesto los elementos en el html se pone el listener
-    $("#tableItems tr").dblclick(function() {
-        idEntidad = $(this).attr("data-idEntidad");
-        for (var i = 0; i < json.length; i++) {
-            if (json[i].idEntidad == idEntidad) {
-                rellenaFormulario(json[i]);
-                $('#myModal').modal('hide');
-                $("#tableItems tr").remove();
-            }
-        }
-    });
-    $("#tableItems tr").click(function() {
-        $("#tableItems tr").removeClass("o-selected");
-        $(this).addClass("o-selected");
-    });
-    $("#tableItems tr").enterKey(function() {
-        $("#tableItems tr").removeClass("o-selected");
-        $(this).addClass("o-selected");
-    });
 
-}
 
 
 
@@ -373,6 +385,7 @@ $.fn.enterKey = function(fnc) {
         });
     });
 };
+
 
 
 
