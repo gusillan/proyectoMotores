@@ -1,0 +1,1336 @@
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  
+      
+  
+
+      
+      
+      
+      
+      
+      
+        
+         
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      
+
+      
+
+  
+  
+
+  
+  
+
+   
+   
+
+   
+   
+
+  
+  
+  
+
+
+
+    
+	
+	
+
+    
+    
+
+    
+    
+      
+      
+    
+      
+	
+	
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    <html>
+      <head>
+        
+        
+          <title>
+            FileUpload - 
+          Using FileUpload
+        
+          </title>
+        
+        
+        
+        
+        
+          <style type="text/css" media="all">
+             @import url("./style/tigris.css");
+             @import url("./style/maven.css");
+             @import url("./style/project.css");
+          </style>
+          <link rel="stylesheet" href="./style/print.css" type="text/css" media="print"></link>
+        
+
+        
+
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+
+
+       
+          <meta name="author" content="Martin Cooper"></meta>
+          <meta name="email" content="martinc@apache.org"></meta>
+        
+        
+        
+        
+      </head>
+
+      <body class="composite">
+
+        <div id="banner">
+          <table border="0" width="100%" cellpadding="8" cellspacing="0">
+            <tr>
+              
+              <td>
+                
+                
+                  
+                  
+                  
+                    
+                  
+                  
+                  
+                  
+                  
+                  <a href="http://jakarta.apache.org">
+                    <img border="0" name="organization-logo" alt="The Apache Software Foundation" src="http://jakarta.apache.org/images/original-jakarta-logo.gif" align="left"></img>
+                  </a>
+                
+              </td>
+
+              
+              <td>
+                <div id="login" align="right">
+                  
+                  
+                    
+                    
+                    
+                      
+                    
+
+                    <a href="http://jakarta.apache.org/commons/fileupload/">
+                      <img border="0" alt="FileUpload" src="./images/logo.png" align="right"></img>
+                    </a>
+                  
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+<script type="text/javascript">
+<!--
+  var myWidth = 0, myHeight = 0;
+  if( typeof( window.innerWidth ) == 'number' ) {
+    //Non-IE
+    myWidth = window.innerWidth;
+    myHeight = window.innerHeight;
+  } else if( document.documentElement &&
+      ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+    //IE 6+ in 'standards compliant mode'
+    myWidth = document.documentElement.clientWidth;
+    myHeight = document.documentElement.clientHeight;
+  } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+    //IE 4 compatible
+    myWidth = document.body.clientWidth;
+    myHeight = document.body.clientHeight;
+  }
+  // window.alert( 'Width = ' + myWidth );
+  if (myWidth < 850) {
+    document['organization-logo'].src='http://jakarta.apache.org/images/original-jakarta-logo.gif';
+  }
+// -->
+</script>
+
+        <div id="breadcrumbs">
+          <table border="0" width="100%" cellpadding="4" cellspacing="0">
+            <tr>
+              
+                
+                <td>Last published: Dec 22, 2005
+                  | Doc for 1.1
+                </td>
+              
+              <td>
+                <div align="right">
+                  
+                  
+                  
+                    
+    
+    
+      
+      
+      
+      <a href="http://jakarta.apache.org/commons/" class="externalLink" title="External Link">Jakarta Commons</a>
+      
+    
+  
+                  
+                  
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        
+        <table border="0" width="100%" cellpadding="8" cellspacing="0"> 
+          <tr valign="top">
+            <td width="20%" id="leftcol">
+              <div id="navcolumn">
+                
+
+				
+    <div>
+      <strong>About Us</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/" class="externalLink" title="External Link">Home</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/contributors.html" class="externalLink" title="External Link">Contributors</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/license.html" class="externalLink" title="External Link">License</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		
+		
+          
+		
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/components.html" class="externalLink" title="External Link">Components</a>
+      	
+      </small>
+	  
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		
+		
+          
+		
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/sandbox/index.html" class="externalLink" title="External Link">Sandbox</a>
+      	
+      </small>
+	  
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		
+		
+          
+		
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/dormant/index.html" class="externalLink" title="External Link">Dormant</a>
+      	
+      </small>
+	  
+    </div>
+  
+    </div>
+  
+                
+    <div>
+      <strong>Commons FileUpload</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="index.html">Overview</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      		<b><a href="using.html">User guide</a></b>
+      	
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="faq.html">FAQ</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="apidocs/index.html">Javadoc</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="mail-lists.html">Mailing lists</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="team-list.html">Team</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="tasks.html">Tasks</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://svn.apache.org/viewcvs.cgi/jakarta/commons/proper/fileupload/trunk/" class="externalLink" title="External Link">SVN repository</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    </div>
+  
+				
+    <div>
+      <strong>Project Documentation</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="index.html">About FileUpload</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		
+		
+          
+		
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="project-info.html">Project Info</a>
+      	
+      </small>
+	  
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		
+		
+          
+		
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="maven-reports.html">Project Reports</a>
+      	
+      </small>
+	  
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/charter.html" class="externalLink" title="External Link">Development Process</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    </div>
+  
+                
+    <div>
+      <strong>General Information</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/charter.html" class="externalLink" title="External Link">Charter</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/volunteering.html" class="externalLink" title="External Link">Volunteering</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/patches.html" class="externalLink" title="External Link">Contributing Patches</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/building.html" class="externalLink" title="External Link">Building Components</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/releases/index.html" class="externalLink" title="External Link">Releasing Components</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://wiki.apache.org/jakarta-commons/FrontPage" class="externalLink" title="External Link">Wiki</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    </div>
+  
+    <div>
+      <strong>Jakarta Community</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/site/getinvolved.html" class="externalLink" title="External Link">Get Involved</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/site/mail.html" class="externalLink" title="External Link">Mailing Lists</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    </div>
+  
+    <div>
+      <strong>Related</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://db.apache.org/commons/" class="externalLink" title="External Link">DB Commons</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://xml.apache.org/commons/" class="externalLink" title="External Link">XML Commons</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    </div>
+  
+
+                
+                
+
+                
+                
+                
+                
+                	<div style="margin-top: 20px; width: 100%; text-align: center;">
+                		<a href="http://maven.apache.org/" title="Built by Maven"><img style="border: 1px solid black" alt="Built by Maven" src="./images/logos/maven-feather.png"></img></a>
+                	</div>
+                
+              
+                
+              </div>
+            </td>
+            <td rowspan="2">
+              <div id="bodycol">
+                
+                <div class="app">
+                  
+                  
+    <div class="h3">
+      
+      
+        <h3>
+          <a name="Using FileUpload">Using FileUpload</a>
+        </h3>
+      
+      <p>
+      FileUpload can be used in a number of different ways, depending upon the
+      requirements of your application. In the simplest case, you will call a
+      single method to parse the servlet request, and then process the list of
+      items as they apply to your application. At the other end of the scale,
+      you might decide to customize FileUpload to take full control of the way
+      in which individual items are stored; for example, you might decide to
+      stream the content into a database.
+    </p><p>
+      Here, we will describe the basic principles of FileUpload, and illustrate
+      some of the simpler - and most common - usage patterns. Customization of
+      FileUpload is described <a href="customizing.html">elsewhere</a>.
+    </p>
+    </div>
+  
+    <div class="h3">
+      
+      
+        <h3>
+          <a name="How it works">How it works</a>
+        </h3>
+      
+      <p>
+      A file upload request comprises an ordered list of <em>items</em> that
+      are encoded according to
+      <a href="http://www.ietf.org/rfc/rfc1867.txt">RFC 1867</a>,
+      "Form-based File Upload in HTML". FileUpload can parse such a request
+      and provide your application with a list of the individual uploaded
+      items. Each such item implements the <code>FileItem</code> interface,
+      regardless of its underlying implementation.
+    </p><p>
+      Each file item has a number of properties that might be of interest for
+      your application. For example, every item has a name and a content type,
+      and can provide an <code>InputStream</code> to access its data. On the
+      other hand, you may need to process items differently, depending upon
+      whether the item is a regular form field - that is, the data came from
+      an ordinary text box or similar HTML field - or an uploaded file. The
+      <code>FileItem</code> interface provides the methods to make such a
+      determination, and to access the data in the most appropriate manner.
+    </p><p>
+      FileUpload creates new file items using a <code>FileItemFactory</code>.
+      This is what gives FileUpload most of its flexibility. The factory has
+      ultimate control over how each item is created. The factory implementation
+      that currently ships with FileUpload stores the item's data in memory or
+      on disk, depending on the size of the item (i.e. bytes of data). However,
+      this behavior can be customized to suit your application.
+    </p>
+    </div>
+  
+    <div class="h3">
+      
+      
+        <h3>
+          <a name="Servlets and Portlets">Servlets and Portlets</a>
+        </h3>
+      
+      <p>
+      Starting with version 1.1, FileUpload supports file upload requests in
+      both servlet and portlet environments. The usage is almost identical in
+      the two environments, so the remainder of this document refers only to
+      the servlet environment.
+    </p><p>
+      If you are building a portlet application, the following are the two
+      distinctions you should make as you read this document:
+      <ul>
+        <li>
+          Where you see references to the <code>ServletFileUpload</code> class,
+          substitute the <code>PortletFileUpload</code> class.
+        </li>
+        <li>
+          Where you see references to the <code>HttpServletRequest</code> class,
+          substitute the <code>ActionRequest</code> class.
+        </li>
+      </ul>
+    </p>
+    </div>
+  
+    <div class="h3">
+      
+      
+        <h3>
+          <a name="Parsing the request">Parsing the request</a>
+        </h3>
+      
+      <p>
+      Before you can work with the uploaded items, of course, you need to parse
+      the request itself. Ensuring that the request is actually a file upload
+      request is straightforward, but FileUpload makes it simplicity itself, by
+      providing a static method to do just that.
+    </p>
+    <div id="source">
+      <pre>// Check that we have a file upload request
+boolean isMultipart = FileUpload.isMultipartContent(request);</pre>
+    </div>
+  <p>
+        Now we are ready to parse the request into its constituent items.
+      </p>
+    <div class="h4">
+      
+      
+        <h4>
+          <a name="The simplest case">The simplest case</a>
+        </h4>
+      
+      <p>
+        The simplest usage scenario is the following:
+        <ul>
+          <li>
+            Uploaded items should be retained in memory as long as they are
+            reasonably small.
+          </li>
+          <li>
+            Larger items should be written to a temporary file on disk.
+          </li>
+          <li>
+            Very large upload requests should not be permitted.
+          </li>
+          <li>
+            The built-in defaults for the maximum size of an item to
+            be retained in memory, the maximum permitted size of an upload
+            request, and the location of temporary files are acceptable.
+          </li>
+        </ul>
+      </p><p>
+        Handling a request in this scenario couldn't be much simpler:
+      </p>
+    <div id="source">
+      <pre>// Create a factory for disk-based file items
+FileItemFactory factory = new DiskFileItemFactory();
+
+// Create a new file upload handler
+ServletFileUpload upload = new ServletFileUpload(factory);
+
+// Parse the request
+List /* FileItem */ items = upload.parseRequest(request);</pre>
+    </div>
+  <p>
+        That's all that's needed. Really!
+      </p><p>
+        The result of the parse is a <code>List</code> of file items, each of
+        which implements the <code>FileItem</code> interface. Processing these
+        items is discussed below.
+      </p>
+    </div>
+  
+    <div class="h4">
+      
+      
+        <h4>
+          <a name="Exercising more control">Exercising more control</a>
+        </h4>
+      
+      <p>
+        If your usage scenario is close to the simplest case, described above,
+        but you need a little more control, you can easily customize the
+        behavior of the upload handler or the file item factory or both. The
+        following example shows several configuration options:
+      </p>
+    <div id="source">
+      <pre>// Create a factory for disk-based file items
+DiskFileItemFactory factory = new DiskFileItemFactory();
+
+// Set factory constraints
+factory.setSizeThreshold(yourMaxMemorySize);
+factory.setRepositoryPath(yourTempDirectory);
+
+// Create a new file upload handler
+ServletFileUpload upload = new ServletFileUpload(factory);
+
+// Set overall request size constraint
+upload.setSizeMax(yourMaxRequestSize);
+
+// Parse the request
+List /* FileItem */ items = upload.parseRequest(request);</pre>
+    </div>
+  <p>
+        Of course, each of the configuration methods is independent of the
+        others, but if you want to configure the factory all at once, you can
+        do that with an alternative constructor, like this:
+      </p>
+    <div id="source">
+      <pre>// Create a factory for disk-based file items
+DiskFileItemFactory factory = new DiskFileItemFactory(
+        yourMaxMemorySize, yourTempDirectory);</pre>
+    </div>
+  <p>
+        Should you need further control over the parsing of the request, such
+        as storing the items elsewhere - for example, in a database - you will
+        need to look into <a href="customizing.html">customizing</a> FileUpload.
+      </p>
+    </div>
+  
+    </div>
+  
+    <div class="h3">
+      
+      
+        <h3>
+          <a name="Processing the uploaded items">Processing the uploaded items</a>
+        </h3>
+      
+      <p>
+      Once the parse has completed, you will have a <code>List</code> of file
+      items that you need to process. In most cases, you will want to handle
+      file uploads differently from regular form fields, so you might process
+      the list like this:
+    </p>
+    <div id="source">
+      <pre>// Process the uploaded items
+Iterator iter = items.iterator();
+while (iter.hasNext()) {
+    FileItem item = (FileItem) iter.next();
+
+    if (item.isFormField()) {
+        processFormField(item);
+    } else {
+        processUploadedFile(item);
+    }
+}</pre>
+    </div>
+  <p>
+      For a regular form field, you will most likely be interested only in the
+      name of the item, and its <code>String</code> value. As you might expect,
+      accessing these is very simple.
+    </p>
+    <div id="source">
+      <pre>// Process a regular form field
+if (item.isFormField()) {
+    String name = item.getFieldName();
+    String value = item.getString();
+    ...
+}</pre>
+    </div>
+  <p>
+      For a file upload, there are several different things you might want to
+      know before you process the content. Here is an example of some of the
+      methods you might be interested in.
+    </p>
+    <div id="source">
+      <pre>// Process a file upload
+if (!item.isFormField()) {
+    String fieldName = item.getFieldName();
+    String fileName = item.getName();
+    String contentType = item.getContentType();
+    boolean isInMemory = item.isInMemory();
+    long sizeInBytes = item.getSize();
+    ...
+}</pre>
+    </div>
+  <p>
+      With uploaded files, you generally will not want to access them via
+      memory, unless they are small, or unless you have no other alternative.
+      Rather, you will want to process the content as a stream, or write the
+      entire file to its ultimate location. FileUpload provides simple means of
+      accomplishing both of these.
+    </p>
+    <div id="source">
+      <pre>// Process a file upload
+if (writeToFile) {
+    File uploadedFile = new File(...);
+    item.write(uploadedFile);
+} else {
+    InputStream uploadedStream = item.getInputStream();
+    ...
+    uploadedStream.close();
+}</pre>
+    </div>
+  <p>
+      Note that, in the default implementation of FileUpload, <code>write()</code>
+      will attempt to rename the file to the specified destination, if the data
+      is already in a temporary file. Actually copying the data is only done if
+      the the rename fails, for some reason, or if the data was in memory.
+    </p><p>
+      If you do need to access the uploaded data in memory, you need simply
+      call the <code>get()</code> method to obtain the data as an array of
+      bytes.
+    </p>
+    <div id="source">
+      <pre>// Process a file upload in memory
+byte[] data = item.get();
+...</pre>
+    </div>
+  
+    </div>
+  
+    <div class="h3">
+      
+      
+        <h3>
+          <a name="Interaction with virus scanners">Interaction with virus scanners</a>
+        </h3>
+      
+      <p>
+      Virus scanners running on the same system as the web container can cause
+      some unexpected behaviours for applications using FileUpload. This section
+      describes some of the behaviours that you might encounter, and provides
+      some ideas for how to handle them.
+    </p><p>
+      The default implementation of FileUpload will cause uploaded items above
+      a certain size threshold to be written to disk. As soon as such a file is
+      closed, any virus scanner on the system will wake up and inspect it, and
+      potentially quarantine the file - that is, move it to a special location
+      where it will not cause problems. This, of course, will be a surprise to
+      the application developer, since the uploaded file item will no longer be
+      available for processing. On the other hand, uploaded items below that
+      same threshold will be held in memory, and therefore will not be seen by
+      virus scanners. This allows for the possibility of a virus being retained
+      in some form (although if it is ever written to disk, the virus scanner
+      would locate and inspect it).
+    </p><p>
+      One commonly used solution is to set aside one directory on the system
+      into which all uploaded files will be placed, and to configure the virus
+      scanner to ignore that directory. This ensures that files will not be
+      ripped out from under the application, but then leaves responsibility for
+      virus scanning up to the application developer. Scanning the uploaded
+      files for viruses can then be performed by an external process, which
+      might move clean or cleaned files to an "approved" location, or by
+      integrating a virus scanner within the application itself. The details of
+      configuring an external process or integrating virus scanning into an
+      application are outside the scope of this document.
+    </p>
+    </div>
+  
+    <div class="h3">
+      
+      
+        <h3>
+          <a name="What&apos;s next">What's next</a>
+        </h3>
+      
+      <p>
+      Hopefully this page has provided you with a good idea of how to use
+      FileUpload in your own applications. For more detail on the methods
+      introduced here, as well as other available methods, you should refer
+      to the <a href="apidocs/index.html">JavaDocs</a>.
+    </p><p>
+      The usage described here should satisfy a large majority of file upload
+      needs. However, should you have more complex requirements, FileUpload
+      should still be able to help you, with it's flexible
+      <a href="customizing.html">customization</a> capabilities.
+    </p>
+    </div>
+  
+                  
+                  
+                  
+                  
+                  
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div id="footer">
+          <table border="0" style="width:100%" cellpadding="4" cellspacing="0">
+            
+            <tr>
+              <td>
+                
+                  
+                    
+                    
+                      © 2002-2005, The Apache Software Foundation
+                    
+                  
+                  
+                
+
+                
+              </td>
+              
+            </tr>
+          </table>
+        </div>
+      </body>
+    </html>
+  

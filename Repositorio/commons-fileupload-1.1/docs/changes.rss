@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="0.91">
+  <channel>
+    <title>Changes report</title>
+    <link>http://jakarta.apache.org/commons/fileupload/</link>
+    <description>Changes report</description>
+    <language>en-us</language>
+    <copyright>Copyright 2004 The Apache Software Foundation</copyright>
+    <item>
+      <title>50 change(s) for version 1.1</title>
+      <link>http://jakarta.apache.org/commons/fileupload//changes-report.html</link>
+      <description>
+        <table border="1">
+          <tr>
+            <th style="width:50px">Type</th>
+            <th>Changes</th>
+            <th style="width:70px">By</th>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>Updates for FileUpload 1.1-RC1.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>add</td>
+            <td>Added release notes for FileUpload 1.1.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>Update the User Guide to document the "right" way of using FileUpload 1.1, rather than the older, and thus deprecated, ways that are compatible with FileUpload 1.0.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>add</td>
+            <td>Add this change log, including all changes since the Commons FileUpload 1.0 release.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>Update Commons IO dependency to version 1.1.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>add</td>
+            <td>Add custom PMD configuration.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>Make inner exception classes static, which they should have been all along.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Fix Checkstyle warnings.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Remove Javadoc warnings. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=37706">37706</a>. Thanks to Rahul Akolkar .</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>Build updates: Include NOTICE.txt in the jar file and distributions. Include xdocs in source distribution. Create MD5 checksums for distributions.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>add</td>
+            <td>Add custom Checkstyle configuration.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>Update dependencies in POM, and add comments and scope.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>Standardise on @throws instead of having a mixture of that and @exception.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Make DiskFileItem serializable. Thanks to Niall Pemberton for the suggestion and patch. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=32785">32785</a>. Thanks to Niall Pemberton .</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>Make the temporary file names unique across class loaders, not just within them, by including a UID in the file name.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Include the actual and permitted sizes in both the exception message and the exception itself. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=32782">32782</a>.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>If an explicit header encoding is not specified, use the one from the appropriate context (i.e. ServletRequest or ActionRequest). Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=34483">34483</a>.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>add</td>
+            <td>Add getCharacterEncoding to the request context.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Null check and case insensitivity fixes. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=34497">34497</a>.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>Web site updates: Add detail pages for Source Repository and Issue Tracking, based on those for IO and Validator. Improvements to FileUpload home page, based on similar recent changes to IO and Validator home pages. The Bugzilla component name has a space in it. Fix the URLs. Add an FAQ page, using the Maven plugin to generate it.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Fixes to POMs Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=37314">37314</a>.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#dion">dion</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>Setting source and target for Java 1.3</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#mrdon">mrdon</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Fix typos in Javadoc code examples. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=33311">33311</a>.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Fix typos in exception messages.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Obtain request content type from container instead of headers. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=32654">32654</a>.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>New mock objects from Jetspeed-2, and new FileUpload test cases.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#sullis">sullis</a>
+            </td>
+          </tr>
+          <tr>
+            <td>add</td>
+            <td>added toString() methods</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#sullis">sullis</a>
+            </td>
+          </tr>
+          <tr>
+            <td>add</td>
+            <td>Fix up the existing package.html file and add new ones for the newly introduced packages. Fairly minimal, but with a link to the user guide.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>Substantial refactoring and additions: The core package is now independent of servlet / portlet / other distinctions, as well as persistence schemes, other than deprecated classes and methods retained for backwards compatibility. Servlet specific functionality has been moved to a new 'servlet' package. Existing users should migrate to this as soon as possible, since the servlet specific functionality in the generic package will be removed in the release after FileUpload 1.1. Support for portlets (JSR 168) has been added, in a new 'portlet' package. This is not well tested at this point, and feedback would be very much appreciated. (This also resolves bug #23620.) The disk-based file item implementation has been moved into a 'disk' package, and renamed from Default* to Disk* to reflect what it really is. The Default* classes have been retained in the top level package for backwards compatibility, but are now deprecated, and will be removed in the release after FileUpload 1.1. The isMultipartRequest method is an unfortunate casualty of this refactoring. That method should really be moved to ServletFileUpload, but since the method is static, it can only exist in either FileUploadBase or ServletFileUpload. Backwards compatibility dictates the former for now, but the latter is the desired state, which implies some future breakage. Fair warning...</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Specify the encoding (ISO-8859-1) when converting the boundary to a byte array. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=26194">26194</a>.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>Convert to Sun coding guidelines.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>DeferredFileOutputStream moved to Commons IO.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Workaround for Mac IE5 bug. Thanks to Justin Sampson for the patch and tests for this vexing issue. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=30061">30061</a>. Thanks to Justin Sampson .</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Handle unquoted header parameters. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=25527">25527</a>.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>add</td>
+            <td>Some documentation on interaction with virus scanners. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=27193">27193</a>.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>add</td>
+            <td>More unit tests from Justin Sampson. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=30059">30059</a>. Thanks to Justin Sampson .</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>Use FileCleaner from Commons IO to clean up temp files, rather than File.deleteOnExit(), which can cause serious problems in long-running processes. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=27477">27477</a>.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Check that HTTP method is POST as part of multipart check. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=28085">28085</a>.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>add</td>
+            <td>Switch to Commons IO version of DeferredFileOutputStream. Adding IO as a dependency will allow us to take advantage of other classes in that component to fix additional FileUpload bugs.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>add</td>
+            <td>handle quoted boundary specification. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=21269">21269</a>.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>add</td>
+            <td>use case-independent comparisons for encoding types. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=31496">31496</a>.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Fix comments to avoid break iterator complaints.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Fix typos in comments. Thanks to Yuji Yamano .</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>add</td>
+            <td>Add support for character sets specified for individual parts. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=20813">20813</a>. Thanks to Oleg Kalnichevski .</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>Change to Apache License 2.0</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#scolebourne">scolebourne</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Correct the comment for the no-args constructor to reflect the fact that a factory needs to be set before parsing uploads. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=23822">23822</a>.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>update</td>
+            <td>Collapse some all but duplicated code.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Fix example showing FileItem.write to use a File object. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=22643">22643</a>.</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#jmcnally">jmcnally</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Check for null before attempting to close streams in write(). Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=21221">21221</a>. Thanks to Peter Chase .</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+          <tr>
+            <td>fix</td>
+            <td>Correction to sample code in the docs. Fixes
+              <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=21161">21161</a>. Thanks to Paul Dalton .</td>
+            <td>
+              <a href="http://jakarta.apache.org/commons/fileupload//team-list.html#martinc">martinc</a>
+            </td>
+          </tr>
+        </table>
+      </description>
+    </item>
+  </channel>
+</rss>

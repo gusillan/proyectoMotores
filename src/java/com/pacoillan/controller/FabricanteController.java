@@ -55,6 +55,13 @@ public class FabricanteController {
 
     @RequestMapping("bajaFabricante.htm")
     public void bajaFabricante(Fabricante fabricante, HttpServletRequest request, HttpServletResponse response) throws IOException {        
-        fabricanteDao.delete(fabricante);
+        try{
+         fabricanteDao.delete(fabricante);
+        }catch (org.hibernate.exception.ConstraintViolationException cve){
+            
+            System.out.println("Excepcion de BBDD "+cve);
+        }
+        
+       
     }    
 }

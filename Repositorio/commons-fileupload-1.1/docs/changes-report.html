@@ -1,0 +1,2240 @@
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  
+      
+  
+
+      
+      
+      
+      
+      
+      
+        
+         
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      
+
+      
+
+  
+  
+
+  
+  
+
+   
+   
+
+   
+   
+
+  
+  
+  
+
+
+
+    
+	
+	
+
+    
+    
+
+    
+    
+      
+      
+    
+      
+	
+	
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    <html>
+      <head>
+        
+        
+          <title>
+            FileUpload - 
+          Release Notes
+        
+          </title>
+        
+        
+        
+        
+        
+          <style type="text/css" media="all">
+             @import url("./style/tigris.css");
+             @import url("./style/maven.css");
+             @import url("./style/project.css");
+          </style>
+          <link rel="stylesheet" href="./style/print.css" type="text/css" media="print"></link>
+        
+
+        
+
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+
+
+       
+          <meta name="author" content="Martin Cooper"></meta>
+          <meta name="email" content="martinc@apache.org"></meta>
+        
+        
+        
+        
+      </head>
+
+      <body class="composite">
+
+        <div id="banner">
+          <table border="0" width="100%" cellpadding="8" cellspacing="0">
+            <tr>
+              
+              <td>
+                
+                
+                  
+                  
+                  
+                    
+                  
+                  
+                  
+                  
+                  
+                  <a href="http://jakarta.apache.org">
+                    <img border="0" name="organization-logo" alt="The Apache Software Foundation" src="http://jakarta.apache.org/images/original-jakarta-logo.gif" align="left"></img>
+                  </a>
+                
+              </td>
+
+              
+              <td>
+                <div id="login" align="right">
+                  
+                  
+                    
+                    
+                    
+                      
+                    
+
+                    <a href="http://jakarta.apache.org/commons/fileupload/">
+                      <img border="0" alt="FileUpload" src="./images/logo.png" align="right"></img>
+                    </a>
+                  
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+<script type="text/javascript">
+<!--
+  var myWidth = 0, myHeight = 0;
+  if( typeof( window.innerWidth ) == 'number' ) {
+    //Non-IE
+    myWidth = window.innerWidth;
+    myHeight = window.innerHeight;
+  } else if( document.documentElement &&
+      ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+    //IE 6+ in 'standards compliant mode'
+    myWidth = document.documentElement.clientWidth;
+    myHeight = document.documentElement.clientHeight;
+  } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+    //IE 4 compatible
+    myWidth = document.body.clientWidth;
+    myHeight = document.body.clientHeight;
+  }
+  // window.alert( 'Width = ' + myWidth );
+  if (myWidth < 850) {
+    document['organization-logo'].src='http://jakarta.apache.org/images/original-jakarta-logo.gif';
+  }
+// -->
+</script>
+
+        <div id="breadcrumbs">
+          <table border="0" width="100%" cellpadding="4" cellspacing="0">
+            <tr>
+              
+                
+                <td>Last published: Dec 22, 2005
+                  | Doc for 1.1
+                </td>
+              
+              <td>
+                <div align="right">
+                  
+                  
+                  
+                    
+    
+    
+      
+      
+      
+      <a href="http://jakarta.apache.org/commons/" class="externalLink" title="External Link">Jakarta Commons</a>
+      
+    
+  
+                  
+                  
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        
+        <table border="0" width="100%" cellpadding="8" cellspacing="0"> 
+          <tr valign="top">
+            <td width="20%" id="leftcol">
+              <div id="navcolumn">
+                
+
+				
+    <div>
+      <strong>About Us</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/" class="externalLink" title="External Link">Home</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/contributors.html" class="externalLink" title="External Link">Contributors</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/license.html" class="externalLink" title="External Link">License</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		
+		
+          
+		
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/components.html" class="externalLink" title="External Link">Components</a>
+      	
+      </small>
+	  
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		
+		
+          
+		
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/sandbox/index.html" class="externalLink" title="External Link">Sandbox</a>
+      	
+      </small>
+	  
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		
+		
+          
+		
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/dormant/index.html" class="externalLink" title="External Link">Dormant</a>
+      	
+      </small>
+	  
+    </div>
+  
+    </div>
+  
+                
+    <div>
+      <strong>Commons FileUpload</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="index.html">Overview</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="using.html">User guide</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="faq.html">FAQ</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="apidocs/index.html">Javadoc</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="mail-lists.html">Mailing lists</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="team-list.html">Team</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="tasks.html">Tasks</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://svn.apache.org/viewcvs.cgi/jakarta/commons/proper/fileupload/trunk/" class="externalLink" title="External Link">SVN repository</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    </div>
+  
+				
+    <div>
+      <strong>Project Documentation</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="index.html">About FileUpload</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		
+		
+          
+		
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="project-info.html">Project Info</a>
+      	
+      </small>
+	  
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		
+          
+		
+		
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="maven-reports.html">Project Reports</a>
+      	
+      </small>
+	  
+        
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      		<b><a href="changes-report.html">Changes</a></b>
+      	
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="changelog-report.html">Change Log</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="checkstyle-report.html">Checkstyle</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="developer-activity-report.html">Developer Activity</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="faq.html">FAQs</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="file-activity-report.html">File Activity</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="apidocs/index.html">JavaDocs</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="javadoc.html">JavaDoc Report</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="javadoc-warnings-report.html">JavaDoc Warnings Report</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="jdepend-report.html">Metrics</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="junit-report.html">Unit Tests</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="xref/index.html">Source Xref</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="xref-test/index.html">Test Xref</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="license.html">Project License</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="pmd-report.html">PMD Report</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="simian-report.html">Simian Report</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="task-list.html">Task List</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/charter.html" class="externalLink" title="External Link">Development Process</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    </div>
+  
+                
+    <div>
+      <strong>General Information</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/charter.html" class="externalLink" title="External Link">Charter</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/volunteering.html" class="externalLink" title="External Link">Volunteering</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/patches.html" class="externalLink" title="External Link">Contributing Patches</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/building.html" class="externalLink" title="External Link">Building Components</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/releases/index.html" class="externalLink" title="External Link">Releasing Components</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://wiki.apache.org/jakarta-commons/FrontPage" class="externalLink" title="External Link">Wiki</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    </div>
+  
+    <div>
+      <strong>Jakarta Community</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/site/getinvolved.html" class="externalLink" title="External Link">Get Involved</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/site/mail.html" class="externalLink" title="External Link">Mailing Lists</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    </div>
+  
+    <div>
+      <strong>Related</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://db.apache.org/commons/" class="externalLink" title="External Link">DB Commons</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://xml.apache.org/commons/" class="externalLink" title="External Link">XML Commons</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    </div>
+  
+
+                
+                
+
+                
+                
+                
+                
+                	<div style="margin-top: 20px; width: 100%; text-align: center;">
+                		<a href="http://maven.apache.org/" title="Built by Maven"><img style="border: 1px solid black" alt="Built by Maven" src="./images/logos/maven-feather.png"></img></a>
+                	</div>
+                
+              
+                
+              </div>
+            </td>
+            <td rowspan="2">
+              <div id="bodycol">
+                
+                <div class="app">
+                  
+                  
+    <div class="h3">
+      
+      
+        <h3>
+          <a name="Release History">Release History</a>
+        </h3>
+      
+      
+    
+    <table border="1" width="100%" cellspacing="2" cellpadding="3">
+      
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><th style="width:50px">Version</th><th>Date</th><th>Description</th></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <a href="#1_1">1.1</a>
+          </td><td>Pending</td><td>Nearing completion</td></tr>
+  
+    </table>
+  <p>Get the RSS feed of the last changes
+        <a href="changes.rss">
+          <img src="images/rss.png">
+          </img>
+        </a>
+      </p>
+    </div>
+  
+    <div class="h3">
+      
+      
+        <h3>
+          <a name="Release 1.1 - Pending">Release 1.1 - Pending</a>
+        </h3>
+      
+      <a name="1_1">
+      </a>
+    
+    <table border="1" width="100%" cellspacing="2" cellpadding="3">
+      
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><th style="width:50px">Type</th><th>Changes</th><th style="width:70px">By</th></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>Updates for FileUpload 1.1-RC1.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="add" title="add" src="images/add.gif">
+            </img>
+          </td><td>Added release notes for FileUpload 1.1.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>Update the User Guide to document the "right" way of using FileUpload 1.1, rather than the older, and thus deprecated, ways that are compatible with FileUpload 1.0.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="add" title="add" src="images/add.gif">
+            </img>
+          </td><td>Add this change log, including all changes since the Commons FileUpload 1.0 rele ase.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>Update Commons IO dependency to version 1.1.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="add" title="add" src="images/add.gif">
+            </img>
+          </td><td>Add custom PMD configuration.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>Make inner exception classes static, which they should have been all along.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Fix Checkstyle warnings.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Remove Javadoc warnings. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=37706">37706</a>. Thanks to Rahul Akolkar .</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>Build updates:
+            <ul>
+              <li>Include NOTICE.txt in the jar file and distributions.</li>
+              <li>Include xdocs in source distribution.</li>
+              <li>Create MD5 checksums for distributions.</li>
+            </ul>
+          </td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="add" title="add" src="images/add.gif">
+            </img>
+          </td><td>Add custom Checkstyle configuration.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>Update dependencies in POM, and add comments and scope.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>Standardise on @throws instead of having a mixture of that and @exception.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Make DiskFileItem serializable. Thanks to Niall Pemberton for the suggestion and patch. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=32785">32785</a>. Thanks to Niall Pemberton .</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>Make the temporary file names unique across class loaders, not just within them, by including a UID in the file name.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Include the actual and permitted sizes in both the exception message and the exception itself. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=32782">32782</a>.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>If an explicit header encoding is not specified, use the one from the appropriate context (i.e. ServletRequest or ActionRequest). Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=34483">34483</a>.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="add" title="add" src="images/add.gif">
+            </img>
+          </td><td>Add getCharacterEncoding to the request context.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Null check and case insensitivity fixes. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=34497">34497</a>.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>Web site updates:
+            <ul>
+              <li>Add detail pages for Source Repository and Issue Tracking, based on those for IO and Validator.</li>
+              <li>Improvements to FileUpload home page, based on similar recent changes to IO and Validator home pages.</li>
+              <li>The Bugzilla component name has a space in it. Fix the URLs.</li>
+              <li>Add an FAQ page, using the Maven plugin to generate it.</li>
+            </ul>
+          </td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Fixes to POMs Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=37314">37314</a>.</td><td>
+            <a href="team-list.html#dion">dion</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>Setting source and target for Java 1.3</td><td>
+            <a href="team-list.html#mrdon">mrdon</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Fix typos in Javadoc code examples. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=33311">33311</a>.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Fix typos in exception messages.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Obtain request content type from container instead of headers. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=32654">32654</a>.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>New mock objects from Jetspeed-2, and new FileUpload test cases.</td><td>
+            <a href="team-list.html#sullis">sullis</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="add" title="add" src="images/add.gif">
+            </img>
+          </td><td>added toString() methods</td><td>
+            <a href="team-list.html#sullis">sullis</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="add" title="add" src="images/add.gif">
+            </img>
+          </td><td>Fix up the existing package.html file and add new ones for the newly introduced packages. Fairly minimal, but with a link to the user guide.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>Substantial refactoring and additions:
+            <ul>
+              <li>The core package is now independent of servlet / portlet / other distinctions, as well as persistence schemes, other than deprecated classes and methods retained for backwards compatibility.</li>
+              <li>Servlet specific functionality has been moved to a new 'servlet' package. Existing users should migrate to this as soon as possible, since the servlet specific functionality in the generic package will be removed in the release after FileUpload 1.1.</li>
+              <li>Support for portlets (JSR 168) has been added, in a new 'portlet' package. This is not well tested at this point, and feedback would be very much appreciated. (This also resolves bug #23620.)</li>
+              <li>The disk-based file item implementation has been moved into a 'disk' package, and renamed from Default* to Disk* to reflect what it really is. The Default* classes have been retained in the top level package for backwards compatibility, but are now deprecated, and will be removed in the release after FileUpload 1.1.</li>
+              <li>The isMultipartRequest method is an unfortunate casualty of this refactoring. That method should really be moved to ServletFileUpload, but since the method is static, it can only exist in either FileUploadBase or ServletFileUpload. Backwards compatibility dictates the former for now, but the latter is the desired state, which implies some future breakage. Fair warning...</li>
+            </ul>
+          </td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Specify the encoding (ISO-8859-1) when converting the boundar y to a byte array. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=26194">26194</a>.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>Convert to Sun coding guidelines.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>DeferredFileOutputStream moved to Commons IO.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Workaround for Mac IE5 bug. Thanks to Justin Sampson for the patch and tests for this vexing issue. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=30061">30061</a>. Thanks to Justin Sampson .</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Handle unquoted header parameters. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=25527">25527</a>.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="add" title="add" src="images/add.gif">
+            </img>
+          </td><td>Some documentation on interaction with virus scanners. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=27193">27193</a>.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="add" title="add" src="images/add.gif">
+            </img>
+          </td><td>More unit tests from Justin Sampson. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=30059">30059</a>. Thanks to Justin Sampson .</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>Use FileCleaner from Commons IO to clean up temp files, rather than File.deleteOnExit(), which can cause serious problems in long-running processes. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=27477">27477</a>.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Check that HTTP method is POST as part of multipart check. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=28085">28085</a>.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="add" title="add" src="images/add.gif">
+            </img>
+          </td><td>Switch to Commons IO version of DeferredFileOutputStream. Adding IO as a dependency will allow us to take advantage of other classes in that component to fix additional FileUpload bugs.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="add" title="add" src="images/add.gif">
+            </img>
+          </td><td>handle quoted boundary specification. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=21269">21269</a>.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="add" title="add" src="images/add.gif">
+            </img>
+          </td><td>use case-independent comparisons for encoding types. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=31496">31496</a>.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Fix comments to avoid break iterator complaints.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Fix typos in comments. Thanks to Yuji Yamano .</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="add" title="add" src="images/add.gif">
+            </img>
+          </td><td>Add support for character sets specified for individual parts. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=20813">20813</a>. Thanks to Oleg Kalnichevski .</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>Change to Apache License 2.0</td><td>
+            <a href="team-list.html#scolebourne">scolebourne</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Correct the comment for the no-args constructor to reflect the fact that a factory needs to be set before parsing uploads. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=23822">23822</a>.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="update" title="update" src="images/update.gif">
+            </img>
+          </td><td>Collapse some all but duplicated code.</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Fix example showing FileItem.write to use a File object. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=22643">22643</a>.</td><td>
+            <a href="team-list.html#jmcnally">jmcnally</a>
+          </td></tr>
+  
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Check for null before attempting to close streams in write(). Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=21221">21221</a>. Thanks to Peter Chase .</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>
+            <img alt="fix" title="fix" src="images/fix.gif">
+            </img>
+          </td><td>Correction to sample code in the docs. Fixes
+            <a href="http://issues.apache.org/bugzilla/show_bug.cgi?id=21161">21161</a>. Thanks to Paul Dalton .</td><td>
+            <a href="team-list.html#martinc">martinc</a>
+          </td></tr>
+  
+    </table>
+  
+    </div>
+  
+                  
+                  
+                  
+                  
+                  
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div id="footer">
+          <table border="0" style="width:100%" cellpadding="4" cellspacing="0">
+            
+            <tr>
+              <td>
+                
+                  
+                    
+                    
+                      © 2002-2005, The Apache Software Foundation
+                    
+                  
+                  
+                
+
+                
+              </td>
+              
+            </tr>
+          </table>
+        </div>
+      </body>
+    </html>
+  

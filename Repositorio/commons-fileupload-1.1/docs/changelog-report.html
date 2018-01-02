@@ -1,0 +1,3794 @@
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  
+      
+  
+
+      
+      
+      
+      
+      
+      
+        
+         
+      
+      
+
+      
+      
+      
+      
+
+      
+      
+      
+
+      
+
+  
+  
+
+  
+  
+
+   
+   
+
+   
+   
+
+  
+  
+  
+
+
+
+    
+	
+	
+
+    
+    
+
+    
+    
+      
+      
+    
+      
+	
+	
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    <html>
+      <head>
+        
+        
+          <title>
+            FileUpload - 
+          Changelog Report
+        
+          </title>
+        
+        
+        
+        
+        
+          <style type="text/css" media="all">
+             @import url("./style/tigris.css");
+             @import url("./style/maven.css");
+             @import url("./style/project.css");
+          </style>
+          <link rel="stylesheet" href="./style/print.css" type="text/css" media="print"></link>
+        
+
+        
+
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></meta>
+
+
+       
+        
+        
+        
+      </head>
+
+      <body class="composite">
+
+        <div id="banner">
+          <table border="0" width="100%" cellpadding="8" cellspacing="0">
+            <tr>
+              
+              <td>
+                
+                
+                  
+                  
+                  
+                    
+                  
+                  
+                  
+                  
+                  
+                  <a href="http://jakarta.apache.org">
+                    <img border="0" name="organization-logo" alt="The Apache Software Foundation" src="http://jakarta.apache.org/images/original-jakarta-logo.gif" align="left"></img>
+                  </a>
+                
+              </td>
+
+              
+              <td>
+                <div id="login" align="right">
+                  
+                  
+                    
+                    
+                    
+                      
+                    
+
+                    <a href="http://jakarta.apache.org/commons/fileupload/">
+                      <img border="0" alt="FileUpload" src="./images/logo.png" align="right"></img>
+                    </a>
+                  
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+<script type="text/javascript">
+<!--
+  var myWidth = 0, myHeight = 0;
+  if( typeof( window.innerWidth ) == 'number' ) {
+    //Non-IE
+    myWidth = window.innerWidth;
+    myHeight = window.innerHeight;
+  } else if( document.documentElement &&
+      ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+    //IE 6+ in 'standards compliant mode'
+    myWidth = document.documentElement.clientWidth;
+    myHeight = document.documentElement.clientHeight;
+  } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+    //IE 4 compatible
+    myWidth = document.body.clientWidth;
+    myHeight = document.body.clientHeight;
+  }
+  // window.alert( 'Width = ' + myWidth );
+  if (myWidth < 850) {
+    document['organization-logo'].src='http://jakarta.apache.org/images/original-jakarta-logo.gif';
+  }
+// -->
+</script>
+
+        <div id="breadcrumbs">
+          <table border="0" width="100%" cellpadding="4" cellspacing="0">
+            <tr>
+              
+                
+                <td>Last published: Dec 22, 2005
+                  | Doc for 1.1
+                </td>
+              
+              <td>
+                <div align="right">
+                  
+                  
+                  
+                    
+    
+    
+      
+      
+      
+      <a href="http://jakarta.apache.org/commons/" class="externalLink" title="External Link">Jakarta Commons</a>
+      
+    
+  
+                  
+                  
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        
+        <table border="0" width="100%" cellpadding="8" cellspacing="0"> 
+          <tr valign="top">
+            <td width="20%" id="leftcol">
+              <div id="navcolumn">
+                
+
+				
+    <div>
+      <strong>About Us</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/" class="externalLink" title="External Link">Home</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/contributors.html" class="externalLink" title="External Link">Contributors</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/license.html" class="externalLink" title="External Link">License</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		
+		
+          
+		
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/components.html" class="externalLink" title="External Link">Components</a>
+      	
+      </small>
+	  
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		
+		
+          
+		
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/sandbox/index.html" class="externalLink" title="External Link">Sandbox</a>
+      	
+      </small>
+	  
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		
+		
+          
+		
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/dormant/index.html" class="externalLink" title="External Link">Dormant</a>
+      	
+      </small>
+	  
+    </div>
+  
+    </div>
+  
+                
+    <div>
+      <strong>Commons FileUpload</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="index.html">Overview</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="using.html">User guide</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="faq.html">FAQ</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="apidocs/index.html">Javadoc</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="mail-lists.html">Mailing lists</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="team-list.html">Team</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="tasks.html">Tasks</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://svn.apache.org/viewcvs.cgi/jakarta/commons/proper/fileupload/trunk/" class="externalLink" title="External Link">SVN repository</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    </div>
+  
+				
+    <div>
+      <strong>Project Documentation</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="index.html">About FileUpload</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		
+		
+          
+		
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="project-info.html">Project Info</a>
+      	
+      </small>
+	  
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		
+          
+		
+		
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="maven-reports.html">Project Reports</a>
+      	
+      </small>
+	  
+        
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="changes-report.html">Changes</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      		<b><a href="changelog-report.html">Change Log</a></b>
+      	
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="checkstyle-report.html">Checkstyle</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="developer-activity-report.html">Developer Activity</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="faq.html">FAQs</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="file-activity-report.html">File Activity</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="apidocs/index.html">JavaDocs</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="javadoc.html">JavaDoc Report</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="javadoc-warnings-report.html">JavaDoc Warnings Report</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="jdepend-report.html">Metrics</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="junit-report.html">Unit Tests</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="xref/index.html">Source Xref</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="xref-test/index.html">Test Xref</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="license.html">Project License</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="pmd-report.html">PMD Report</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="simian-report.html">Simian Report</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="task-list.html">Task List</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/charter.html" class="externalLink" title="External Link">Development Process</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    </div>
+  
+                
+    <div>
+      <strong>General Information</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/charter.html" class="externalLink" title="External Link">Charter</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/volunteering.html" class="externalLink" title="External Link">Volunteering</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/patches.html" class="externalLink" title="External Link">Contributing Patches</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/building.html" class="externalLink" title="External Link">Building Components</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/commons/releases/index.html" class="externalLink" title="External Link">Releasing Components</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://wiki.apache.org/jakarta-commons/FrontPage" class="externalLink" title="External Link">Wiki</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    </div>
+  
+    <div>
+      <strong>Jakarta Community</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/site/getinvolved.html" class="externalLink" title="External Link">Get Involved</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://jakarta.apache.org/site/mail.html" class="externalLink" title="External Link">Mailing Lists</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    </div>
+  
+    <div>
+      <strong>Related</strong>
+      
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://db.apache.org/commons/" class="externalLink" title="External Link">DB Commons</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    
+    
+    
+    
+	
+	
+	
+	
+	
+		   
+	
+    <div>
+      <small>
+      	
+      	
+      		<a href="http://xml.apache.org/commons/" class="externalLink" title="External Link">XML Commons</a>
+      	
+      </small>
+	  
+        
+      
+    </div>
+  
+    </div>
+  
+
+                
+                
+
+                
+                
+                
+                
+                	<div style="margin-top: 20px; width: 100%; text-align: center;">
+                		<a href="http://maven.apache.org/" title="Built by Maven"><img style="border: 1px solid black" alt="Built by Maven" src="./images/logos/maven-feather.png"></img></a>
+                	</div>
+                
+              
+                
+              </div>
+            </td>
+            <td rowspan="2">
+              <div id="bodycol">
+                
+                <div class="app">
+                  
+                  
+    <div class="h3">
+      
+      
+        <h3>
+          <a name="Changelog Report">Changelog Report</a>
+        </h3>
+      
+      <p>Total number of change sets: 1</p>
+    <div class="h4">
+      
+      
+        <h4>
+          <a name="Changes between 2003-06-26 and 2005-12-23">Changes between 2003-06-26 and 2005-12-23</a>
+        </h4>
+      
+      <p>Total Commits: 100 Total Number of Files Changed: 320</p>
+    
+    <table border="1" width="100%" cellspacing="2" cellpadding="3">
+      <thead>
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><th>Date</th><th>Author</th><th>File/Message</th></tr>
+  
+          </thead><tbody>
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-12-19 22:24:00</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml">/jakarta/commons/proper/fileupload/trunk/build.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml?rev=357924&amp;content-type=text/vnd.viewcvs-markup">v 357924</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=357924&amp;content-type=text/vnd.viewcvs-markup">v 357924</a>
+                </p>Update version to 1.1-RC2.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-12-19 22:23:15</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties">/jakarta/commons/proper/fileupload/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties?rev=357923&amp;content-type=text/vnd.viewcvs-markup">v 357923</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/conf/MANIFEST.MF">/jakarta/commons/proper/fileupload/trunk/src/conf/MANIFEST.MF</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/conf/MANIFEST.MF?rev=357923&amp;content-type=text/vnd.viewcvs-markup">v 357923</a>
+                </p>Changes to create MANIFEST.MF properly, including setting the Specification-Version from the POM and adding Implementation-Vendor-Id.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-12-12 10:09:00</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java?rev=356312&amp;content-type=text/vnd.viewcvs-markup">v 356312</a>
+                </p>Bugzilla #37865 - Use non-deprecated IO methods.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-12-11 11:26:09</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/RELEASE-NOTES.txt">/jakarta/commons/proper/fileupload/trunk/RELEASE-NOTES.txt</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/RELEASE-NOTES.txt?rev=355998&amp;content-type=text/vnd.viewcvs-markup">v 355998</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=355998&amp;content-type=text/vnd.viewcvs-markup">v 355998</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/issue-tracking.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/issue-tracking.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/issue-tracking.xml?rev=355998&amp;content-type=text/vnd.viewcvs-markup">v 355998</a>
+                </p>Address minor issues in RC1 build: - Fix URL for submitting a new issue against FileUpload. - Fix URLs in Changes Log and File Activity reports. - Add a note in the release notes on the new Commons IO dependency.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-12-10 20:43:59</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml">/jakarta/commons/proper/fileupload/trunk/build.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml?rev=355905&amp;content-type=text/vnd.viewcvs-markup">v 355905</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=355905&amp;content-type=text/vnd.viewcvs-markup">v 355905</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/changes.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/changes.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/changes.xml?rev=355905&amp;content-type=text/vnd.viewcvs-markup">v 355905</a>
+                </p>Updates for FileUpload 1.1-RC1.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-12-10 20:34:28</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/maven.xml">/jakarta/commons/proper/fileupload/trunk/maven.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/maven.xml?rev=355900&amp;content-type=text/vnd.viewcvs-markup">v 355900</a>
+                </p>That would be a text file...</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-12-10 20:06:09</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/maven.xml">/jakarta/commons/proper/fileupload/trunk/maven.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/maven.xml?rev=355895&amp;content-type=text/vnd.viewcvs-markup">v 355895</a>
+                </p>Include license header for Checkstyle in the source distribution.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-12-10 17:53:00</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/maven.xml">/jakarta/commons/proper/fileupload/trunk/maven.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/maven.xml?rev=355860&amp;content-type=text/vnd.viewcvs-markup">v 355860</a>
+                </p>Include release notes and Checkstyle and PMD config files in the source distribution.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-12-10 15:28:11</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/RELEASE-NOTES.txt">/jakarta/commons/proper/fileupload/trunk/RELEASE-NOTES.txt</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/RELEASE-NOTES.txt?rev=355803&amp;content-type=text/vnd.viewcvs-markup">v 355803</a>
+                </p>Release notes for FileUpload 1.1.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-12-08 22:23:07</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/using.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/using.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/using.xml?rev=355393&amp;content-type=text/vnd.viewcvs-markup">v 355393</a>
+                </p>Update the User Guide to document the "right" way of using FileUpload 1.1, rather than the older, and thus deprecated, ways that are compatible with FileUpload 1.0.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-12-07 23:02:01</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml">/jakarta/commons/proper/fileupload/trunk/build.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml?rev=355019&amp;content-type=text/vnd.viewcvs-markup">v 355019</a>
+                </p>Regenerate Ant build file.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-12-07 22:34:16</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties">/jakarta/commons/proper/fileupload/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties?rev=355006&amp;content-type=text/vnd.viewcvs-markup">v 355006</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/changes.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/changes.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/changes.xml?rev=355006&amp;content-type=text/vnd.viewcvs-markup">v 355006</a>
+                </p>Add changes.xml for use by the maven-changes-report, making sure that the Bugzilla links work correctly. Man, what a pain to generate after 2.5 years of changes!</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-12-06 21:51:12</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=354725&amp;content-type=text/vnd.viewcvs-markup">v 354725</a>
+                </p>Update Commons IO dependency to 1.1.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-12-06 20:31:45</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml?rev=354704&amp;content-type=text/vnd.viewcvs-markup">v 354704</a>
+                </p>Replace CVS link on main menu with an SVN one.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-12-05 22:04:33</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/fileupload_basic.xml">/jakarta/commons/proper/fileupload/trunk/fileupload_basic.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/fileupload_basic.xml?rev=354328&amp;content-type=text/vnd.viewcvs-markup">v 354328</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/fileupload_checks.xml">/jakarta/commons/proper/fileupload/trunk/fileupload_checks.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/fileupload_checks.xml?rev=354328&amp;content-type=text/vnd.viewcvs-markup">v 354328</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties">/jakarta/commons/proper/fileupload/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties?rev=354328&amp;content-type=text/vnd.viewcvs-markup">v 354328</a>
+                </p>* Target JRE 1.3 VMs. * Tweak Checkstyle rules to be more stringent. * Add custom PMD rule configuration.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-12-03 22:33:55</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/fileupload_checks.xml">/jakarta/commons/proper/fileupload/trunk/fileupload_checks.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/fileupload_checks.xml?rev=353822&amp;content-type=text/vnd.viewcvs-markup">v 353822</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java?rev=353822&amp;content-type=text/vnd.viewcvs-markup">v 353822</a>
+                </p>Fix more Checkstyle warnings.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-12-02 22:01:02</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java?rev=351899&amp;content-type=text/vnd.viewcvs-markup">v 351899</a>
+                </p>Make inner exception classes static, which they should have been all along.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-11-30 23:10:29</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=350197&amp;content-type=text/vnd.viewcvs-markup">v 350197</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java?rev=350197&amp;content-type=text/vnd.viewcvs-markup">v 350197</a>
+                </p>Fix Checkstyle warnings.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-11-30 16:56:20</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java?rev=350090&amp;content-type=text/vnd.viewcvs-markup">v 350090</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletFileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletFileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletFileUpload.java?rev=350090&amp;content-type=text/vnd.viewcvs-markup">v 350090</a>
+                </p>Bugzilla #37706 - Remove Javadoc warnings.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-11-28 22:25:09</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/maven.xml">/jakarta/commons/proper/fileupload/trunk/maven.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/maven.xml?rev=349657&amp;content-type=text/vnd.viewcvs-markup">v 349657</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=349657&amp;content-type=text/vnd.viewcvs-markup">v 349657</a>
+                </p>Build updates: - Include NOTICE.txt in the jar file and distributions. - Include xdocs in source distribution. - Create MD5 checksums for distributions.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-11-28 20:37:05</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=349631&amp;content-type=text/vnd.viewcvs-markup">v 349631</a>
+                </p>Added dependency scope hints for Maven 2, as suggested by Wendy Smoak.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-11-27 22:36:35</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java?rev=349393&amp;content-type=text/vnd.viewcvs-markup">v 349393</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java?rev=349393&amp;content-type=text/vnd.viewcvs-markup">v 349393</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java?rev=349393&amp;content-type=text/vnd.viewcvs-markup">v 349393</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java?rev=349393&amp;content-type=text/vnd.viewcvs-markup">v 349393</a>
+                </p>More JavaDocs.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-11-27 22:17:00</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/fileupload_checks.xml">/jakarta/commons/proper/fileupload/trunk/fileupload_checks.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/fileupload_checks.xml?rev=349390&amp;content-type=text/vnd.viewcvs-markup">v 349390</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/license-header.txt">/jakarta/commons/proper/fileupload/trunk/license-header.txt</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/license-header.txt?rev=349390&amp;content-type=text/vnd.viewcvs-markup">v 349390</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties">/jakarta/commons/proper/fileupload/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties?rev=349390&amp;content-type=text/vnd.viewcvs-markup">v 349390</a>
+                </p>Add custom Checkstyle configuration.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-11-27 21:52:08</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java?rev=349385&amp;content-type=text/vnd.viewcvs-markup">v 349385</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java?rev=349385&amp;content-type=text/vnd.viewcvs-markup">v 349385</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java?rev=349385&amp;content-type=text/vnd.viewcvs-markup">v 349385</a>
+                </p>Detabbing files.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-11-27 21:26:02</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=349376&amp;content-type=text/vnd.viewcvs-markup">v 349376</a>
+                </p>Fix a copy-paste-o and add a comment about the need for the portlet API dependency.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-11-27 20:58:25</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=349368&amp;content-type=text/vnd.viewcvs-markup">v 349368</a>
+                </p>Update dependencies.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-11-27 20:44:57</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java?rev=349366&amp;content-type=text/vnd.viewcvs-markup">v 349366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItem.java?rev=349366&amp;content-type=text/vnd.viewcvs-markup">v 349366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=349366&amp;content-type=text/vnd.viewcvs-markup">v 349366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java?rev=349366&amp;content-type=text/vnd.viewcvs-markup">v 349366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/RequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/RequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/RequestContext.java?rev=349366&amp;content-type=text/vnd.viewcvs-markup">v 349366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java?rev=349366&amp;content-type=text/vnd.viewcvs-markup">v 349366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java?rev=349366&amp;content-type=text/vnd.viewcvs-markup">v 349366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletFileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletFileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletFileUpload.java?rev=349366&amp;content-type=text/vnd.viewcvs-markup">v 349366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java?rev=349366&amp;content-type=text/vnd.viewcvs-markup">v 349366</a>
+                </p>Standardise on @throws instead of having a mixture of that and @exception.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-11-27 20:18:20</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java?rev=349360&amp;content-type=text/vnd.viewcvs-markup">v 349360</a>
+                </p>Minor simplification to write().</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-11-27 19:59:34</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java?rev=349357&amp;content-type=text/vnd.viewcvs-markup">v 349357</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DiskFileItemSerializeTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DiskFileItemSerializeTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DiskFileItemSerializeTest.java?rev=349357&amp;content-type=text/vnd.viewcvs-markup">v 349357</a>
+                </p>Bugzilla #32785 - Make DiskFileItem serializable. Thanks to Niall Pemberton for the suggestion and patch.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-11-27 17:18:41</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java?rev=349339&amp;content-type=text/vnd.viewcvs-markup">v 349339</a>
+                </p>Make the temporary file names unique across class loaders, not just within them, by including a UID in the file name.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-11-27 15:54:10</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=349333&amp;content-type=text/vnd.viewcvs-markup">v 349333</a>
+                </p>Bugzilla #32782 - Include the actual and permitted sizes in both the exception message and the exception itself.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-11-27 15:36:49</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=349332&amp;content-type=text/vnd.viewcvs-markup">v 349332</a>
+                </p>Update comments to reflect recent changes.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-11-27 15:18:27</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=349329&amp;content-type=text/vnd.viewcvs-markup">v 349329</a>
+                </p>Bugzilla #34483 - If an explicit header encoding is not specified, use the one from the appropriate context (i.e. ServletRequest or ActionRequest).</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-11-27 15:04:45</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/RequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/RequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/RequestContext.java?rev=349328&amp;content-type=text/vnd.viewcvs-markup">v 349328</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java?rev=349328&amp;content-type=text/vnd.viewcvs-markup">v 349328</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java?rev=349328&amp;content-type=text/vnd.viewcvs-markup">v 349328</a>
+                </p>Add getCharacterEncoding to the request context.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-11-27 12:15:47</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=349295&amp;content-type=text/vnd.viewcvs-markup">v 349295</a>
+                </p>Bugzilla #34497 - Null check and case insensitivity.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-11-27 11:15:13</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/faq.fml">/jakarta/commons/proper/fileupload/trunk/xdocs/faq.fml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/faq.fml?rev=349279&amp;content-type=text/vnd.viewcvs-markup">v 349279</a>
+                </p>Set svn:eol-style property.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-11-27 11:05:16</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=349277&amp;content-type=text/vnd.viewcvs-markup">v 349277</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/faq.fml">/jakarta/commons/proper/fileupload/trunk/xdocs/faq.fml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/faq.fml?rev=349277&amp;content-type=text/vnd.viewcvs-markup">v 349277</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/index.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/index.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/index.xml?rev=349277&amp;content-type=text/vnd.viewcvs-markup">v 349277</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml?rev=349277&amp;content-type=text/vnd.viewcvs-markup">v 349277</a>
+                </p>Add an FAQ page, using the Maven plugin to generate it.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-11-26 19:47:41</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/issue-tracking.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/issue-tracking.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/issue-tracking.xml?rev=349179&amp;content-type=text/vnd.viewcvs-markup">v 349179</a>
+                </p>The Bugzilla component name has a space in it. Fix the URLs.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-11-26 19:38:29</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/index.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/index.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/index.xml?rev=349178&amp;content-type=text/vnd.viewcvs-markup">v 349178</a>
+                </p>Improvements to FileUpload home page, based on similar recent changes to IO and Validator home pages.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-11-25 21:34:22</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/cvs-usage.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/cvs-usage.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/cvs-usage.xml?rev=349081&amp;content-type=text/vnd.viewcvs-markup">v 349081</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/issue-tracking.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/issue-tracking.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/issue-tracking.xml?rev=349081&amp;content-type=text/vnd.viewcvs-markup">v 349081</a>
+                </p>Add detail pages for Source Repository and Issue Tracking, based on those for IO and Validator. The older auto-generated pages were more detailed than even these, but I have no idea what happened to those.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-11-24 19:29:32</td><td>dIon Gillard</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=348861&amp;content-type=text/vnd.viewcvs-markup">v 348861</a>
+                </p>Use groupId/artifactId consistently instead of simply id</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-11-21 16:20:32</td><td>dIon Gillard</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=348045&amp;content-type=text/vnd.viewcvs-markup">v 348045</a>
+                </p>Bug 37314 - Fixes to POMs</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-09-19 16:49:15</td><td>mrdon</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties">/jakarta/commons/proper/fileupload/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties?rev=290313&amp;content-type=text/vnd.viewcvs-markup">v 290313</a>
+                </p>Setting source and target for Java 1.3</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-08-25 22:11:10</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java?rev=240164&amp;content-type=text/vnd.viewcvs-markup">v 240164</a>
+                </p>Avoid magic number. Reported by Jian Chen. Thanks!</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-04-10 21:44:41</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java?rev=160833&amp;content-type=text/vnd.viewcvs-markup">v 160833</a>
+                </p>Bugzilla #33311: Fix typos.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-02-26 05:44:15</td><td>dirkv</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk">/jakarta/commons/proper/fileupload/trunk</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk?rev=155495&amp;content-type=text/vnd.viewcvs-markup">v 155495</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/.cvsignore">/jakarta/commons/proper/fileupload/trunk/.cvsignore</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/.cvsignore?rev=155495&amp;content-type=text/vnd.viewcvs-markup">v 155495</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs">/jakarta/commons/proper/fileupload/trunk/xdocs</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs?rev=155495&amp;content-type=text/vnd.viewcvs-markup">v 155495</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/.cvsignore">/jakarta/commons/proper/fileupload/trunk/xdocs/.cvsignore</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/.cvsignore?rev=155495&amp;content-type=text/vnd.viewcvs-markup">v 155495</a>
+                </p>convert .cvsignore to svn:ignore</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2005-02-26 05:00:27</td><td>dirkv</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/LICENSE.txt">/jakarta/commons/proper/fileupload/trunk/LICENSE.txt</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/LICENSE.txt?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/NOTICE.txt">/jakarta/commons/proper/fileupload/trunk/NOTICE.txt</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/NOTICE.txt?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/PROPOSAL.html">/jakarta/commons/proper/fileupload/trunk/PROPOSAL.html</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/PROPOSAL.html?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/RELEASE-NOTES.txt">/jakarta/commons/proper/fileupload/trunk/RELEASE-NOTES.txt</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/RELEASE-NOTES.txt?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/STATUS.html">/jakarta/commons/proper/fileupload/trunk/STATUS.html</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/STATUS.html?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build-gump.xml">/jakarta/commons/proper/fileupload/trunk/build-gump.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build-gump.xml?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml">/jakarta/commons/proper/fileupload/trunk/build.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/gump.xml">/jakarta/commons/proper/fileupload/trunk/gump.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/gump.xml?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/license-header.txt">/jakarta/commons/proper/fileupload/trunk/license-header.txt</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/license-header.txt?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/maven.xml">/jakarta/commons/proper/fileupload/trunk/maven.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/maven.xml?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties">/jakarta/commons/proper/fileupload/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/conf/MANIFEST.MF">/jakarta/commons/proper/fileupload/trunk/src/conf/MANIFEST.MF</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/conf/MANIFEST.MF?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItemFactory.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItemFactory.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItemFactory.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItem.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItemFactory.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItemFactory.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItemFactory.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUpload.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadException.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadException.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadException.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ParameterParser.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ParameterParser.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ParameterParser.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/RequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/RequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/RequestContext.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItemFactory.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItemFactory.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItemFactory.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/package.html">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/package.html</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/package.html?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/package.html">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/package.html</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/package.html?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/package.html">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/package.html</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/package.html?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletFileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletFileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletFileUpload.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/package.html">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/package.html</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/package.html?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DefaultFileItemTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DefaultFileItemTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DefaultFileItemTest.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/HttpServletRequestFactory.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/HttpServletRequestFactory.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/HttpServletRequestFactory.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockHttpServletRequest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockHttpServletRequest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockHttpServletRequest.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockPortletRequest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockPortletRequest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockPortletRequest.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockPortletSession.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockPortletSession.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockPortletSession.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MultipartStreamTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MultipartStreamTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MultipartStreamTest.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/ParameterParserTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/ParameterParserTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/ParameterParserTest.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/ServletFileUploadTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/ServletFileUploadTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/ServletFileUploadTest.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/customizing.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/customizing.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/customizing.xml?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/index.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/index.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/index.xml?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/overview.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/overview.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/overview.xml?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/style/project.css">/jakarta/commons/proper/fileupload/trunk/xdocs/style/project.css</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/style/project.css?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/tasks.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/tasks.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/tasks.xml?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/using.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/using.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/using.xml?rev=155417&amp;content-type=text/vnd.viewcvs-markup">v 155417</a>
+                </p>svn:keywords correction</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2005-01-30 15:01:01</td><td>dirkv</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/attributes/trunk/project.properties">/jakarta/commons/proper/attributes/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/attributes/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/attributes/trunk/project.xml">/jakarta/commons/proper/attributes/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/attributes/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/attributes/trunk/site/project.properties">/jakarta/commons/proper/attributes/trunk/site/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/attributes/trunk/site/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/beanutils/trunk/project.properties">/jakarta/commons/proper/beanutils/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/beanutils/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/beanutils/trunk/project.xml">/jakarta/commons/proper/beanutils/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/beanutils/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/betwixt/trunk/project.properties">/jakarta/commons/proper/betwixt/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/betwixt/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/betwixt/trunk/project.xml">/jakarta/commons/proper/betwixt/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/betwixt/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/chain/trunk/project.properties">/jakarta/commons/proper/chain/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/chain/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/chain/trunk/project.xml">/jakarta/commons/proper/chain/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/chain/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/cli/trunk/project.properties">/jakarta/commons/proper/cli/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/cli/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/cli/trunk/project.xml">/jakarta/commons/proper/cli/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/cli/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/codec/trunk/project.properties">/jakarta/commons/proper/codec/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/codec/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/codec/trunk/project.xml">/jakarta/commons/proper/codec/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/codec/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/collections/trunk/project.properties">/jakarta/commons/proper/collections/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/collections/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/collections/trunk/project.xml">/jakarta/commons/proper/collections/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/collections/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/configuration/trunk/project.properties">/jakarta/commons/proper/configuration/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/configuration/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/configuration/trunk/project.xml">/jakarta/commons/proper/configuration/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/configuration/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/daemon/trunk/project.properties">/jakarta/commons/proper/daemon/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/daemon/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/daemon/trunk/project.xml">/jakarta/commons/proper/daemon/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/daemon/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/dbcp/trunk/.cvsignore">/jakarta/commons/proper/dbcp/trunk/.cvsignore</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/dbcp/trunk/.cvsignore?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/dbcp/trunk/project.properties">/jakarta/commons/proper/dbcp/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/dbcp/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/dbcp/trunk/project.xml">/jakarta/commons/proper/dbcp/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/dbcp/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/dbutils/trunk/project.properties">/jakarta/commons/proper/dbutils/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/dbutils/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/dbutils/trunk/project.xml">/jakarta/commons/proper/dbutils/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/dbutils/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/digester/trunk/project.properties">/jakarta/commons/proper/digester/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/digester/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/digester/trunk/project.xml">/jakarta/commons/proper/digester/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/digester/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/discovery/trunk/project.properties">/jakarta/commons/proper/discovery/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/discovery/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/discovery/trunk/project.xml">/jakarta/commons/proper/discovery/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/discovery/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/el/trunk/project.properties">/jakarta/commons/proper/el/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/el/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/el/trunk/project.xml">/jakarta/commons/proper/el/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/el/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/email/trunk/project.properties">/jakarta/commons/proper/email/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/email/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/email/trunk/project.xml">/jakarta/commons/proper/email/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/email/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties">/jakarta/commons/proper/fileupload/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=149179&amp;content-type=text/vnd.viewcvs-markup">v 149179</a>
+                </p>Use SVN changelog</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-12-31 11:11:00</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=133414&amp;content-type=text/vnd.viewcvs-markup">v 133414</a>
+                </p>Link to mail-archives.a.o instead of nagoya.a.o for archives.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-12-20 08:13:42</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=133413&amp;content-type=text/vnd.viewcvs-markup">v 133413</a>
+                </p>Fix typos in exception messages.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-12-12 09:21:41</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=133412&amp;content-type=text/vnd.viewcvs-markup">v 133412</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java?rev=133412&amp;content-type=text/vnd.viewcvs-markup">v 133412</a>
+                </p>Bug #32654: Detemining content type.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-12-07 20:00:25</td><td>Sean C. Sullivan</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/maven.xml">/jakarta/commons/proper/fileupload/trunk/maven.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/maven.xml?rev=133411&amp;content-type=text/vnd.viewcvs-markup">v 133411</a>
+                </p>use "jar:jar" instead of "java:jar" java:jar is deprecated.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-12-07 19:59:01</td><td>Sean C. Sullivan</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/ServletFileUploadTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/ServletFileUploadTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/ServletFileUploadTest.java?rev=133410&amp;content-type=text/vnd.viewcvs-markup">v 133410</a>
+                </p>fixed compile error</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-12-07 19:55:22</td><td>Sean C. Sullivan</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/FileUploadTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/FileUploadTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/FileUploadTest.java?rev=133409&amp;content-type=text/vnd.viewcvs-markup">v 133409</a>
+                </p>bye bye</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-12-07 19:55:02</td><td>Sean C. Sullivan</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockPortletRequest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockPortletRequest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockPortletRequest.java?rev=133408&amp;content-type=text/vnd.viewcvs-markup">v 133408</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockPortletSession.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockPortletSession.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockPortletSession.java?rev=133408&amp;content-type=text/vnd.viewcvs-markup">v 133408</a>
+                </p>This code originated from the Apache Jetspeed-2 project</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-12-07 19:54:27</td><td>Sean C. Sullivan</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java?rev=133407&amp;content-type=text/vnd.viewcvs-markup">v 133407</a>
+                </p>use ServletFileUploadTest class</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-12-07 19:53:42</td><td>Sean C. Sullivan</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/ServletFileUploadTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/ServletFileUploadTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/ServletFileUploadTest.java?rev=133406&amp;content-type=text/vnd.viewcvs-markup">v 133406</a>
+                </p>servlet file upload testcase</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-12-07 19:50:21</td><td>Sean C. Sullivan</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockHttpServletRequest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockHttpServletRequest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MockHttpServletRequest.java?rev=133405&amp;content-type=text/vnd.viewcvs-markup">v 133405</a>
+                </p>mock object class</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-12-07 19:49:43</td><td>Sean C. Sullivan</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MyHttpServletRequest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MyHttpServletRequest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MyHttpServletRequest.java?rev=133404&amp;content-type=text/vnd.viewcvs-markup">v 133404</a>
+                </p>bye bye</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-12-07 19:48:13</td><td>Sean C. Sullivan</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/FileUploadTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/FileUploadTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/FileUploadTest.java?rev=133403&amp;content-type=text/vnd.viewcvs-markup">v 133403</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/HttpServletRequestFactory.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/HttpServletRequestFactory.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/HttpServletRequestFactory.java?rev=133403&amp;content-type=text/vnd.viewcvs-markup">v 133403</a>
+                </p>use MockHttpServletRequest instead of MyHttpServletRequest</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-12-07 19:02:26</td><td>Sean C. Sullivan</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java?rev=133402&amp;content-type=text/vnd.viewcvs-markup">v 133402</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java?rev=133402&amp;content-type=text/vnd.viewcvs-markup">v 133402</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java?rev=133402&amp;content-type=text/vnd.viewcvs-markup">v 133402</a>
+                </p>added toString() method</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-12-07 18:53:29</td><td>Sean C. Sullivan</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java?rev=133401&amp;content-type=text/vnd.viewcvs-markup">v 133401</a>
+                </p>added @since tag</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-10-31 11:54:10</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/package.html">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/package.html</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/package.html?rev=133400&amp;content-type=text/vnd.viewcvs-markup">v 133400</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/package.html">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/package.html</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/package.html?rev=133400&amp;content-type=text/vnd.viewcvs-markup">v 133400</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/package.html">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/package.html</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/package.html?rev=133400&amp;content-type=text/vnd.viewcvs-markup">v 133400</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/package.html">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/package.html</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/package.html?rev=133400&amp;content-type=text/vnd.viewcvs-markup">v 133400</a>
+                </p>Fix up the existing package.html file and add new ones for the newly introduced packages. Fairly minimal, but with a link to the user guide.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-10-30 22:21:43</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml">/jakarta/commons/proper/fileupload/trunk/build.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItemFactory.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItemFactory.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItemFactory.java?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/RequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/RequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/RequestContext.java?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItem.java?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItemFactory.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItemFactory.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/disk/DiskFileItemFactory.java?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletFileUpload.java?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/portlet/PortletRequestContext.java?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletFileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletFileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletFileUpload.java?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/servlet/ServletRequestContext.java?rev=133399&amp;content-type=text/vnd.viewcvs-markup">v 133399</a>
+                </p>Substantial refactoring and additions: * The core package is now independent of servlet / portlet / other distinctions, as well as persistence schemes, other than deprecated classes and methods retained for backwards compatibility. * Servlet specific functionality has been moved to a new 'servlet' package. Existing users should migrate to this as soon as possible, since the servlet specific functionality in the generic package will be removed in the release after FileUpload 1.1. * Support for portlets (JSR 168) has been added, in a new 'portlet' package. This is not well tested at this point, and feedback would be very much appreciated. (This also resolves bug #23620.) * The disk-based file item implementation has been moved into a 'disk' package, and renamed from Default* to Disk* to reflect what it really is. The Default* classes have been retained in the top level package for backwards compatibility, but are now deprecated, and will be removed in the release after FileUpload 1.1. * The isMultipartRequest method is an unfortunate casualty of this refactoring. That method should really be moved to ServletFileUpload, but since the method is static, it can only exist in either FileUploadBase or ServletFileUpload. Backwards compatibility dictates the former for now, but the latter is the desired state, which implies some future breakage. Fair warning...</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-10-30 19:03:47</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=133398&amp;content-type=text/vnd.viewcvs-markup">v 133398</a>
+                </p>Bug #26194: Specify the encoding (ISO-8859-1) when converting the boundary to a byte array.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-10-28 21:17:23</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/license-header.txt">/jakarta/commons/proper/fileupload/trunk/license-header.txt</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/license-header.txt?rev=133397&amp;content-type=text/vnd.viewcvs-markup">v 133397</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties">/jakarta/commons/proper/fileupload/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties?rev=133397&amp;content-type=text/vnd.viewcvs-markup">v 133397</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java?rev=133397&amp;content-type=text/vnd.viewcvs-markup">v 133397</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItemFactory.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItemFactory.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItemFactory.java?rev=133397&amp;content-type=text/vnd.viewcvs-markup">v 133397</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java?rev=133397&amp;content-type=text/vnd.viewcvs-markup">v 133397</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItem.java?rev=133397&amp;content-type=text/vnd.viewcvs-markup">v 133397</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItemFactory.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItemFactory.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItemFactory.java?rev=133397&amp;content-type=text/vnd.viewcvs-markup">v 133397</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUpload.java?rev=133397&amp;content-type=text/vnd.viewcvs-markup">v 133397</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=133397&amp;content-type=text/vnd.viewcvs-markup">v 133397</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadException.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadException.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadException.java?rev=133397&amp;content-type=text/vnd.viewcvs-markup">v 133397</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java?rev=133397&amp;content-type=text/vnd.viewcvs-markup">v 133397</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ParameterParser.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ParameterParser.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ParameterParser.java?rev=133397&amp;content-type=text/vnd.viewcvs-markup">v 133397</a>
+                </p>Convert to Sun coding guidelines.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-10-24 21:18:51</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DeferredFileOutputStreamTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DeferredFileOutputStreamTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DeferredFileOutputStreamTest.java?rev=133396&amp;content-type=text/vnd.viewcvs-markup">v 133396</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java?rev=133396&amp;content-type=text/vnd.viewcvs-markup">v 133396</a>
+                </p>DeferredFileOutputStream moved to Commons IO.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-10-16 17:58:35</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java?rev=133395&amp;content-type=text/vnd.viewcvs-markup">v 133395</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/FileUploadTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/FileUploadTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/FileUploadTest.java?rev=133395&amp;content-type=text/vnd.viewcvs-markup">v 133395</a>
+                </p>Bug #30061 - Workaround for Mac IE5 bug. Thanks to Justin Sampson for the patch and tests for this vexing issue.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-10-16 11:17:50</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=133394&amp;content-type=text/vnd.viewcvs-markup">v 133394</a>
+                </p>Bug #25527 - Handle unquoted header parameters.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-10-14 21:01:08</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/using.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/using.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/using.xml?rev=133393&amp;content-type=text/vnd.viewcvs-markup">v 133393</a>
+                </p>Bug #27193 - Some documentation on interaction with virus scanners.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-10-13 21:48:15</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/FileUploadTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/FileUploadTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/FileUploadTest.java?rev=133392&amp;content-type=text/vnd.viewcvs-markup">v 133392</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java?rev=133392&amp;content-type=text/vnd.viewcvs-markup">v 133392</a>
+                </p>Bug #30059 - More unit tests from Justin Sampson. Thanks!</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-10-11 21:17:27</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java?rev=133391&amp;content-type=text/vnd.viewcvs-markup">v 133391</a>
+                </p>Bug #27477 - Use FileCleaner from Commons IO to clean up temp files, rather than File.deleteOnExit(), which can cause serious problems in long-running processes.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-10-10 22:06:33</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=133390&amp;content-type=text/vnd.viewcvs-markup">v 133390</a>
+                </p>Bug #28085 - check that HTTP method is POST as part of multipart check.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-10-10 20:50:19</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml">/jakarta/commons/proper/fileupload/trunk/build.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml?rev=133389&amp;content-type=text/vnd.viewcvs-markup">v 133389</a>
+                </p>Regenerate Ant build file to pick up dependency changes.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-10-10 20:18:45</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=133388&amp;content-type=text/vnd.viewcvs-markup">v 133388</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java?rev=133388&amp;content-type=text/vnd.viewcvs-markup">v 133388</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DeferredFileOutputStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DeferredFileOutputStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DeferredFileOutputStream.java?rev=133388&amp;content-type=text/vnd.viewcvs-markup">v 133388</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ThresholdingOutputStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ThresholdingOutputStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ThresholdingOutputStream.java?rev=133388&amp;content-type=text/vnd.viewcvs-markup">v 133388</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DeferredFileOutputStreamTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DeferredFileOutputStreamTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DeferredFileOutputStreamTest.java?rev=133388&amp;content-type=text/vnd.viewcvs-markup">v 133388</a>
+                </p>Switch to Commons IO version of DeferredFileOutputStream. Adding IO as a dependency will allow us to take advantage of other classes in that component to fix additional FileUpload bugs.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-10-10 18:59:49</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=133387&amp;content-type=text/vnd.viewcvs-markup">v 133387</a>
+                </p>Bug #21269 - handle quoted boundary specification.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-10-10 14:59:48</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=133386&amp;content-type=text/vnd.viewcvs-markup">v 133386</a>
+                </p>Bug #31496 - use case-independent comparisons for encoding types.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-08-17 08:38:44</td><td>mdiggory</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/maven.xml">/jakarta/commons/proper/fileupload/trunk/maven.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/maven.xml?rev=133385&amp;content-type=text/vnd.viewcvs-markup">v 133385</a>
+                </p>Adding postGoal to copy css stylesheets from commons-build when site is generated. Please maintain this modification for consistent look and feel across commons subprojects.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-07-24 21:53:05</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DefaultFileItemTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DefaultFileItemTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DefaultFileItemTest.java?rev=133384&amp;content-type=text/vnd.viewcvs-markup">v 133384</a>
+                </p>Fix comments to avoid break iterator complaints.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-07-24 21:47:17</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java?rev=133383&amp;content-type=text/vnd.viewcvs-markup">v 133383</a>
+                </p>Fix typos in comments. Submitted By: Yuji Yamano</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-04-09 12:58:07</td><td>mdiggory</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=133382&amp;content-type=text/vnd.viewcvs-markup">v 133382</a>
+                </p>Removed extend, migrated repository, Apache project metadata and adjusted build settings appropriately.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-04-06 10:39:33</td><td>mdiggory</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=133381&amp;content-type=text/vnd.viewcvs-markup">v 133381</a>
+                </p>added missing build and report sections to subproject project.xml files, subprojects are responsible for generating the reports they want to have published and subproject define build parameters they require.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-03-11 23:34:46</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java?rev=133380&amp;content-type=text/vnd.viewcvs-markup">v 133380</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ParameterParser.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ParameterParser.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ParameterParser.java?rev=133380&amp;content-type=text/vnd.viewcvs-markup">v 133380</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DefaultFileItemTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DefaultFileItemTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DefaultFileItemTest.java?rev=133380&amp;content-type=text/vnd.viewcvs-markup">v 133380</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/ParameterParserTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/ParameterParserTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/ParameterParserTest.java?rev=133380&amp;content-type=text/vnd.viewcvs-markup">v 133380</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java?rev=133380&amp;content-type=text/vnd.viewcvs-markup">v 133380</a>
+                </p>Add support for character sets specified for individual parts. PR: 20813 Submitted by: Oleg Kalnichevski</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-03-01 19:27:48</td><td>mdiggory</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml?rev=133379&amp;content-type=text/vnd.viewcvs-markup">v 133379</a>
+                </p>Switching to usage of menu's dtd to insert commons navigation items, using common-menus entity to reference commons menues in navigation.xml, sorting is done by Maven.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-02-27 15:19:04</td><td>scolebourne</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml">/jakarta/commons/proper/fileupload/trunk/build.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml?rev=133378&amp;content-type=text/vnd.viewcvs-markup">v 133378</a>
+                </p>Change to Apache License 2.0</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-02-25 13:30:32</td><td>scolebourne</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=133377&amp;content-type=text/vnd.viewcvs-markup">v 133377</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/index.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/index.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/index.xml?rev=133377&amp;content-type=text/vnd.viewcvs-markup">v 133377</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml?rev=133377&amp;content-type=text/vnd.viewcvs-markup">v 133377</a>
+                </p>Update to new website design</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-02-25 13:07:13</td><td>scolebourne</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/LICENSE.txt">/jakarta/commons/proper/fileupload/trunk/LICENSE.txt</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/LICENSE.txt?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/NOTICE.txt">/jakarta/commons/proper/fileupload/trunk/NOTICE.txt</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/NOTICE.txt?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/PROPOSAL.html">/jakarta/commons/proper/fileupload/trunk/PROPOSAL.html</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/PROPOSAL.html?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/STATUS.html">/jakarta/commons/proper/fileupload/trunk/STATUS.html</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/STATUS.html?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml">/jakarta/commons/proper/fileupload/trunk/build.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/build.xml?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/gump.xml">/jakarta/commons/proper/fileupload/trunk/gump.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/gump.xml?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties">/jakarta/commons/proper/fileupload/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItemFactory.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItemFactory.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItemFactory.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DeferredFileOutputStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DeferredFileOutputStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DeferredFileOutputStream.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItem.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItemFactory.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItemFactory.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItemFactory.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUpload.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadException.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadException.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadException.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ThresholdingOutputStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ThresholdingOutputStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ThresholdingOutputStream.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/package.html">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/package.html</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/package.html?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DefaultFileItemTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DefaultFileItemTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DefaultFileItemTest.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DeferredFileOutputStreamTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DeferredFileOutputStreamTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DeferredFileOutputStreamTest.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/FileUploadTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/FileUploadTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/FileUploadTest.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/HttpServletRequestFactory.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/HttpServletRequestFactory.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/HttpServletRequestFactory.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MultipartStreamTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MultipartStreamTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MultipartStreamTest.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MyHttpServletRequest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MyHttpServletRequest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MyHttpServletRequest.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/customizing.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/customizing.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/customizing.xml?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/index.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/index.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/index.xml?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/overview.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/overview.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/overview.xml?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/tasks.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/tasks.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/tasks.xml?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/using.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/using.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/using.xml?rev=133376&amp;content-type=text/vnd.viewcvs-markup">v 133376</a>
+                </p>Change to Apache License 2.0</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-02-17 20:11:34</td><td>mdiggory</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties">/jakarta/commons/proper/fileupload/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties?rev=133375&amp;content-type=text/vnd.viewcvs-markup">v 133375</a>
+                </p>Adding Commons Site Look &amp; Feel configuration to all jakarta-commons/&lt;project&gt;/project.properties</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-02-15 08:08:42</td><td>mdiggory</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml?rev=133374&amp;content-type=text/vnd.viewcvs-markup">v 133374</a>
+                </p>included navigation should be from commons-build now.</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-02-10 11:15:05</td><td>mdiggory</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=133373&amp;content-type=text/vnd.viewcvs-markup">v 133373</a>
+                </p>Moving extension of global project.xml to ../commons-build/project.xml on those project.xml files which originally had it in place.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-01-31 20:55:09</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUpload.java?rev=133372&amp;content-type=text/vnd.viewcvs-markup">v 133372</a>
+                </p>Correct the comment for the no-args constructor to reflect the fact that a factory needs to be set before parsing uploads. PR: 23822 Submitted by: Lars Marius Garshol</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-01-22 22:51:10</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=133371&amp;content-type=text/vnd.viewcvs-markup">v 133371</a>
+                </p>Collapse some all but duplicated code.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-01-14 22:34:23</td><td>tobrien</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties">/jakarta/commons/proper/fileupload/trunk/project.properties</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.properties?rev=133370&amp;content-type=text/vnd.viewcvs-markup">v 133370</a>
+                </p>Updated most of the commons project.properties files, made sure that the dev process points to the commons charter. Also, changed the powered by logo to use the less distracting feather logo</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2004-01-13 20:43:54</td><td>tobrien</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=133369&amp;content-type=text/vnd.viewcvs-markup">v 133369</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/media">/jakarta/commons/proper/fileupload/trunk/src/media</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/media?rev=133369&amp;content-type=text/vnd.viewcvs-markup">v 133369</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/media/logo.xcf">/jakarta/commons/proper/fileupload/trunk/src/media/logo.xcf</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/media/logo.xcf?rev=133369&amp;content-type=text/vnd.viewcvs-markup">v 133369</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/images/logo.png">/jakarta/commons/proper/fileupload/trunk/xdocs/images/logo.png</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/images/logo.png?rev=133369&amp;content-type=text/vnd.viewcvs-markup">v 133369</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml?rev=133369&amp;content-type=text/vnd.viewcvs-markup">v 133369</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/style">/jakarta/commons/proper/fileupload/trunk/xdocs/style</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/style?rev=133369&amp;content-type=text/vnd.viewcvs-markup">v 133369</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/style/project.css">/jakarta/commons/proper/fileupload/trunk/xdocs/style/project.css</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/style/project.css?rev=133369&amp;content-type=text/vnd.viewcvs-markup">v 133369</a>
+                </p>FileUpload banner has white background, navigation has commons link</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2004-01-12 22:33:42</td><td>John McNally</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/package.html">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/package.html</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/package.html?rev=133368&amp;content-type=text/vnd.viewcvs-markup">v 133368</a>
+                </p>Fix example showing FileItem.write to use a File object. Issue#: http://issues.apache.org/bugzilla/show_bug.cgi?id=22643</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2003-10-15 21:08:53</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml">/jakarta/commons/proper/fileupload/trunk/project.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/project.xml?rev=133367&amp;content-type=text/vnd.viewcvs-markup">v 133367</a>
+                </p>Update my &lt;organization&gt;.</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2003-10-09 14:16:47</td><td>Robert Burrell Donkin</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/LICENSE.txt">/jakarta/commons/proper/fileupload/trunk/LICENSE.txt</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/LICENSE.txt?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItemFactory.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItemFactory.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItemFactory.java?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DeferredFileOutputStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DeferredFileOutputStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DeferredFileOutputStream.java?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DiskFileUpload.java?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItem.java?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItemFactory.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItemFactory.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileItemFactory.java?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUpload.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUpload.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUpload.java?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadBase.java?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadException.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadException.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/FileUploadException.java?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/MultipartStream.java?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ThresholdingOutputStream.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ThresholdingOutputStream.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/ThresholdingOutputStream.java?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DefaultFileItemTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DefaultFileItemTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DefaultFileItemTest.java?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DeferredFileOutputStreamTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DeferredFileOutputStreamTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/DeferredFileOutputStreamTest.java?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MultipartStreamTest.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MultipartStreamTest.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/MultipartStreamTest.java?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java">/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/test/org/apache/commons/fileupload/TestAll.java?rev=133366&amp;content-type=text/vnd.viewcvs-markup">v 133366</a>
+                </p>Fixed typos in apache licenses</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2003-09-26 10:00:44</td><td>tobrien</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/navigation.xml?rev=133365&amp;content-type=text/vnd.viewcvs-markup">v 133365</a>
+                </p>Added the common Jakarta Commons navigation to the FileUpload site</td></tr>
+  
+            
+    
+      
+        
+      
+      
+    
+
+    
+    <tr class="b"><td>2003-07-01 21:42:10</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java">/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/src/java/org/apache/commons/fileupload/DefaultFileItem.java?rev=133364&amp;content-type=text/vnd.viewcvs-markup">v 133364</a>
+                </p>Check for null before attempting to close streams in write(). PR: 21221 Submitted by: Peter Chase</td></tr>
+  
+            
+    
+      
+      
+        
+      
+    
+
+    
+    <tr class="a"><td>2003-06-28 11:11:48</td><td>Martin Cooper</td><td>
+                <p>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/using.xml">/jakarta/commons/proper/fileupload/trunk/xdocs/using.xml</a>
+                  <a href="http://svn.apache.org/repos/asf/jakarta/commons/proper/fileupload/trunk/xdocs/using.xml?rev=133363&amp;content-type=text/vnd.viewcvs-markup">v 133363</a>
+                </p>Correction to sample code in the docs. PR: 21161 Submitted by: Paul Dalton</td></tr>
+  
+          </tbody>
+    </table>
+  
+    </div>
+  
+    </div>
+  
+                  
+                  
+                  
+                  
+                  
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <div id="footer">
+          <table border="0" style="width:100%" cellpadding="4" cellspacing="0">
+            
+            <tr>
+              <td>
+                
+                  
+                    
+                    
+                      © 2002-2005, The Apache Software Foundation
+                    
+                  
+                  
+                
+
+                
+              </td>
+              
+            </tr>
+          </table>
+        </div>
+      </body>
+    </html>
+  

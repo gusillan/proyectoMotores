@@ -10,25 +10,53 @@ $("document").ready(function() {
     $("#codigoFabricante").blur(consultarMarca);
 
 
-    $('#archivo').change( function(){
+    $('#archivo').change(function() {
         
+        //var formulario = document.getElementById("formModelo");
+        //var data = $("#formModelo").serialize();
+        var dataFile = new FormData($("#formModelo"));
+        var files = document.getElementById("archivo").files;
+        var file = files[0];
+        console.log("FIles " + file.size);
+        dataFile.append("file", file);
+        dataFile.append("prueba", "Gus");
+        
+        console.log("DataFIle  "+dataFile.length);
+
+
+        //console.log("Serializada " + dataFile);
+        //console.log($("#codigo").val());
+        //console.log($("#descripcion").val());
+        //console.log($("#archivo").val());
+
+   
+
+        $.ajax({
+            url: '../guardaImagen.htm',
+            type : 'POST',
+            data: dataFile,
+            processData : false,
+            contentType: false,
+            cache : false,
+            success: limpiar
+        });
+
         var files = $('#archivo')[0].files;
-        console.log("Funcion change "+files[0].value);
-        $('#imagen').val(files[0].name);        
-        for(var i = 0; i < files.length; i++) {
+        console.log("Funcion change " + files[0].value);
+        $('#imagen').val(files[0].name);
+        for (var i = 0; i < files.length; i++) {
             resizeAndUpload(files[i]);
         }
     });
 
-    
+
 });
 
 /* Funciones Básicas Botones
  **********************************************************/
 
 function guardar() {
-    var archivo = document.getElementById("archivo").files[0].name;
-    $("#imagen").val(archivo);
+    
     if (validarFormulario()) {
         var data = $("#formModelo").serialize();
         console.log("Serializada " + data);
@@ -81,8 +109,8 @@ function respuestaConsultaModelo(listaObjetos) {
         console.log("No existe ningun fabricante con ese Codigo");
         $("#descripcion").val("");
         $("#idModelo").val("")
-        
-        
+
+
     }
 }
 function rellenaFormulario(obj) {
@@ -94,7 +122,7 @@ function rellenaFormulario(obj) {
     $("#fechaInicio").val(obj.fechaInicio);
     $("#fechaFin").val(obj.fechaFin);
     $("#imagen").val(obj.imagen);
-    $("#imagenModelo").attr("src","img/imagenesVehiculos/"+obj.imagen);
+    $("#imagenModelo").attr("src", "img/imagenesVehiculos/" + obj.imagen);
     $("#baja").attr("disabled", false);
     updateFocusables();
 
@@ -135,30 +163,34 @@ function rellenaMarca(marca) {
 /* Subir imagen
  **********************************************************/
 function resizeAndUpload(file) {
+
+
+
+
     console.log("Redimension de imagen");
     var reader = new FileReader();
     reader.onloadend = function() {
- 
+
         var tempImg = new Image();
         tempImg.src = reader.result;
         tempImg.onload = function() {
-     
+
             var MAX_WIDTH = 360;
             var MAX_HEIGHT = 186;
             var tempW = tempImg.width;
             var tempH = tempImg.height;
             if (tempW > tempH) {
                 if (tempW > MAX_WIDTH) {
-                   tempH *= MAX_WIDTH / tempW;
-                   tempW = MAX_WIDTH;
+                    tempH *= MAX_WIDTH / tempW;
+                    tempW = MAX_WIDTH;
                 }
             } else {
                 if (tempH > MAX_HEIGHT) {
-                   tempW *= MAX_HEIGHT / tempH;
-                   tempH = MAX_HEIGHT;
+                    tempW *= MAX_HEIGHT / tempH;
+                    tempH = MAX_HEIGHT;
                 }
             }
-     
+
             var canvas = document.createElement('canvas');
             canvas.width = tempW;
             canvas.height = tempH;
@@ -168,10 +200,10 @@ function resizeAndUpload(file) {
 
             $("#imagenModelo").attr("src", dataURL);
             //$("#imagen").val(dataURL);
-            
+
             //Post dataurl to the server with AJAX
         };
-     
+
     };
     reader.readAsDataURL(file);
 }
