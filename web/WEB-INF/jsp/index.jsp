@@ -19,7 +19,9 @@
         <br>
         <a href="html/formularioEntidad.html">4 - Formulario de Entidad</a><br>
         <br>
-        <a href="html/formularioCpostal.html">5 - Formulario de Códigod Postales</a><br>
+        <a href="html/formularioCpostal.html">5 - Formulario de Códigod Postales</a><br>        
+        <br>
+        <a href="html/formularioVehiculo.html">6 - Formulario de Vehículos</a><br>        
         <br>
     </body>
 </html>

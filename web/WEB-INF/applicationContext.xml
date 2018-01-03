@@ -71,5 +71,9 @@
     <bean id="cpostal" class="com.pacoillan.DAOHibernate.CpostalDAOHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    
+    <bean id="vehiculo" class="com.pacoillan.DAOHibernate.VehiculoDAOHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
 </beans>

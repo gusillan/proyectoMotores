@@ -4,12 +4,12 @@
  */
 package com.pacoillan.DAO;
 
-import com.pacoillan.pojo.Modelo;
+import com.pacoillan.pojo.Vehiculo;
 
 /**
  *
- * @author Gustavo
+ * @author Gustabo
  */
-public interface ModeloDAO extends GenericDAO<Modelo,Integer>{
+public interface VehiculoDAO extends GenericDAO<Vehiculo,Integer>{
     
 }

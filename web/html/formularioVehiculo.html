@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+        <title>Formulario Vehículo</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- ESTILOS CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/global.css" />
+        <link rel="stylesheet" href="css/overload.css">
+
+        <!-- JAVASCRIPT -->
+        <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>  
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap-confirmation.min.js" type="text/javascript"></script> 
+        <script src="js/global.js" type="text/javascript"></script> 
+        <script src="js/formularioVehiculo.js" type="text/javascript"></script> 
+        <script src="js/jquery.maskedinput.js" type="text/javascript"></script> 
+
+
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <div class="page-header">
+                <h1>Formulario Vehículo</h1>      
+            </div>
+
+            <form name="formVehiculo" id="formVehiculo">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="idVehiculo" class="">ID Vehiculo</label>
+                            <input type="text" class="form-control" id="idVehiculo" name="idVehiculo" size="5" maxlength="6" readonly="readonly">
+                        </div>               
+                    </div>               
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="matricula">Matrícula</label>
+                            <input type="text" class="form-control g-input" id="matricula" name="matricula"  maxlength="10" required title="Complete una matrícula válida">
+                        </div>               
+                    </div>   
+                    <div class="col-md-6">              
+                        <div class="form-group">
+                            <label for="chasis">Chasis</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control g-input" id="chasis" name="chasis" size="20" maxlength="20" required title="Introduzca chasis 17 cifras">
+                            </div><!-- /input-group -->
+                        </div>               
+                    </div>             
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="codigoModelo">Código Modelo</label>
+                            <input type="text" class="form-control g-input" id="codigoModelo" name="codigoModelo" size="5" maxlength="5" required title="Ponga código válido" >
+                        </div>               
+                    </div>
+                    <div class="col-md-6">              
+                        <div class="form-group">
+                            <label for="descripcionModelo">Descripción Modelo</label>
+                            <input type="text" class="form-control g-input" id="descripcionModelo" name="descripcionModelo" readonly >
+                        </div>               
+                    </div>
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="codigoMotor">Código Motor</label>
+                            <input type="text" class="form-control g-input" id="codigoMotor" name="codigoMotor" title="Ponga código válido" >
+                        </div>
+                    </div>  
+                    <div class="col-md-6">              
+                        <div class="form-group">
+                            <label for="descripcionMotor">Descripción Motor</label>
+                            <input type="text" class="form-control g-input" id="descripcionMotor" name="descripcionMotor" readonly>
+                        </div>
+                    </div>
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="fechaMatricula">Fecha Matrícula</label>
+                            <input type="text" class="form-control g-input" id="fechaMatricula" name="fechaMatricula" pattern="(0[1-9]|1[012])/(19|20)\d\d">
+                        </div>                   
+                    </div>
+                </div><!--row-->
+                
+                <div class="row">
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="codigoCliente">Código Cliente</label>
+                            <input type="text" class="form-control g-input" id="codigoCliente" name="codigoCliente" title="Ponga código válido" >
+                        </div>
+                    </div>  
+                    <div class="col-md-6">              
+                        <div class="form-group">
+                            <label for="nombreCliente">Nombre Cliente</label>
+                            <input type="text" class="form-control g-input" id="nombreCliente" name="nombreCliente" readonly>
+                        </div>
+                    </div>
+                </div><!--row-->
+                
+                <div class="row">
+                    <div class="col-md-8">              
+                        <div class="form-group">
+                            <label for="informacion">Información</label>
+                            <textarea class="form-control" id="informacion" name="informacion" rows="3"></textarea>
+                        </div>               
+                    </div>
+                </div><!--row-->
+
+                    <div class="g-space"></div>
+
+                    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+                        <div class="container">
+                            <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Guardar" id="guardar" >
+                            <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Baja" id="baja" disabled>
+                            <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Limpiar Formulario" id="limpiar">
+                            <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Listado" id="listado">
+                            <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Salir" id="salir">  
+                        </div>
+                    </nav>
+
+
+
+            </form>
+        </div>
+    </body>
+
+
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog o-modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Buscar por nombre</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">              
+                            <div class="form-group">
+                                <label for="filtrarNombre">Nombre</label>
+                                <input type="text" class="form-control g-input" id="filtrarNombre" name="filtrarNombre">
+                            </div>
+                        </div>
+                        <div class="col-md-6">              
+                            <div class="form-group">
+                                <label for="filtrarPoblacion">Poblacion</label>
+                                <input type="text" class="form-control g-input" id="filtrarPoblacion" name="filtrarPoblacion">
+                            </div>
+                        </div>          
+                    </div><!--row-->
+                    <table class="table g-table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Poblacion</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableItems">
+                            <!-- Aqui se añade la lista de items -->
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="cancelarModal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="seleccionarNombre">Seleccionar</button>
+                </div>
+            </div><!--modal-content-->
+        </div>
+    </div>
+
+
+
+
+
+</html>

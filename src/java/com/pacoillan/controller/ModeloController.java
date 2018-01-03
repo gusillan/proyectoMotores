@@ -29,11 +29,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class ModeloController {
 
     ModelAndView mv = new ModelAndView();
-    @Autowired
-    ModeloDAO modeloDao;
+    
     @Autowired
     FabricanteDAO fabricanteDao;
-
+    @Autowired
+    ModeloDAO modeloDao;
+            
     @RequestMapping("consultaModelo.htm")
     public void consultaModelo(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
