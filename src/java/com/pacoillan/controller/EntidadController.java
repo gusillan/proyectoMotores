@@ -79,6 +79,31 @@ public class EntidadController {
         System.out.println("Lista Respuesta " + lista);
         out.println(lista);
     }
+    
+    @RequestMapping("consultaClientePorCodigo.htm")
+    public void consultaClientePorCodigo(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        String codigo = (request.getParameter("codigo").toUpperCase());
+        System.out.println("Codigo a consultar  -> " + codigo);
+        List<Entidad> listaEntidades = entidadDao.listadoPorCampoExacto("idEntidad", codigo);
+        System.out.println("Entidades listadas "+listaEntidades.size());
+        System.out.println("Listado" + listaEntidades);
+        if (listaEntidades.isEmpty()) {
+            out.println();
+        } else {
+            //Collections.sort(listaEntidades);
+        }
+        Gson gson = new Gson();
+        String lista = gson.toJson(listaEntidades);
+        System.out.println("Lista Respuesta " + lista);
+        out.println(lista);
+       
+        
+        
+    }
+            
 
     @RequestMapping("altaEntidad.htm")
     public void altaEntidad( Entidad entidad, HttpServletRequest request, HttpServletResponse response) {
