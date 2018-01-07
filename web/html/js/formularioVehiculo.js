@@ -1,6 +1,6 @@
 
 /*  Listener
- *********************************************************/
+ ***********************************************************/
 $("document").ready(function() {
 
 
@@ -14,6 +14,34 @@ $("document").ready(function() {
 
 
 });
+
+/* Funciones Básicas Botones
+ *************************************************************/
+
+function guardar() {
+
+    if (validarFormulario()) {
+        var data = $("#formVehiculo").serialize();
+        console.log("Serializada " + data);
+        $.ajax({
+            url: '../guardaVehiculo.htm',
+            data: data,
+            type: 'POST',
+            sucess: limpiar
+        });
+    }
+
+}
+
+function baja() {
+
+}
+
+
+
+
+
+
 
 function consultaMatricula() {
 
@@ -70,6 +98,8 @@ function respuestaConsultaMatricula(listaObjetos) {
 }
 
 function rellenaFormulario(obj) {
+    $("#idVehiculo").val(obj.idVehiculo);
+    $("#matricula").val(obj.matricula);
     $("#chasis").val(obj.chasis);
     $("#codigoModelo").val(obj.modelo.codigo);
     $("#descripcionModelo").val(obj.modelo.descripcion);
@@ -125,6 +155,6 @@ function respuestaConsultaCliente(listaObjetos) {
     }
 }
 
-function rellenaCliente(cliente){
+function rellenaCliente(cliente) {
     $("#nombreCliente").val(cliente.nombre);
 }
