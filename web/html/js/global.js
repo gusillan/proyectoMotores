@@ -22,13 +22,21 @@ var confirmationOpt = {
 $("document").ready(function() {
 
     /* Hacer mayusculas */
-    $(".g-input").blur(function() {
+    $(".g-input[type=text]").blur(function() {
         this.value = this.value.toUpperCase();
     });
-    $(".g-input").keyup(function() {
+    $(".g-input[type=text]").keyup(function() {
         this.value = this.value.toUpperCase();
     });
 
+    $(".g-input[type=date]").on("change", function() {
+        console.log("hola");
+        this.setAttribute(
+            "data-date",
+            moment(this.value, "YYYY-MM-DD")
+            .format( "DD/MM/YYYY" )
+        )
+    });
 
     // Refresca que elementos son enfocables y pone el foco en el primero;
     updateFocusables();
