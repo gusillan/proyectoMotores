@@ -127,4 +127,26 @@ public class ModeloController {
 
 
     }
+    
+    @RequestMapping("consultaPorDescripcionModelo.htm")
+    public void consultaPorDescripcionModelo(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+
+        System.out.println("Descripcion " + request.getParameter("descripcion"));
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        String descripcionModelo = (request.getParameter("descripcion").toUpperCase());        
+        List<Modelo> listaModelos = modeloDao.listadoPorCampo("descripcion", descripcionModelo);
+        System.out.println("Listado" + listaModelos);
+        if (listaModelos.isEmpty()) {
+            out.println();
+        } else {
+            Collections.sort(listaModelos);
+        }
+        Gson gson = new Gson();
+        String lista = gson.toJson(listaModelos);
+        System.out.println("Lista Respuesta " + lista);
+        out.println(lista);
+    }
 }

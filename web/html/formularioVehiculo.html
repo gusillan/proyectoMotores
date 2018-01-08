@@ -49,14 +49,17 @@
                             <input type="text" class="form-control g-input" id="matricula" name="matricula"  maxlength="10" required title="Complete una matrícula válida. Todo junto sin espacios ni guiones" pattern="[0-9]{4}[A-Z]{3}|[A-Z]{1,2}[0-9]{4}[A-Z]{1,2}">
                         </div>               
                     </div>   
-                    <div class="col-md-6">              
+                    <div class="col-md-4">              
                         <div class="form-group">
                             <label for="chasis">Chasis</label>
                             <div class="form-group">
                                 <input type="text" class="form-control g-input" id="chasis" name="chasis"  size="20" maxlength="17" required title="Introduzca el nº de chasis con 17 cifras" pattern="[ABCDEFGHJKLMNPRSTUVWXYZ0-9]{17}">
                             </div><!-- /input-group -->
-                        </div>               
-                    </div>             
+                        </div>
+                    </div>  
+                    <div class="col-md-2">
+                        <img id="logoMarca" class="g-img previstaImagen" src="">
+                    </div>           
                 </div><!--row-->
 
                 <div class="row">
@@ -90,7 +93,7 @@
                         <div class="form-group">
                             <label for="descripcionMotor">Descripción Motor</label>
                             <div class="input-group">
-	                            <input type="text" class="form-control g-input" id="descripcionMotor">
+                                <input type="text" class="form-control g-input" id="descripcionMotor">
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-primary" id="buscarMotor">Buscar</button>
                                 </span>
@@ -108,7 +111,7 @@
                         </div>                   
                     </div>
                 </div><!--row-->
-                
+
                 <div class="row">
                     <div class="col-md-2">              
                         <div class="form-group">
@@ -120,7 +123,7 @@
                         <div class="form-group">
                             <label for="nombreCliente">Nombre Cliente</label>
                             <div class="input-group">
-	                            <input type="text" class="form-control g-input" id="nombreCliente">
+                                <input type="text" class="form-control g-input" id="nombreCliente">
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-primary" id="buscarEntidad">Buscar</button>
                                 </span>
@@ -128,7 +131,7 @@
                         </div>
                     </div>
                 </div><!--row-->
-                
+
                 <div class="row">
                     <div class="col-md-8">              
                         <div class="form-group">
@@ -138,17 +141,18 @@
                     </div>
                 </div><!--row-->
 
-                    <div class="g-space"></div>
+                <div class="g-space"></div>
 
-                    <nav class="navbar navbar-inverse navbar-fixed-bottom">
-                        <div class="container">
-                            <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Guardar" id="guardar" >
-                            <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Baja" id="baja" disabled>
-                            <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Limpiar Formulario" id="limpiar">
-                            <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Listado" id="listado">
-                            <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Salir" id="salir">  
-                        </div>
-                    </nav>
+                <nav class="navbar navbar-inverse navbar-fixed-bottom">
+                    <div class="container">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Guardar" id="guardar" >
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Baja" id="baja" disabled>
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Limpiar Formulario" id="limpiar">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Listado" id="listado">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Volver" id="volver">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Inicio" id="inicio">
+                    </div>
+                </nav>
 
 
 

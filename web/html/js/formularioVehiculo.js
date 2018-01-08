@@ -3,13 +3,24 @@
 /*  Variables globales
  *********************************************************/
 ventanaEntidad = new VentanaEmergente({
-        modal: 'entidadModal',
-        titulo: 'Busqueda por nombre',
-        campos: ['nombre','poblacion'],
-        campoID: 'idEntidad',
-        filtros: ['nombre','poblacion']   ,
-        callback: rellenaCliente     
-    });
+    modal: 'entidadModal',
+    titulo: 'Busqueda por nombre',
+    campos: ['nombre', 'poblacion'],
+    campoID: 'idEntidad',
+    filtros: ['nombre', 'poblacion'],
+    callback: rellenaCliente
+});
+
+ventanaModelo = new VentanaEmergente({
+    modal : 'modeloModal',
+    titulo : 'Busqueda por modelo',
+    campos : ['codigo','descripcion'],
+    campoID : 'idModelo',
+    filtros : ['codigo', 'descripcion'],
+    callback : rellenaModelo   
+    
+});
+
 
 
 /*  Listener
@@ -23,13 +34,11 @@ $("document").ready(function() {
     $("#codigoModelo").blur(consultaModelo);
     $("#codigoMotor").blur(consultaMotor);
     $("#codigoCliente").blur(consultaCliente);
-
-
-    //Busquedas
-    $("#buscarEntidad").click(consultaEntidad);
-
+    //Botones de busqueda
+    $("#buscarEntidad").click(buscarEntidad);
+    $("#buscarModelo").click(buscarModelo);
+    $("#buscarMotor").click(buscarMotor);
 });
-
 /* Funciones Básicas Botones
  *************************************************************/
 
@@ -52,13 +61,12 @@ function baja() {
 }
 
 
-
-
+/* Funciones de Consulta de codigos
+ ************************************************************/
 
 function consultaMatricula() {
 
     var matricula = $("#matricula").val();
-
     console.log("Vamos a consultar la matricula " + matricula);
     if (!vacio($("#matricula"))) {
         $.getJSON(
@@ -68,7 +76,6 @@ function consultaMatricula() {
     } else {
         console.log("Campo de matrícula vacio");
     }
-
 }
 
 function consultaModelo() {
@@ -97,6 +104,10 @@ function consultaCliente() {
             {codigo: cliente},
     respuestaConsultaCliente);
 }
+
+
+/* Funciones operativas
+ ************************************************************/
 
 function respuestaConsultaMatricula(listaObjetos) {
     if (listaObjetos.length == 1) {
@@ -136,6 +147,8 @@ function respuestaConsultaModelo(listaObjetos) {
 
 function rellenaModelo(modelo) {
     $("#descripcionModelo").val(modelo.descripcion);
+    $("#codigoModelo").val(modelo.codigo);
+    $("#logoMarca").attr("src", "img/marcas/"+modelo.fabricante.logo);
     $("#codigoMotor").focus();
 }
 
@@ -153,7 +166,6 @@ function respuestaConsultaMotor(listaObjetos) {
 function rellenaMotor(motor) {
     $("#descripcionMotor").val(motor.descripcion);
     $("#fechaMatricula").focus();
-
 }
 
 function respuestaConsultaCliente(listaObjetos) {
@@ -167,7 +179,7 @@ function respuestaConsultaCliente(listaObjetos) {
     }
 }
 
-function rellenaCliente(cliente){
+function rellenaCliente(cliente) {
     $("#codigoCliente").val(cliente.idEntidad);
     $("#nombreCliente").val(cliente.nombre);
 }
@@ -175,28 +187,55 @@ function rellenaCliente(cliente){
 
 /*  Busquedas
  *********************************************************/
-function consultaEntidad() {
-    if ($("#nombreCliente").val().length>2) {
-        console.log("Campo nombre RELLENO "+$("#nombreCliente").val().length ) ;
+function buscarEntidad() {
+    if ($("#nombreCliente").val().length > 2) {
+        console.log("Campo nombre RELLENO " + $("#nombreCliente").val().length);
         $.ajax({
-            url: 'http://localhost:8084/ProyectoMotores/consultaPorNombre.htm',
+            url: '../consultaPorNombre.htm',
             data: {nombre: $('#nombreCliente').val()},
             type: 'POST',
             dataType: 'json',
-            success: respuestaConsultaEntidad
+            success: respuestaBuscarEntidad
         });
     } else {
         console.log("Campo nombre debe tener 3 o mas caracteres");
     }
 }
 
-function respuestaConsultaEntidad(responseJson) {
+function respuestaBuscarEntidad(responseJson) {
     clientesJson = responseJson;
     if (clientesJson.length == 0) {
         console.log("Error: la consulta del nombre no ha obtenido ningun resultado");
     } else if (clientesJson.length == 1) {
         rellenaCliente(clientesJson[0]);
     } else {
-        ventanaEntidad.abrir( responseJson );   //Abre la ventana Modal con la lista
+        ventanaEntidad.abrir(responseJson); //Abre la ventana Modal con la lista
+    }
+}
+
+function buscarModelo() {
+
+    var descripcionModelo = $("#descripcionModelo").val()
+    if (descripcionModelo.length > 2) {
+        console.log("Campo modelo RELLENO");
+        $.ajax({
+            url: '../consultaPorDescripcionModelo.htm',
+            data: {descripcion: descripcionModelo},
+            type: 'POST',
+            dataType: 'json',
+            success: respuestaBuscarModelo
+
+        });
+    }
+
+}
+
+function respuestaBuscarModelo(modelos) {
+    if (modelos.length == 0) {
+        console.log("Error: la consulta del nombre no ha obtenido ningun resultado");
+    } else if (modelos.length == 1) {
+        rellenaModelo(modelos[0]);
+    } else {
+        ventanaModelo.abrir(modelos); //Abre la ventana Modal con la lista
     }
 }

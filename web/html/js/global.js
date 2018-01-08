@@ -72,7 +72,8 @@ $("document").ready(function() {
     });
     $("#limpiar").click(limpiar);
     $("#listado").click(listado);
-    $("#salir").click(salir);
+    $("#volver").click(volver);
+    $("#inicio").click(inicio);
 
 
     /* Atajos de teclado */
@@ -144,9 +145,13 @@ function limpiar() {
 
 
 
-function salir() {
-    console.log("Pulsado el boton de SALIR");
+function volver() {
+    console.log("Pulsado el boton de VOLVER");
     window.history.back();
+}
+
+function inicio() {
+    window.location="../index.htm";
 }
 
 
