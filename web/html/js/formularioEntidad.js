@@ -36,7 +36,7 @@ $("document").ready(function() {
     $("#movil").mask("999 999 999", {placeholder: " "});
 
 
-    //Modal************ 
+    //Busquedas
     $("#buscarNombre").click(consultaNombre);
 
 
@@ -152,7 +152,6 @@ function consultaNombre() {
     } else {
         console.log("Campo nombre debe tener 3 o mas caracteres");
     }
-
 }
 
 function respuestaConsultaNombre(responseJson) {

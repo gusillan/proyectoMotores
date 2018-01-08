@@ -1,4 +1,17 @@
 
+
+/*  Variables globales
+ *********************************************************/
+ventanaEntidad = new VentanaEmergente({
+        modal: 'entidadModal',
+        titulo: 'Busqueda por nombre',
+        campos: ['nombre','poblacion'],
+        campoID: 'idEntidad',
+        filtros: ['nombre','poblacion']   ,
+        callback: rellenaCliente     
+    });
+
+
 /*  Listener
  ***********************************************************/
 $("document").ready(function() {
@@ -12,6 +25,8 @@ $("document").ready(function() {
     $("#codigoCliente").blur(consultaCliente);
 
 
+    //Busquedas
+    $("#buscarEntidad").click(consultaEntidad);
 
 });
 
@@ -152,6 +167,36 @@ function respuestaConsultaCliente(listaObjetos) {
     }
 }
 
-function rellenaCliente(cliente) {
+function rellenaCliente(cliente){
+    $("#codigoCliente").val(cliente.idEntidad);
     $("#nombreCliente").val(cliente.nombre);
+}
+
+
+/*  Busquedas
+ *********************************************************/
+function consultaEntidad() {
+    if ($("#nombreCliente").val().length>2) {
+        console.log("Campo nombre RELLENO "+$("#nombreCliente").val().length ) ;
+        $.ajax({
+            url: 'http://localhost:8084/ProyectoMotores/consultaPorNombre.htm',
+            data: {nombre: $('#nombreCliente').val()},
+            type: 'POST',
+            dataType: 'json',
+            success: respuestaConsultaEntidad
+        });
+    } else {
+        console.log("Campo nombre debe tener 3 o mas caracteres");
+    }
+}
+
+function respuestaConsultaEntidad(responseJson) {
+    clientesJson = responseJson;
+    if (clientesJson.length == 0) {
+        console.log("Error: la consulta del nombre no ha obtenido ningun resultado");
+    } else if (clientesJson.length == 1) {
+        rellenaCliente(clientesJson[0]);
+    } else {
+        ventanaEntidad.abrir( responseJson );   //Abre la ventana Modal con la lista
+    }
 }

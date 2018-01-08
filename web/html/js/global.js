@@ -197,7 +197,8 @@ function VentanaEmergente(opciones){
         titulo  : 'Titulo',
         campos  : ['Campo1','Campo2','Campo3'],
         campoID : 'Campo1',
-        filtros : ['Campo1']
+        filtros : ['Campo1'],
+        callback: mycallback
     }, opciones);*/
 
     miVentana = this;
@@ -207,6 +208,12 @@ function VentanaEmergente(opciones){
     this.campos = opciones.campos;
     this.campoID = opciones.campoID;
     this.filtros = opciones.filtros;
+    if (opciones.callback) {
+        this.callback = opciones.callback;        
+    }else{
+        this.callback = rellenaFormulario;        
+    }
+
 
     this.json = {};
     this.arrayID = [];
@@ -218,8 +225,9 @@ function VentanaEmergente(opciones){
 
         $('body').append(ventanaEmergente);
         var head = '';
+        width = 100/opciones.campos.length;
         for (var i = 0; i < opciones.campos.length; i++) {
-            head += '<th>'+capitalize( opciones.campos[i] )+'</th>';
+            head += '<th style="width: '+width+'%;">'+capitalize( opciones.campos[i] )+'</th>';
         }
         $('#'+opciones.modal+'-head').html(head);
 
@@ -305,6 +313,9 @@ VentanaEmergente.prototype.abrir = function( json ) {
     this.json = json;
     var modal = this.modal;
     var campoID = this.campoID;
+    var callback = this.callback;
+
+
 
 
     //validar
@@ -324,10 +335,11 @@ VentanaEmergente.prototype.abrir = function( json ) {
     //crear lista html
     var lista = '';
     $('#'+modal+'-cantidad').text(json.length+" ");
+    width = 100/this.campos.length;
     for (var i = 0; i < json.length; i++) {
         lista += '<tr data-'+this.campoID+'="' + json[i][this.campoID]+ '" tabindex="0">';
         for (var j = 0; j < this.campos.length; j++) {
-            lista += '<td>' + json[i][this.campos[j]] + '</td>';
+            lista += '<td  style="width: '+width+'%;">' + json[i][this.campos[j]] + '</td>';
         }
         lista += '</tr>';
     }
@@ -343,7 +355,8 @@ VentanaEmergente.prototype.abrir = function( json ) {
         var seleccionCampoID = $(this).attr("data-"+campoID);
         for (var i = 0; i < json.length; i++) {
             if (json[i][campoID] == seleccionCampoID) {
-                rellenaFormulario(json[i]);
+                //rellenaFormulario();
+                callback( json[i] );
                 $('#'+modal).modal('hide');
                 $('#'+modal+'-items tr').remove();
             }
@@ -353,7 +366,8 @@ VentanaEmergente.prototype.abrir = function( json ) {
         var seleccionCampoID = $('#'+modal+'-items tr.o-selected').attr("data-"+campoID);
         for (var i = 0; i < json.length; i++) {
             if (json[i][campoID] == seleccionCampoID) {
-                rellenaFormulario(json[i]);
+                //rellenaFormulario();
+                callback( json[i] );
                 $('#'+modal).modal('hide');
                 $('#'+modal+'-items tr').remove();
             }
