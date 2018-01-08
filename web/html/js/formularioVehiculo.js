@@ -27,17 +27,14 @@ function guardar() {
             url: '../guardaVehiculo.htm',
             data: data,
             type: 'POST',
-            sucess: limpiar
+            success: limpiar
         });
     }
-
 }
 
 function baja() {
 
 }
-
-
 
 
 
