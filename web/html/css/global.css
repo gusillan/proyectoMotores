@@ -81,6 +81,26 @@ input[type=file]::-webkit-file-upload-button:active{
 
 
 
+/*arreglo para las tablas*/
+thead, tbody, tr, td, th { display: block; }
+tbody {
+    height: 260px;
+    overflow-y: auto;
+}
+tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+tbody td, thead th {
+    width: 20%;
+    float: left;
+}
+
+
+
+
 /*	Clases
 *********************************************************/
 .g-input{
