@@ -4,6 +4,8 @@ package com.pacoillan.pojo;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -18,7 +20,7 @@ import javax.persistence.TemporalType;
 @Table(name = "vehiculo", catalog = "pacoillan2")
 public class Vehiculo implements java.io.Serializable {
 
-    private int idVehiculo;
+    private Integer idVehiculo;
     private String matricula;
     private String chasis;
     private Modelo modelo;
@@ -30,8 +32,14 @@ public class Vehiculo implements java.io.Serializable {
     public Vehiculo() {
     }
 
-    public Vehiculo(int idVehiculo, String matricula, String chasis, Modelo modelo, Motor motor, Entidad entidad, String informacion) {
-        this.idVehiculo = idVehiculo;
+    public Vehiculo(String matricula, String chasis, Date fechaMatricula, String informacion) {
+        this.matricula = matricula;
+        this.chasis = chasis;
+        this.fechaMatricula = fechaMatricula;
+        this.informacion = informacion;
+    }
+
+    public Vehiculo(String matricula, String chasis, Modelo modelo, Motor motor, Entidad entidad, String informacion) {
         this.matricula = matricula;
         this.chasis = chasis;
         this.modelo = modelo;
@@ -40,8 +48,7 @@ public class Vehiculo implements java.io.Serializable {
         this.informacion = informacion;
     }
 
-    public Vehiculo(int idVehiculo, String matricula, String chasis, Modelo modelo, Motor motor, Date fechaMatricula, Entidad entidad, String informacion) {
-        this.idVehiculo = idVehiculo;
+    public Vehiculo(String matricula, String chasis, Modelo modelo, Motor motor, Date fechaMatricula, Entidad entidad, String informacion) {
         this.matricula = matricula;
         this.chasis = chasis;
         this.modelo = modelo;
@@ -52,12 +59,13 @@ public class Vehiculo implements java.io.Serializable {
     }
 
     @Id
+    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "idVehiculo", unique = true, nullable = false)
-    public int getIdVehiculo() {
+    public Integer getIdVehiculo() {
         return this.idVehiculo;
     }
 
-    public void setIdVehiculo(int idVehiculo) {
+    public void setIdVehiculo (Integer idVehiculo) {
         this.idVehiculo = idVehiculo;
     }
 

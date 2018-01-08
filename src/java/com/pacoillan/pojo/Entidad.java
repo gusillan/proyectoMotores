@@ -45,8 +45,7 @@ public class Entidad  implements java.io.Serializable {
        this.informacion = informacion;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
-    
+    @Id @GeneratedValue(strategy=IDENTITY)    
     @Column(name="idEntidad", unique=true, nullable=false)
     public Integer getIdEntidad() {
         return this.idEntidad;
