@@ -143,7 +143,7 @@ function consultaNombre() {
     if ($("#nombre").val().length>2) {
         console.log("Campo nombre RELLENO "+$("#nombre").val().length ) ;
         $.ajax({
-            url: 'http://localhost:8084/ProyectoMotores/consultaPorNombre.htm',
+            url: '../consultaPorNombre.htm',
             data: {nombre: $('#nombre').val()},
             type: 'POST',
             dataType: 'json',

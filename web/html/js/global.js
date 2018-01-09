@@ -30,7 +30,6 @@ $("document").ready(function() {
     });
 
     $(".g-input[type=date]").on("change", function() {
-        console.log("hola");
         this.setAttribute(
             "data-date",
             moment(this.value, "YYYY-MM-DD")
@@ -80,7 +79,7 @@ $("document").ready(function() {
     $("form").keypress(function(ev) {
         var keycode = (ev.keyCode ? ev.keyCode : ev.which);
         if (ev.shiftKey) {                                       // Shift + ...
-            if (keycode == '97' || keycode == '65') {           // A
+            if (keycode == '103' || keycode == '71') {           // G
                 ev.preventDefault();
                 guardar();
             } else if (keycode == '98' || keycode == '66') {     // B
@@ -89,9 +88,12 @@ $("document").ready(function() {
             } else if (keycode == '108' || keycode == '76') {    // L
                 ev.preventDefault();
                 limpiar();
-            } else if (keycode == '115' || keycode == '83') {    // S
+            } else if (keycode == '118' || keycode == '86') {    // V
                 ev.preventDefault();
-                salir();
+                volver();
+            } else if (keycode == '105' || keycode == '73') {    // I
+                ev.preventDefault();
+                inicio();
             }
         }
     });
@@ -205,9 +207,6 @@ function VentanaEmergente(opciones){
         filtros : ['Campo1'],
         callback: mycallback
     }, opciones);*/
-
-    miVentana = this;
-
     this.modal = opciones.modal;
     this.titulo = opciones.titulo;
     this.campos = opciones.campos;
@@ -219,9 +218,11 @@ function VentanaEmergente(opciones){
         this.callback = rellenaFormulario;        
     }
 
-
     this.json = {};
     this.arrayID = [];
+
+    //Meter en una var this porque los listener utilizan this como el objeto que los ha llamado
+    var miVentana = this;
 
     //Para este constructor hay que utilizar opciones porque this no funciona aqui.
     $.get("ventanaEmergente.html", function(data){
@@ -259,11 +260,15 @@ function VentanaEmergente(opciones){
      
         //listener iniciales
         $('#'+opciones.modal).on('shown.bs.modal', function() {
-             updateFocusables();
+            updateFocusables();
             $('#'+opciones.modal+'-items tr')[0].focus();
         });
         $('#'+opciones.modal).on('hidden.bs.modal', function() {
-             updateFocusables();
+            $(".modeloModal-filter").each(function(){
+                this.value="";
+            });
+            $('#'+opciones.modal+'-cantidadFiltrada').text(""); 
+            updateFocusables();
             $(".g-focusable").first().focus();
         });
         $('#'+opciones.modal+'-cancelar').click(function() {
@@ -272,6 +277,7 @@ function VentanaEmergente(opciones){
         });
 
     });
+
 
 };
 
@@ -282,15 +288,13 @@ VentanaEmergente.prototype.filtrar = function() {
     var modal = this.modal;
     var campoID = this.campoID;
     var filtros = this.filtros;
+
     
     for (var i = 0; i < json.length; i++) {
        var valCampoID = json[i][campoID];
-        console.log("valCampoID: "+valCampoID);
         $('#'+modal+'-items tr[data-'+campoID+'="' + valCampoID + '"]').show();
         for (var j = 0; j < filtros.length; j++) {
             var nombreFiltro = modal+'-'+filtros[j];
-            console.log("nombreFiltro: "+nombreFiltro);
-            console.log("filtro: "+json[i][filtros[j]] );
             stringValue = String( json[i][filtros[j]] );
             if (! stringValue.includes( $('#'+nombreFiltro).val() ) ){
                 $('#'+modal+'-items tr[data-'+campoID+'="' + valCampoID + '"]').hide();
@@ -319,9 +323,6 @@ VentanaEmergente.prototype.abrir = function( json ) {
     var modal = this.modal;
     var campoID = this.campoID;
     var callback = this.callback;
-
-
-
 
     //validar
     for (var i = this.campos.length - 1; i >= 0; i--) {
@@ -352,7 +353,6 @@ VentanaEmergente.prototype.abrir = function( json ) {
     $('#'+modal+'-items').html(lista);
     $('#'+modal+'-items tr:odd').addClass("striped");
     $('#'+modal).modal('show');
-
 
 
     //Una vez puesto los elementos en el html se pone el listener de los elem de la lista

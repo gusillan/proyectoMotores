@@ -202,14 +202,13 @@ function buscarEntidad() {
     }
 }
 
-function respuestaBuscarEntidad(responseJson) {
-    clientesJson = responseJson;
+function respuestaBuscarEntidad(clientesJson) {
     if (clientesJson.length == 0) {
         console.log("Error: la consulta del nombre no ha obtenido ningun resultado");
     } else if (clientesJson.length == 1) {
         rellenaCliente(clientesJson[0]);
     } else {
-        ventanaEntidad.abrir(responseJson); //Abre la ventana Modal con la lista
+        ventanaEntidad.abrir(clientesJson); //Abre la ventana Modal con la lista
     }
 }
 
