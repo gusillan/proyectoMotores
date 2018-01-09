@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MotorController {
 
-    ModelAndView mv = new ModelAndView();
+    
     @Autowired
     MotorDAO motorDao;
     @Autowired
@@ -91,6 +91,28 @@ public class MotorController {
         System.out.println("Motores JSON " + lista);
         response.setContentType("text/xml;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        out.println(lista);
+    }
+    
+    @RequestMapping("consultaPorDescripcionMotor.htm")
+    public void consultaPorDescripcionMotor(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+
+        System.out.println("Descripcion " + request.getParameter("descripcion"));
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        String descripcionMotor = (request.getParameter("descripcion").toUpperCase());        
+        List<Motor> listaMotores = motorDao.listadoPorCampo("descripcion", descripcionMotor);
+        System.out.println("Listado" + listaMotores);
+        if (listaMotores.isEmpty()) {
+            out.println();
+        } else {
+            Collections.sort(listaMotores);
+        }
+        Gson gson = new Gson();
+        String lista = gson.toJson(listaMotores);
+        System.out.println("Lista Respuesta " + lista);
         out.println(lista);
     }
 }

@@ -4,7 +4,7 @@
  *********************************************************/
 ventanaEntidad = new VentanaEmergente({
     modal: 'entidadModal',
-    titulo: 'Busqueda por nombre',
+    titulo: 'Búsqueda por nombre',
     campos: ['nombre', 'poblacion'],
     campoID: 'idEntidad',
     filtros: ['nombre', 'poblacion'],
@@ -13,7 +13,7 @@ ventanaEntidad = new VentanaEmergente({
 
 ventanaModelo = new VentanaEmergente({
     modal : 'modeloModal',
-    titulo : 'Busqueda por modelo',
+    titulo : 'Búsqueda por modelo',
     campos : ['codigo','descripcion'],
     campoID : 'idModelo',
     filtros : ['codigo', 'descripcion'],
@@ -21,6 +21,14 @@ ventanaModelo = new VentanaEmergente({
     
 });
 
+ventanaMotor = new VentanaEmergente({
+    modal : 'motorModal',
+    titulo : 'Búsqueda por motor',
+    campos : ['codigo','descripcion'],
+    campoID : 'idMotor',
+    filtros : ['codigo','descripcion'],
+    callback : rellenaMotor
+});
 
 
 /*  Listener
@@ -165,6 +173,7 @@ function respuestaConsultaMotor(listaObjetos) {
 
 function rellenaMotor(motor) {
     $("#descripcionMotor").val(motor.descripcion);
+    $("#codigoMotor").val(motor.codigo);
     $("#fechaMatricula").focus();
 }
 
@@ -231,10 +240,36 @@ function buscarModelo() {
 
 function respuestaBuscarModelo(modelos) {
     if (modelos.length == 0) {
-        console.log("Error: la consulta del nombre no ha obtenido ningun resultado");
+        console.log("Error: la consulta del modelo no ha obtenido ningun resultado");
     } else if (modelos.length == 1) {
         rellenaModelo(modelos[0]);
     } else {
         ventanaModelo.abrir(modelos); //Abre la ventana Modal con la lista
+    }
+}
+
+function buscarMotor() {
+
+    var descripcionMotor = $("#descripcionMotor").val()
+    if (descripcionMotor.length > 2) {
+        console.log("Campo motor RELLENO");
+        $.ajax({
+            url: '../consultaPorDescripcionMotor.htm',
+            data: {descripcion: descripcionMotor},
+            type: 'POST',
+            dataType: 'json',
+            success: respuestaBuscarMotor
+
+        });
+    }
+}
+
+function respuestaBuscarMotor(motores) {
+    if (motores.length == 0) {
+        console.log("Error: la consulta del motor no ha obtenido ningun resultado");
+    } else if (motores.length == 1) {
+        rellenaModelo(motores[0]);
+    } else {
+        ventanaMotor.abrir(motores); //Abre la ventana Modal con la lista
     }
 }
