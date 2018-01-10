@@ -24,7 +24,8 @@ public class Motor implements java.io.Serializable, Comparable {
     private String cilindrada;
     private Float kw;
     private Fabricante fabricante;
-
+    private String informacion;
+    
     public Motor() {
     }
     
@@ -37,13 +38,14 @@ public class Motor implements java.io.Serializable, Comparable {
         this.descripcion = descripcion;
     }
 
-    public Motor(String codigo, String descripcion, String combustible, String cilindrada, Float kw, Fabricante fabricante) {
+    public Motor(String codigo, String descripcion, String combustible, String cilindrada, Float kw, Fabricante fabricante, String informacion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.combustible = combustible;
         this.cilindrada = cilindrada;
         this.kw = kw;
         this.fabricante = fabricante;
+        this.informacion = informacion;
     }
 
     @Id
@@ -111,10 +113,24 @@ public class Motor implements java.io.Serializable, Comparable {
     public void setFabricante(Fabricante fabricante) {
         this.fabricante = fabricante;
     }
+    
+    @Column(name = "informacion", length = 2000)
+    public String getInformacion() {
+        return informacion;
+    }
+
+    public void setInformacion(String informacion) {
+        this.informacion = informacion;
+    }
+    
 
     @Override
     public int compareTo(Object t) {
         Motor otraMotor = (Motor) t;
         return codigo.compareTo(otraMotor.getCodigo());
     }
+
+    
+    
+    
 }

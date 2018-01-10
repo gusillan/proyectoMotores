@@ -112,7 +112,8 @@ function rellenaFormulario(obj) {
     $("#idMarca").val(obj.idMotor);
     $("#codigoMarca").val(obj.fabricante.codigo);
     $("#marcaMotor").val(obj.fabricante.nombre);
-    $("#logoMarca").attr("src", "img/marcas/"+obj.fabricante.logo);  
+    $("#logoMarca").attr("src", "img/marcas/"+obj.fabricante.logo); 
+    $("#informacion").val(obj.informacion);
     $("#nuevoMotorBotonGroup").show();
     $("#nuevoMotorBotonGroup input").attr("disabled", false);
     $("#baja").attr("disabled",false);
