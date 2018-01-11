@@ -399,15 +399,6 @@ VentanaEmergente.prototype.abrir = function(json) {
 
 };
 
-
-
-
-
-
-
-
-
-
 /*  Plugins para Jquery
  *********************************************************/
 $.fn.enterKey = function(fnc) {
@@ -420,9 +411,6 @@ $.fn.enterKey = function(fnc) {
         });
     });
 };
-
-
-
 
 /*  Helpers
  *********************************************************/
