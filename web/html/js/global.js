@@ -43,11 +43,17 @@ $("document").ready(function() {
 
 
     /* Utilizar ENTER para pasar al siguiente input*/
-    $(".g-input").enterKey(function() {
-        var inputs = $(".g-input");
+    $(".g-input, .g-select").enterKey(function() {
+        var inputs = $(".g-input, .g-select");
         var index = inputs.index(this);
         inputs[index + 1].focus();
     });
+    $(".g-select").change(function() {
+        var inputs = $(".g-input, .g-select");
+        var index = inputs.index(this);
+        inputs[index + 1].focus();
+    });
+
 
 
     /* Botones de las funciones básicas del formulario*/
