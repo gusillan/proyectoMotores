@@ -79,6 +79,18 @@ input[type=file]::-webkit-file-upload-button:active{
 }
 
 
+label{
+    display: block;
+}
+label a{
+    opacity: 0;
+    float: right;
+    margin-right: 5px;
+}
+.form-group:hover label a{
+    opacity: 1;
+}
+
 
 
 /*arreglo para las tablas*/
