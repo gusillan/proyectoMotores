@@ -73,20 +73,17 @@ function baja() {
  ************************************************************/
 
 function consultaMatricula() {
-
-    var matricula = $("#matricula").val();
-    console.log("Vamos a consultar la matricula " + matricula);
     if (!vacio($("#matricula"))) {
+        var matricula = $("#matricula").val();
+        console.log("Vamos a consultar la matricula " + matricula);
         $.getJSON(
                 '../consultaMatricula.htm',
                 {matricula: matricula},
         respuestaConsultaMatricula);
-    } else {
-        console.log("Campo de matrícula vacio");
     }
 }
 
-function consultaModelo() {    
+function consultaModelo() {
     if (!vacio($("#codigoModelo"))) {
         var modelo = this.value;
         console.log("Modelo " + modelo);
@@ -98,21 +95,26 @@ function consultaModelo() {
 }
 
 function consultaMotor() {
-    var motor = this.value;
-    console.log("Motor " + motor);
-    $.getJSON(
-            '../consultaCodigoMotor.htm',
-            {codigo: motor},
-    respuestaConsultaMotor);
+    if (!vacio($("#codigoMotor"))) {
+        var motor = this.value;
+        console.log("Motor " + motor);
+        $.getJSON(
+                '../consultaCodigoMotor.htm',
+                {codigo: motor},
+        respuestaConsultaMotor);
+    }
 }
 
 function consultaCliente() {
-    var cliente = this.value;
-    console.log("Cliente " + cliente);
-    $.getJSON(
-            '../consultaClientePorCodigo.htm',
-            {codigo: cliente},
-    respuestaConsultaCliente);
+    if (!vacio($("#codigoCliente"))) {
+        var cliente = this.value;
+        console.log("Cliente " + cliente);
+        $.getJSON(
+                '../consultaClientePorCodigo.htm',
+                {codigo: cliente},
+        respuestaConsultaCliente);
+    }
+
 }
 
 
@@ -288,7 +290,7 @@ function darAltaModelo() {
     respuesta = confirm("Desea dar de alta este Modelo?");
     if (respuesta == true) {
         console.log("Ha pulsado si");
-        window.location="../html/formularioModelo.html";
+        window.location = "../html/formularioModelo.html?codigo=" + $("#codigoModelo").val();
     } else {
         console.log("Ha pulsado no");
         $("#codigoModelo").val("");

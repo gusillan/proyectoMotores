@@ -31,10 +31,10 @@ $("document").ready(function() {
 
     $(".g-input[type=date]").on("change", function() {
         this.setAttribute(
-            "data-date",
-            moment(this.value, "YYYY-MM-DD")
-            .format( "DD/MM/YYYY" )
-        )
+                "data-date",
+                moment(this.value, "YYYY-MM-DD")
+                .format("DD/MM/YYYY")
+                )
     });
 
     // Refresca que elementos son enfocables y pone el foco en el primero;
@@ -132,7 +132,7 @@ function validarFormulario() {
 
 
 function vacio(campo) {
-    if (campo.val()=="" || campo.val() == null || /^\s*$/.test(campo.val())) {
+    if (campo.val() == "" || campo.val() == null || /^\s*$/.test(campo.val())) {
         return true;
     } else {
         return false;
@@ -159,7 +159,7 @@ function volver() {
 }
 
 function inicio() {
-    window.location="../index.htm";
+    window.location = "../index.htm";
 }
 
 
@@ -170,58 +170,59 @@ function inicio() {
  *********************************************************/
 var focusablesPrincipales = "button:not(:disabled), textarea, select, input:not(:disabled):not([readonly])";
 var focusablesModal = ".modal tr[tabindex]:visible, .modal .g-input, .modal button";
-function updateFocusables(){                                   //Funciona para actualizar los elementos enfocables
-    if ( $('.modal').is(':visible') ){
+function updateFocusables() {                                   //Funciona para actualizar los elementos enfocables
+    if ($('.modal').is(':visible')) {
         $(".g-focusable").off("keydown", focusableMove);
         $(".g-focusable").removeClass("g-focusable");
-        $(focusablesModal).addClass("g-focusable");      
+        $(focusablesModal).addClass("g-focusable");
         $(".g-focusable").on("keydown", focusableMove);
-    }else{
+    } else {
         $(".g-focusable").off("keydown", focusableMove);
         $(".g-focusable").removeClass("g-focusable");
-        $(focusablesPrincipales).addClass("g-focusable");      
+        $(focusablesPrincipales).addClass("g-focusable");
         $(".g-focusable").on("keydown", focusableMove);
     }
 }
-function focusableMove(ev){                                    //flechas arriba y abajo
+function focusableMove(ev) {                                    //flechas arriba y abajo
     var keycode = (ev.keyCode ? ev.keyCode : ev.which);
     if (keycode == '38' || keycode == '40') {
         ev.preventDefault();
         var items = $(".g-focusable");
-        var index = items.index(this);        
-        if (keycode == '38' && index >= 1 ) {
+        var index = items.index(this);
+        if (keycode == '38' && index >= 1) {
             items[index - 1].focus();
-        }else if(keycode == '40' && index < items.length-1 ) {
+        } else if (keycode == '40' && index < items.length - 1) {
             ev.preventDefault();
             items[index + 1].focus();
         }
     }
-};
+}
+;
 
 
 
 
 /*  Ventana emergente (modal)
  *********************************************************/
-function VentanaEmergente(opciones){
+function VentanaEmergente(opciones) {
 
-/*    this.opciones = $.extend({
-        modal   : 'miModal', 
-        titulo  : 'Titulo',
-        campos  : ['Campo1','Campo2','Campo3'],
-        campoID : 'Campo1',
-        filtros : ['Campo1'],
-        callback: mycallback
-    }, opciones);*/
+    /*    this.opciones = $.extend({
+     modal   : 'miModal', 
+     titulo  : 'Titulo',
+     campos  : ['Campo1','Campo2','Campo3'],
+     campoID : 'Campo1',
+     filtros : ['Campo1'],
+     callback: mycallback
+     }, opciones);*/
     this.modal = opciones.modal;
     this.titulo = opciones.titulo;
     this.campos = opciones.campos;
     this.campoID = opciones.campoID;
     this.filtros = opciones.filtros;
     if (opciones.callback) {
-        this.callback = opciones.callback;        
-    }else{
-        this.callback = rellenaFormulario;        
+        this.callback = opciones.callback;
+    } else {
+        this.callback = rellenaFormulario;
     }
 
     this.json = {};
@@ -231,17 +232,17 @@ function VentanaEmergente(opciones){
     var miVentana = this;
 
     //Para este constructor hay que utilizar opciones porque this no funciona aqui.
-    $.get("ventanaEmergente.html", function(data){
+    $.get("ventanaEmergente.html", function(data) {
         ventanaEmergente = data.replace(/@modal/g, opciones.modal);
         ventanaEmergente = ventanaEmergente.replace(/@titulo/g, opciones.titulo);
 
         $('body').append(ventanaEmergente);
         var head = '';
-        width = 100/opciones.campos.length;
+        width = 100 / opciones.campos.length;
         for (var i = 0; i < opciones.campos.length; i++) {
-            head += '<th style="width: '+width+'%;">'+capitalize( opciones.campos[i] )+'</th>';
+            head += '<th style="width: ' + width + '%;">' + capitalize(opciones.campos[i]) + '</th>';
         }
-        $('#'+opciones.modal+'-head').html(head);
+        $('#' + opciones.modal + '-head').html(head);
 
 
         //crear filtros
@@ -249,43 +250,44 @@ function VentanaEmergente(opciones){
             var columnasFiltros = 12 / opciones.filtros.length;
             var filtros = '';
             for (var i = 0; i < opciones.filtros.length; i++) {
-                var nombreFiltro = opciones.modal+'-'+opciones.filtros[i];
-                filtros += '<div class="col-md-'+columnasFiltros+'"><div class="form-group">';
-                filtros += '<label for="'+nombreFiltro+'">'+capitalize( opciones.filtros[i] )+'</label>'
-                filtros += '<input type="text" class="form-control g-input '+opciones.modal+'-filter" id="'+nombreFiltro+'" name="'+nombreFiltro+'">'
+                var nombreFiltro = opciones.modal + '-' + opciones.filtros[i];
+                filtros += '<div class="col-md-' + columnasFiltros + '"><div class="form-group">';
+                filtros += '<label for="' + nombreFiltro + '">' + capitalize(opciones.filtros[i]) + '</label>'
+                filtros += '<input type="text" class="form-control g-input ' + opciones.modal + '-filter" id="' + nombreFiltro + '" name="' + nombreFiltro + '">'
                 filtros += '</div></div>';
             }
-            $('#'+opciones.modal+'-filtros').html(filtros);
+            $('#' + opciones.modal + '-filtros').html(filtros);
         }
 
-        $('.'+opciones.modal+'-filter').keyup(function() {
+        $('.' + opciones.modal + '-filter').keyup(function() {
             this.value = this.value.toUpperCase();
             miVentana.filtrar();
         });
 
-     
+
         //listener iniciales
-        $('#'+opciones.modal).on('shown.bs.modal', function() {
+        $('#' + opciones.modal).on('shown.bs.modal', function() {
             updateFocusables();
-            $('#'+opciones.modal+'-items tr')[0].focus();
+            $('#' + opciones.modal + '-items tr')[0].focus();
         });
-        $('#'+opciones.modal).on('hidden.bs.modal', function() {
-            $(".modeloModal-filter").each(function(){
-                this.value="";
+        $('#' + opciones.modal).on('hidden.bs.modal', function() {
+            $(".modeloModal-filter").each(function() {
+                this.value = "";
             });
-            $('#'+opciones.modal+'-cantidadFiltrada').text(""); 
+            $('#' + opciones.modal + '-cantidadFiltrada').text("");
             updateFocusables();
             $(".g-focusable").first().focus();
         });
-        $('#'+opciones.modal+'-cancelar').click(function() {
-            $('#'+opciones.modal).modal('hide');
-            $('#'+opciones.modal+'-items tr').remove();
+        $('#' + opciones.modal + '-cancelar').click(function() {
+            $('#' + opciones.modal).modal('hide');
+            $('#' + opciones.modal + '-items tr').remove();
         });
 
     });
 
 
-};
+}
+;
 
 
 
@@ -295,36 +297,36 @@ VentanaEmergente.prototype.filtrar = function() {
     var campoID = this.campoID;
     var filtros = this.filtros;
 
-    
+
     for (var i = 0; i < json.length; i++) {
-       var valCampoID = json[i][campoID];
-        $('#'+modal+'-items tr[data-'+campoID+'="' + valCampoID + '"]').show();
+        var valCampoID = json[i][campoID];
+        $('#' + modal + '-items tr[data-' + campoID + '="' + valCampoID + '"]').show();
         for (var j = 0; j < filtros.length; j++) {
-            var nombreFiltro = modal+'-'+filtros[j];
-            stringValue = String( json[i][filtros[j]] );
-            if (! stringValue.includes( $('#'+nombreFiltro).val() ) ){
-                $('#'+modal+'-items tr[data-'+campoID+'="' + valCampoID + '"]').hide();
+            var nombreFiltro = modal + '-' + filtros[j];
+            stringValue = String(json[i][filtros[j]]);
+            if (!stringValue.includes($('#' + nombreFiltro).val())) {
+                $('#' + modal + '-items tr[data-' + campoID + '="' + valCampoID + '"]').hide();
                 continue;
             }
         }
     }
 
-    var cantidadFiltrada = $('#'+modal+'-items tr:visible').length;
+    var cantidadFiltrada = $('#' + modal + '-items tr:visible').length;
     if (cantidadFiltrada < json.length) {
-        $('#'+modal+'-cantidadFiltrada').text(cantidadFiltrada+" de ");        
-    }else{
-        $('#'+modal+'-cantidadFiltrada').text("");             
+        $('#' + modal + '-cantidadFiltrada').text(cantidadFiltrada + " de ");
+    } else {
+        $('#' + modal + '-cantidadFiltrada').text("");
     }
 
-    $('#'+modal+'-items tr').removeClass("striped");
-    $('#'+modal+'-items tr:visible:odd').addClass("striped");
+    $('#' + modal + '-items tr').removeClass("striped");
+    $('#' + modal + '-items tr:visible:odd').addClass("striped");
 
     updateFocusables();
 }
 
 
-VentanaEmergente.prototype.abrir = function( json ) {
-    console.log( json );
+VentanaEmergente.prototype.abrir = function(json) {
+    console.log(json);
     this.json = json;
     var modal = this.modal;
     var campoID = this.campoID;
@@ -332,79 +334,70 @@ VentanaEmergente.prototype.abrir = function( json ) {
 
     //validar
     for (var i = this.campos.length - 1; i >= 0; i--) {
-        if(! json[0].hasOwnProperty( this.campos[i] ) ){
-            console.error("El campo '"+this.campos[i]+"'del modal no se encuentra en el Json recibido");
+        if (!json[0].hasOwnProperty(this.campos[i])) {
+            console.error("El campo '" + this.campos[i] + "'del modal no se encuentra en el Json recibido");
             return 1;
-        }else{
-            console.log("El campo",this.campos[i]," es correcto");
+        } else {
+            console.log("El campo", this.campos[i], " es correcto");
         }
     }
-    if(! json[0].hasOwnProperty( this.campoID ) ){
-        console.error("El campoID '"+this.campoID+"'del modal no se encuentra en el Json recibido");
+    if (!json[0].hasOwnProperty(this.campoID)) {
+        console.error("El campoID '" + this.campoID + "'del modal no se encuentra en el Json recibido");
         return 1;
     }
 
     //crear lista html
     var lista = '';
-    $('#'+modal+'-cantidad').text(json.length+" ");
-    width = 100/this.campos.length;
+    $('#' + modal + '-cantidad').text(json.length + " ");
+    width = 100 / this.campos.length;
     for (var i = 0; i < json.length; i++) {
-        lista += '<tr data-'+this.campoID+'="' + json[i][this.campoID]+ '" tabindex="0">';
+        lista += '<tr data-' + this.campoID + '="' + json[i][this.campoID] + '" tabindex="0">';
         for (var j = 0; j < this.campos.length; j++) {
-            lista += '<td  style="width: '+width+'%;">' + json[i][this.campos[j]] + '</td>';
+            lista += '<td  style="width: ' + width + '%;">' + json[i][this.campos[j]] + '</td>';
         }
         lista += '</tr>';
     }
 
-    $('#'+modal+'-items').html(lista);
-    $('#'+modal+'-items tr:odd').addClass("striped");
-    $('#'+modal).modal('show');
+    $('#' + modal + '-items').html(lista);
+    $('#' + modal + '-items tr:odd').addClass("striped");
+    $('#' + modal).modal('show');
 
 
     //Una vez puesto los elementos en el html se pone el listener de los elem de la lista
-    $('#'+modal+'-items tr').dblclick(function() {
-        var seleccionCampoID = $(this).attr("data-"+campoID);
+    $('#' + modal + '-items tr').dblclick(function() {
+        var seleccionCampoID = $(this).attr("data-" + campoID);
         for (var i = 0; i < json.length; i++) {
             if (json[i][campoID] == seleccionCampoID) {
                 //rellenaFormulario();
-                callback( json[i] );
-                $('#'+modal).modal('hide');
-                $('#'+modal+'-items tr').remove();
+                callback(json[i]);
+                $('#' + modal).modal('hide');
+                $('#' + modal + '-items tr').remove();
             }
         }
     });
-    $('#'+modal+'-seleccionar').click(function() {
-        var seleccionCampoID = $('#'+modal+'-items tr.o-selected').attr("data-"+campoID);
+    $('#' + modal + '-seleccionar').click(function() {
+        var seleccionCampoID = $('#' + modal + '-items tr.o-selected').attr("data-" + campoID);
         for (var i = 0; i < json.length; i++) {
             if (json[i][campoID] == seleccionCampoID) {
                 //rellenaFormulario();
-                callback( json[i] );
-                $('#'+modal).modal('hide');
-                $('#'+modal+'-items tr').remove();
+                callback(json[i]);
+                $('#' + modal).modal('hide');
+                $('#' + modal + '-items tr').remove();
             }
         }
-    }); 
+    });
 
 
-    $('#'+modal+'-items tr').click(function() {
-        $('#'+modal+'-items tr').removeClass("o-selected");
+    $('#' + modal + '-items tr').click(function() {
+        $('#' + modal + '-items tr').removeClass("o-selected");
         $(this).addClass("o-selected");
     });
-    $('#'+modal+'-items tr').enterKey(function() {
-        $('#'+modal+'-items tr').removeClass("o-selected");
+    $('#' + modal + '-items tr').enterKey(function() {
+        $('#' + modal + '-items tr').removeClass("o-selected");
         $(this).addClass("o-selected");
     });
 
 };
-
-
-
-
-
-
-
-
-
 
 /*  Plugins para Jquery
  *********************************************************/
@@ -419,12 +412,22 @@ $.fn.enterKey = function(fnc) {
     });
 };
 
-
-
-
 /*  Helpers
  *********************************************************/
 //Poner en mayuscula la primera letra del string
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+}
+// Funcion para obtencion de atributos de la URL 
+
+function getQueryVariable(variable){
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) {
+            return pair[1];
+        }
+    }
+    return(false);
 }
