@@ -288,7 +288,7 @@ function darAltaModelo() {
     respuesta = confirm("Desea dar de alta este Modelo?");
     if (respuesta == true) {
         console.log("Ha pulsado si");
-        window.location="../html/formularioModelo.html";
+        window.location="../html/formularioModelo.html?codigo="+$("#codigoModelo").val();
     } else {
         console.log("Ha pulsado no");
         $("#codigoModelo").val("");

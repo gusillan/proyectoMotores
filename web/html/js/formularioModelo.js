@@ -1,8 +1,12 @@
 /*  Listener
  *********************************************************/
 $("document").ready(function() {
-
-
+    
+    console.log("Codigo "+ getQueryVariable("codigo"));
+    if (getQueryVariable("codigo")){
+        $("#codigo").val(getQueryVariable("codigo"));
+    }
+    
     $("#fechaInicio").mask("99/9999"); // sin lineas("99/9999", {placeholder: " "})
     $("#fechaFin").mask("99/9999");
 
