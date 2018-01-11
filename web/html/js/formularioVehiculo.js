@@ -165,7 +165,8 @@ function respuestaConsultaMotor(listaObjetos) {
         var objeto = listaObjetos[0];
         rellenaMotor(objeto);
     } else if (listaObjetos.length > 1) {
-        console.log("Existen varios Motores con el mismo codigoa.Consultar con el administrador de la BBDD");
+        console.log("Existen varios Motores con el mismo codigo");
+        ventanaMotor.abrir(listaObjetos);
     } else if (listaObjetos.length < 1) {
         console.log("No existe ningun Motor con este codigo");
     }

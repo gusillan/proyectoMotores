@@ -81,7 +81,6 @@ function consultaCodigo() {
         console.log("vamos a consultar el código " + this.value);
         var codigo = this.value;
         $.getJSON('../consultaCodigoMotor.htm', {codigo: codigo}, respuestaConsultaMotores);
-
     }
 }
 
