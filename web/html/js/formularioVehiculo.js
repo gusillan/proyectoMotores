@@ -12,22 +12,22 @@ ventanaEntidad = new VentanaEmergente({
 });
 
 ventanaModelo = new VentanaEmergente({
-    modal : 'modeloModal',
-    titulo : 'Búsqueda por modelo',
-    campos : ['codigo','descripcion'],
-    campoID : 'idModelo',
-    filtros : ['codigo', 'descripcion'],
-    callback : rellenaModelo   
-    
+    modal: 'modeloModal',
+    titulo: 'Búsqueda por modelo',
+    campos: ['codigo', 'descripcion'],
+    campoID: 'idModelo',
+    filtros: ['codigo', 'descripcion'],
+    callback: rellenaModelo
+
 });
 
 ventanaMotor = new VentanaEmergente({
-    modal : 'motorModal',
-    titulo : 'Búsqueda por motor',
-    campos : ['codigo','descripcion'],
-    campoID : 'idMotor',
-    filtros : ['codigo','descripcion'],
-    callback : rellenaMotor
+    modal: 'motorModal',
+    titulo: 'Búsqueda por motor',
+    campos: ['codigo', 'descripcion'],
+    campoID: 'idMotor',
+    filtros: ['codigo', 'descripcion'],
+    callback: rellenaMotor
 });
 
 
@@ -86,13 +86,15 @@ function consultaMatricula() {
     }
 }
 
-function consultaModelo() {
-    var modelo = this.value;
-    console.log("Modelo " + modelo);
-    $.getJSON(
-            '../consultaModelo.htm',
-            {codigo: modelo},
-    respuestaConsultaModelo);
+function consultaModelo() {    
+    if (!vacio($("#codigoModelo"))) {
+        var modelo = this.value;
+        console.log("Modelo " + modelo);
+        $.getJSON(
+                '../consultaModelo.htm',
+                {codigo: modelo},
+        respuestaConsultaModelo);
+    }
 }
 
 function consultaMotor() {
@@ -149,14 +151,17 @@ function respuestaConsultaModelo(listaObjetos) {
     } else if (listaObjetos.length > 1) {
         console.log("Existen varios Modelos con el mismo codigoa.Consultar con el administrador de la BBDD");
     } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun vehiculo con esta matricula ");
+        console.log("No existe ningún modelo con ese código");
+        $("#descripcionModelo").val("");
+        $("#logoMarca").attr("src", "");
+        darAltaModelo();
     }
 }
 
 function rellenaModelo(modelo) {
     $("#descripcionModelo").val(modelo.descripcion);
     $("#codigoModelo").val(modelo.codigo);
-    $("#logoMarca").attr("src", "img/marcas/"+modelo.fabricante.logo);
+    $("#logoMarca").attr("src", "img/marcas/" + modelo.fabricante.logo);
     $("#codigoMotor").focus();
 }
 
@@ -165,9 +170,11 @@ function respuestaConsultaMotor(listaObjetos) {
         var objeto = listaObjetos[0];
         rellenaMotor(objeto);
     } else if (listaObjetos.length > 1) {
-        console.log("Existen varios Motores con el mismo codigoa.Consultar con el administrador de la BBDD");
+        console.log("Existen varios Motores con el mismo codigo");
+        ventanaMotor.abrir(listaObjetos);
     } else if (listaObjetos.length < 1) {
         console.log("No existe ningun Motor con este codigo");
+        $("#descripcionMotor").val("");
     }
 }
 
@@ -241,6 +248,9 @@ function buscarModelo() {
 function respuestaBuscarModelo(modelos) {
     if (modelos.length == 0) {
         console.log("Error: la consulta del modelo no ha obtenido ningun resultado");
+        $("#descripcionModelo").val("");
+        $("#logoMarca").remove();
+
     } else if (modelos.length == 1) {
         rellenaModelo(modelos[0]);
     } else {
@@ -271,5 +281,17 @@ function respuestaBuscarMotor(motores) {
         rellenaModelo(motores[0]);
     } else {
         ventanaMotor.abrir(motores); //Abre la ventana Modal con la lista
+    }
+}
+
+function darAltaModelo() {
+    respuesta = confirm("Desea dar de alta este Modelo?");
+    if (respuesta == true) {
+        console.log("Ha pulsado si");
+        window.location="../html/formularioModelo.html";
+    } else {
+        console.log("Ha pulsado no");
+        $("#codigoModelo").val("");
+        $("#codigoModelo").focus();
     }
 }
