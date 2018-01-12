@@ -164,7 +164,6 @@ function rellenaModelo(modelo) {
     $("#descripcionModelo").val(modelo.descripcion);
     $("#codigoModelo").val(modelo.codigo);
     $("#logoMarca").attr("src", "img/marcas/" + modelo.fabricante.logo);
-    $("#codigoMotor").focus();
 }
 
 function respuestaConsultaMotor(listaObjetos) {
@@ -183,7 +182,6 @@ function respuestaConsultaMotor(listaObjetos) {
 function rellenaMotor(motor) {
     $("#descripcionMotor").val(motor.descripcion);
     $("#codigoMotor").val(motor.codigo);
-    $("#fechaMatricula").focus();
 }
 
 function respuestaConsultaCliente(listaObjetos) {
