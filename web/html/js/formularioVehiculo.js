@@ -38,10 +38,10 @@ $("document").ready(function() {
 
     $("#fechaMatricula").mask("99/99/9999"); // sin lineas("99/9999", {placeholder: " "})
 
-    $("#matricula").blur(consultaMatricula);
-    $("#codigoModelo").blur(consultaModelo);
-    $("#codigoMotor").blur(consultaMotor);
-    $("#codigoCliente").blur(consultaCliente);
+    $("#matricula").change(consultaMatricula);
+    $("#codigoModelo").change(consultaModelo);
+    $("#codigoMotor").change(consultaMotor);
+    $("#codigoCliente").change(consultaCliente);
     //Botones de busqueda
     $("#buscarEntidad").click(buscarEntidad);
     $("#buscarModelo").click(buscarModelo);
