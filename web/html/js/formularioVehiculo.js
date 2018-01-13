@@ -138,6 +138,7 @@ function rellenaFormulario(obj) {
     $("#chasis").val(obj.chasis);
     $("#codigoModelo").val(obj.modelo.codigo);
     $("#descripcionModelo").val(obj.modelo.descripcion);
+    $("#logoMarca").attr("src", "img/marcas/" + obj.modelo.fabricante.logo);
     $("#codigoMotor").val(obj.motor.codigo);
     $("#descripcionMotor").val(obj.motor.descripcion);
     $("#fechaMatricula").val(obj.fechaMatricula);
@@ -151,7 +152,7 @@ function respuestaConsultaModelo(listaObjetos) {
         var objeto = listaObjetos[0];
         rellenaModelo(objeto);
     } else if (listaObjetos.length > 1) {
-        console.log("Existen varios Modelos con el mismo codigoa.Consultar con el administrador de la BBDD");
+        console.log("Existen varios Modelos con el mismo codigo.Consultar con el administrador de la BBDD");
     } else if (listaObjetos.length < 1) {
         console.log("No existe ningún modelo con ese código");
         $("#descripcionModelo").val("");
@@ -176,6 +177,7 @@ function respuestaConsultaMotor(listaObjetos) {
     } else if (listaObjetos.length < 1) {
         console.log("No existe ningun Motor con este codigo");
         $("#descripcionMotor").val("");
+        darAltaMotor();
     }
 }
 
@@ -192,6 +194,7 @@ function respuestaConsultaCliente(listaObjetos) {
         console.log("Existen varios Clientes con el mismo codigo.Consultar con el administrador de la BBDD");
     } else if (listaObjetos.length < 1) {
         console.log("No existe ningun Cliente con este codigo");
+        $("#nombreCliente").val("");
     }
 }
 
@@ -285,7 +288,7 @@ function respuestaBuscarMotor(motores) {
 }
 
 function darAltaModelo() {
-    respuesta = confirm("Desea dar de alta este Modelo?");
+    var respuesta = confirm("Desea dar de alta este Modelo?");
     if (respuesta == true) {
         console.log("Ha pulsado si");
         window.location = "../html/formularioModelo.html?codigo=" + $("#codigoModelo").val();
@@ -293,5 +296,17 @@ function darAltaModelo() {
         console.log("Ha pulsado no");
         $("#codigoModelo").val("");
         $("#codigoModelo").focus();
+    }
+}
+
+function darAltaMotor() {
+    var respuesta = confirm("Desea dar de alta este Motor?");
+    if (respuesta == true) {
+        console.log("Ha pulsado si");
+        window.location = "../html/formularioMotor.html?codigo=" + $("#codigoMotor").val();
+    } else {
+        console.log("Ha pulsado no");
+        $("#codigoMotor").val("");
+        $("#codigoMotor").focus();
     }
 }

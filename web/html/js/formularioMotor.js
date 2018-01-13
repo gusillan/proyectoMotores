@@ -16,6 +16,11 @@ ventanaMotores = new VentanaEmergente({
 /*  Listener
  *********************************************************/
 $("document").ready(function() {
+    
+    console.log("Codigo "+ getQueryVariable("codigo"));
+    if (getQueryVariable("codigo")){
+        $("#codigo").val(getQueryVariable("codigo"));
+    }
 
     $("#codigo").blur(consultaCodigo);
     $("#codigoMarca").blur(consultarMarca);
