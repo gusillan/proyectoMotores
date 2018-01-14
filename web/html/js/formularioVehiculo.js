@@ -139,6 +139,7 @@ function rellenaFormulario(obj) {
     $("#codigoModelo").val(obj.modelo.codigo);
     $("#descripcionModelo").val(obj.modelo.descripcion);
     $("#logoMarca").attr("src", "img/marcas/" + obj.modelo.fabricante.logo);
+    $("#silueta").attr("src","img/imagenesVehiculos/"+ obj.modelo.imagen);
     $("#codigoMotor").val(obj.motor.codigo);
     $("#descripcionMotor").val(obj.motor.descripcion);
     $("#fechaMatricula").val(obj.fechaMatricula);
@@ -165,6 +166,7 @@ function rellenaModelo(modelo) {
     $("#descripcionModelo").val(modelo.descripcion);
     $("#codigoModelo").val(modelo.codigo);
     $("#logoMarca").attr("src", "img/marcas/" + modelo.fabricante.logo);
+    $("#silueta").attr("src","img/imagenesVehiculos/"+ modelo.imagen);
 }
 
 function respuestaConsultaMotor(listaObjetos) {
