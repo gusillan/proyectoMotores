@@ -82,21 +82,58 @@ function validarCampoConPatron(inputToValidate) {
 function rellenaDNI(dniField) {
     dniValue = dniField.value
     var customMessage = ""
-    if (isNumber(dniValue)) {
-        while (dniValue.length < 8) {
-            dniValue = "0" + dniValue;
+
+    if (isNumber( dniValue[0]) ) {   //Si el primer digito es numerico es un DNI
+        console.log("Comprobacion de DNI");
+        if (isNumber(dniValue)) {
+            while (dniValue.length < 8) {
+                dniValue = "0" + dniValue;
+            }
+            dniValue = dniValue + dniLetra(dniValue);
+        } else if (isNumber(dniValue.substring(0, dniValue.length - 1))) {
+            while (dniValue.length < 9) {
+                dniValue = "0" + dniValue;
+            }
+            if (dniLetra(dniValue.substring(0, dniValue.length - 1)) != dniValue.charAt(dniValue.length - 1)) {
+                customMessage = "La letra no se corresponde con el número del DNI";
+            }
+        } else {
+            customMessage = "Debe de completar el DNI, CIF, o NIE";
         }
-        dniValue = dniValue + dniLetra(dniValue);
-    } else if (isNumber(dniValue.substring(0, dniValue.length - 1))) {
-        while (dniValue.length < 9) {
-            dniValue = "0" + dniValue;
+    } else if ( dniValue[0].match( /[XYZ]/ ) ) {
+        console.log("Comprobacion de NIE");
+
+    }else{
+        console.log("Comprobacion de CIF");
+        var digitos = dniValue.substring(1, 8);
+        var A = parseInt(digitos[1])+parseInt(digitos[3])+parseInt(digitos[5]);
+        var B = 0;
+        for (var i = 0; i <= 6; i+=2) {
+            var n = digitos[i]*2;
+            B += n < 10 ? n : n - 9;
         }
-        if (dniLetra(dniValue.substring(0, dniValue.length - 1)) != dniValue.charAt(dniValue.length - 1)) {
-            customMessage = "La letra no se corresponde con el número del DNI";
+        var C = A + B;
+        var E = parseInt( C.toString()[C.toString().length-1] );
+        var D = E != 0 ? 10 - E : 0;                        //Digito control
+        //console.log(A, B, C, D, E);
+        var control = '';
+        var control2 = '';
+
+        if ( dniValue[0].match( /[ABEH]/ ) ) {              //Debe de ser numerico
+          control = D;
+        } else if ( dniValue[0].match( /[KPQS]/ ) ) {       //Debe de ser letra
+          control = 'JABCDEFGHI'.substr( D, 1 );
+        } else {                                            //Puede ser letra o numero
+          control = D;
+          control2 = 'JABCDEFGHI'.substr( D, 1 );
         }
-    } else {
-        customMessage = "Debe de contener 9 dígitos númericos y una letra";
+
+        if (dniValue[8]!=control && dniValue[8]!=control2) {
+            customMessage = "El digito control no se corresponde con el número del CIF";
+        }
+
     }
+
 
     dniField.setCustomValidity(customMessage);
     dniField.title = customMessage;
@@ -202,7 +239,6 @@ function consultaCpostal() {
 }
 
 function rellenarCpostal(respuesta) {
-    console.log(respuesta);
     if (respuesta.length > 0) {
         poblacion = respuesta[0];
         $("#poblacion").val(poblacion.poblacion);
