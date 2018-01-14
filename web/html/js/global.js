@@ -46,7 +46,10 @@ $("document").ready(function() {
     $(".g-input, .g-select").enterKey(function() {
         var inputs = $(".g-input, .g-select");
         var index = inputs.index(this);
-        inputs[index + 1].focus();
+        console.log(inputs);
+        console.log("foco en el ", index, "de ", inputs.length);
+        if (index < inputs.length-1)
+        	inputs[index + 1].focus();
     });
     $(".g-select").change(function() {
         var inputs = $(".g-input, .g-select");
@@ -82,7 +85,7 @@ $("document").ready(function() {
 
 
     /* Atajos de teclado */
-    $("form").keypress(function(ev) {
+    $("body").keypress(function(ev) {
         var keycode = (ev.keyCode ? ev.keyCode : ev.which);
         if (ev.shiftKey) {                                       // Shift + ...
             if (keycode == '103' || keycode == '71') {           // G
