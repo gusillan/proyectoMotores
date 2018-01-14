@@ -106,7 +106,14 @@ public class ModeloController {
         System.out.println("Bytes " + mpf.getBytes());
         System.out.println("tipo " + mpf.getContentType());
         ServletContext contexto = request.getServletContext();
-        String ruta = contexto.getRealPath("/html/img/imagenesVehiculos");
+        System.out.println("Cont "+contexto.getContextPath());
+        String rutaI = contexto.getRealPath("/html");
+        System.out.println("Ruta I "+rutaI);
+        Integer pos = rutaI.indexOf("\\build\\");
+        String rutaR = rutaI.substring(0, pos);
+        System.out.println("RutaR "+rutaR);
+        
+        String ruta = rutaR+("/web/html/img/imagenesVehiculos");
         System.out.println("Ruta "+ruta);
 
         File localFile = new File(ruta +"/"+ mpf.getOriginalFilename());      
