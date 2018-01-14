@@ -46,8 +46,6 @@ $("document").ready(function() {
     $(".g-input, .g-select").enterKey(function() {
         var inputs = $(".g-input, .g-select");
         var index = inputs.index(this);
-        console.log(inputs);
-        console.log("foco en el ", index, "de ", inputs.length);
         if (index < inputs.length-1)
         	inputs[index + 1].focus();
     });
@@ -329,7 +327,6 @@ VentanaEmergente.prototype.filtrar = function() {
 
 
 VentanaEmergente.prototype.abrir = function(json) {
-    console.log(json);
     this.json = json;
     var modal = this.modal;
     var campoID = this.campoID;
