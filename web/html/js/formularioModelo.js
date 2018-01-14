@@ -16,33 +16,19 @@ $("document").ready(function() {
 
     $('#archivo').change(function() {
         
-        //var formulario = document.getElementById("formModelo");
-        //var data = $("#formModelo").serialize();
-        var dataFile = new FormData($("#formModelo"));
+        var dataFile = new FormData();
         var files = document.getElementById("archivo").files;
         var file = files[0];
         console.log("FIles " + file.size);
-        dataFile.append("file", file);
-        dataFile.append("prueba", "Gus");
-        
-        console.log("DataFIle  "+dataFile.length);
-
-
-        //console.log("Serializada " + dataFile);
-        //console.log($("#codigo").val());
-        //console.log($("#descripcion").val());
-        //console.log($("#archivo").val());
-
-   
-
+        dataFile.append("file", file);        
+       
         $.ajax({
             url: '../guardaImagen.htm',
             type : 'POST',
             data: dataFile,
             processData : false,
             contentType: false,
-            cache : false,
-            success: limpiar
+            
         });
 
         var files = $('#archivo')[0].files;
@@ -167,14 +153,11 @@ function rellenaMarca(marca) {
 /* Subir imagen
  **********************************************************/
 function resizeAndUpload(file) {
-
-
-
-
+    
     console.log("Redimension de imagen");
     var reader = new FileReader();
     reader.onloadend = function() {
-
+        
         var tempImg = new Image();
         tempImg.src = reader.result;
         tempImg.onload = function() {

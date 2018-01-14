@@ -5,32 +5,33 @@ import com.pacoillan.DAO.FabricanteDAO;
 import com.pacoillan.DAO.ModeloDAO;
 import com.pacoillan.pojo.Fabricante;
 import com.pacoillan.pojo.Modelo;
+import com.pacoillan.util.UploadedFile;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
-@MultipartConfig
-
 public class ModeloController {
-    
+
     @Autowired
     FabricanteDAO fabricanteDao;
     @Autowired
     ModeloDAO modeloDao;
-            
+
     @RequestMapping("consultaModelo.htm")
     public void consultaModelo(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -55,7 +56,7 @@ public class ModeloController {
     }
 
     @RequestMapping("guardaModelo.htm")
-    public void guardaModelo(Modelo modelo,HttpServletRequest request, HttpServletResponse response) throws IOException, IllegalStateException, ServletException {
+    public void guardaModelo(Modelo modelo, HttpServletRequest request, HttpServletResponse response) throws IOException, IllegalStateException, ServletException {
 
 
         System.out.println("Codigo " + request.getParameter("codigo"));
@@ -95,39 +96,37 @@ public class ModeloController {
     }
 
     @RequestMapping("guardaImagen.htm")
-    public void guardaImagen(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        
-       try{
-           Part filePart = request.getPart("file");
-           System.out.println("Hello "+filePart);
-           InputStream inputStream = null;
-           if (filePart !=null){
-               long fileSize = filePart.getSize();
-               String fileContent = filePart.getContentType();
-               inputStream = filePart.getInputStream();
-           }
-           
-       }catch (Exception exe){
-           exe.printStackTrace();
-       }
-       
-        //DiskFileItemFactory factory = new DiskFileItemFactory();
-        //ServletFileUpload upload = new ServletFileUpload(factory);
-        //List fileItems = upload.parseRequest(request);
+    public void guardaImagen(MultipartHttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        //System.out.println("El numero de ficheros subidos es " + fileItems.size());
-        System.out.println("hola");
-        System.out.println("Descripcion "+request.getParameter("descripcion"));
-        System.out.println("Archivo " + request.getParameter("img"));
-        System.out.println("Atributo " + request.getAttribute("img"));
-        System.out.println("Prueba " + request.getParameter("prueba"));
+        Iterator<String> itr = request.getFileNames();
 
-        //Part fotoPart = request.getPart("archivo");
-        //System.out.println("Arhivos "+fotoPart.getSize());
+        MultipartFile mpf = request.getFile(itr.next());
+        System.out.println(mpf.getOriginalFilename() + " uploaded!!");
+        System.out.println("Bytes " + mpf.getBytes().length);
+        System.out.println("Bytes " + mpf.getBytes());
+        System.out.println("tipo " + mpf.getContentType());
+        ServletContext contexto = request.getServletContext();
+        String ruta = contexto.getRealPath("/html/img/imagenesVehiculos");
+        System.out.println("Ruta "+ruta);
 
+        File localFile = new File(ruta +"/"+ mpf.getOriginalFilename());      
+        FileOutputStream os = null;
 
+        try {
+            os = new FileOutputStream(localFile);
+            os.write(mpf.getBytes());
+        } finally {
+            if (os != null) {
+                try {
+                    os.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+
+                }
+            }
+        }
     }
-    
+
     @RequestMapping("consultaPorDescripcionModelo.htm")
     public void consultaPorDescripcionModelo(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -136,7 +135,7 @@ public class ModeloController {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        String descripcionModelo = (request.getParameter("descripcion").toUpperCase());        
+        String descripcionModelo = (request.getParameter("descripcion").toUpperCase());
         List<Modelo> listaModelos = modeloDao.listadoPorCampo("descripcion", descripcionModelo);
         System.out.println("Listado" + listaModelos);
         if (listaModelos.isEmpty()) {
