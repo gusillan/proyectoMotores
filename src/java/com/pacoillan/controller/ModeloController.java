@@ -109,8 +109,8 @@ public class ModeloController {
         System.out.println("Cont "+contexto.getContextPath());
         String rutaI = contexto.getRealPath("/html");
         System.out.println("Ruta I "+rutaI);
-        Integer pos = rutaI.indexOf("\\build\\");
-        String rutaR = rutaI.substring(0, pos);
+        Integer pos = rutaI.indexOf("build");
+        String rutaR = rutaI.substring(0, pos-1);
         System.out.println("RutaR "+rutaR);
         
         String ruta = rutaR+("/web/html/img/imagenesVehiculos");
