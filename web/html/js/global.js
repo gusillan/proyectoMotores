@@ -43,8 +43,8 @@ $("document").ready(function() {
 
 
     /* Utilizar ENTER para pasar al siguiente input*/
-    $(".g-input, .g-select").enterKey(function() {
-        var inputs = $(".g-input, .g-select");
+    $(".g-input, .g-select, .g-textarea").enterKey(function() {
+        var inputs = $(".g-input, .g-select, .g-textarea");
         var index = inputs.index(this);
         if (index < inputs.length-1)
         	inputs[index + 1].focus();
