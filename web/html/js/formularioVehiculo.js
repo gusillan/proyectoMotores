@@ -254,7 +254,7 @@ function respuestaBuscarEntidad(clientesJson) {
 function buscarModelo() {
 
     var descripcionModelo = $("#descripcionModelo").val()
-    if (descripcionModelo.length > 2) {
+    if (descripcionModelo.length > 1) {
         console.log("Campo modelo RELLENO");
         $.ajax({
             url: '../consultaPorDescripcionModelo.htm',
