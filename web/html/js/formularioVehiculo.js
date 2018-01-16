@@ -65,7 +65,14 @@ function guardar() {
 }
 
 function baja() {
-
+    var data = $("#formVehiculo").serialize();
+    console.log("Serializada " + data);
+    $.ajax({
+        url: '../bajaVehiculo.htm',
+        data: data,
+        type: 'POST',
+        success: limpiar
+    });
 }
 
 
@@ -91,6 +98,10 @@ function consultaModelo() {
                 '../consultaModelo.htm',
                 {codigo: modelo},
         respuestaConsultaModelo);
+    } else {
+        $("#descripcionModelo").val("");
+        $("#logoMarca").attr("src", "");
+        $("#silueta").attr("src", "");
     }
 }
 
@@ -102,6 +113,8 @@ function consultaMotor() {
                 '../consultaCodigoMotor.htm',
                 {codigo: motor},
         respuestaConsultaMotor);
+    } else {
+        $("#descripcionMotor").val("");
     }
 }
 
@@ -113,6 +126,8 @@ function consultaCliente() {
                 '../consultaClientePorCodigo.htm',
                 {codigo: cliente},
         respuestaConsultaCliente);
+    } else {
+        $("#nombreCliente").val("");
     }
 
 }
@@ -139,13 +154,14 @@ function rellenaFormulario(obj) {
     $("#codigoModelo").val(obj.modelo.codigo);
     $("#descripcionModelo").val(obj.modelo.descripcion);
     $("#logoMarca").attr("src", "img/marcas/" + obj.modelo.fabricante.logo);
-    $("#silueta").attr("src","img/imagenesVehiculos/"+ obj.modelo.imagen);
+    $("#silueta").attr("src", "img/imagenesVehiculos/" + obj.modelo.imagen);
     $("#codigoMotor").val(obj.motor.codigo);
     $("#descripcionMotor").val(obj.motor.descripcion);
     $("#fechaMatricula").val(obj.fechaMatricula);
     $("#codigoCliente").val(obj.entidad.idEntidad);
     $("#nombreCliente").val(obj.entidad.nombre);
     $("#informacion").val(obj.informacion);
+    $("#baja").attr("disabled", false);
 }
 
 function respuestaConsultaModelo(listaObjetos) {
@@ -158,6 +174,7 @@ function respuestaConsultaModelo(listaObjetos) {
         console.log("No existe ningún modelo con ese código");
         $("#descripcionModelo").val("");
         $("#logoMarca").attr("src", "");
+        $("#silueta").attr("src", "");
         darAltaModelo();
     }
 }
@@ -166,7 +183,7 @@ function rellenaModelo(modelo) {
     $("#descripcionModelo").val(modelo.descripcion);
     $("#codigoModelo").val(modelo.codigo);
     $("#logoMarca").attr("src", "img/marcas/" + modelo.fabricante.logo);
-    $("#silueta").attr("src","img/imagenesVehiculos/"+ modelo.imagen);
+    $("#silueta").attr("src", "img/imagenesVehiculos/" + modelo.imagen);
 }
 
 function respuestaConsultaMotor(listaObjetos) {
@@ -197,6 +214,7 @@ function respuestaConsultaCliente(listaObjetos) {
     } else if (listaObjetos.length < 1) {
         console.log("No existe ningun Cliente con este codigo");
         $("#nombreCliente").val("");
+        darAltaCliente();
     }
 }
 
@@ -244,10 +262,8 @@ function buscarModelo() {
             type: 'POST',
             dataType: 'json',
             success: respuestaBuscarModelo
-
         });
     }
-
 }
 
 function respuestaBuscarModelo(modelos) {
@@ -310,5 +326,17 @@ function darAltaMotor() {
         console.log("Ha pulsado no");
         $("#codigoMotor").val("");
         $("#codigoMotor").focus();
+    }
+}
+
+function darAltaCliente() {
+    var respuesta = confirm("Desea dar de alta este Cliente?");
+    if (respuesta == true) {
+        console.log("Ha pulsado si");
+        window.location = "../html/formularioEntidad.html";
+    } else {
+        console.log("Ha pulsado no");
+        $("#codigoCliente").val("");
+        $("#codigoCliente").focus();
     }
 }
