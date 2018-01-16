@@ -62,7 +62,7 @@ function guardar() {
 }
 
 function baja() {
-    // Confirmar Baja
+    
     var data = $("#formModelo").serialize();
     $.ajax({
         url: '../bajaModelo.htm',

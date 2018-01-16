@@ -58,7 +58,12 @@ function respuestaConsultaFabricante(listaObjetos) {
     } else if (listaObjetos.length > 1) {
         alert("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
     } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun fabricante con ese Codigo");        
+        console.log("No existe ningun fabricante con ese Codigo");
+        $("#idFabricante").val("");
+        $("#nombre").val("");
+        $("#logo").val("");
+        $("#imgLogo").attr("src", "");
+        
     }
 }
 

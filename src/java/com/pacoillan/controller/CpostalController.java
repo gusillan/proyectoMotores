@@ -38,10 +38,7 @@ public class CpostalController {
 
     @RequestMapping("bajaCpostal.htm")
     public void bajaMotor(Cpostal cpostal, HttpServletRequest request, HttpServletResponse response) {
-
-        //List cpostales = CpostalDao.listadoPorCampoExacto("codigo", request.getParameter("marca"));
-        //Fabricante fabricante = (Fabricante) fabricantes.get(0);
-        //motor.setFabricante(fabricante);
+        
         CpostalDao.delete(cpostal);
     }
 

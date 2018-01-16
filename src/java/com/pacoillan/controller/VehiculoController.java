@@ -40,8 +40,6 @@ public class VehiculoController {
     MotorDAO motorDao;
     @Autowired
     EntidadDAO entidadDao;
-    
-    
 
     @RequestMapping("consultaMatricula.htm")
     public void consultaMatricula(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -66,42 +64,47 @@ public class VehiculoController {
     }
 
     @RequestMapping("guardaVehiculo.htm")
-    public void guardaVehiculo(Vehiculo vehiculo,HttpServletRequest request, HttpServletResponse response) throws IOException {
-        
-        //Vehiculo vehiculo = new Vehiculo();
-        //vehiculo.setMatricula(request.getParameter("matricula"));
-        //vehiculo.setChasis(request.getParameter("chasis"));
-        //vehiculo.setFechaMatricula((Date)request.getParameter("fechaMatricula"));
-        
-        System.out.println("chasis vehiculo y fecha "+vehiculo.getChasis()+" "+vehiculo.getFechaMatricula());
-        
+    public void guardaVehiculo(Vehiculo vehiculo, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        System.out.println("chasis vehiculo y fecha " + vehiculo.getChasis() + " " + vehiculo.getFechaMatricula());
+
         System.out.println("Matricula " + request.getParameter("matricula"));
         System.out.println("Chasis " + request.getParameter("chasis"));
         System.out.println("Modelo " + request.getParameter("codigoModelo"));
         System.out.println("Motor " + request.getParameter("codigoMotor"));
-        
-        List modelos = modeloDao.listadoPorCampoExacto("codigo", request.getParameter("codigoModelo"));
-        List motores = motorDao.listadoPorCampoExacto("codigo",request.getParameter("codigoMotor"));
-        List entidades = entidadDao.listadoPorCampoExacto("idEntidad", request.getParameter("codigoCliente"));
-        
 
-        //List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoFabricante"));
-        // Fabricante fabricante = (Fabricante) fabricantes.get(0);
+        List modelos = modeloDao.listadoPorCampoExacto("codigo", request.getParameter("codigoModelo"));
+        List motores = motorDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMotor"));
+        List entidades = entidadDao.listadoPorCampoExacto("idEntidad", request.getParameter("codigoCliente"));
+
         Modelo modelo = (Modelo) modelos.get(0);
         Motor motor = (Motor) motores.get(0);
         Entidad entidad = (Entidad) entidades.get(0);
-        
-        //System.out.println(fabricante.getNombre());
+
         vehiculo.setModelo(modelo);
         vehiculo.setMotor(motor);
         vehiculo.setEntidad(entidad);
-        
-        
-        
-        
-        //String imagenMinuscula = modelo.getImagen().toLowerCase();
-        //modelo.setImagen(imagenMinuscula);
-        vehiculoDao.create(vehiculo);
 
+        vehiculoDao.create(vehiculo);
+    }
+
+    @RequestMapping("bajaVehiculo.htm")
+    public void bajaModelo(Vehiculo vehiculo, HttpServletRequest request, HttpServletResponse response) {
+
+        System.out.println("Vamos a dar de baja el siguiente vehiculo " + vehiculo.getMatricula());
+
+        List modelos = modeloDao.listadoPorCampoExacto("codigo", request.getParameter("codigoModelo"));
+        List motores = motorDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMotor"));
+        List entidades = entidadDao.listadoPorCampoExacto("idEntidad", request.getParameter("codigoCliente"));
+
+        Modelo modelo = (Modelo) modelos.get(0);
+        Motor motor = (Motor) motores.get(0);
+        Entidad entidad = (Entidad) entidades.get(0);
+
+        vehiculo.setModelo(modelo);
+        vehiculo.setMotor(motor);
+        vehiculo.setEntidad(entidad);        
+        
+        vehiculoDao.delete(vehiculo);
     }
 }
