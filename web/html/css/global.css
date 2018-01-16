@@ -29,7 +29,8 @@
 /*	Elementos principales html
 *********************************************************/
 body{
-	font-size: 14px;
+    font-family: 'robotoregular', sans-serif, Arial;
+    font-size: 14px;
 }
 
 input[type=file]::-webkit-file-upload-button {
@@ -81,6 +82,8 @@ input[type=file]::-webkit-file-upload-button:active{
 
 label{
     display: block;
+    font-family: 'robotomedium', sans-serif, Arial;
+    font-weight: normal;
 }
 label a{
     opacity: 0;
