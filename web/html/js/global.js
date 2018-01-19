@@ -106,7 +106,6 @@ $("document").ready(function() {
     });
 
 
-
 });
 
 
@@ -144,7 +143,9 @@ function vacio(campo) {
 
 function limpiar() {
     $("form")[0].reset();
+    $(".g-text").text("");
     $(".g-img").attr("src", "");
+    $(".g-showByDefault").show();
     $(".g-hideByDefault").hide();
     $(".g-hideByDefault input").attr("disabled", true);
     $("#baja").attr("disabled", true);

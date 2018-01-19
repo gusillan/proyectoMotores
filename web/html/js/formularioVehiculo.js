@@ -46,6 +46,18 @@ $("document").ready(function() {
     $("#buscarEntidad").click(buscarEntidad);
     $("#buscarModelo").click(buscarModelo);
     $("#buscarMotor").click(buscarMotor);
+
+
+    /* Ventana lateral */
+    $(".g-button-aside-close").click(function(){
+        $(".g-aside").hide();
+        $(".g-button-aside-open").show();
+    });
+    $(".g-button-aside-open").click(function(){
+        $(".g-aside").show();
+        $(".g-button-aside-open").hide();
+    });
+
 });
 /* Funciones Básicas Botones
  *************************************************************/
@@ -151,17 +163,16 @@ function rellenaFormulario(obj) {
     $("#idVehiculo").val(obj.idVehiculo);
     $("#matricula").val(obj.matricula);
     $("#chasis").val(obj.chasis);
-    $("#codigoModelo").val(obj.modelo.codigo);
-    $("#descripcionModelo").val(obj.modelo.descripcion);
-    $("#logoMarca").attr("src", "img/marcas/" + obj.modelo.fabricante.logo);
-    $("#silueta").attr("src", "img/imagenesVehiculos/" + obj.modelo.imagen);
-    $("#codigoMotor").val(obj.motor.codigo);
-    $("#descripcionMotor").val(obj.motor.descripcion);
     $("#fechaMatricula").val(obj.fechaMatricula);
-    $("#codigoCliente").val(obj.entidad.idEntidad);
-    $("#nombreCliente").val(obj.entidad.nombre);
     $("#informacion").val(obj.informacion);
     $("#baja").attr("disabled", false);
+
+    rellenaModelo(obj.modelo);
+    rellenaMotor(obj.motor);
+    rellenaCliente(obj.entidad);
+
+    $(".g-aside").show();
+    $(".g-button-aside-open").hide();
 }
 
 function respuestaConsultaModelo(listaObjetos) {
@@ -184,6 +195,7 @@ function rellenaModelo(modelo) {
     $("#codigoModelo").val(modelo.codigo);
     $("#logoMarca").attr("src", "img/marcas/" + modelo.fabricante.logo);
     $("#silueta").attr("src", "img/imagenesVehiculos/" + modelo.imagen);
+    /*$("#nombreFabricanteModelo").text(modelo.fabricante.nombre);*/
 }
 
 function respuestaConsultaMotor(listaObjetos) {
@@ -203,6 +215,25 @@ function respuestaConsultaMotor(listaObjetos) {
 function rellenaMotor(motor) {
     $("#descripcionMotor").val(motor.descripcion);
     $("#codigoMotor").val(motor.codigo);
+    var combustible="";
+    switch(motor.combustible){
+        case "D":
+            combustible = "Diesel";
+            break;
+        case "G":
+            combustible = "Gasolina";
+            break;
+        case "H":
+            combustible = "Híbrido";
+            break;
+        case "E":
+            combustible = "Eléctrico";
+            break;
+    }
+    $("#combustibleMotor").text(combustible);
+    $("#cilindradaMotor").text(motor.cilindrada+" c.c.");
+    $("#kwMotor").text(motor.kw+" Kw");
+    $("#nombreFabricanteMotor").text(motor.fabricante.nombre);
 }
 
 function respuestaConsultaCliente(listaObjetos) {
@@ -221,6 +252,9 @@ function respuestaConsultaCliente(listaObjetos) {
 function rellenaCliente(cliente) {
     $("#codigoCliente").val(cliente.idEntidad);
     $("#nombreCliente").val(cliente.nombre);
+    $("#poblacionEntidad").text(cliente.poblacion);
+    $("#telefonoEntidad").text(cliente.telefono);
+    $("#movilEntidad").text(cliente.movil);
 }
 
 
