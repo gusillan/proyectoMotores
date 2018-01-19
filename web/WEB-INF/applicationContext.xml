@@ -75,5 +75,9 @@
     <bean id="vehiculo" class="com.pacoillan.DAOHibernate.VehiculoDAOHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    
+    <bean id="categoriaRecambio" class="com.pacoillan.DAOHibernate.CategoriaRecambioDAOHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
 </beans>

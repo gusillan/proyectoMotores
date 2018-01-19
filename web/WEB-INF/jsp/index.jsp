@@ -21,7 +21,10 @@
         <br>
         <a href="html/formularioCpostal.html">5 - Formulario de Códigod Postales</a><br>        
         <br>
-        <a href="html/formularioVehiculo.html">6 - Formulario de Vehículos</a><br>        
+        <a href="html/formularioVehiculo.html">6 - Formulario de Vehículos</a><br> 
         <br>
+        <a href="html/formularioCategoriaRecambio.html">7 - Formulario de Categorías de Recambio</a><br>        
+        <br>
+        
     </body>
 </html>
