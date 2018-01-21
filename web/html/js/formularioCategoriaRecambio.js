@@ -68,6 +68,6 @@ function rellenaFormulario(obj) {
     $("#idCategoria").val(obj.idCategoria);
     $("#codigo").val(obj.codigo);
     $("#categoria").val(obj.categoria);
-
+    $("#baja").attr("disabled",false);
 }
 

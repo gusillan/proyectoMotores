@@ -49,11 +49,11 @@ $("document").ready(function() {
 
 
     /* Ventana lateral */
-    $(".g-button-aside-close").click(function(){
+    $(".g-button-aside-close").click(function() {
         $(".g-aside").hide();
         $(".g-button-aside-open").show();
     });
-    $(".g-button-aside-open").click(function(){
+    $(".g-button-aside-open").click(function() {
         $(".g-aside").show();
         $(".g-button-aside-open").hide();
     });
@@ -215,8 +215,8 @@ function respuestaConsultaMotor(listaObjetos) {
 function rellenaMotor(motor) {
     $("#descripcionMotor").val(motor.descripcion);
     $("#codigoMotor").val(motor.codigo);
-    var combustible="";
-    switch(motor.combustible){
+    var combustible = "";
+    switch (motor.combustible) {
         case "D":
             combustible = "Diesel";
             break;
@@ -231,8 +231,8 @@ function rellenaMotor(motor) {
             break;
     }
     $("#combustibleMotor").text(combustible);
-    $("#cilindradaMotor").text(motor.cilindrada+" c.c.");
-    $("#kwMotor").text(motor.kw+" Kw");
+    $("#cilindradaMotor").text(motor.cilindrada + " c.c.");
+    $("#kwMotor").text(motor.kw + " Kw");
     $("#nombreFabricanteMotor").text(motor.fabricante.nombre);
 }
 

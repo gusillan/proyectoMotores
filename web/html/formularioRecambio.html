@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+        <title>Formulario Recambio</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- ESTILOS CSS -->
+        <link rel="stylesheet" href="css/fonts/fonts.css"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/global.css"/>
+        <link rel="stylesheet" href="css/overload.css"/>
+
+        <!-- JAVASCRIPT -->
+        <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>  
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap-confirmation.min.js" type="text/javascript"></script> 
+        <script src="js/global.js" type="text/javascript"></script> 
+        <script src="js/formularioRecambio.js" type="text/javascript"></script> 
+    </head>
+
+
+    <body>
+
+        <div class="container">
+
+            <div class="page-header">
+                <h1>Formulario Recambio</h1>      
+            </div>
+
+            <form name="formRecambio" id="formRecambio">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="idRecambio" class="">ID Recambio</label>
+                            <input type="text" class="form-control" id="idRecambio" name="idRecambio" size="11" maxlength="11" readonly="readonly">
+                        </div>               
+                    </div>
+
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="col-md-3">              
+                        <div class="form-group">
+                            <label for="codigo">Referencia</label>
+                            <input type="text" class="form-control g-input" id="referencia" name="referencia"  maxlength="25" required>
+                        </div>
+                    </div>  
+
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="codigoMarca">Código Fabricante <a href="formularioFabricante.html" title="Formulario Fabricante"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
+                            <input type="text" class="form-control g-input" id="codigoMarca" name="codigoMarca" maxlength="2" required title="Código 2 letras" data-toggle="popover">
+                        </div>
+                    </div>  
+                    <div class="col-md-3">              
+                        <div class="form-group">
+                            <label for="descripcion">Fabricante</label>
+                            <input type="text" class="form-control" id="marcaMotor" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <img id="logoMarca" class="g-img previstaImagen" src="">
+                    </div>
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="col-md-8">              
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <input type="text" class="form-control g-input" id="descripcion" name="descripcion" maxlength="40" required title="Descripción motor" data-toggle="popover">
+                        </div>
+                    </div>
+                </div><!--row-->
+
+                
+                <div class="row">
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="pvp">Precio Venta </label>
+                            <input type="text" class="form-control g-input" id="pvp" name="pvp" pattern="[0-9]{3,4}" maxlength="4" title="Precio en euros" data-toggle="popover" required>
+                        </div>
+                    </div>
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="descuento">Descuento %</label>
+                            <input type="text" class="form-control g-input" id="descuento" name="descuento" pattern="[0-9.]{2,5}" maxlength="5" title="Potencia en KW" data-toggle="popover" title="Potencia en KW" required>
+                        </div>
+                    </div>
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="cv">Precio Neto Calculado</label>
+                            <input type="text" class="form-control" id="neto" readonly="readonly">
+                        </div>
+                    </div>
+                </div><!--row-->
+                <div class="row">
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="stock">Stock</label>
+                            <input type="text" class="form-control g-input" id="stock" name="stock" maxlength="10" required title="Descripción motor" data-toggle="popover">
+                        </div>
+                    </div>
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="ubicacion">Ubicación</label>
+                            <input type="text" class="form-control g-input" id="ubicacion" name="ubicacion" maxlength="15" required title="Descripción motor" data-toggle="popover">
+                        </div>
+                    </div>                    
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="codigoCategoria">Código Categoría<a href="formularioFabricante.html" title="Formulario Fabricante"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
+                            <input type="text" class="form-control g-input" id="codigoCategoria" name="codigoCategoria" maxlength="2" required title="Código 2 letras" data-toggle="popover">
+                        </div>
+                    </div>  
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="categoria">Categoría</label>
+                            <input type="text" class="form-control" id="categoria" readonly="readonly">
+                        </div>
+                    </div>
+                    
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="col-md-8">              
+                        <div class="form-group">
+                            <label for="informacion">Información</label>
+                            <textarea class="form-control g-textarea" id="informacion" name="informacion" rows="3"></textarea>
+                        </div>               
+                    </div>
+                </div><!--row-->
+
+
+                <div class="g-space"></div>
+
+                <nav class="navbar navbar-inverse navbar-fixed-bottom">
+                    <div class="container">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Guardar" id="guardar" >
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Baja" id="baja" disabled>
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Limpiar Formulario" id="limpiar">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Listado" id="listado">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Volver" id="volver">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Inicio" id="inicio">
+                    </div>
+                </nav>
+
+
+
+            </form>
+        </div>
+    </body>
+
+
+</html>
