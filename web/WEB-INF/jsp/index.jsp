@@ -25,6 +25,7 @@
         <br>
         <a href="html/formularioCategoriaRecambio.html">7 - Formulario de Categorías de Recambio</a><br>        
         <br>
-        
+        <a href="html/formularioRecambio.html">8 - Formulario de Recambio</a><br>        
+        <br>
     </body>
 </html>
