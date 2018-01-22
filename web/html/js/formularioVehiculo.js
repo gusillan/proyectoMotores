@@ -35,6 +35,9 @@ ventanaMotor = new VentanaEmergente({
  ***********************************************************/
 $("document").ready(function() {
 
+    consultaModelo();
+    consultaMotor();
+    consultaCliente();
 
     $("#fechaMatricula").mask("99/99/9999"); // sin lineas("99/9999", {placeholder: " "})
 
@@ -104,7 +107,7 @@ function consultaMatricula() {
 
 function consultaModelo() {
     if (!vacio($("#codigoModelo"))) {
-        var modelo = this.value;
+        var modelo = $("#codigoModelo").val();
         console.log("Modelo " + modelo);
         $.getJSON(
                 '../consultaModelo.htm',
@@ -119,7 +122,7 @@ function consultaModelo() {
 
 function consultaMotor() {
     if (!vacio($("#codigoMotor"))) {
-        var motor = this.value;
+        var motor = $("#codigoMotor").val();
         console.log("Motor " + motor);
         $.getJSON(
                 '../consultaCodigoMotor.htm',
@@ -132,7 +135,7 @@ function consultaMotor() {
 
 function consultaCliente() {
     if (!vacio($("#codigoCliente"))) {
-        var cliente = this.value;
+        var cliente = $("#codigoCliente").val();
         console.log("Cliente " + cliente);
         $.getJSON(
                 '../consultaClientePorCodigo.htm',
