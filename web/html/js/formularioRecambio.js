@@ -2,24 +2,19 @@
  *********************************************************/
 $("document").ready(function() {
 
-/*    $("#codigo").blur(consultaCodigo);
-*/
+    $("#referencia").blur(consultaReferencia);
 
-    $("#pvp, #descuento").change(function(){
+
+    $("#pvp, #descuento").change(function() {
         var value = this.value;
         value = value.replace(",", ".");
         var number = parseFloat(value);
         number = number.toFixed(2);
         this.value = number;
-
-        var pvp = parseFloat( $("#pvp").val() );
-        var descuento = parseFloat( $("#descuento").val() );
-        neto = pvp * (100-descuento)/100;
-        if (! isNaN(neto) ){
-            $("#neto").val( neto.toFixed(2) ); 
-        }
+        calcularNeto();           
     });
-    $("#stock").change(function(){
+    
+    $("#stock").change(function() {
         var value = this.value;
         value = value.replace(",", ".");
         var number = parseFloat(value);
@@ -27,20 +22,18 @@ $("document").ready(function() {
         this.value = number;
     });
 
-
-
 });
 
 /* Funciones Básicas Botones
  **********************************************************/
 
 
-/*function guardar() {
+function guardar() {
 
     if (validarFormulario()) {
-        var data = $("#formCategoriaRecambio").serialize();
+        var data = $("#formRecambio").serialize();
         $.ajax({
-            url: '../guardaCategoriaRecambio.htm',
+            url: '../guardaRecambio.htm',
             data: data,
             type: 'POST',
             success: limpiar
@@ -60,21 +53,21 @@ function baja() {
         success: limpiar
     });
 }
-*/
+
 
 /* Funciones adicionales
  ********************************************************/
-/*
-function consultaCodigo() {
-    if ($("#codigo").val().length > 0) {
-        console.log("vamos a consultar el código " + this.value);
-        var codigo = this.value;
-        $.getJSON('../consultaCategoriaRecambio.htm', {codigo: codigo}, respuestaConsultaCategoria);
+
+function consultaReferencia() {
+    if (!vacio($("#referencia"))) {
+        console.log("Vamos a consultar la Referencia " + this.value);
+        var referencia = this.value;
+        $.getJSON('../consultaReferencia.htm', {referencia: referencia}, respuestaConsultaReferencia);
 
     }
 }
 
-function respuestaConsultaCategoria(listaObjetos) {
+function respuestaConsultaReferencia(listaObjetos) {
     console.log("Respuesta lista de Objetos " + listaObjetos);
     if (listaObjetos.length == 1) {
         var objeto = listaObjetos[0];
@@ -83,16 +76,34 @@ function respuestaConsultaCategoria(listaObjetos) {
         alert("Existen varias categorias con ese Codigo.Consultar al administrador de la BBDD");
     } else if (listaObjetos.length < 1) {
         console.log("No existe ningun fabricante con ese Codigo");
-        $("#idCategoria").val("");
-        $("#categoria").val("");
-
     }
 }
 
 function rellenaFormulario(obj) {
-    $("#idCategoria").val(obj.idCategoria);
-    $("#codigo").val(obj.codigo);
-    $("#categoria").val(obj.categoria);
-    $("#baja").attr("disabled",false);
+    $("#idRecambio").val(obj.idRecambio);
+    $("#referencia").val(obj.referencia);
+    $("#codigoMarca").val(obj.fabricante.codigo);
+    $("#fabricante").val(obj.fabricante.nombre);
+    $("#descripcion").val(obj.descripcion);
+    $("#pvp").val(obj.pvp);
+    $("#descuento").val(obj.descuento);
+    calcularNeto();
+    $("#stock").val(obj.stock);
+    $("#ubicacion").val(obj.ubicacion);
+    $("#codigoCategoria").val(obj.categoria.codigo);
+    $("#categoria").val(obj.categoria.categoria);
+    $("#informacion").val(obj.informacion);
+    $("#baja").attr("disabled", false);
+    $("#descripcion").focus();
+
 }
-*/
+
+function calcularNeto() {
+    var pvp = parseFloat($("#pvp").val());
+    var descuento = parseFloat($("#descuento").val());
+    neto = pvp * (100 - descuento) / 100;
+    if (!isNaN(neto)) {
+        $("#neto").val(neto.toFixed(2));
+    }
+}
+
