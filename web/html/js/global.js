@@ -85,7 +85,8 @@ $("document").ready(function() {
     /* Atajos de teclado */
     $("body").keypress(function(ev) {
         var keycode = (ev.keyCode ? ev.keyCode : ev.which);
-        if (ev.shiftKey) {                                       // Shift + ...
+        if (ev.altKey) {                                       // Shift + ...
+            console.log("pulsado alt");
             if (keycode == '103' || keycode == '71') {           // G
                 ev.preventDefault();
                 guardar();
