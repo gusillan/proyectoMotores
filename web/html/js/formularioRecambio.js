@@ -94,8 +94,7 @@ function rellenaFormulario(obj) {
     $("#categoria").val(obj.categoria.categoria);
     $("#informacion").val(obj.informacion);
     $("#baja").attr("disabled", false);
-    $("#descripcion").focus();
-
+    //$("#descripcion").focus();
 }
 
 function calcularNeto() {

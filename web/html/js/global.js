@@ -8,7 +8,8 @@ var confirmationOpt = {
     placement: 'top',
     popout: true,
     btnOkLabel: 'Si',
-    btnCancelLabel: 'No'
+    btnCancelLabel: 'No',
+    singleton: true
             //btnOkIcon: '',
             //btnCancelIcon: ''
 };
@@ -59,22 +60,10 @@ $("document").ready(function() {
 
     /* Botones de las funciones básicas del formulario*/
     $("#guardar").click(function() {
-        if (validarFormulario()) {
-            confirmationOpt.onConfirm = guardar;
-            $(this).confirmation(confirmationOpt);
-            $(this).confirmation('show');
-        } else {
-            $(this).confirmation('destroy');  //No funciona. no se elimina una vez se encuentre asignado.  
-        }
+        validarAccion(guardar);
     });
     $("#baja").click(function() {
-        if (validarFormulario()) {
-            confirmationOpt.onConfirm = baja;
-            $(this).confirmation(confirmationOpt);
-            $(this).confirmation('show');
-        } else {
-            $(this).confirmation('destroy');  //No funciona. no se elimina una vez se encuentre asignado.  
-        }
+        validarAccion(baja);
     });
     $("#limpiar").click(limpiar);
     $("#listado").click(listado);
@@ -82,17 +71,17 @@ $("document").ready(function() {
     $("#inicio").click(inicio);
 
 
+
     /* Atajos de teclado */
-    $("body").keypress(function(ev) {
+    $("body").keydown(function(ev) {
         var keycode = (ev.keyCode ? ev.keyCode : ev.which);
         if (ev.altKey) {                                       // Shift + ...
-            console.log("pulsado alt");
             if (keycode == '103' || keycode == '71') {           // G
                 ev.preventDefault();
-                guardar();
+                validarAccion(guardar);
             } else if (keycode == '98' || keycode == '66') {     // B
                 ev.preventDefault();
-                baja();
+                validarAccion(baja);
             } else if (keycode == '108' || keycode == '76') {    // L
                 ev.preventDefault();
                 limpiar();
@@ -110,6 +99,23 @@ $("document").ready(function() {
 });
 
 
+
+function validarAccion(accion){
+    if (validarFormulario()) {
+        confirmationOpt.onConfirm = accion;
+        confirmationOpt.onCancel = function(){
+            $(".g-focusable").first().focus();
+        };
+        $("#"+accion.name).confirmation(confirmationOpt);
+        $("#"+accion.name).confirmation('show');
+        $( $(".confirmation a")[1] ).addClass("active");
+        setTimeout(function(){ $(".confirmation a")[1].focus(); }, 40); //El foco en el no, de la confirmacion
+    } else {
+        console.log("Destruir confirm");
+        setTimeout(function(){ $("#"+accion.name).confirmation('destroy'); }, 40); 
+        //Sin el timeout se muestra el confirm erroneamente cuando no esta validado
+    }
+}
 
 function validarFormulario() {
     var value = true;
