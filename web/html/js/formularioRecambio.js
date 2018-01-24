@@ -3,6 +3,8 @@
 $("document").ready(function() {
 
     $("#referencia").blur(consultaReferencia);
+    
+    $("#codigoMarca").change(consultarMarca);
 
 
     $("#pvp, #descuento").change(function() {
@@ -83,7 +85,7 @@ function rellenaFormulario(obj) {
     $("#idRecambio").val(obj.idRecambio);
     $("#referencia").val(obj.referencia);
     $("#codigoMarca").val(obj.fabricante.codigo);
-    $("#fabricante").val(obj.fabricante.nombre);
+    rellenaMarca(obj.fabricante);
     $("#descripcion").val(obj.descripcion);
     $("#pvp").val(obj.pvp);
     $("#descuento").val(obj.descuento);
