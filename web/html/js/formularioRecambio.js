@@ -70,7 +70,7 @@ function consultaReferencia() {
 }
 
 function respuestaConsultaReferencia(listaObjetos) {
-    console.log("Respuesta lista de Objetos " + listaObjetos);
+    console.log(listaObjetos);
     if (listaObjetos.length == 1) {
         var objeto = listaObjetos[0];
         rellenaFormulario(objeto);
@@ -87,10 +87,10 @@ function rellenaFormulario(obj) {
     $("#codigoMarca").val(obj.fabricante.codigo);
     rellenaMarca(obj.fabricante);
     $("#descripcion").val(obj.descripcion);
-    $("#pvp").val(obj.pvp);
-    $("#descuento").val(obj.descuento);
+    $("#pvp").val(obj.pvp.toFixed(2));
+    $("#descuento").val(obj.descuento.toFixed(2));
     calcularNeto();
-    $("#stock").val(obj.stock);
+    $("#stock").val(obj.stock.toFixed(1));
     $("#ubicacion").val(obj.ubicacion);
     $("#codigoCategoria").val(obj.categoria.codigo);
     $("#categoria").val(obj.categoria.categoria);
