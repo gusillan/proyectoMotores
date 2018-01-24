@@ -62,11 +62,11 @@ public class ModeloController {
         System.out.println("Codigo " + request.getParameter("codigo"));
         System.out.println("Fecha i " + request.getParameter("fechaInicio"));
         System.out.println("Fecha f " + request.getParameter("fechaFin"));
-        System.out.println("Codigo Fab " + request.getParameter("codigoFabricante"));
+        System.out.println("Codigo Fab " + request.getParameter("codigoMarca"));
 
 
 
-        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoFabricante"));
+        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMarca"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         System.out.println(fabricante.getNombre());
         modelo.setFabricante(fabricante);

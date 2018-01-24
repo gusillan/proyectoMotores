@@ -22,8 +22,8 @@ $("document").ready(function() {
         $("#codigo").val(getQueryVariable("codigo"));
     }
 
-    $("#codigo").blur(consultaCodigo);
-    $("#codigoMarca").blur(consultarMarca);
+    $("#codigo").change(consultaCodigo);
+    $("#codigoMarca").change(consultarMarca);
 
     $('#kw').blur(function() {
         var kw = this.value;
@@ -115,7 +115,7 @@ function rellenaFormulario(obj) {
     $('#cv').val(cv.toFixed(2));
     $("#idMarca").val(obj.idMotor);
     $("#codigoMarca").val(obj.fabricante.codigo);
-    $("#marcaMotor").val(obj.fabricante.nombre);
+    $("#marca").val(obj.fabricante.nombre);
     $("#logoMarca").attr("src", "img/marcas/"+obj.fabricante.logo); 
     $("#informacion").val(obj.informacion);
     $("#nuevoMotorBotonGroup").show();
@@ -124,31 +124,7 @@ function rellenaFormulario(obj) {
     updateFocusables();
 }
 
-function consultarMarca() {
-    var marca = $("#codigoMarca").val()
-    console.log("Consultar marca " + marca);
-    $.ajax({
-        url: '../consultaFabricante.htm',
-        data: {codigo: marca},
-        type: 'POST',
-        success: respuestaConsultaMarca
-    });
-}
 
-function respuestaConsultaMarca(listaObjetos) {
 
-    if (listaObjetos.length == 1) {
-        var objeto = listaObjetos[0];
-        rellenaMarca(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun fabricante con ese Codigo");
-    }
-}
 
-function rellenaMarca(marca) {
-    $("#marcaMotor").val(marca.nombre);
-    $("#logoMarca").attr("src", "img/marcas/" + marca.logo);
-}
 

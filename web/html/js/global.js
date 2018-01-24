@@ -15,9 +15,6 @@ var confirmationOpt = {
 };
 
 
-
-
-
 /*  Listener
  *********************************************************/
 $("document").ready(function() {
@@ -47,8 +44,8 @@ $("document").ready(function() {
     $(".g-input, .g-select, .g-textarea").enterKey(function() {
         var inputs = $(".g-input, .g-select, .g-textarea");
         var index = inputs.index(this);
-        if (index < inputs.length-1)
-        	inputs[index + 1].focus();
+        if (index < inputs.length - 1)
+            inputs[index + 1].focus();
     });
     $(".g-select").change(function() {
         var inputs = $(".g-input, .g-select");
@@ -98,7 +95,39 @@ $("document").ready(function() {
 
 });
 
+/*Consultas comunes
+ *************************************************************/
 
+function consultarMarca() {
+    var marca = $("#codigoMarca").val();
+    console.log("Consultar marca " + marca);
+    $.ajax({
+        url: '../consultaFabricante.htm',
+        data: {codigo: marca},
+        type: 'POST',
+        success: respuestaConsultaMarca
+    });
+}
+
+function respuestaConsultaMarca(listaObjetos) {
+
+    if (listaObjetos.length === 1) {
+        var objeto = listaObjetos[0];
+        rellenaMarca(objeto);
+    } else if (listaObjetos.length > 1) {
+        console.log("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
+    } else if (listaObjetos.length < 1) {
+        console.log("No existe ningun fabricante con ese Codigo");
+        $("#marca").val('');
+        $("#codigoMarca").val('');
+        $("#logoMarca").attr("src", "");
+    }
+}
+
+function rellenaMarca(marca) {
+    $("#marca").val(marca.nombre);
+    $("#logoMarca").attr("src", "img/marcas/" + marca.logo);
+}
 
 function validarAccion(accion){
     if (validarFormulario()) {
@@ -428,7 +457,7 @@ function capitalize(string) {
 }
 // Funcion para obtencion de atributos de la URL 
 
-function getQueryVariable(variable){
+function getQueryVariable(variable) {
     var query = window.location.search.substring(1);
     var vars = query.split("&");
     for (var i = 0; i < vars.length; i++) {
