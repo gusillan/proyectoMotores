@@ -53,16 +53,20 @@ public class RecambioController {
         recambioDao.create(recambio);
 
     }
-    /*
-    @RequestMapping("bajaMotor.htm")
-    public void bajaMotor(Motor motor, HttpServletRequest request, HttpServletResponse response) {
-
+    
+    @RequestMapping("bajaRecambio.htm")
+    public void bajaRecambio(Recambio recambio, HttpServletRequest request, HttpServletResponse response) {
+        
+        System.out.println("Recambio "+recambio.getDescripcion());
         List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMarca"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
-        motor.setFabricante(fabricante);
-        motorDao.delete(motor);
+        recambio.setFabricante(fabricante);
+        List categorias = categoriaDao.listadoPorCampoExacto("codigo", request.getParameter("codigoCategoria"));
+        CategoriaRecambio categoria = (CategoriaRecambio) categorias.get(0);
+        recambio.setCategoria(categoria);
+        recambioDao.delete(recambio);
     }
-*/
+
    
     @RequestMapping("consultaReferencia.htm")
     public void consultaReferencia(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -1,10 +1,13 @@
 /*  Listener
  *********************************************************/
 $("document").ready(function() {
-
-    $("#referencia").blur(consultaReferencia);
     
+    consultarMarca();
+
+    $("#referencia").change(consultaReferencia);
+
     $("#codigoMarca").change(consultarMarca);
+    $("#codigoCategoria").change(consultarCategoria);
 
 
     $("#pvp, #descuento").change(function() {
@@ -13,9 +16,9 @@ $("document").ready(function() {
         var number = parseFloat(value);
         number = number.toFixed(2);
         this.value = number;
-        calcularNeto();           
+        calcularNeto();
     });
-    
+
     $("#stock").change(function() {
         var value = this.value;
         value = value.replace(",", ".");
@@ -47,9 +50,9 @@ function guardar() {
 
 function baja() {
 
-    var data = $("#formCategoriaRecambio").serialize();
+    var data = $("#formRecambio").serialize();
     $.ajax({
-        url: '../bajaCategoriaRecambio.htm',
+        url: '../bajaRecambio.htm',
         data: data,
         type: 'POST',
         success: limpiar
@@ -68,10 +71,9 @@ function consultaReferencia() {
 
     }
 }
-
 function respuestaConsultaReferencia(listaObjetos) {
     console.log(listaObjetos);
-    if (listaObjetos.length == 1) {
+    if (listaObjetos.length === 1) {
         var objeto = listaObjetos[0];
         rellenaFormulario(objeto);
     } else if (listaObjetos.length > 1) {
@@ -79,6 +81,34 @@ function respuestaConsultaReferencia(listaObjetos) {
     } else if (listaObjetos.length < 1) {
         console.log("No existe ningun fabricante con ese Codigo");
     }
+}
+
+function consultarCategoria() {
+    var categoria = $("#codigoCategoria").val();
+    console.log("Consultar categoria " + categoria);
+    $.ajax({
+        url: '../consultaCategoriaRecambio.htm',
+        data: {codigo: categoria},
+        type: 'POST',
+        success: respuestaConsultaCategoria
+    });
+}
+
+function respuestaConsultaCategoria(listaObjetos) {
+    if (listaObjetos.length === 1) {
+        var objeto = listaObjetos[0];
+        rellenaCategoria(objeto);
+    } else if (listaObjetos.length > 1) {
+        console.log("Existen varias categorías con ese Codigo.Consultar al administrador de la BBDD");
+    } else if (listaObjetos.length < 1) {
+        console.log("No existe ninguna categoria con ese Codigo");
+        $("#codigoCategoria").val('');
+        $("#categoria").val('');
+    }
+}
+
+function rellenaCategoria(objeto) {
+    $("#categoria").val(objeto.categoria);
 }
 
 function rellenaFormulario(obj) {
@@ -96,7 +126,7 @@ function rellenaFormulario(obj) {
     $("#categoria").val(obj.categoria.categoria);
     $("#informacion").val(obj.informacion);
     $("#baja").attr("disabled", false);
-    //$("#descripcion").focus();
+    $("#descripcion").focus();
 }
 
 function calcularNeto() {

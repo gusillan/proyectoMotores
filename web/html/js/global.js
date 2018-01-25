@@ -99,14 +99,16 @@ $("document").ready(function() {
  *************************************************************/
 
 function consultarMarca() {
-    var marca = $("#codigoMarca").val();
-    console.log("Consultar marca " + marca);
-    $.ajax({
-        url: '../consultaFabricante.htm',
-        data: {codigo: marca},
-        type: 'POST',
-        success: respuestaConsultaMarca
-    });
+    if (!vacio($("#codigoMarca"))) {
+        var marca = $("#codigoMarca").val();
+        console.log("Consultar marca " + marca);
+        $.ajax({
+            url: '../consultaFabricante.htm',
+            data: {codigo: marca},
+            type: 'POST',
+            success: respuestaConsultaMarca
+        });
+    }
 }
 
 function respuestaConsultaMarca(listaObjetos) {
@@ -129,19 +131,23 @@ function rellenaMarca(marca) {
     $("#logoMarca").attr("src", "img/marcas/" + marca.logo);
 }
 
-function validarAccion(accion){
+function validarAccion(accion) {
     if (validarFormulario()) {
         confirmationOpt.onConfirm = accion;
-        confirmationOpt.onCancel = function(){
+        confirmationOpt.onCancel = function() {
             $(".g-focusable").first().focus();
         };
-        $("#"+accion.name).confirmation(confirmationOpt);
-        $("#"+accion.name).confirmation('show');
-        $( $(".confirmation a")[1] ).addClass("active");
-        setTimeout(function(){ $(".confirmation a")[1].focus(); }, 40); //El foco en el no, de la confirmacion
+        $("#" + accion.name).confirmation(confirmationOpt);
+        $("#" + accion.name).confirmation('show');
+        $($(".confirmation a")[1]).addClass("active");
+        setTimeout(function() {
+            $(".confirmation a")[1].focus();
+        }, 40); //El foco en el no, de la confirmacion
     } else {
         console.log("Destruir confirm");
-        setTimeout(function(){ $("#"+accion.name).confirmation('destroy'); }, 40); 
+        setTimeout(function() {
+            $("#" + accion.name).confirmation('destroy');
+        }, 40);
         //Sin el timeout se muestra el confirm erroneamente cuando no esta validado
     }
 }
@@ -165,8 +171,6 @@ function validarFormulario() {
     }
 }
 
-
-
 function vacio(campo) {
     if (campo.val() == "" || campo.val() == null || /^\s*$/.test(campo.val())) {
         return true;
@@ -174,8 +178,6 @@ function vacio(campo) {
         return false;
     }
 }
-
-
 
 function limpiar() {
     $("form")[0].reset();
@@ -188,8 +190,6 @@ function limpiar() {
     updateFocusables();
     $(".g-focusable").first().focus();
 }
-
-
 
 function volver() {
     console.log("Pulsado el boton de VOLVER");

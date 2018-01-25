@@ -21,6 +21,8 @@ $("document").ready(function() {
     if (getQueryVariable("codigo")){
         $("#codigo").val(getQueryVariable("codigo"));
     }
+    
+    consultarMarca();
 
     $("#codigo").change(consultaCodigo);
     $("#codigoMarca").change(consultarMarca);

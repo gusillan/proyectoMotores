@@ -1,12 +1,16 @@
 /*  Listener
  *********************************************************/
 $("document").ready(function() {
-    
-    console.log("Codigo "+ getQueryVariable("codigo"));
-    if (getQueryVariable("codigo")){
+
+    console.log("Codigo " + getQueryVariable("codigo"));
+    if (getQueryVariable("codigo")) {
         $("#codigo").val(getQueryVariable("codigo"));
     }
+
+    consultarMarca();
+    muestraImagen();
     
+
     $("#fechaInicio").mask("99/9999"); // sin lineas("99/9999", {placeholder: " "})
     $("#fechaFin").mask("99/9999");
 
@@ -15,20 +19,19 @@ $("document").ready(function() {
 
 
     $('#archivo').change(function() {
-        
+
         var dataFile = new FormData();
         var files = document.getElementById("archivo").files;
         var file = files[0];
         console.log("FIles " + file.size);
-        dataFile.append("file", file);        
-       
+        dataFile.append("file", file);
+
         $.ajax({
             url: '../guardaImagen.htm',
-            type : 'POST',
+            type: 'POST',
             data: dataFile,
-            processData : false,
+            processData: false,
             contentType: false,
-            
         });
 
         var files = $('#archivo')[0].files;
@@ -46,7 +49,7 @@ $("document").ready(function() {
  **********************************************************/
 
 function guardar() {
-    
+
     if (validarFormulario()) {
         var data = $("#formModelo").serialize();
         console.log("Serializada " + data);
@@ -62,7 +65,7 @@ function guardar() {
 }
 
 function baja() {
-    
+
     var data = $("#formModelo").serialize();
     $.ajax({
         url: '../bajaModelo.htm',
@@ -108,26 +111,32 @@ function rellenaFormulario(obj) {
     $("#codigo").val(obj.codigo);
     $("#descripcion").val(obj.descripcion);
     $("#codigoMarca").val(obj.fabricante.codigo);
-    $("#marca").val(obj.fabricante.nombre);
+    rellenaMarca(obj.fabricante);
+    //$("#marca").val(obj.fabricante.nombre);
     $("#fechaInicio").val(obj.fechaInicio);
     $("#fechaFin").val(obj.fechaFin);
     $("#imagen").val(obj.imagen);
-    $("#imagenModelo").attr("src", "img/imagenesVehiculos/" + obj.imagen);
+    muestraImagen();
+    //$("#imagenModelo").attr("src", "img/imagenesVehiculos/" + obj.imagen);
     $("#baja").attr("disabled", false);
     updateFocusables();
 
 }
 
-
+function muestraImagen() {
+    if (!vacio($("#imagen"))) {
+        $("#imagenModelo").attr("src", "img/imagenesVehiculos/" + $("#imagen").val());
+    }
+}
 
 /* Subir imagen
  **********************************************************/
 function resizeAndUpload(file) {
-    
+
     console.log("Redimension de imagen");
     var reader = new FileReader();
     reader.onloadend = function() {
-        
+
         var tempImg = new Image();
         tempImg.src = reader.result;
         tempImg.onload = function() {
