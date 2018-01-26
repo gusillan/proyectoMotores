@@ -123,6 +123,37 @@ function rellenaFormulario(obj) {
 
 }
 
+function consultarMarca() {
+    var marca = $("#codigoMarca").val();
+    console.log("Consultar marca " + marca);
+    $.ajax({
+        url: '../consultaFabricante.htm',
+        data: {codigo: marca},
+        type: 'POST',
+        success: respuestaConsultaMarca
+    });
+}
+
+function respuestaConsultaMarca(listaObjetos) {
+
+    if (listaObjetos.length === 1) {
+        var objeto = listaObjetos[0];
+        rellenaMarca(objeto);
+    } else if (listaObjetos.length > 1) {
+        console.log("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
+    } else if (listaObjetos.length < 1) {
+        console.log("No existe ningun fabricante con ese Codigo");
+        $("#fabricante").val('');
+        $("#codigoMarca").val('');
+    }
+}
+
+function rellenaMarca(marca) {
+    $("#marca").val(marca.nombre);
+    $("#logoMarca").attr("src", "img/marcas/" + marca.logo);
+}
+
+
 function muestraImagen() {
     if (!vacio($("#imagen"))) {
         $("#imagenModelo").attr("src", "img/imagenesVehiculos/" + $("#imagen").val());

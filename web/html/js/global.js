@@ -271,61 +271,64 @@ function VentanaEmergente(opciones) {
 
     //Para este constructor hay que utilizar opciones porque this no funciona aqui.
     $.get("ventanaEmergente.html", function(data) {
-        ventanaEmergente = data.replace(/@modal/g, opciones.modal);
+
+        var ventanaEmergente = data.replace(/@modal/g, opciones.modal);
         ventanaEmergente = ventanaEmergente.replace(/@titulo/g, opciones.titulo);
 
-        $('body').append(ventanaEmergente);
-        var head = '';
-        width = 100 / opciones.campos.length;
-        for (var i = 0; i < opciones.campos.length; i++) {
-            head += '<th style="width: ' + width + '%;">' + capitalize(opciones.campos[i]) + '</th>';
-        }
-        $('#' + opciones.modal + '-head').html(head);
-
-
-        //crear filtros
-        if (opciones.filtros.length >= 1) {
-            var columnasFiltros = 12 / opciones.filtros.length;
-            var filtros = '';
-            for (var i = 0; i < opciones.filtros.length; i++) {
-                var nombreFiltro = opciones.modal + '-' + opciones.filtros[i];
-                filtros += '<div class="col-md-' + columnasFiltros + '"><div class="form-group">';
-                filtros += '<label for="' + nombreFiltro + '">' + capitalize(opciones.filtros[i]) + '</label>'
-                filtros += '<input type="text" class="form-control g-input ' + opciones.modal + '-filter" id="' + nombreFiltro + '" name="' + nombreFiltro + '">'
-                filtros += '</div></div>';
+        $('body').ready(function(){                     //Esperar a que haya cargado body para adjuntarle la ventanaemergente
+            $('body').append(ventanaEmergente);
+            var head = '';
+            width = 100 / opciones.campos.length;
+            for (var i = 0; i < opciones.campos.length; i++) {
+                head += '<th style="width: ' + width + '%;">' + capitalize(opciones.campos[i]) + '</th>';
             }
-            $('#' + opciones.modal + '-filtros').html(filtros);
-        }
-
-        $('.' + opciones.modal + '-filter').keyup(function() {
-            this.value = this.value.toUpperCase();
-            miVentana.filtrar();
-        });
+            $('#' + opciones.modal + '-head').html(head);
 
 
-        //listener iniciales
-        $('#' + opciones.modal).on('shown.bs.modal', function() {
-            updateFocusables();
-            $('#' + opciones.modal + '-items tr')[0].focus();
-        });
-        $('#' + opciones.modal).on('hidden.bs.modal', function() {
-            $(".modeloModal-filter").each(function() {
-                this.value = "";
+            //crear filtros
+            if (opciones.filtros.length >= 1) {
+                var columnasFiltros = 12 / opciones.filtros.length;
+                var filtros = '';
+                for (var i = 0; i < opciones.filtros.length; i++) {
+                    var nombreFiltro = opciones.modal + '-' + opciones.filtros[i];
+                    filtros += '<div class="col-md-' + columnasFiltros + '"><div class="form-group">';
+                    filtros += '<label for="' + nombreFiltro + '">' + capitalize(opciones.filtros[i]) + '</label>'
+                    filtros += '<input type="text" class="form-control g-input ' + opciones.modal + '-filter" id="' + nombreFiltro + '" name="' + nombreFiltro + '">'
+                    filtros += '</div></div>';
+                }
+                $('#' + opciones.modal + '-filtros').html(filtros);
+            }
+
+
+            //Listener de los filtros
+            $('.' + opciones.modal + '-filter').keyup(function() {
+                this.value = this.value.toUpperCase();
+                miVentana.filtrar();
             });
-            $('#' + opciones.modal + '-cantidadFiltrada').text("");
-            updateFocusables();
-            $(".g-focusable").first().focus();
-        });
-        $('#' + opciones.modal + '-cancelar').click(function() {
-            $('#' + opciones.modal).modal('hide');
-            $('#' + opciones.modal + '-items tr').remove();
-        });
 
+            //listener iniciales
+            $('#' + opciones.modal).on('shown.bs.modal', function() {
+                updateFocusables();
+                $('#' + opciones.modal + '-items tr')[0].focus();
+            });
+            $('#' + opciones.modal).on('hidden.bs.modal', function() {
+                $(".modeloModal-filter").each(function() {
+                    this.value = "";
+                });
+                $('#' + opciones.modal + '-cantidadFiltrada').text("");
+                updateFocusables();
+                $(".g-focusable").first().focus();
+            });
+            $('#' + opciones.modal + '-cancelar').click(function() {
+                $('#' + opciones.modal).modal('hide');
+                $('#' + opciones.modal + '-items tr').remove();
+            });
+
+        });      
     });
 
 
 }
-;
 
 
 
