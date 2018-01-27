@@ -285,6 +285,7 @@ function respuestaBuscarEntidad(clientesJson) {
         rellenaCliente(clientesJson[0]);
     } else {
         ventanaEntidad.abrir(clientesJson); //Abre la ventana Modal con la lista
+        console.log("Abrir modal");
     }
 }
 
@@ -336,7 +337,7 @@ function respuestaBuscarMotor(motores) {
     if (motores.length == 0) {
         console.log("Error: la consulta del motor no ha obtenido ningun resultado");
     } else if (motores.length == 1) {
-        rellenaModelo(motores[0]);
+        rellenaMotor(motores[0]);
     } else {
         ventanaMotor.abrir(motores); //Abre la ventana Modal con la lista
     }
