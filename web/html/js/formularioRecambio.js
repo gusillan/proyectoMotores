@@ -8,7 +8,6 @@ ventanaRecambios = new VentanaEmergente({
     filtros: []
 });
 
-
 /*  Listener
  *********************************************************/
 $("document").ready(function() {
@@ -84,27 +83,7 @@ function baja() {
 /* Funciones adicionales
  ********************************************************/
 
-function consultaReferencia() {
-    if (!vacio($("#referencia"))) {
-        console.log("Vamos a consultar la Referencia " + this.value);
-        var referencia = this.value;
-        $.getJSON('../consultaReferencia.htm', {referencia: referencia}, respuestaConsultaReferencia);
 
-    }
-}
-function respuestaConsultaReferencia(listaObjetos) {
-    console.log(listaObjetos);
-    if (listaObjetos.length === 1) {
-        var objeto = listaObjetos[0];
-        rellenaFormulario(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varias categorias con ese Codigo.Consultar al administrador de la BBDD");
-        console.log("Esta es la lista " + listaObjetos);
-        ventanaRecambios.abrir(listaObjetos);
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun fabricante con ese Codigo");
-    }
-}
 
 function consultarCategoria() {
     var categoria = $("#codigoCategoria").val();
@@ -132,6 +111,20 @@ function respuestaConsultaCategoria(listaObjetos) {
 
 function rellenaCategoria(objeto) {
     $("#categoria").val(objeto.categoria);
+}
+
+function respuestaConsultaReferencia(listaObjetos) {
+    console.log(listaObjetos);
+    if (listaObjetos.length === 1) {
+        var objeto = listaObjetos[0];
+        rellenaFormulario(objeto);
+    } else if (listaObjetos.length > 1) {
+        console.log("Existen varias categorias con ese Codigo.Consultar al administrador de la BBDD");
+        console.log("Esta es la lista " + listaObjetos);
+        ventanaRecambios.abrir(listaObjetos);
+    } else if (listaObjetos.length < 1) {
+        console.log("No existe ningun fabricante con ese Codigo");
+    }
 }
 
 function rellenaFormulario(obj) {

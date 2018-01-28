@@ -94,45 +94,6 @@ function baja() {
 /* Funciones de Consulta de codigos
  ************************************************************/
 
-function consultaMatricula() {
-    if (!vacio($("#matricula"))) {
-        var matricula = $("#matricula").val();
-        console.log("Vamos a consultar la matricula " + matricula);
-        $.getJSON(
-                '../consultaMatricula.htm',
-                {matricula: matricula},
-        respuestaConsultaMatricula);
-    }
-}
-
-function consultaModelo() {
-    if (!vacio($("#codigoModelo"))) {
-        var modelo = $("#codigoModelo").val();
-        console.log("Modelo " + modelo);
-        $.getJSON(
-                '../consultaModelo.htm',
-                {codigo: modelo},
-        respuestaConsultaModelo);
-    } else {
-        $("#descripcionModelo").val("");
-        $("#logoMarca").attr("src", "");
-        $("#silueta").attr("src", "");
-    }
-}
-
-function consultaMotor() {
-    if (!vacio($("#codigoMotor"))) {
-        var motor = $("#codigoMotor").val();
-        console.log("Motor " + motor);
-        $.getJSON(
-                '../consultaCodigoMotor.htm',
-                {codigo: motor},
-        respuestaConsultaMotor);
-    } else {
-        $("#descripcionMotor").val("");
-    }
-}
-
 function consultaCliente() {
     if (!vacio($("#codigoCliente"))) {
         var cliente = $("#codigoCliente").val();
@@ -147,20 +108,10 @@ function consultaCliente() {
 
 }
 
-
 /* Funciones operativas
  ************************************************************/
 
-function respuestaConsultaMatricula(listaObjetos) {
-    if (listaObjetos.length == 1) {
-        var objeto = listaObjetos[0];
-        rellenaFormulario(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varias vehiculos son la misma matrícula.Consultar con el administrador de la BBDD");
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun vehiculo con esta matricula ");
-    }
-}
+
 
 function rellenaFormulario(obj) {
     $("#idVehiculo").val(obj.idVehiculo);
@@ -178,42 +129,9 @@ function rellenaFormulario(obj) {
     $(".g-button-aside-open").hide();
 }
 
-function respuestaConsultaModelo(listaObjetos) {
-    if (listaObjetos.length == 1) {
-        var objeto = listaObjetos[0];
-        rellenaModelo(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varios Modelos con el mismo codigo.Consultar con el administrador de la BBDD");
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningún modelo con ese código");
-        $("#descripcionModelo").val("");
-        $("#logoMarca").attr("src", "");
-        $("#silueta").attr("src", "");
-        darAltaModelo();
-    }
-}
 
-function rellenaModelo(modelo) {
-    $("#descripcionModelo").val(modelo.descripcion);
-    $("#codigoModelo").val(modelo.codigo);
-    $("#logoMarca").attr("src", "img/marcas/" + modelo.fabricante.logo);
-    $("#silueta").attr("src", "img/imagenesVehiculos/" + modelo.imagen);
-    /*$("#nombreFabricanteModelo").text(modelo.fabricante.nombre);*/
-}
 
-function respuestaConsultaMotor(listaObjetos) {
-    if (listaObjetos.length == 1) {
-        var objeto = listaObjetos[0];
-        rellenaMotor(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varios Motores con el mismo codigo");
-        ventanaMotor.abrir(listaObjetos);
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun Motor con este codigo");
-        $("#descripcionMotor").val("");
-        darAltaMotor();
-    }
-}
+
 
 function rellenaMotor(motor) {
     $("#descripcionMotor").val(motor.descripcion);
@@ -340,30 +258,6 @@ function respuestaBuscarMotor(motores) {
         rellenaMotor(motores[0]);
     } else {
         ventanaMotor.abrir(motores); //Abre la ventana Modal con la lista
-    }
-}
-
-function darAltaModelo() {
-    var respuesta = confirm("Desea dar de alta este Modelo?");
-    if (respuesta == true) {
-        console.log("Ha pulsado si");
-        window.location = "../html/formularioModelo.html?codigo=" + $("#codigoModelo").val();
-    } else {
-        console.log("Ha pulsado no");
-        $("#codigoModelo").val("");
-        $("#codigoModelo").focus();
-    }
-}
-
-function darAltaMotor() {
-    var respuesta = confirm("Desea dar de alta este Motor?");
-    if (respuesta == true) {
-        console.log("Ha pulsado si");
-        window.location = "../html/formularioMotor.html?codigo=" + $("#codigoMotor").val();
-    } else {
-        console.log("Ha pulsado no");
-        $("#codigoMotor").val("");
-        $("#codigoMotor").focus();
     }
 }
 

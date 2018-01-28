@@ -27,5 +27,7 @@
         <br>
         <a href="html/formularioRecambio.html">8 - Formulario de Recambio</a><br>        
         <br>
+        <a href="html/recambiosVehiculo.html">9 - Asigncion de Recambios a Vehículos</a><br>        
+        <br>
     </body>
 </html>
