@@ -47,7 +47,9 @@
 
 
 
-
+.btn-link, .btn-link:active, .btn-link:focus, .btn-link:hover{
+	border-color: #ddd;  
+}
 
 
 

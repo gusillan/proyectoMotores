@@ -81,11 +81,11 @@ input[type=file]::-webkit-file-upload-button:active{
 }
 
 
-label{
+/*label{
     display: block;
     font-family: 'robotomedium', sans-serif, Arial;
     font-weight: normal;
-}
+}*/
 label a{
     opacity: 0;
     float: right;
@@ -101,19 +101,21 @@ label a{
 }*/
 
 
-/*arreglo para las tablas*/
-thead, tbody, tr, td, th { display: block; }
-tbody {
+/*arreglo para las tablas del modal*/
+.g-table-modal thead, .g-table-modal tbody, .g-table-modal tr, .g-table-modal td, .g-table-modal th {
+    display: block; 
+}
+.g-table-modal tbody {
     height: 260px;
     overflow-y: auto;
 }
-tr:after {
+.g-table-modal tr:after {
     content: ' ';
     display: block;
     visibility: hidden;
     clear: both;
 }
-tbody td, thead th {
+.g-table-modal tbody td, .g-table-modal thead th {
     width: 20%;
     float: left;
 }
@@ -213,4 +215,46 @@ tr.striped{
 }
 .g-aside-section .row:first-child{
     margin-top: 10px;
+}
+
+
+/*mantenimiento*/
+.g-table-mantenimiento{
+    height:320px; 
+}
+.g-table-mantenimiento tr{
+    border: 1px solid #ddd;
+    width: 100%;
+    display: inline-table;
+    height:36px;
+    table-layout: fixed;
+}
+.g-table-mantenimiento th, .g-table-mantenimiento td{
+    width: 6%;
+    text-align: center;
+}
+.g-table-mantenimiento th:nth-of-type(-1n + 3), .g-table-mantenimiento td:nth-of-type(-1n + 3){
+    width: 9.334%;
+    text-align: center;
+}
+.g-table-mantenimiento th.btn{
+    display: table-cell;
+}
+
+.g-table-mantenimiento tbody{
+    overflow-y: scroll;
+    height: 238px;
+    position: absolute;
+}
+
+
+
+
+/* Dropdown */
+.dropdown label {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.428571429;
 }

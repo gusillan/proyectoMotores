@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+        <title>Mentenimiento</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- ESTILOS CSS -->
+        <link rel="stylesheet" href="css/fonts/fonts.css"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/global.css"/>
+        <link rel="stylesheet" href="css/overload.css"/>
+
+        <!-- JAVASCRIPT -->
+        <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>  
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap-confirmation.min.js" type="text/javascript"></script> 
+        <script src="js/global.js" type="text/javascript"></script> 
+        <script src="js/mantenimiento.js" type="text/javascript"></script> 
+
+
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="page-header">
+                <h1>Mentenimiento</h1>
+            </div>
+
+            <form name="mantenimiento" id="mantenimiento">
+
+                <div class="row">  
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="matricula">Matrícula</label>
+                            <input type="text" class="form-control g-input" id="matricula" name="matricula"  maxlength="10" required title="Complete una matrícula válida. Todo junto sin espacios ni guiones" pattern="[0-9]{4}[A-Z]{3}|[A-Z]{1,2}[0-9]{4}[A-Z]{1,2}">
+                        </div>               
+                    </div> 
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="km">Km</label>
+                            <input type="text" class="form-control g-input" id="km" name="km" maxlength="6" required title="Km actuales. Número de 1 A 6 digitos sin puntos ni comas" pattern="[0-9]{1,6}">
+                        </div>          
+                    </div>
+                </div><!-- row -->
+                <div class="row">
+                    <div>
+                        
+
+                    </div>
+                </div><!-- row -->
+
+
+
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered g-table-mantenimiento">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="dropdown">
+                                          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                          </button>
+                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                            <li role="menuitem"><label><input type="checkbox" class="h-columnsFilter" value="AC" checked>Aceite</label></li>
+                                            <li role="menuitem"><label><input type="checkbox" class="h-columnsFilter" value="FA" checked>Filtro Aceite</label></li>
+                                            <li role="menuitem"><label><input type="checkbox" class="h-columnsFilter" value="FR" checked>Filtro aiRe</label></li>
+                                            <li role="menuitem"><label><input type="checkbox" class="h-columnsFilter" value="FP" checked>Filtro Polen</label></li>
+                                            <li role="menuitem"><label><input type="checkbox" class="h-columnsFilter" value="FC" checked>Filtro Combustible</label></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li role="menuitem"><label><input type="checkbox" class="h-columnsFilter" value="PD" checked>Pastillas freno Del.</label></li>
+                                            <li role="menuitem"><label><input type="checkbox" class="h-columnsFilter" value="PT" checked>Pastillas freno Tras.</label></li>
+                                          </ul>
+                                        </div>
+                                    </th>
+                                    <th id="diferenciaTiempo"></th>
+                                    <th id="diferenciaKm"></th>
+                                    <th class="h-checkboxFilter h-AC">
+                                        <input type="checkbox" value="AC">
+                                    </th>
+                                    <th class="h-checkboxFilter h-FA">
+                                        <input type="checkbox" value="FA">
+                                    </th>
+                                    <th class="h-checkboxFilter h-FR">
+                                        <input type="checkbox" value="FR">
+                                    </th>
+                                    <th class="h-checkboxFilter h-FP">
+                                        <input type="checkbox" value="FP">
+                                    </th>
+                                    <th class="h-checkboxFilter h-FC">
+                                        <input type="checkbox" value="FC">
+                                    </th>
+                                    <th class="h-checkboxFilter h-PD">
+                                        <input type="checkbox" value="PD">
+                                    </th>
+                                    <th class="h-checkboxFilter h-PT">
+                                        <input type="checkbox" value="PT">
+                                    </th>
+                                    <th class="h-checkboxFilter h-NE">
+                                        <input type="checkbox" value="NE">
+                                    </th>
+                                    <th class="h-checkboxFilter h-BA">
+                                        <input type="checkbox" value="BA">
+                                    </th>
+                                    <th class="h-checkboxFilter h-BU">
+                                        <input type="checkbox" value="BU">
+                                    </th>
+                                    <th class="h-checkboxFilter h-EM">
+                                        <input type="checkbox" value="EM">
+                                    </th>
+                                    <th class="h-checkboxFilter h-DI">
+                                        <input type="checkbox" value="DI">
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Orden</th>
+                                    <th>Fecha</th>
+                                    <th>Km</th>
+                                    <th class="btn btn-link h-AC">AC</th>
+                                    <th class="btn btn-link h-FA">FA</th>
+                                    <th class="btn btn-link h-FR">FR</th>
+                                    <th class="btn btn-link h-FP">FP</th>
+                                    <th class="btn btn-link h-FC">FC</th>
+                                    <th class="btn btn-link h-PD">PD</th>
+                                    <th class="btn btn-link h-PT">PT</th>
+                                    <th class="btn btn-link h-NE">NE</th>
+                                    <th class="btn btn-link h-BA">BA</th>
+                                    <th class="btn btn-link h-BU">BU</th>
+                                    <th class="btn btn-link h-EM">EM</th>
+                                    <th class="btn btn-link h-DI">DI</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>16350</td>
+                                    <td>05/12/2016</td>
+                                    <td>40.356</td>
+                                    <td class="h-AC">X</td>
+                                    <td class="h-FA">X</td>
+                                    <td class="h-FR">X</td>
+                                    <td class="h-FP">X</td>
+                                    <td class="h-FC"></td>
+                                    <td class="h-PD"></td>
+                                    <td class="h-PT"></td>
+                                    <td class="h-NE"></td>
+                                    <td class="h-BA"></td>
+                                    <td class="h-BU"></td>
+                                    <td class="h-EM"></td>
+                                    <td class="h-DI"></td>
+                                </tr>
+                                <tr>
+                                    <td>16300</td>
+                                    <td>16/04/2016</td>
+                                    <td>40.020</td>
+                                    <td class="h-AC"></td>
+                                    <td class="h-FA"></td>
+                                    <td class="h-FR"></td>
+                                    <td class="h-FP"></td>
+                                    <td class="h-FC"></td>
+                                    <td class="h-PD"></td>
+                                    <td class="h-PT"></td>
+                                    <td class="h-NE"></td>
+                                    <td class="h-BA">X</td>
+                                    <td class="h-BU"></td>
+                                    <td class="h-EM"></td>
+                                    <td class="h-DI"></td>
+                                </tr>                                
+                                <tr>
+                                    <td>16150</td>
+                                    <td>20/10/2015</td>
+                                    <td>31.440</td>
+                                    <td class="h-AC">X</td>
+                                    <td class="h-FA">X</td>
+                                    <td class="h-FR"></td>
+                                    <td class="h-FP"></td>
+                                    <td class="h-FC"></td>
+                                    <td class="h-PD">X</td>
+                                    <td class="h-PT"></td>
+                                    <td class="h-NE"></td>
+                                    <td class="h-BA"></td>
+                                    <td class="h-BU"></td>
+                                    <td class="h-EM"></td>
+                                    <td class="h-DI"></td>
+                                </tr>
+                                <tr>
+                                    <td>16120</td>
+                                    <td>15/09/2014</td>
+                                    <td>21.350</td>
+                                    <td class="h-AC">X</td>
+                                    <td class="h-FA">X</td>
+                                    <td class="h-FR">X</td>
+                                    <td class="h-FP"></td>
+                                    <td class="h-FC"></td>
+                                    <td class="h-PD"></td>
+                                    <td class="h-PT"></td>
+                                    <td class="h-NE"></td>
+                                    <td class="h-BA"></td>
+                                    <td class="h-BU"></td>
+                                    <td class="h-EM"></td>
+                                    <td class="h-DI"></td>
+                                </tr>
+                                <tr>
+                                    <td>16010</td>
+                                    <td>20/10/2013</td>
+                                    <td>12.440</td>
+                                    <td class="h-AC">X</td>
+                                    <td class="h-FA">X</td>
+                                    <td class="h-FR"></td>
+                                    <td class="h-FP"></td>
+                                    <td class="h-FC"></td>
+                                    <td class="h-PD"></td>
+                                    <td class="h-PT"></td>
+                                    <td class="h-NE"></td>
+                                    <td class="h-BA"></td>
+                                    <td class="h-BU"></td>
+                                    <td class="h-EM"></td>
+                                    <td class="h-DI"></td>
+                                </tr>
+                                <tr>
+                                    <td>16010</td>
+                                    <td>20/10/2013</td>
+                                    <td>12.440</td>
+                                    <td class="h-AC">X</td>
+                                    <td class="h-FA">X</td>
+                                    <td class="h-FR"></td>
+                                    <td class="h-FP"></td>
+                                    <td class="h-FC"></td>
+                                    <td class="h-PD"></td>
+                                    <td class="h-PT"></td>
+                                    <td class="h-NE"></td>
+                                    <td class="h-BA"></td>
+                                    <td class="h-BU"></td>
+                                    <td class="h-EM"></td>
+                                    <td class="h-DI"></td>
+                                </tr>
+                                <tr>
+                                    <td>16010</td>
+                                    <td>20/10/2013</td>
+                                    <td>12.440</td>
+                                    <td class="h-AC">X</td>
+                                    <td class="h-FA">X</td>
+                                    <td class="h-FR"></td>
+                                    <td class="h-FP"></td>
+                                    <td class="h-FC"></td>
+                                    <td class="h-PD"></td>
+                                    <td class="h-PT"></td>
+                                    <td class="h-NE"></td>
+                                    <td class="h-BA"></td>
+                                    <td class="h-BU"></td>
+                                    <td class="h-EM"></td>
+                                    <td class="h-DI"></td>
+                                </tr>
+                                <tr>
+                                    <td>16010</td>
+                                    <td>20/10/2013</td>
+                                    <td>12.440</td>
+                                    <td class="h-AC">X</td>
+                                    <td class="h-FA">X</td>
+                                    <td class="h-FR"></td>
+                                    <td class="h-FP"></td>
+                                    <td class="h-FC"></td>
+                                    <td class="h-PD"></td>
+                                    <td class="h-PT"></td>
+                                    <td class="h-NE"></td>
+                                    <td class="h-BA"></td>
+                                    <td class="h-BU"></td>
+                                    <td class="h-EM"></td>
+                                    <td class="h-DI"></td>
+                                </tr>
+                                <tr>
+                                    <td>16010</td>
+                                    <td>20/10/2013</td>
+                                    <td>12.440</td>
+                                    <td class="h-AC">X</td>
+                                    <td class="h-FA">X</td>
+                                    <td class="h-FR"></td>
+                                    <td class="h-FP"></td>
+                                    <td class="h-FC"></td>
+                                    <td class="h-PD"></td>
+                                    <td class="h-PT"></td>
+                                    <td class="h-NE"></td>
+                                    <td class="h-BA"></td>
+                                    <td class="h-BU"></td>
+                                    <td class="h-EM"></td>
+                                    <td class="h-DI"></td>
+                                </tr>
+                            </tbody>
+                        </table>     
+                    </div>
+                </div>
+               
+                <div class="g-space"></div>
+
+
+                <nav class="navbar navbar-inverse navbar-fixed-bottom">
+                    <div class="container">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Guardar" id="guardar" >
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Baja" id="baja" disabled>
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Limpiar Formulario" id="limpiar">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Listado" id="listado">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Volver" id="volver">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Inicio" id="inicio">
+                    </div>
+                </nav>
+            </form>
+
+
+
+
+        </div>
+
+    </body>
+</html>
