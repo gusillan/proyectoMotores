@@ -3,7 +3,7 @@
 ventanaRecambios = new VentanaEmergente({
     modal: 'motoresModal',
     titulo: 'Seleccionar recambio',
-    campos: ['referencia', 'fabricante', 'descripcion'], //,'fabricante.nombre'],
+    campos: ['referencia', 'fabricante.nombre', 'descripcion'], //,'fabricante.nombre'],
     campoID: 'idRecambio',
     filtros: []
 });

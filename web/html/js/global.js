@@ -10,8 +10,6 @@ var confirmationOpt = {
     btnOkLabel: 'Si',
     btnCancelLabel: 'No',
     singleton: true
-            //btnOkIcon: '',
-            //btnCancelIcon: ''
 };
 
 
@@ -458,7 +456,7 @@ VentanaEmergente.prototype.filtrar = function() {
     var json = this.json;
     var modal = this.modal;
     var campoID = this.campoID;
-    var filtros = this.filtros;
+    var filtros = this.campos;
 
 
     for (var i = 0; i < json.length; i++) {
@@ -494,20 +492,6 @@ VentanaEmergente.prototype.abrir = function(json) {
     var campoID = this.campoID;
     var callback = this.callback;
 
-    //validar
-    for (var i = this.campos.length - 1; i >= 0; i--) {
-        if (!json[0].hasOwnProperty(this.campos[i])) {
-            console.error("El campo '" + this.campos[i] + "'del modal no se encuentra en el Json recibido");
-            return 1;
-        } else {
-            console.log("El campo", this.campos[i], " es correcto");
-        }
-    }
-    if (!json[0].hasOwnProperty(this.campoID)) {
-        console.error("El campoID '" + this.campoID + "'del modal no se encuentra en el Json recibido");
-        return 1;
-    }
-
     //crear lista html
     var lista = '';
     $('#' + modal + '-cantidad').text(json.length + " ");
@@ -515,7 +499,17 @@ VentanaEmergente.prototype.abrir = function(json) {
     for (var i = 0; i < json.length; i++) {
         lista += '<tr data-' + this.campoID + '="' + json[i][this.campoID] + '" tabindex="0">';
         for (var j = 0; j < this.campos.length; j++) {
-            lista += '<td  style="width: ' + width + '%;">' + json[i][this.campos[j]] + '</td>';
+            console.log( this.campos[j] );
+            console.log( this.campos[j].includes(".") );
+
+            lista += '<td  style="width: ' + width + '%;">';
+            if ( this.campos[j].includes(".") ) {                           //Si contiene un punto, meterse dentro
+                var subcampos = this.campos[j].split('.');             
+                lista += json[i][subcampos[0]][subcampos[1]];              
+            }else{
+                lista += json[i][this.campos[j]];
+            }
+            lista += '</td>';
         }
         lista += '</tr>';
     }
