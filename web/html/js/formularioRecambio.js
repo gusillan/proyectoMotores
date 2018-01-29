@@ -1,7 +1,17 @@
+/*  Variables globales
+ *********************************************************/
+ventanaRecambios = new VentanaEmergente({
+    modal: 'motoresModal',
+    titulo: 'Seleccionar recambio',
+    campos: ['referencia', 'fabricante', 'descripcion'], //,'fabricante.nombre'],
+    campoID: 'idRecambio',
+    filtros: []
+});
+
 /*  Listener
  *********************************************************/
 $("document").ready(function() {
-    
+
     consultarMarca();
 
     $("#referencia").change(consultaReferencia);
@@ -25,6 +35,16 @@ $("document").ready(function() {
         var number = parseFloat(value);
         number = number.toFixed(1);
         this.value = number;
+    });
+
+    $("#nuevoRecambioBotonGroup").click(function() {
+        var referencia = $("#referencia").val();
+        limpiar();
+        $('#codigoMarca').focus();
+        $("#referencia").val(referencia);
+        $("#nuevoRecambioBotonGroup").hide();
+        $("#nuevoRecambioBotonGroup input").attr("disabled", true);
+        updateFocusables();
     });
 
 });
@@ -63,25 +83,7 @@ function baja() {
 /* Funciones adicionales
  ********************************************************/
 
-function consultaReferencia() {
-    if (!vacio($("#referencia"))) {
-        console.log("Vamos a consultar la Referencia " + this.value);
-        var referencia = this.value;
-        $.getJSON('../consultaReferencia.htm', {referencia: referencia}, respuestaConsultaReferencia);
 
-    }
-}
-function respuestaConsultaReferencia(listaObjetos) {
-    console.log(listaObjetos);
-    if (listaObjetos.length === 1) {
-        var objeto = listaObjetos[0];
-        rellenaFormulario(objeto);
-    } else if (listaObjetos.length > 1) {
-        alert("Existen varias categorias con ese Codigo.Consultar al administrador de la BBDD");
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun fabricante con ese Codigo");
-    }
-}
 
 function consultarCategoria() {
     var categoria = $("#codigoCategoria").val();
@@ -111,6 +113,20 @@ function rellenaCategoria(objeto) {
     $("#categoria").val(objeto.categoria);
 }
 
+function respuestaConsultaReferencia(listaObjetos) {
+    console.log(listaObjetos);
+    if (listaObjetos.length === 1) {
+        var objeto = listaObjetos[0];
+        rellenaFormulario(objeto);
+    } else if (listaObjetos.length > 1) {
+        console.log("Existen varias categorias con ese Codigo.Consultar al administrador de la BBDD");
+        console.log("Esta es la lista " + listaObjetos);
+        ventanaRecambios.abrir(listaObjetos);
+    } else if (listaObjetos.length < 1) {
+        console.log("No existe ningun fabricante con ese Codigo");
+    }
+}
+
 function rellenaFormulario(obj) {
     $("#idRecambio").val(obj.idRecambio);
     $("#referencia").val(obj.referencia);
@@ -125,6 +141,8 @@ function rellenaFormulario(obj) {
     $("#codigoCategoria").val(obj.categoria.codigo);
     $("#categoria").val(obj.categoria.categoria);
     $("#informacion").val(obj.informacion);
+    $("#nuevoRecambioBotonGroup").show();
+    $("#nuevoRecambioBotonGroup input").attr("disabled", false);
     $("#baja").attr("disabled", false);
     $("#descripcion").focus();
 }

@@ -83,5 +83,9 @@
     <bean id="recambio" class="com.pacoillan.DAOHibernate.RecambioDAOHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    
+    <bean id="modeloRecambio" class="com.pacoillan.DAOHibernate.ModeloRecambioDAOHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
 </beans>

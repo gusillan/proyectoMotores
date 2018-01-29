@@ -32,7 +32,9 @@ function baja() {
         url: '../bajaCategoriaRecambio.htm',
         data: data,
         type: 'POST',
-        success: limpiar
+        success: limpiar,
+        error : comunicaError
+       
     });
 }
 
@@ -71,3 +73,7 @@ function rellenaFormulario(obj) {
     $("#baja").attr("disabled",false);
 }
 
+function comunicaError(error){
+    console.log("Error "+error);
+    alert ("Error en BBDD : "+error);
+}

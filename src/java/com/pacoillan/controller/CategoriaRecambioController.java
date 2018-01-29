@@ -44,8 +44,7 @@ public class CategoriaRecambioController {
         Gson gson = new Gson();
         String lista = gson.toJson(listaCategorias);
         System.out.println(lista);
-        out.println(lista);
-        //}
+        out.println(lista);       
     }
 
     @RequestMapping("bajaCategoriaRecambio.htm")
@@ -53,7 +52,7 @@ public class CategoriaRecambioController {
         try {
             categoriaRecambioDao.delete(categoria);
         } catch (Exception ex) {
-            System.out.println("Excepcion al dar de baja el registro" + ex);
+            System.out.println("Excepcion al dar de baja el registro" + ex);            
         }
 
     }

@@ -15,6 +15,7 @@ var confirmationOpt = {
 };
 
 
+
 /*  Listener
  *********************************************************/
 $("document").ready(function() {
@@ -130,6 +131,127 @@ function rellenaMarca(marca) {
     $("#marca").val(marca.nombre);
     $("#logoMarca").attr("src", "img/marcas/" + marca.logo);
 }
+
+function consultaModelo() {
+    if (!vacio($("#codigoModelo"))) {
+        var modelo = $("#codigoModelo").val();
+        console.log("Modelo " + modelo);
+        $.getJSON(
+                '../consultaModelo.htm',
+                {codigo: modelo},
+        respuestaConsultaModelo);
+    } else {
+        $("#descripcionModelo").val("");
+        $("#logoMarca").attr("src", "");
+        $("#silueta").attr("src", "");
+    }
+}
+
+function respuestaConsultaModelo(listaObjetos) {
+    if (listaObjetos.length == 1) {
+        var objeto = listaObjetos[0];
+        rellenaModelo(objeto);
+    } else if (listaObjetos.length > 1) {
+        console.log("Existen varios Modelos con el mismo codigo.Consultar con el administrador de la BBDD");
+    } else if (listaObjetos.length < 1) {
+        console.log("No existe ningún modelo con ese código");
+        $("#descripcionModelo").val("");
+        $("#logoMarca").attr("src", "");
+        $("#silueta").attr("src", "");
+        darAltaModelo();
+    }
+}
+
+function rellenaModelo(modelo) {
+    $("#descripcionModelo").val(modelo.descripcion);
+    $("#codigoModelo").val(modelo.codigo);
+    $("#logoMarca").attr("src", "img/marcas/" + modelo.fabricante.logo);
+    $("#silueta").attr("src", "img/imagenesVehiculos/" + modelo.imagen);
+    /*$("#nombreFabricanteModelo").text(modelo.fabricante.nombre);*/
+}
+
+function darAltaModelo() {
+    var respuesta = confirm("Desea dar de alta este Modelo?");
+    if (respuesta == true) {
+        console.log("Ha pulsado si");
+        window.location = "../html/formularioModelo.html?codigo=" + $("#codigoModelo").val();
+    } else {
+        console.log("Ha pulsado no");
+        $("#codigoModelo").val("");
+        $("#codigoModelo").focus();
+    }
+}
+
+function consultaMotor() {
+    if (!vacio($("#codigoMotor"))) {
+        var motor = $("#codigoMotor").val();
+        console.log("Motor " + motor);
+        $.getJSON(
+                '../consultaCodigoMotor.htm',
+                {codigo: motor},
+        respuestaConsultaMotor);
+    } else {
+        $("#descripcionMotor").val("");
+    }
+}
+
+function respuestaConsultaMotor(listaObjetos) {
+    if (listaObjetos.length == 1) {
+        var objeto = listaObjetos[0];
+        rellenaMotor(objeto);
+    } else if (listaObjetos.length > 1) {
+        console.log("Existen varios Motores con el mismo codigo");
+        ventanaMotor.abrir(listaObjetos);
+    } else if (listaObjetos.length < 1) {
+        console.log("No existe ningun Motor con este codigo");
+        $("#descripcionMotor").val("");
+        darAltaMotor();
+    }
+}
+
+function darAltaMotor() {
+    var respuesta = confirm("Desea dar de alta este Motor?");
+    if (respuesta == true) {
+        console.log("Ha pulsado si");
+        window.location = "../html/formularioMotor.html?codigo=" + $("#codigoMotor").val();
+    } else {
+        console.log("Ha pulsado no");
+        $("#codigoMotor").val("");
+        $("#codigoMotor").focus();
+    }
+}
+
+function consultaMatricula() {
+    if (!vacio($("#matricula"))) {
+        var matricula = $("#matricula").val();
+        console.log("Vamos a consultar la matricula " + matricula);
+        $.getJSON(
+                '../consultaMatricula.htm',
+                {matricula: matricula},
+        respuestaConsultaMatricula);
+    }
+}
+
+function respuestaConsultaMatricula(listaObjetos) {
+    if (listaObjetos.length == 1) {
+        var objeto = listaObjetos[0];
+        rellenaFormulario(objeto);
+    } else if (listaObjetos.length > 1) {
+        console.log("Existen varias vehiculos son la misma matrícula.Consultar con el administrador de la BBDD");
+    } else if (listaObjetos.length < 1) {
+        console.log("No existe ningun vehiculo con esta matricula ");
+    }
+}
+
+function consultaReferencia() {
+    if (!vacio($("#referencia"))) {
+        console.log("Vamos a consultar la Referencia " + this.value);
+        var referencia = this.value;
+        $.getJSON('../consultaReferencia.htm', {referencia: referencia}, respuestaConsultaReferencia);
+
+    }
+}
+
 
 function validarAccion(accion) {
     if (validarFormulario()) {
