@@ -6,8 +6,7 @@ ventanaEntidad = new VentanaEmergente({
         modal: 'entidadModal',
         titulo: 'Busqueda por nombre',
         campos: ['nombre','poblacion'],
-        campoID: 'idEntidad',
-        filtros: ['nombre','poblacion']        
+        campoID: 'idEntidad'       
     });
 
 

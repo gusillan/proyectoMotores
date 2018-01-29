@@ -7,8 +7,7 @@ ventanaMotores = new VentanaEmergente({
         modal: 'motoresModal',
         titulo: 'Seleccionar motor',
         campos: ['codigo','descripcion','kw'], //,'fabricante.nombre'],
-        campoID: 'idMotor',
-        filtros: []       
+        campoID: 'idMotor'
     });
 
 

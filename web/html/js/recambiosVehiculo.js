@@ -3,9 +3,7 @@ ventanaModelo = new VentanaEmergente({
     titulo: 'Búsqueda por modelo',
     campos: ['codigo', 'descripcion'],
     campoID: 'idModelo',
-    filtros: ['codigo', 'descripcion'],
     callback: rellenaModelo
-
 });
 
 ventanaMotor = new VentanaEmergente({
@@ -13,16 +11,14 @@ ventanaMotor = new VentanaEmergente({
     titulo: 'Búsqueda por motor',
     campos: ['codigo', 'descripcion'],
     campoID: 'idMotor',
-    filtros: ['codigo', 'descripcion'],
     callback: rellenaMotor
 });
 
 ventanaRecambios = new VentanaEmergente({
-    modal: 'motoresModal',
+    modal: 'recambiosModal',
     titulo: 'Seleccionar recambio',
-    campos: ['referencia', 'fabricante', 'descripcion'], //,'fabricante.nombre'],
+    campos: ['referencia', 'fabricante.nombre', 'descripcion'],
     campoID: 'idRecambio',
-    filtros: [],
     callback: rellenaRecambio
 });
 

@@ -7,7 +7,6 @@ ventanaEntidad = new VentanaEmergente({
     titulo: 'Búsqueda por nombre',
     campos: ['nombre', 'poblacion'],
     campoID: 'idEntidad',
-    filtros: ['nombre', 'poblacion'],
     callback: rellenaCliente
 });
 
@@ -16,9 +15,7 @@ ventanaModelo = new VentanaEmergente({
     titulo: 'Búsqueda por modelo',
     campos: ['codigo', 'descripcion'],
     campoID: 'idModelo',
-    filtros: ['codigo', 'descripcion'],
     callback: rellenaModelo
-
 });
 
 ventanaMotor = new VentanaEmergente({
@@ -26,7 +23,6 @@ ventanaMotor = new VentanaEmergente({
     titulo: 'Búsqueda por motor',
     campos: ['codigo', 'descripcion'],
     campoID: 'idMotor',
-    filtros: ['codigo', 'descripcion'],
     callback: rellenaMotor
 });
 

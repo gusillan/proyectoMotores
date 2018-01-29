@@ -264,7 +264,6 @@ function validarAccion(accion) {
             $(".confirmation a")[1].focus();
         }, 40); //El foco en el no, de la confirmacion
     } else {
-        console.log("Destruir confirm");
         setTimeout(function() {
             $("#" + accion.name).confirmation('destroy');
         }, 40);
@@ -369,14 +368,13 @@ function VentanaEmergente(opciones) {
      titulo  : 'Titulo',
      campos  : ['Campo1','Campo2','Campo3'],
      campoID : 'Campo1',
-     filtros : ['Campo1'],
      callback: mycallback
      }, opciones);*/
+
     this.modal = opciones.modal;
     this.titulo = opciones.titulo;
     this.campos = opciones.campos;
     this.campoID = opciones.campoID;
-    this.filtros = opciones.filtros;
     if (opciones.callback) {
         this.callback = opciones.callback;
     } else {
@@ -400,24 +398,39 @@ function VentanaEmergente(opciones) {
             var head = '';
             width = 100 / opciones.campos.length;
             for (var i = 0; i < opciones.campos.length; i++) {
-                head += '<th style="width: ' + width + '%;">' + capitalize(opciones.campos[i]) + '</th>';
+                if ( opciones.campos[i].includes(".") ) {                           //Si contiene un punto, meterse dentro
+                        var subcampos = opciones.campos[i].split('.');             
+                        head += '<th style="width: ' + width + '%;">' + capitalize(subcampos[1])+' '+capitalize(subcampos[0]) + '</th>';
+                }else{
+                    head += '<th style="width: ' + width + '%;">' + capitalize(opciones.campos[i]) + '</th>';
+                }
             }
             $('#' + opciones.modal + '-head').html(head);
 
 
             //crear filtros
-            if (opciones.filtros.length >= 1) {
-                var columnasFiltros = 12 / opciones.filtros.length;
+            if (opciones.campos.length >= 1) {
+                var columnasFiltros = 12 / opciones.campos.length;
                 var filtros = '';
-                for (var i = 0; i < opciones.filtros.length; i++) {
-                    var nombreFiltro = opciones.modal + '-' + opciones.filtros[i];
-                    filtros += '<div class="col-md-' + columnasFiltros + '"><div class="form-group">';
-                    filtros += '<label for="' + nombreFiltro + '">' + capitalize(opciones.filtros[i]) + '</label>'
-                    filtros += '<input type="text" class="form-control g-input ' + opciones.modal + '-filter" id="' + nombreFiltro + '" name="' + nombreFiltro + '">'
-                    filtros += '</div></div>';
+                for (var i = 0; i < opciones.campos.length; i++) {
+                    if ( opciones.campos[i].includes(".") ) {                           //Si contiene un punto, meterse dentro
+                        var subcampos = opciones.campos[i].split('.');             
+                        var nombreFiltro = opciones.modal + '-' + subcampos[0] + '-' +subcampos[1];
+                        filtros += '<div class="col-md-' + columnasFiltros + '"><div class="form-group">';
+                        filtros += '<label for="' + nombreFiltro + '">' + capitalize(subcampos[1])+' '+capitalize(subcampos[0]) + '</label>'
+                        filtros += '<input type="text" class="form-control g-input ' + opciones.modal + '-filter" id="' + nombreFiltro + '" name="' + nombreFiltro + '">'
+                        filtros += '</div></div>';
+                    }else{
+                        var nombreFiltro = opciones.modal + '-' + opciones.campos[i];
+                        filtros += '<div class="col-md-' + columnasFiltros + '"><div class="form-group">';
+                        filtros += '<label for="' + nombreFiltro + '">' + capitalize(opciones.campos[i]) + '</label>'
+                        filtros += '<input type="text" class="form-control g-input ' + opciones.modal + '-filter" id="' + nombreFiltro + '" name="' + nombreFiltro + '">'
+                        filtros += '</div></div>';
+                    }
                 }
                 $('#' + opciones.modal + '-filtros').html(filtros);
             }
+
 
 
             //Listener de los filtros
@@ -432,7 +445,7 @@ function VentanaEmergente(opciones) {
                 $('#' + opciones.modal + '-items tr')[0].focus();
             });
             $('#' + opciones.modal).on('hidden.bs.modal', function() {
-                $(".modeloModal-filter").each(function() {
+                $('.' + opciones.modal + '-filter').each(function() {
                     this.value = "";
                 });
                 $('#' + opciones.modal + '-cantidadFiltrada').text("");
@@ -463,11 +476,21 @@ VentanaEmergente.prototype.filtrar = function() {
         var valCampoID = json[i][campoID];
         $('#' + modal + '-items tr[data-' + campoID + '="' + valCampoID + '"]').show();
         for (var j = 0; j < filtros.length; j++) {
-            var nombreFiltro = modal + '-' + filtros[j];
-            stringValue = String(json[i][filtros[j]]);
-            if (!stringValue.includes($('#' + nombreFiltro).val())) {
-                $('#' + modal + '-items tr[data-' + campoID + '="' + valCampoID + '"]').hide();
-                continue;
+            if ( filtros[j].includes(".") ) {                           //Si contiene un punto, meterse dentro
+                var subcampos = filtros[j].split('.');             
+                var nombreFiltro = modal + '-' + subcampos[0] + '-' +subcampos[1];
+                stringValue = String(json[i][subcampos[0]][subcampos[1]] ); 
+                if (!stringValue.includes($('#' + nombreFiltro).val())) {
+                    $('#' + modal + '-items tr[data-' + campoID + '="' + valCampoID + '"]').hide();
+                    continue;
+                }                
+            }else{
+                var nombreFiltro = modal + '-' + filtros[j];
+                stringValue = String(json[i][filtros[j]]);
+                if (!stringValue.includes($('#' + nombreFiltro).val())) {
+                    $('#' + modal + '-items tr[data-' + campoID + '="' + valCampoID + '"]').hide();
+                    continue;
+                }                
             }
         }
     }
@@ -499,9 +522,6 @@ VentanaEmergente.prototype.abrir = function(json) {
     for (var i = 0; i < json.length; i++) {
         lista += '<tr data-' + this.campoID + '="' + json[i][this.campoID] + '" tabindex="0">';
         for (var j = 0; j < this.campos.length; j++) {
-            console.log( this.campos[j] );
-            console.log( this.campos[j].includes(".") );
-
             lista += '<td  style="width: ' + width + '%;">';
             if ( this.campos[j].includes(".") ) {                           //Si contiene un punto, meterse dentro
                 var subcampos = this.campos[j].split('.');             

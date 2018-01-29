@@ -81,11 +81,7 @@ input[type=file]::-webkit-file-upload-button:active{
 }
 
 
-/*label{
-    display: block;
-    font-family: 'robotomedium', sans-serif, Arial;
-    font-weight: normal;
-}*/
+
 label a{
     opacity: 0;
     float: right;
@@ -93,6 +89,9 @@ label a{
 }
 .form-group:hover label a{
     opacity: 1;
+}
+.form-group label{
+    display: block;
 }
 
 /*.btn{
