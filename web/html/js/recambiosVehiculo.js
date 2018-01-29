@@ -49,10 +49,37 @@ function rellenaFormulario(obj) {
 function rellenaMotor(motor) {
     $("#descripcionMotor").val(motor.descripcion);
     $("#codigoMotor").val(motor.codigo);
+    $("#idMotor").val(motor.idMotor);
+}
+
+function modeloMotor(){
+    if (!vacio($("#descripcionModelo")) & !vacio($("#descripcionMotor")) ){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 function agregarRecambio(){
     console.log("Agregar linea");
+    if (modeloMotor() & !vacio($("#descripcionRecambio"))){
+        console.log("agregamos recambio "+$("#referencia").val());
+        agregarReferencia();
+    }else{
+        console.log ("No es posible agregar este recambio");
+    }   
+}
+
+function agregarReferencia(){    
+   
+        var data = $("#recambiosVehiculo").serialize();
+        $.ajax({
+            url: '../agregarRecambio.htm',
+            data: data,
+            type: 'POST',
+            success: limpiar
+        });
+    
 }
 
 function respuestaConsultaReferencia(listaObjetos) {
@@ -70,5 +97,6 @@ function respuestaConsultaReferencia(listaObjetos) {
 }
 
 function rellenaRecambio(objeto){
-    $("#descripcionRecambio").val(objeto.descripcion);
+    $("#descripcionRecambio").val(objeto.descripcion);    
+    
 }
