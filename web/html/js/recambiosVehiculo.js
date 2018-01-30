@@ -32,6 +32,10 @@ $("document").ready(function() {
     $("#referencia").change(consultaReferencia);
     $("#agregar").click(agregarRecambio);
     
+    $("#descripcionMotor").change(listarRecambios);
+    $("#descripcionModelo").change(listarRecambios);
+    
+    
     consultaModelo();
 
 });
@@ -45,13 +49,17 @@ function rellenaFormulario(obj) {
     rellenaMotor(obj.motor);    
 }
 
-    
 function rellenaMotor(motor) {
-    $("#descripcionMotor").val(motor.descripcion);
+    $("#descripcionMotor").val(motor.descripcion).change();
     $("#codigoMotor").val(motor.codigo);
     $("#idMotor").val(motor.idMotor);
 }
 
+function rellenaRecambio(objeto){
+    $("#descripcionRecambio").val(objeto.descripcion);
+    $("#idRecambio").val(objeto.idRecambio)
+    
+}
 
 function modeloMotor(){
     if (!vacio($("#descripcionModelo")) & !vacio($("#descripcionMotor")) ){
@@ -78,7 +86,7 @@ function agregarReferencia(){
             url: '../agregarRecambio.htm',
             data: data,
             type: 'POST',
-            success: limpiar
+            success: agregar_lista
         });
     
 }
@@ -97,8 +105,35 @@ function respuestaConsultaReferencia(listaObjetos) {
     }
 }
 
-function rellenaRecambio(objeto){
-    $("#descripcionRecambio").val(objeto.descripcion);
-    $("#idRecambio").val(objeto.idRecambio)
+
+function agregar_lista(objeto){
     
+    console.log("Agregado "+objeto.referencia+" "+objeto.descripcion+" "+objeto.categoria.categoria);
+    
+}
+
+function listarRecambios(){
+    if (modeloMotor()){
+        console.log("Procedemos al listado")
+        listado();
+    }else{
+        console.log("Falla alguno de los DOS campos clave");
+    }
+    
+}
+
+function listado(){
+    var data = "{'modelo' : '"+$('#idModelo').val()+
+               "', 'motor' : '"+$('#idMotor').val()+"'}";
+    $.ajax({
+            url: '../listarRecambio.htm',
+            data: data,
+            type: 'POST',
+            success: mostrarLista
+        });    
+}
+
+function mostrarLista(lista){
+    //console.log("Hola");
+    console.log("Lista "+lista);
 }

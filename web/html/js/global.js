@@ -161,7 +161,7 @@ function respuestaConsultaModelo(listaObjetos) {
 }
 
 function rellenaModelo(modelo) {
-    $("#descripcionModelo").val(modelo.descripcion);
+    $("#descripcionModelo").val(modelo.descripcion).change();
     $("#codigoModelo").val(modelo.codigo);
     $("#logoMarca").attr("src", "img/marcas/" + modelo.fabricante.logo);
     $("#silueta").attr("src", "img/imagenesVehiculos/" + modelo.imagen);
