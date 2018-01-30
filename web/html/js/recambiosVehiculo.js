@@ -52,6 +52,7 @@ function rellenaMotor(motor) {
     $("#idMotor").val(motor.idMotor);
 }
 
+
 function modeloMotor(){
     if (!vacio($("#descripcionModelo")) & !vacio($("#descripcionMotor")) ){
         return true;
@@ -97,6 +98,7 @@ function respuestaConsultaReferencia(listaObjetos) {
 }
 
 function rellenaRecambio(objeto){
-    $("#descripcionRecambio").val(objeto.descripcion);    
+    $("#descripcionRecambio").val(objeto.descripcion);
+    $("#idRecambio").val(objeto.idRecambio)
     
 }

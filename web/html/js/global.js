@@ -155,7 +155,7 @@ function respuestaConsultaModelo(listaObjetos) {
         console.log("No existe ningún modelo con ese código");
         $("#descripcionModelo").val("");
         $("#logoMarca").attr("src", "");
-        $("#silueta").attr("src", "");
+        $("#silueta").attr("src", "");        
         darAltaModelo();
     }
 }
@@ -166,6 +166,7 @@ function rellenaModelo(modelo) {
     $("#logoMarca").attr("src", "img/marcas/" + modelo.fabricante.logo);
     $("#silueta").attr("src", "img/imagenesVehiculos/" + modelo.imagen);
     /*$("#nombreFabricanteModelo").text(modelo.fabricante.nombre);*/
+    $("#idModelo").val(modelo.idModelo);
 }
 
 function darAltaModelo() {
