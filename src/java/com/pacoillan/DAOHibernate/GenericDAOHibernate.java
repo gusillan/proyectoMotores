@@ -105,4 +105,16 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
         session.close();
         return lista;
     }
+    
+    @Override
+     public List<T> listadoPorDosCampos(String campo1,Integer valor1,String campo2,Integer valor2) {
+        String pojo = domainClass.getSimpleName();
+        List lista;
+        session = sessionFactory.openSession();
+        String query = "FROM "+pojo+" WHERE "+campo1+" LIKE '"+valor1+"' AND "+campo2+" LIKE '"+valor2+"'";
+        lista = session.createQuery(query).list();
+        session.close();
+        return lista;
+    }
+    
 }

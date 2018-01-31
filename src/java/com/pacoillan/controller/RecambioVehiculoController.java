@@ -49,7 +49,7 @@ public class RecambioVehiculoController {
         System.out.println("Referencia " + request.getParameter("referencia") + " ID Recambio " + request.getParameter("idRecambio"));
         System.out.println("Codigo Modelo " + request.getParameter("codigoModelo") + " ID Modelo " + request.getParameter("idModelo"));
         System.out.println("Codigo Motor " + request.getParameter("codigoMotor") + " ID Motor " + request.getParameter("idMotor"));
-        
+
         Integer idRecambio = Integer.parseInt(request.getParameter("idRecambio"));
         Recambio recambio = recambioDao.read(idRecambio);
         System.out.println("Recambio " + recambio.getDescripcion());
@@ -67,13 +67,13 @@ public class RecambioVehiculoController {
         mr.setRecambio(recambio);
 
         modeloRecambioDao.create(mr);
-        
+
         Gson gson = new Gson();
         String recambioAgregado = gson.toJson(recambio);
         System.out.println("Respuesta " + recambioAgregado);
         out.println(recambioAgregado);
     }
-    
+
     @RequestMapping("listarRecambio.htm")
     public void listarRecambio(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -81,24 +81,23 @@ public class RecambioVehiculoController {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-       
-        System.out.println( " ID Modelo " + request.getParameter("idModelo"));
-        System.out.println( " ID Motor " + request.getParameter("idMotor"));
-        
-        
-        Integer idModelo = Integer.parseInt(request.getParameter("idModelo"));        
+
+        System.out.println(" ID Modelo " + request.getParameter("idModelo"));
+        System.out.println(" ID Motor " + request.getParameter("idMotor"));
+
+
+        Integer idModelo = Integer.parseInt(request.getParameter("idModelo"));
         Integer idMotor = Integer.parseInt(request.getParameter("idMotor"));
-        
-        
-        /*List<ModeloRecambio> listaModeloRecambio = modeloRecambioDao.
-        if (listaRecambios.isEmpty()) {            
+
+
+        List<ModeloRecambio> listaModeloRecambio = modeloRecambioDao.listadoPorDosCampos("modelo", idModelo, "motor", idMotor);
+        if (listaModeloRecambio.isEmpty()) {
             out.println();
         } else {
-            Collections.sort(listaRecambios);
+            Gson gson = new Gson();
+            String lista = gson.toJson(listaModeloRecambio);
+            System.out.println("Lista Respuesta " + lista);
+            out.println(lista);
         }
-        Gson gson = new Gson();
-        String lista = gson.toJson(listaRecambios);
-        System.out.println("Lista Respuesta " + lista);
-        out.println(lista);*/
     }
 }
