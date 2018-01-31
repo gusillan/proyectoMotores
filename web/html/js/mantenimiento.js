@@ -3,9 +3,9 @@
 
 $(function() {
 
-
-
     $("tbody tr:visible:odd").addClass("striped");
+    cargarColumnas();
+
 
     $(".g-table-mantenimiento th.btn").click(function(){
         var newClass = "success";
@@ -35,6 +35,12 @@ $(function() {
             $("thead th.h-"+this.value).hide();
             $("tbody td.h-"+this.value).hide();
         }
+        var columnsFilter = [];
+        $(".h-columnsFilter:checked").each(function(){
+            columnsFilter.push( this.value );
+        });
+        localStorage.setItem("columnsFilter", JSON.stringify(columnsFilter) );
+        console.log( columnsFilter );
     });
 
 
@@ -51,5 +57,22 @@ $(function() {
 
 });
 
-/* Funciones Básicas Botones
+
+
+
+/* Funciones
  **********************************************************/
+
+function cargarColumnas(){
+    if (localStorage.columnsFilter) {
+        var columnsFilter = localStorage.getItem("columnsFilter");
+
+        $(".h-columnsFilter").each(function(){
+            if (! columnsFilter.includes(this.value) ){
+                this.checked = false;
+                $("thead th.h-"+this.value).hide();
+                $("tbody td.h-"+this.value).hide();
+            }
+        });
+    }
+}
