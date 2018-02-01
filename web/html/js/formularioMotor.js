@@ -33,13 +33,12 @@ $("document").ready(function() {
     });
 
 
-    $("#nuevoMotorBotonGroup").click(function(){      
+    $("#nuevoMotorBoton").click(function(){      
         var codigo = $("#codigo").val();
         limpiar();
         $('#descripcion').focus();
         $("#codigo").val(codigo);
-        $("#nuevoMotorBotonGroup").hide();
-        $("#nuevoMotorBotonGroup input").attr("disabled", true);
+        $("#nuevoMotorBoton").hide();
         updateFocusables();
     });
 
@@ -119,8 +118,7 @@ function rellenaFormulario(obj) {
     $("#marca").val(obj.fabricante.nombre);
     $("#logoMarca").attr("src", "img/marcas/"+obj.fabricante.logo); 
     $("#informacion").val(obj.informacion);
-    $("#nuevoMotorBotonGroup").show();
-    $("#nuevoMotorBotonGroup input").attr("disabled", false);
+    $("#nuevoMotorBoton").show();
     $("#baja").attr("disabled",false);
     updateFocusables();
 }

@@ -38,20 +38,14 @@
                         <div class="form-group">
                             <label for="idMotor" class="">ID Motor</label>
                             <input type="text" class="form-control" id="idMotor" name="idMotor" size="11" maxlength="11" readonly="readonly">
-                        </div>               
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group g-hideByDefault" id="nuevoMotorBotonGroup">
-                            <label for="nuevoMotorBoton" class="">Nuevo motor</label>
-                            <input type="button" name="nuevoMotorBoton" class="btn btn-warning" value="Nuevo motor con mismo código" id="nuevoMotorBoton" disabled>  
-                        </div>                                	
+                        </div>
                     </div>
                 </div><!--row-->
 
                 <div class="row">
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="codigo">Código</label>
+                            <label for="codigo">Código<a href="#" id="nuevoMotorBoton" class="g-hideByDefault" title="Nuevo motor con mismo código"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span></a></label>
                             <input type="text" class="form-control g-input" id="codigo" name="codigo"  maxlength="10" required>
                         </div>
                     </div>  
