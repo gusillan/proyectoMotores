@@ -161,12 +161,13 @@ function respuestaConsultaModelo(listaObjetos) {
 }
 
 function rellenaModelo(modelo) {
+    $("#idModelo").val(modelo.idModelo);
     $("#descripcionModelo").val(modelo.descripcion).change();
     $("#codigoModelo").val(modelo.codigo);
     $("#logoMarca").attr("src", "img/marcas/" + modelo.fabricante.logo);
     $("#silueta").attr("src", "img/imagenesVehiculos/" + modelo.imagen);
     /*$("#nombreFabricanteModelo").text(modelo.fabricante.nombre);*/
-    $("#idModelo").val(modelo.idModelo);
+    
 }
 
 function darAltaModelo() {
