@@ -222,7 +222,7 @@ function darAltaMotor() {
 }
 
 function consultaMatricula() {
-    if (!vacio($("#matricula"))) {
+    if ($("#matricula").val().length>3) {
         var matricula = $("#matricula").val();
         console.log("Vamos a consultar la matricula " + matricula);
         $.getJSON(
