@@ -155,18 +155,19 @@ function respuestaConsultaModelo(listaObjetos) {
         console.log("No existe ningún modelo con ese código");
         $("#descripcionModelo").val("");
         $("#logoMarca").attr("src", "");
-        $("#silueta").attr("src", "");        
+        $("#silueta").attr("src", "");
         darAltaModelo();
     }
 }
 
 function rellenaModelo(modelo) {
+    $("#idModelo").val(modelo.idModelo);
     $("#descripcionModelo").val(modelo.descripcion).change();
     $("#codigoModelo").val(modelo.codigo);
     $("#logoMarca").attr("src", "img/marcas/" + modelo.fabricante.logo);
     $("#silueta").attr("src", "img/imagenesVehiculos/" + modelo.imagen);
     /*$("#nombreFabricanteModelo").text(modelo.fabricante.nombre);*/
-    $("#idModelo").val(modelo.idModelo);
+
 }
 
 function darAltaModelo() {
@@ -221,7 +222,7 @@ function darAltaMotor() {
 }
 
 function consultaMatricula() {
-    if (!vacio($("#matricula"))) {
+    if ($("#matricula").val().length>3) {
         var matricula = $("#matricula").val();
         console.log("Vamos a consultar la matricula " + matricula);
         $.getJSON(
@@ -236,7 +237,7 @@ function respuestaConsultaMatricula(listaObjetos) {
         var objeto = listaObjetos[0];
         rellenaFormulario(objeto);
     } else if (listaObjetos.length > 1) {
-        console.log("Existen varias vehiculos son la misma matrícula.Consultar con el administrador de la BBDD");
+        ventanaMatricula.abrir(listaObjetos)
     } else if (listaObjetos.length < 1) {
         console.log("No existe ningun vehiculo con esta matricula ");
     }
@@ -394,15 +395,15 @@ function VentanaEmergente(opciones) {
         var ventanaEmergente = data.replace(/@modal/g, opciones.modal);
         ventanaEmergente = ventanaEmergente.replace(/@titulo/g, opciones.titulo);
 
-        $('body').ready(function(){                     //Esperar a que haya cargado body para adjuntarle la ventanaemergente
+        $('body').ready(function() {                     //Esperar a que haya cargado body para adjuntarle la ventanaemergente
             $('body').append(ventanaEmergente);
             var head = '';
             width = 100 / opciones.campos.length;
             for (var i = 0; i < opciones.campos.length; i++) {
-                if ( opciones.campos[i].includes(".") ) {                           //Si contiene un punto, meterse dentro
-                        var subcampos = opciones.campos[i].split('.');             
-                        head += '<th style="width: ' + width + '%;">' + capitalize(subcampos[1])+' '+capitalize(subcampos[0]) + '</th>';
-                }else{
+                if (opciones.campos[i].includes(".")) {                           //Si contiene un punto, meterse dentro
+                    var subcampos = opciones.campos[i].split('.');
+                    head += '<th style="width: ' + width + '%;">' + capitalize(subcampos[1]) + ' ' + capitalize(subcampos[0]) + '</th>';
+                } else {
                     head += '<th style="width: ' + width + '%;">' + capitalize(opciones.campos[i]) + '</th>';
                 }
             }
@@ -414,14 +415,14 @@ function VentanaEmergente(opciones) {
                 var columnasFiltros = 12 / opciones.campos.length;
                 var filtros = '';
                 for (var i = 0; i < opciones.campos.length; i++) {
-                    if ( opciones.campos[i].includes(".") ) {                           //Si contiene un punto, meterse dentro
-                        var subcampos = opciones.campos[i].split('.');             
-                        var nombreFiltro = opciones.modal + '-' + subcampos[0] + '-' +subcampos[1];
+                    if (opciones.campos[i].includes(".")) {                           //Si contiene un punto, meterse dentro
+                        var subcampos = opciones.campos[i].split('.');
+                        var nombreFiltro = opciones.modal + '-' + subcampos[0] + '-' + subcampos[1];
                         filtros += '<div class="col-md-' + columnasFiltros + '"><div class="form-group">';
-                        filtros += '<label for="' + nombreFiltro + '">' + capitalize(subcampos[1])+' '+capitalize(subcampos[0]) + '</label>'
+                        filtros += '<label for="' + nombreFiltro + '">' + capitalize(subcampos[1]) + ' ' + capitalize(subcampos[0]) + '</label>'
                         filtros += '<input type="text" class="form-control g-input ' + opciones.modal + '-filter" id="' + nombreFiltro + '" name="' + nombreFiltro + '">'
                         filtros += '</div></div>';
-                    }else{
+                    } else {
                         var nombreFiltro = opciones.modal + '-' + opciones.campos[i];
                         filtros += '<div class="col-md-' + columnasFiltros + '"><div class="form-group">';
                         filtros += '<label for="' + nombreFiltro + '">' + capitalize(opciones.campos[i]) + '</label>'
@@ -458,7 +459,7 @@ function VentanaEmergente(opciones) {
                 $('#' + opciones.modal + '-items tr').remove();
             });
 
-        });      
+        });
     });
 
 
@@ -477,21 +478,21 @@ VentanaEmergente.prototype.filtrar = function() {
         var valCampoID = json[i][campoID];
         $('#' + modal + '-items tr[data-' + campoID + '="' + valCampoID + '"]').show();
         for (var j = 0; j < filtros.length; j++) {
-            if ( filtros[j].includes(".") ) {                           //Si contiene un punto, meterse dentro
-                var subcampos = filtros[j].split('.');             
-                var nombreFiltro = modal + '-' + subcampos[0] + '-' +subcampos[1];
-                stringValue = String(json[i][subcampos[0]][subcampos[1]] ); 
+            if (filtros[j].includes(".")) {                           //Si contiene un punto, meterse dentro
+                var subcampos = filtros[j].split('.');
+                var nombreFiltro = modal + '-' + subcampos[0] + '-' + subcampos[1];
+                stringValue = String(json[i][subcampos[0]][subcampos[1]]);
                 if (!stringValue.includes($('#' + nombreFiltro).val())) {
                     $('#' + modal + '-items tr[data-' + campoID + '="' + valCampoID + '"]').hide();
                     continue;
-                }                
-            }else{
+                }
+            } else {
                 var nombreFiltro = modal + '-' + filtros[j];
                 stringValue = String(json[i][filtros[j]]);
                 if (!stringValue.includes($('#' + nombreFiltro).val())) {
                     $('#' + modal + '-items tr[data-' + campoID + '="' + valCampoID + '"]').hide();
                     continue;
-                }                
+                }
             }
         }
     }
@@ -524,10 +525,10 @@ VentanaEmergente.prototype.abrir = function(json) {
         lista += '<tr data-' + this.campoID + '="' + json[i][this.campoID] + '" tabindex="0">';
         for (var j = 0; j < this.campos.length; j++) {
             lista += '<td  style="width: ' + width + '%;">';
-            if ( this.campos[j].includes(".") ) {                           //Si contiene un punto, meterse dentro
-                var subcampos = this.campos[j].split('.');             
-                lista += json[i][subcampos[0]][subcampos[1]];              
-            }else{
+            if (this.campos[j].includes(".")) {                           //Si contiene un punto, meterse dentro
+                var subcampos = this.campos[j].split('.');
+                lista += json[i][subcampos[0]][subcampos[1]];
+            } else {
                 lista += json[i][this.campos[j]];
             }
             lista += '</td>';

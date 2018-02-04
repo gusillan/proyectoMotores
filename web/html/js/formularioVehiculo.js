@@ -26,6 +26,13 @@ ventanaMotor = new VentanaEmergente({
     callback: rellenaMotor
 });
 
+ventanaMatricula = new VentanaEmergente({
+    modal: 'entidadModal',
+    titulo: 'Busqueda de matrícula',
+    campos: ['matricula', 'modelo.descripcion', 'motor.descripcion'],
+    campoID: 'idVehiculo'
+});
+
 
 /*  Listener
  ***********************************************************/

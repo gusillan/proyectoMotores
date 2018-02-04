@@ -68,10 +68,23 @@ public class RecambioVehiculoController {
 
         modeloRecambioDao.create(mr);
 
-        Gson gson = new Gson();
+        /*Gson gson = new Gson();
         String recambioAgregado = gson.toJson(recambio);
         System.out.println("Respuesta " + recambioAgregado);
-        out.println(recambioAgregado);
+        out.println(recambioAgregado);*/
+        String query = "FROM ModeloRecambio WHERE idModelo='"+idModelo+"' AND idMotor='"+idMotor+"'";
+
+        List<ModeloRecambio> listaModeloRecambio = modeloRecambioDao.listadoConfigurable(query);
+        if (listaModeloRecambio.isEmpty()) {
+            System.out.println("LISTA VACIA");
+            out.println();
+        } else {
+            Gson gson = new Gson();
+            String lista = gson.toJson(listaModeloRecambio);
+            System.out.println("Lista Respuesta " + lista);
+            out.println(lista);
+        }
+        
     }
 
     @RequestMapping("listarRecambio.htm")
@@ -89,9 +102,11 @@ public class RecambioVehiculoController {
         Integer idModelo = Integer.parseInt(request.getParameter("idModelo"));
         Integer idMotor = Integer.parseInt(request.getParameter("idMotor"));
 
+        String query = "FROM ModeloRecambio WHERE idModelo='"+idModelo+"' AND idMotor='"+idMotor+"'";
 
-        List<ModeloRecambio> listaModeloRecambio = modeloRecambioDao.listadoPorDosCampos("modelo", idModelo, "motor", idMotor);
+        List<ModeloRecambio> listaModeloRecambio = modeloRecambioDao.listadoConfigurable(query);
         if (listaModeloRecambio.isEmpty()) {
+            System.out.println("LISTA VACIA");
             out.println();
         } else {
             Gson gson = new Gson();

@@ -22,6 +22,13 @@ ventanaRecambios = new VentanaEmergente({
     callback: rellenaRecambio
 });
 
+ventanaMatricula = new VentanaEmergente({
+    modal: 'entidadModal',
+    titulo: 'Busqueda de matrícula',
+    campos: ['matricula', 'modelo.descripcion', 'motor.descripcion'],
+    campoID: 'idVehiculo'
+});
+
 /*  Listener
  ***********************************************************/
 $("document").ready(function() {
@@ -31,6 +38,7 @@ $("document").ready(function() {
     $("#codigoMotor").change(consultaMotor);
     $("#referencia").change(consultaReferencia);
     $("#agregar").click(agregarRecambio);
+    $("#limpiarLinea").click(limpiarLinea);
 
     $("#descripcionMotor").change(listarRecambios);
     $("#descripcionModelo").change(listarRecambios);
@@ -49,7 +57,7 @@ function rellenaFormulario(obj) {
     rellenaMotor(obj.motor);
 }
 
-function rellenaMotor(motor) {    
+function rellenaMotor(motor) {
     $("#codigoMotor").val(motor.codigo);
     $("#idMotor").val(motor.idMotor);
     $("#descripcionMotor").val(motor.descripcion).change();
@@ -86,7 +94,7 @@ function agregarReferencia() {
         url: '../agregarRecambio.htm',
         data: data,
         type: 'POST',
-        success: agregar_lista
+        success: mostrarLista
     });
 
 }
@@ -106,11 +114,11 @@ function respuestaConsultaReferencia(listaObjetos) {
 }
 
 
-function agregar_lista(objeto) {
-
-    console.log("Agregado " + objeto.referencia + " " + objeto.descripcion + " " + objeto.categoria.categoria);
-
-}
+/*function agregar_lista(objeto) {
+ 
+ console.log("Agregado " + objeto.referencia + " " + objeto.descripcion + " " + objeto.categoria.categoria);
+ 
+ }*/
 
 function listarRecambios() {
     if (modeloMotor()) {
@@ -126,22 +134,31 @@ function listado() {
     //var modelo =  $('#idModelo').val();     
     //console.log("idModelo " + $('#idModelo').val());
     //console.log("idMotor " + $('#idMotor').val());
-    
+
     var data = $("#recambiosVehiculo").serialize();
-    
+
     $.ajax({
-     url: '../listarRecambio.htm',
-     data: data,
-     type: 'POST',
-     success: mostrarLista
-     });    
+        url: '../listarRecambio.htm',
+        data: data,
+        type: 'POST',
+        success: mostrarLista
+    });
 }
 
 function mostrarLista(lista) {
-    
-    console.log("Longitud lista "+lista.length);
-       
-    $.each(lista,function (i){
-        console.log(lista[i].recambio.idRecambio + " "+lista[i].recambio.referencia+" "+lista[i].recambio.descripcion);
-    });
+    limpiarLinea();
+    console.log("Longitud lista " + lista.length);
+    if (lista.length > 0) {
+        $.each(lista, function(i) {
+            console.log(lista[i].recambio.categoria.codigo + " " + lista[i].recambio.referencia + " " + lista[i].recambio.descripcion);
+        });
+    }
+
+}
+
+function limpiarLinea() {
+    $("#descripcionRecambio").val("");
+    $("#referencia").val("").focus();
+
+
 }

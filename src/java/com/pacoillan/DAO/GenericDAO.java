@@ -12,5 +12,5 @@ public interface GenericDAO<T,Id extends Serializable> {
     public List<T> listAll ();
     public List<T> listadoPorCampo(String campo, String dato);
     public List<T> listadoPorCampoExacto(String campo, String dato);
-    public List<T> listadoPorDosCampos (String campo1,Integer valor1,String campo2,Integer valor2);
+    public List<T> listadoConfigurable (String query);
 }
