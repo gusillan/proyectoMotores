@@ -72,7 +72,22 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
             session.close();
         }
     }
-
+    @Override
+    public void deleteId(Id id) {
+        session = sessionFactory.openSession();
+        T objeto = (T) session.get(domainClass, id);
+        try {
+            tx = session.beginTransaction();
+            session.delete(objeto);
+            tx.commit();
+        } catch (PersistenceException e) {
+            tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+    
     @Override
     public List<T> listAll() {
         String pojo = domainClass.getSimpleName();

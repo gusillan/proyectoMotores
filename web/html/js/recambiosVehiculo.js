@@ -58,8 +58,8 @@ function rellenaFormulario(obj) {
 }
 
 function rellenaMotor(motor) {
-    $("#codigoMotor").val(motor.codigo);
     $("#idMotor").val(motor.idMotor);
+    $("#codigoMotor").val(motor.codigo);
     $("#descripcionMotor").val(motor.descripcion).change();
 }
 
@@ -90,6 +90,7 @@ function agregarRecambio() {
 function agregarReferencia() {
 
     var data = $("#recambiosVehiculo").serialize();
+    console.log("Serializado " + data);
     $.ajax({
         url: '../agregarRecambio.htm',
         data: data,
@@ -136,19 +137,30 @@ function listado() {
     });
 }
 
-function mostrarLista(lista) {
+function ordenarPorCategoria(a,b){
+    return(a.recambio.categoria.codigo > b.recambio.categoria.codigo ? 1 : -1)
+}
+
+
+function mostrarLista(listaDesordenada) {
     limpiarLinea();
+    
+    console.log(listaDesordenada);
+    
+    var lista = listaDesordenada.sort(ordenarPorCategoria);
+    
     console.log(lista);
+    
     console.log("Longitud lista " + lista.length);
 
     var tablaRecambios = '';
     if (lista.length > 0) {
         $.each(lista, function(i) {
             tablaRecambios += '<tr>';
-            tablaRecambios += '<td>'+lista[i].recambio.categoria.codigo+'</td>';
-            tablaRecambios += '<td>'+lista[i].recambio.descripcion+'</td>';
-            tablaRecambios += '<td>'+lista[i].recambio.referencia+'</td>';
-            tablaRecambios += '<td><button type="button" data-idModeloRecambio="'+lista[i].idModeloRecambio +'" class="btn btn-danger btn-xs g-botonEliminarAsignacion" >'
+            tablaRecambios += '<td>' + lista[i].recambio.categoria.codigo + '</td>';
+            tablaRecambios += '<td>' + lista[i].recambio.descripcion + '</td>';
+            tablaRecambios += '<td>' + lista[i].recambio.referencia + '</td>';
+            tablaRecambios += '<td><button type="button" data-idModeloRecambio="' + lista[i].idModeloRecambio + '" class="btn btn-danger btn-xs g-botonEliminarAsignacion" >'
             tablaRecambios += '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>';
             tablaRecambios += '</tr>'
         });
@@ -157,9 +169,18 @@ function mostrarLista(lista) {
 
 
     //Se añade los listener cuando ya esta listado los recambios, si no existen los elementos html no funciona
-    $(".g-botonEliminarAsignacion").click( function(){
+    $(".g-botonEliminarAsignacion").click(function() {
         var idModeloRecambio = $(this).data("idmodelorecambio");
-        console.log("Eliminar asignacion de recambio "+idModeloRecambio);
+        console.log("Eliminar asignacion de recambio " + idModeloRecambio);
+        
+        var data = "idModelo="+$('#idModelo').val()+"&idMotor="+$('#idMotor').val()+"&idRecambio="+idModeloRecambio;
+        console.log("DATA : " + data);
+        $.ajax({
+            url: '../quitarRecambio.htm',
+            data: data,
+            type: 'POST',
+            success: mostrarLista
+        });
 
         //Hacer la peticion de eliminado aqui utilizando idModeloRecambio
         //Despues de hacer la peticion se deberia mostrar lista de nuevo
