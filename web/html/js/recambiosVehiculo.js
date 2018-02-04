@@ -114,11 +114,6 @@ function respuestaConsultaReferencia(listaObjetos) {
 }
 
 
-/*function agregar_lista(objeto) {
- 
- console.log("Agregado " + objeto.referencia + " " + objeto.descripcion + " " + objeto.categoria.categoria);
- 
- }*/
 
 function listarRecambios() {
     if (modeloMotor()) {
@@ -131,10 +126,6 @@ function listarRecambios() {
 }
 
 function listado() {
-    //var modelo =  $('#idModelo').val();     
-    //console.log("idModelo " + $('#idModelo').val());
-    //console.log("idMotor " + $('#idMotor').val());
-
     var data = $("#recambiosVehiculo").serialize();
 
     $.ajax({
@@ -147,18 +138,36 @@ function listado() {
 
 function mostrarLista(lista) {
     limpiarLinea();
+    console.log(lista);
     console.log("Longitud lista " + lista.length);
+
+    var tablaRecambios = '';
     if (lista.length > 0) {
         $.each(lista, function(i) {
-            console.log(lista[i].recambio.categoria.codigo + " " + lista[i].recambio.referencia + " " + lista[i].recambio.descripcion);
+            tablaRecambios += '<tr>';
+            tablaRecambios += '<td>'+lista[i].recambio.categoria.codigo+'</td>';
+            tablaRecambios += '<td>'+lista[i].recambio.descripcion+'</td>';
+            tablaRecambios += '<td>'+lista[i].recambio.referencia+'</td>';
+            tablaRecambios += '<td><button type="button" data-idModeloRecambio="'+lista[i].idModeloRecambio +'" class="btn btn-danger btn-xs g-botonEliminarAsignacion" >'
+            tablaRecambios += '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>';
+            tablaRecambios += '</tr>'
         });
     }
+    $("#g-tablaRecambioVehiculo tbody").html(tablaRecambios);
 
+
+    //Se añade los listener cuando ya esta listado los recambios, si no existen los elementos html no funciona
+    $(".g-botonEliminarAsignacion").click( function(){
+        var idModeloRecambio = $(this).data("idmodelorecambio");
+        console.log("Eliminar asignacion de recambio "+idModeloRecambio);
+
+        //Hacer la peticion de eliminado aqui utilizando idModeloRecambio
+        //Despues de hacer la peticion se deberia mostrar lista de nuevo
+    });
 }
+
 
 function limpiarLinea() {
     $("#descripcionRecambio").val("");
     $("#referencia").val("").focus();
-
-
 }

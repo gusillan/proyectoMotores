@@ -125,6 +125,32 @@ form{
 }
 
 
+/* Dropdown */
+.dropdown label {
+    display: block;
+    padding: 2px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: normal;
+}
+.dropdown input{
+    margin: 0 4px 0 0;
+}
+
+
+
+
+/*  IDs
+*********************************************************/
+
+
+/* tabla recambio vehiculo */
+#g-tablaRecambioVehiculo tbody td:nth-child(4){
+    text-align: center;
+}
+
+
+
 /*	Clases
 *********************************************************/
 .g-input{
@@ -249,15 +275,3 @@ tr.striped{
 
 
 
-
-/* Dropdown */
-.dropdown label {
-    display: block;
-    padding: 2px 20px;
-    clear: both;
-    font-weight: normal;
-    line-height: normal;
-}
-.dropdown input{
-    margin: 0 4px 0 0;
-}
