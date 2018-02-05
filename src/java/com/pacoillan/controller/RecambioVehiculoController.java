@@ -115,4 +115,40 @@ public class RecambioVehiculoController {
             out.println(lista);
         }
     }
+    
+    @RequestMapping("quitarRecambio.htm")
+    public void quitarrRecambio(HttpServletRequest request, HttpServletResponse response) throws IOException  {
+    
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        
+        System.out.println(" ID Modelo " + request.getParameter("idModelo"));
+        System.out.println(" ID Motor " + request.getParameter("idMotor"));
+        System.out.println(" ID Recambio "+request.getParameter("idRecambio"));
+
+
+        Integer idModelo = Integer.parseInt(request.getParameter("idModelo"));
+        Integer idMotor = Integer.parseInt(request.getParameter("idMotor"));
+        Integer idRecambio = Integer.parseInt(request.getParameter("idRecambio"));
+        
+        modeloRecambioDao.deleteId(idRecambio);
+        
+        String query = "FROM ModeloRecambio WHERE idModelo='"+idModelo+"' AND idMotor='"+idMotor+"'";
+
+        List<ModeloRecambio> listaModeloRecambio = modeloRecambioDao.listadoConfigurable(query);
+        if (listaModeloRecambio.isEmpty()) {
+            System.out.println("LISTA VACIA");
+            out.println();
+        } else {
+            Gson gson = new Gson();
+            String lista = gson.toJson(listaModeloRecambio);
+            System.out.println("Lista Respuesta " + lista);
+            out.println(lista);
+        }
+        
+        
+        
+    }
+
 }
