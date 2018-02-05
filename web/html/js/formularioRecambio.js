@@ -1,7 +1,7 @@
 /*  Variables globales
  *********************************************************/
 ventanaRecambios = new VentanaEmergente({
-        modal: 'motoresModal',
+        modal: 'recambiosModal',
         titulo: 'Seleccionar recambio',
         campos: ['referencia', 'fabricante.nombre', 'descripcion'], //,'fabricante.nombre'],
         campoID: 'idRecambio'

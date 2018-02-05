@@ -141,7 +141,6 @@ function ordenarPorCategoria(a,b){
     return(a.recambio.categoria.codigo > b.recambio.categoria.codigo ? 1 : -1)
 }
 
-
 function mostrarLista(listaDesordenada) {
     limpiarLinea();
     
@@ -182,8 +181,6 @@ function mostrarLista(listaDesordenada) {
             success: mostrarLista
         });
 
-        //Hacer la peticion de eliminado aqui utilizando idModeloRecambio
-        //Despues de hacer la peticion se deberia mostrar lista de nuevo
     });
 }
 
