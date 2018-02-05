@@ -44,7 +44,7 @@ $("document").ready(function() {
     $("#descripcionModelo").change(listarRecambios);
 
 
-    consultaModelo();
+    //consultaModelo();
 
 });
 
@@ -78,7 +78,6 @@ function modeloMotor() {
 }
 
 function agregarRecambio() {
-    console.log("Agregar linea");
     if (modeloMotor() & !vacio($("#descripcionRecambio"))) {
         console.log("agregamos recambio " + $("#referencia").val());
         agregarReferencia();
