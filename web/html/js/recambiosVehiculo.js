@@ -1,4 +1,8 @@
-ventanaModelo = new VentanaEmergente({
+/*  Globarles
+ ***********************************************************/
+
+
+var ventanaModelo = new VentanaEmergente({
     modal: 'modeloModal',
     titulo: 'Búsqueda por modelo',
     campos: ['codigo', 'descripcion'],
@@ -6,7 +10,7 @@ ventanaModelo = new VentanaEmergente({
     callback: rellenaModelo
 });
 
-ventanaMotor = new VentanaEmergente({
+var ventanaMotor = new VentanaEmergente({
     modal: 'motorModal',
     titulo: 'Búsqueda por motor',
     campos: ['codigo', 'descripcion'],
@@ -14,7 +18,7 @@ ventanaMotor = new VentanaEmergente({
     callback: rellenaMotor
 });
 
-ventanaRecambios = new VentanaEmergente({
+var ventanaRecambios = new VentanaEmergente({
     modal: 'recambiosModal',
     titulo: 'Seleccionar recambio',
     campos: ['referencia', 'fabricante.nombre', 'descripcion'],
@@ -22,29 +26,45 @@ ventanaRecambios = new VentanaEmergente({
     callback: rellenaRecambio
 });
 
-ventanaMatricula = new VentanaEmergente({
+var ventanaMatricula = new VentanaEmergente({
     modal: 'entidadModal',
     titulo: 'Busqueda de matrícula',
     campos: ['matricula', 'modelo.descripcion', 'motor.descripcion'],
     campoID: 'idVehiculo'
 });
 
+
+var modeloValido = false;
+var motorValido = false;
+var referenciaValido = false;
+
+
 /*  Listener
  ***********************************************************/
 $("document").ready(function() {
 
     $("#matricula").change(consultaMatricula);
-    $("#codigoModelo").change(consultaModelo);
-    $("#codigoMotor").change(consultaMotor);
-    $("#referencia").change(consultaReferencia);
-    $("#agregar").click(agregarRecambio);
+    $("#codigoModelo").change(function(){
+        modeloValido = false;
+        compruebaAgregarReferencia();
+        $("#g-tablaRecambioVehiculo tbody tr").remove();
+        consultaModelo();
+    });
+    $("#codigoMotor").change(function(){
+        motorValido = false;
+        compruebaAgregarReferencia();
+        $("#g-tablaRecambioVehiculo tbody tr").remove();
+        consultaMotor();
+    });
+    $("#referencia").change(function(){
+        referenciaValido = false;
+        compruebaAgregarReferencia();
+        consultaReferencia();
+    });
+    $("#agregar").click(agregarReferencia);
     $("#limpiarLinea").click(limpiarLinea);
 
-    $("#descripcionMotor").change(listarRecambios);
-    $("#descripcionModelo").change(listarRecambios);
-
-
-    consultaModelo();
+    //$("#agregar").prop("disabled",true);
 
 });
 
@@ -57,51 +77,62 @@ function rellenaFormulario(obj) {
     rellenaMotor(obj.motor);
 }
 
+
+function rellenaModelo(modelo) {
+    $("#idModelo").val(modelo.idModelo);
+    $("#descripcionModelo").val(modelo.descripcion);
+    $("#codigoModelo").val(modelo.codigo);
+    $("#logoMarca").attr("src", "img/marcas/" + modelo.fabricante.logo);
+    $("#silueta").attr("src", "img/imagenesVehiculos/" + modelo.imagen);
+    /*$("#nombreFabricanteModelo").text(modelo.fabricante.nombre);*/
+    modeloValido = true;
+    compruebaAgregarReferencia();
+    listarRecambios();
+}
+
 function rellenaMotor(motor) {
     $("#idMotor").val(motor.idMotor);
     $("#codigoMotor").val(motor.codigo);
-    $("#descripcionMotor").val(motor.descripcion).change();
+    $("#descripcionMotor").val(motor.descripcion);
+    motorValido = true;
+    compruebaAgregarReferencia();
+    listarRecambios();
 }
 
 function rellenaRecambio(objeto) {
     $("#descripcionRecambio").val(objeto.descripcion);
-    $("#idRecambio").val(objeto.idRecambio)
-
+    $("#idRecambio").val(objeto.idRecambio);
+    referenciaValido = true;
+    compruebaAgregarReferencia();
 }
 
-function modeloMotor() {
-    if (!vacio($("#descripcionModelo")) & !vacio($("#descripcionMotor"))) {
+
+function compruebaAgregarReferencia() {
+    if (motorValido & modeloValido & referenciaValido) {
+        $("#agregar").prop("disabled",false);
         return true;
     } else {
+        $("#agregar").prop("disabled",true);
         return false;
     }
 }
 
-function agregarRecambio() {
-    console.log("Agregar linea");
-    if (modeloMotor() & !vacio($("#descripcionRecambio"))) {
-        console.log("agregamos recambio " + $("#referencia").val());
-        agregarReferencia();
-    } else {
-        console.log("No es posible agregar este recambio");
+function agregarReferencia() {
+    if ( compruebaAgregarReferencia() ){
+        var data = $("#recambiosVehiculo").serialize();
+        console.log("Agregar. Serializado " + data);
+        $.ajax({
+            url: '../agregarRecambio.htm',
+            data: data,
+            type: 'POST',
+            success: mostrarLista
+        });        
     }
 }
 
-function agregarReferencia() {
-
-    var data = $("#recambiosVehiculo").serialize();
-    console.log("Serializado " + data);
-    $.ajax({
-        url: '../agregarRecambio.htm',
-        data: data,
-        type: 'POST',
-        success: mostrarLista
-    });
-
-}
 
 function respuestaConsultaReferencia(listaObjetos) {
-    console.log(listaObjetos);
+//    console.log(listaObjetos);
     if (listaObjetos.length === 1) {
         var objeto = listaObjetos[0];
         rellenaRecambio(objeto);
@@ -117,14 +148,17 @@ function respuestaConsultaReferencia(listaObjetos) {
 
 
 function listarRecambios() {
-    if (modeloMotor()) {
+    if (motorValido & modeloValido) {
         console.log("Procedemos al listado")
         listado();
     } else {
         console.log("Falla alguno de los DOS campos clave");
+        $("#g-tablaRecambioVehiculo tbody tr").remove();
     }
-
 }
+
+
+
 
 function listado() {
     var data = $("#recambiosVehiculo").serialize();
@@ -142,16 +176,9 @@ function ordenarPorCategoria(a,b){
 }
 
 function mostrarLista(listaDesordenada) {
-    limpiarLinea();
-    
-    console.log(listaDesordenada);
     
     var lista = listaDesordenada.sort(ordenarPorCategoria);
     
-    console.log(lista);
-    
-    console.log("Longitud lista " + lista.length);
-
     var tablaRecambios = '';
     if (lista.length > 0) {
         $.each(lista, function(i) {
@@ -186,6 +213,6 @@ function mostrarLista(listaDesordenada) {
 
 
 function limpiarLinea() {
+    $("#referencia").val("").change().focus();
     $("#descripcionRecambio").val("");
-    $("#referencia").val("").focus();
 }
