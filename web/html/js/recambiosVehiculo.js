@@ -175,7 +175,6 @@ function ordenarPorCategoria(a,b){
     return(a.recambio.categoria.codigo > b.recambio.categoria.codigo ? 1 : -1)
 }
 
-
 function mostrarLista(listaDesordenada) {
     
     var lista = listaDesordenada.sort(ordenarPorCategoria);

@@ -66,7 +66,6 @@ public class RecambioController {
         recambio.setCategoria(categoria);
         recambioDao.delete(recambio);
     }
-
    
     @RequestMapping("consultaReferencia.htm")
     public void consultaReferencia(HttpServletRequest request, HttpServletResponse response) throws IOException {
