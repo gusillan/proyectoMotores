@@ -39,6 +39,10 @@ $("document").ready(function() {
     $(".g-focusable").first().focus();
 
 
+    // Botones deshabilitados por defecto
+    $(".g-disabled").prop("disabled", true);
+
+
     /* Utilizar ENTER para pasar al siguiente input*/
     $(".g-input, .g-select, .g-textarea").enterKey(function() {
         var inputs = $(".g-input, .g-select, .g-textarea");
@@ -245,10 +249,12 @@ function respuestaConsultaMatricula(listaObjetos) {
 
 function consultaReferencia() {
     if (!vacio($("#referencia"))) {
-        console.log("Vamos a consultar la Referencia " + this.value);
-        var referencia = this.value;
+        var referencia = $("#referencia").val();
+        console.log("Vamos a consultar la Referencia " + referencia);        
         $.getJSON('../consultaReferencia.htm', {referencia: referencia}, respuestaConsultaReferencia);
-
+    } else {
+        console.log("borrar")
+        $("#descripcionRecambio").val("");
     }
 }
 
@@ -306,10 +312,12 @@ function limpiar() {
     $(".g-img").attr("src", "");
     $(".g-showByDefault").show();
     $(".g-hideByDefault").hide();
-    $(".g-hideByDefault input").attr("disabled", true);
+    $(".g-disabled").prop("disabled", true);
+    $(".g-hideByDefault input").prop("disabled", true);
     $("#baja").attr("disabled", true);
     updateFocusables();
     $(".g-focusable").first().focus();
+    $("#g-tablaRecambioVehiculo tbody tr").remove();
 }
 
 function volver() {
