@@ -50,11 +50,12 @@ function respuestaConsultaReferenciaA(listaObjetos) {
     }
 }
 function rellenaRecambioA(objeto) {
-    $("#idRecambioA").val(objeto.idRecambio)
+    $("#idRecambioA").val(objeto.idRecambio);
     $("#descripcionA").val(objeto.descripcion);
     $("#codigoMarcaA").val(objeto.fabricante.codigo);
     $("#marcaA").val(objeto.fabricante.nombre);
-    $("#logoMarcaA").attr("src", "img/marcas/" + objeto.fabricante.logo);  
+    $("#logoMarcaA").attr("src", "img/marcas/" + objeto.fabricante.logo);
+    $("#sustitucion").focus();
 
 }
 
