@@ -84,7 +84,7 @@ public class RecambioController {
             out.println();
         } else {
 
-            Integer recambio;
+           /* Integer recambio;
             
             String sust = "FROM Sustitucion WHERE idRecambioB='" + recambio.getIdRecambio() + "' AND tipoSustitucion='1'";
             List<Sustitucion> sustituciones = sustitucionDao.listadoConfigurable(sust);
@@ -112,8 +112,8 @@ public class RecambioController {
                  System.out.println("Sustituciones "+sustitucion.getRecambioA().getReferencia());
                  }
                  }
-             
-                 Collections.sort(listaRecambios);*/
+             */
+                 Collections.sort(listaRecambios);
             }
             Gson gson = new Gson();
             String lista = gson.toJson(listaRecambios);

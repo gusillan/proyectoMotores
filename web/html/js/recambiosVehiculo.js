@@ -184,6 +184,7 @@ function mostrarLista(listaDesordenada) {
         $.each(lista, function(i) {
             tablaRecambios += '<tr>';
             tablaRecambios += '<td>' + lista[i].recambio.categoria.codigo + '</td>';
+            tablaRecambios += '<td>' + lista[i].recambio.fabricante.codigo + '</td>';
             tablaRecambios += '<td>' + lista[i].recambio.descripcion + '</td>';
             tablaRecambios += '<td>' + lista[i].recambio.referencia + '</td>';
             tablaRecambios += '<td><button type="button" data-idModeloRecambio="' + lista[i].idModeloRecambio + '" class="btn btn-danger btn-xs g-botonEliminarAsignacion" >'
