@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- ESTILOS CSS -->
-<!--         <link rel="stylesheet" href="css/fonts/fonts.css"/> -->
+        <!--         <link rel="stylesheet" href="css/fonts/fonts.css"/> -->
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/global.css"/>
         <link rel="stylesheet" href="css/overload.css"/>
@@ -41,12 +41,12 @@
                             <input type="text" class="form-control" id="idRecambio" name="idRecambio" size="11" maxlength="11" readonly="readonly">
                         </div>               
                     </div>
-<!--                     <div class="col-md-3">
-                        <div class="form-group g-hideByDefault" id="nuevoRecambioBotonGroup">
-                            <label for="nuevoRecambioBoton" class="">Duplica referencia</label>
-                            <input type="button" name="nuevoRecambioBoton" class="btn btn-warning" value="Nuevo recambio con la misma referencia" id="nuevoRecambioBoton" disabled>  
-                        </div>                                	
-                    </div> -->
+                    <!--                     <div class="col-md-3">
+                                            <div class="form-group g-hideByDefault" id="nuevoRecambioBotonGroup">
+                                                <label for="nuevoRecambioBoton" class="">Duplica referencia</label>
+                                                <input type="button" name="nuevoRecambioBoton" class="btn btn-warning" value="Nuevo recambio con la misma referencia" id="nuevoRecambioBoton" disabled>  
+                                            </div>                                	
+                                        </div> -->
 
                 </div><!--row-->
 
@@ -54,7 +54,12 @@
                     <div class="col-md-3">              
                         <div class="form-group">
                             <label for="codigo">Referencia<a href="#" id="nuevoRecambioBoton" class="g-hideByDefault" title="Nuevo recambio con la misma referencia"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span></a></label>
-                            <input type="text" class="form-control g-input" id="referencia" name="referencia"  maxlength="25" required>
+                            <div class="input-group">
+                                <input type="text" class="form-control g-input" id="referencia" name="referencia"  maxlength="25" required>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary" id="sustitucion" title="Sustituciones o Equivalencias">(S)</button>
+                                </span>
+                            </div>
                         </div>
                     </div>  
 
@@ -84,7 +89,7 @@
                     </div>
                 </div><!--row-->
 
-                
+
                 <div class="row">
                     <div class="col-md-2">              
                         <div class="form-group">
@@ -130,7 +135,7 @@
                             <input type="text" class="form-control" id="categoria" readonly="readonly">
                         </div>
                     </div>
-                    
+
                 </div><!--row-->
 
                 <div class="row">

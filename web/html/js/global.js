@@ -71,7 +71,6 @@ $("document").ready(function() {
     $("#inicio").click(inicio);
 
 
-
     /* Atajos de teclado */
     $("body").keydown(function(ev) {
         var keycode = (ev.keyCode ? ev.keyCode : ev.which);

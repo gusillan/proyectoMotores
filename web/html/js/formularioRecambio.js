@@ -44,6 +44,8 @@ $("document").ready(function() {
         $("#nuevoRecambioBoton").hide();
         updateFocusables();
     });
+    
+    $("#sustitucion").click(mostrarSustituciones);
 
 });
 
@@ -148,5 +150,25 @@ function calcularNeto() {
     if (!isNaN(neto)) {
         $("#neto").val(neto.toFixed(2));
     }
+}
+
+function mostrarSustituciones(){
+    if (!vacio($("#referencia"))){
+        console.log("Consultar "+$("#idRecambio").val()+" - "+$("#referencia").val());
+        var data = $("#idRecambio").val();
+        $.ajax({
+            url: '../buscaSustituciones.htm',
+            idRecambio : data,
+            type: 'POST',
+            success: mostarListaSustituciones
+        });
+        
+    }else{
+        console.log("Referencia vacia");
+    }    
+}
+
+function mostrarListaSustituciones(lista){
+    
 }
 

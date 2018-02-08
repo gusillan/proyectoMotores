@@ -8,6 +8,8 @@ import com.pacoillan.DAO.RecambioDAO;
 import com.pacoillan.DAO.SustitucionDAO;
 import com.pacoillan.pojo.Recambio;
 import com.pacoillan.pojo.Sustitucion;
+import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +51,28 @@ public class SustitucionController {
         sustitucion.setRecambioB(recambioB);
         sustitucion.setSustitucion(tipoSustitucion);
         
-        sustitucionDao.create(sustitucion);
+        sustitucionDao.create(sustitucion);       
         
-        
+    }
+    
+    @RequestMapping("buscaSustituciones.htm")
+    public void buscaSustituciones(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        Integer idRecambio = Integer.parseInt(request.getParameter("idRecambio"));
+        System.out.println("IdRecambio -> " + idRecambio);
+       
+        /*List<Recambio> listaRecambios = recambioDao.listadoPorCampoExacto("referencia", referencia);
+        if (listaRecambios.isEmpty()) {            
+            out.println();
+        } else {
+            Collections.sort(listaRecambios);
+        }
+        Gson gson = new Gson();
+        String lista = gson.toJson(listaRecambios);
+        System.out.println("Lista Respuesta " + lista);
+        out.println(lista);*/
     }
 }
