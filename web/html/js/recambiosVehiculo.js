@@ -1,7 +1,7 @@
-/*  Globarles
- ***********************************************************/
 
 
+/*  Variables globales
+ *********************************************************/
 var ventanaModelo = new VentanaEmergente({
     modal: 'modeloModal',
     titulo: 'Búsqueda por modelo',
@@ -66,6 +66,25 @@ $("document").ready(function() {
 
     //$("#agregar").prop("disabled",true);
 
+
+    //Botones de busqueda
+    $("#buscarModelo").click(buscarModelo);
+    $("#buscarMotor").click(buscarMotor);
+    //Y buscar recambio
+
+
+
+    /* Ventana lateral */
+    $(".g-button-aside-close").click(function() {
+        $(".g-aside").hide();
+        $(".g-button-aside-open").show();
+    });
+    $(".g-button-aside-open").click(function() {
+        $(".g-aside").show();
+        $(".g-button-aside-open").hide();
+    });
+
+
 });
 
 function rellenaFormulario(obj) {
@@ -94,6 +113,26 @@ function rellenaMotor(motor) {
     $("#idMotor").val(motor.idMotor);
     $("#codigoMotor").val(motor.codigo);
     $("#descripcionMotor").val(motor.descripcion);
+    var combustible = "";
+    switch (motor.combustible) {
+        case "D":
+            combustible = "Diesel";
+            break;
+        case "G":
+            combustible = "Gasolina";
+            break;
+        case "H":
+            combustible = "Híbrido";
+            break;
+        case "E":
+            combustible = "Eléctrico";
+            break;
+    }
+    $("#combustibleMotor").text(combustible);
+    $("#cilindradaMotor").text(motor.cilindrada + " c.c.");
+    $("#kwMotor").text(motor.kw + " Kw");
+    $("#nombreFabricanteMotor").text(motor.fabricante.nombre);
+
     motorValido = true;
     compruebaAgregarReferencia();
     listarRecambios();
@@ -117,8 +156,23 @@ function compruebaAgregarReferencia() {
     }
 }
 
+function referenciaUnica(){
+    if(referenciaValido){
+        referencia = $("#referencia").val();
+        repeticiones = $("tr td:nth-child(3):contains('"+referencia+"')").length;
+        if( repeticiones > 0 ){
+            console.log("referencia repetida");
+            return false;
+        } else{
+            return true;
+        }
+    }else{
+        return false;
+    }
+}
+
 function agregarReferencia() {
-    if ( compruebaAgregarReferencia() ){
+    if ( compruebaAgregarReferencia() && referenciaUnica() ){
         var data = $("#recambiosVehiculo").serialize();
         console.log("Agregar. Serializado " + data);
         $.ajax({
@@ -176,11 +230,14 @@ function ordenarPorCategoria(a,b){
 }
 
 function mostrarLista(listaDesordenada) {
-    
-    var lista = listaDesordenada.sort(ordenarPorCategoria);
-    
-    var tablaRecambios = '';
-    if (lista.length > 0) {
+    console.log("listaDesordenada:");
+    console.log(listaDesordenada);
+
+
+    if (listaDesordenada.length > 0) {
+        var lista = listaDesordenada.sort(ordenarPorCategoria);
+        
+        var tablaRecambios = '';
         $.each(lista, function(i) {
             tablaRecambios += '<tr>';
             tablaRecambios += '<td>' + lista[i].recambio.categoria.codigo + '</td>';
@@ -191,29 +248,92 @@ function mostrarLista(listaDesordenada) {
             tablaRecambios += '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>';
             tablaRecambios += '</tr>'
         });
-    }
-    $("#g-tablaRecambioVehiculo tbody").html(tablaRecambios);
+        $("#g-tablaRecambioVehiculo tbody").html(tablaRecambios);
 
 
-    //Se añade los listener cuando ya esta listado los recambios, si no existen los elementos html no funciona
-    $(".g-botonEliminarAsignacion").click(function() {
-        var idModeloRecambio = $(this).data("idmodelorecambio");
-        console.log("Eliminar asignacion de recambio " + idModeloRecambio);
-        
-        var data = "idModelo="+$('#idModelo').val()+"&idMotor="+$('#idMotor').val()+"&idRecambio="+idModeloRecambio;
-        console.log("DATA : " + data);
-        $.ajax({
-            url: '../quitarRecambio.htm',
-            data: data,
-            type: 'POST',
-            success: mostrarLista
+        //Se añade los listener cuando ya esta listado los recambios, si no existen los elementos html no funciona
+        $(".g-botonEliminarAsignacion").click(function() {
+            var idModeloRecambio = $(this).data("idmodelorecambio");
+            console.log("Eliminar asignacion de recambio " + idModeloRecambio);
+            
+            var data = "idModelo="+$('#idModelo').val()+"&idMotor="+$('#idMotor').val()+"&idRecambio="+idModeloRecambio;
+            console.log("DATA : " + data);
+            $.ajax({
+                url: '../quitarRecambio.htm',
+                data: data,
+                type: 'POST',
+                success: mostrarLista
+            });
+
         });
-
-    });
+    }else{
+        console.log("borra");
+        $("#g-tablaRecambioVehiculo tbody tr").remove();
+    }
 }
 
 
 function limpiarLinea() {
     $("#referencia").val("").change().focus();
     $("#descripcionRecambio").val("");
+}
+
+
+
+
+/*  Busquedas
+ *********************************************************/
+
+function buscarModelo() {
+
+    var descripcionModelo = $("#descripcionModelo").val()
+    if (descripcionModelo.length > 1) {
+        console.log("Campo modelo RELLENO");
+        $.ajax({
+            url: '../consultaPorDescripcionModelo.htm',
+            data: {descripcion: descripcionModelo},
+            type: 'POST',
+            dataType: 'json',
+            success: respuestaBuscarModelo
+        });
+    }
+}
+
+function respuestaBuscarModelo(modelos) {
+    if (modelos.length == 0) {
+        console.log("Error: la consulta del modelo no ha obtenido ningun resultado");
+        $("#descripcionModelo").val("");
+        $("#logoMarca").remove();
+
+    } else if (modelos.length == 1) {
+        rellenaModelo(modelos[0]);
+    } else {
+        ventanaModelo.abrir(modelos); //Abre la ventana Modal con la lista
+    }
+}
+
+function buscarMotor() {
+
+    var descripcionMotor = $("#descripcionMotor").val()
+    if (descripcionMotor.length > 2) {
+        console.log("Campo motor RELLENO");
+        $.ajax({
+            url: '../consultaPorDescripcionMotor.htm',
+            data: {descripcion: descripcionMotor},
+            type: 'POST',
+            dataType: 'json',
+            success: respuestaBuscarMotor
+
+        });
+    }
+}
+
+function respuestaBuscarMotor(motores) {
+    if (motores.length == 0) {
+        console.log("Error: la consulta del motor no ha obtenido ningun resultado");
+    } else if (motores.length == 1) {
+        rellenaMotor(motores[0]);
+    } else {
+        ventanaMotor.abrir(motores); //Abre la ventana Modal con la lista
+    }
 }
