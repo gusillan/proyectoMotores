@@ -12,7 +12,6 @@ import com.pacoillan.DAO.SustitucionDAO;
 import com.pacoillan.pojo.CategoriaRecambio;
 import com.pacoillan.pojo.Fabricante;
 import com.pacoillan.pojo.Recambio;
-import com.pacoillan.pojo.Sustitucion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
@@ -119,49 +118,6 @@ public class RecambioController {
             String lista = gson.toJson(listaRecambios);
             System.out.println("Lista Respuesta " + lista);
             out.println(lista);
-        }
-
-        /*
-         @RequestMapping("listaMotores.htm")
-         public void listaMotores(HttpServletRequest request, HttpServletResponse response, @ModelAttribute Motor motor, @RequestBody String jsonEntrada)
-         throws IOException {
-         Gson gson = new Gson();
-         Motor m = gson.fromJson(jsonEntrada, Motor.class);
-         System.out.println("Objeto recibido " + jsonEntrada);
-         System.out.println("Objeto JAVA " + m.getCodigo() + " " + m.getDescripcion());
-         List<Motor> listaMotores;
-         listaMotores = motorDao.listadoPorCampo("codigo", m.getCodigo());
-         //listaMotores = motorDao.listAll();       
-         Collections.sort(listaMotores);
-
-         String lista = gson.toJson(listaMotores);
-         System.out.println("Motores JSON " + lista);
-         response.setContentType("text/xml;charset=UTF-8");
-         PrintWriter out = response.getWriter();
-         out.println(lista);
-         }
-         */
-        /*
-         @RequestMapping("consultaPorDescripcionMotor.htm")
-         public void consultaPorDescripcionMotor(HttpServletRequest request, HttpServletResponse response)
-         throws IOException {
-
-         System.out.println("Descripcion " + request.getParameter("descripcion"));
-         response.setContentType("application/json");
-         response.setCharacterEncoding("UTF-8");
-         PrintWriter out = response.getWriter();
-         String descripcionMotor = (request.getParameter("descripcion").toUpperCase());        
-         List<Motor> listaMotores = motorDao.listadoPorCampo("descripcion", descripcionMotor);
-         System.out.println("Listado" + listaMotores);
-         if (listaMotores.isEmpty()) {
-         out.println();
-         } else {
-         Collections.sort(listaMotores);
-         }
-         Gson gson = new Gson();
-         String lista = gson.toJson(listaMotores);
-         System.out.println("Lista Respuesta " + lista);
-         out.println(lista);
-         }
-         * */
+        }       
+        
     }
