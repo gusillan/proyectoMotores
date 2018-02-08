@@ -2,7 +2,7 @@
 
 /*  Variables globales
  *********************************************************/
-ventanaEntidad = new VentanaEmergente({
+var ventanaEntidad = new VentanaEmergente({
     modal: 'entidadModal',
     titulo: 'Búsqueda por nombre',
     campos: ['nombre', 'poblacion'],
@@ -10,7 +10,7 @@ ventanaEntidad = new VentanaEmergente({
     callback: rellenaCliente
 });
 
-ventanaModelo = new VentanaEmergente({
+var ventanaModelo = new VentanaEmergente({
     modal: 'modeloModal',
     titulo: 'Búsqueda por modelo',
     campos: ['codigo', 'descripcion'],
@@ -18,7 +18,7 @@ ventanaModelo = new VentanaEmergente({
     callback: rellenaModelo
 });
 
-ventanaMotor = new VentanaEmergente({
+var ventanaMotor = new VentanaEmergente({
     modal: 'motorModal',
     titulo: 'Búsqueda por motor',
     campos: ['codigo', 'descripcion'],
@@ -26,7 +26,7 @@ ventanaMotor = new VentanaEmergente({
     callback: rellenaMotor
 });
 
-ventanaMatricula = new VentanaEmergente({
+var ventanaMatricula = new VentanaEmergente({
     modal: 'matriculaModal',
     titulo: 'Busqueda de matrícula',
     campos: ['matricula', 'modelo.descripcion', 'motor.descripcion'],

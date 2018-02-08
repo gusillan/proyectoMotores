@@ -35,44 +35,66 @@
 
             <form name="recambiosVehiculo" id="recambiosVehiculo">
 
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="form-group">
-                            <label for="idVehiculo" class="">ID Vehiculo</label>
-                            <input type="text" class="form-control" id="idVehiculo" name="idVehiculo" size="5" maxlength="6" readonly="readonly">
-                        </div>               
-                    </div>
-                    <div class="col-sm-2">              
-                        <div class="form-group">
-                            <label for="matricula">Matrícula</label>
-                            <input type="text" class="form-control g-input" id="matricula" name="matricula"  maxlength="10" required title="Complete una matrícula válida. Todo junto sin espacios ni guiones" pattern="[0-9]{4}[A-Z]{3}|[A-Z]{1,2}[0-9]{4}[A-Z]{1,2}">
-                        </div>               
-                    </div>   
-                    <div class="col-sm-5">              
-                        <div class="form-group">
-                            <label for="chasis">Chasis</label>
-                            <div class="form-group">
-                                <input type="text" class="form-control g-input" id="chasis" name="chasis"  size="20" maxlength="17" required title="Introduzca el nº de chasis con 17 cifras" pattern="[ABCDEFGHJKLMNPRSTUVWXYZ0-9]{17}">
-                            </div><!-- /input-group -->
-                        </div>
-                    </div>
 
+                <div class="row">
+                    <div class="col-sm-8">
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Campos auxiliares</div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="idVehiculo" class="">ID Vehiculo</label>
+                                            <input type="text" class="form-control" id="idVehiculo" name="idVehiculo" size="5" maxlength="6" readonly="readonly">
+                                        </div>               
+                                    </div>
+                                    <div class="col-sm-3">              
+                                        <div class="form-group">
+                                            <label for="matricula">Matrícula</label>
+                                            <input type="text" class="form-control g-input" id="matricula" name="matricula"  maxlength="10" title="Complete una matrícula válida. Todo junto sin espacios ni guiones" pattern="[0-9]{4}[A-Z]{3}|[A-Z]{1,2}[0-9]{4}[A-Z]{1,2}">
+                                        </div>               
+                                    </div>   
+                                    <div class="col-sm-6">              
+                                        <div class="form-group">
+                                            <label for="chasis">Chasis</label>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control g-input" id="chasis" name="chasis"  size="20" maxlength="17" title="Introduzca el nº de chasis con 17 cifras" pattern="[ABCDEFGHJKLMNPRSTUVWXYZ0-9]{17}">
+                                            </div><!-- /input-group -->
+                                        </div>
+                                    </div>
+                                </div><!--row-->
+                            </div>
+                        </div><!--panel-->
+
+                    </div>
                 </div><!--row-->
+
+
+
 
                 <div class="row">
                     <div class="col-sm-2">              
                         <div class="form-group">
                             <label for="codigoModelo">Código Modelo<a href="formularioModelo.html" title="Formulario Modelo"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
-                            <input type="text" class="form-control g-input" id="codigoModelo" name="codigoModelo"  title="Ponga código válido" required>
+                            <input type="text" class="form-control g-input" id="codigoModelo" name="codigoModelo" size="5" maxlength="5"  title="Ponga código válido" required>
                             <input type="hidden" id="idModelo" name="idModelo">
                         </div>               
                     </div>
-                    <div class="col-sm-2">              
+                    <div class="col-sm-6">              
                         <div class="form-group">
-                            <label for="descripcionModelo">Descripción Modelo</label> 
-                            <input type="text" class="form-control g-input" id="descripcionModelo" title="El modelo debe estar creado" readonly> 
+                            <label for="descripcionModelo">Descripción Modelo</label>            
+                            <div class="input-group">
+                                <input type="text" class="form-control g-input" id="descripcionModelo" title="El modelo debe estar creado" required>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary" id="buscarModelo">Buscar</button>
+                                </span>
+                            </div><!-- /input-group -->
                         </div>               
                     </div>
+                </div><!--row-->
+
+                <div class="row">
                     <div class="col-sm-2">              
                         <div class="form-group">
                             <label for="codigoMotor">Código Motor <a href="formularioMotor.html" title="Formulario Motor"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
@@ -80,22 +102,29 @@
                             <input type="hidden" id="idMotor" name="idMotor">
                         </div>
                     </div>  
-                    <div class="col-sm-3">              
+                    <div class="col-sm-6">              
                         <div class="form-group">
                             <label for="descripcionMotor">Descripción Motor</label>
-                            <input type="text" class="form-control g-input" id="descripcionMotor" title="El motor debe estar creado" readonly>  
+                            <div class="input-group">
+                                <input type="text" class="form-control g-input" id="descripcionMotor" title="El motor debe estar creado" required>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary" id="buscarMotor">Buscar</button>
+                                </span>
+                            </div><!-- /input-group -->
                         </div>
-                    </div>                    
+                    </div>
                 </div><!--row-->
 
-                <div class="row">
+                
+
+                <!--<div class="row">
                     <div class="col-md-4">
                         <img id="logoMarca" class="g-img previstaImagen" src="">
                     </div>                  
                     <div class="col-md-4">
                         <img id="silueta" class="g-img previstaImagen" src="">
                     </div> 
-                </div><!--row-->
+                </div>row-->
 
 
 
@@ -158,6 +187,39 @@
                     </div>
                 </nav>
 
+
+
+                <a class="btn btn-info g-button-aside-open g-showByDefault"><<</a>
+                <aside class="g-aside col-sm-3 hidden-sm hidden-xs g-hideByDefault">
+
+                    <a class="btn btn-info g-button-aside-close">>></a>
+                    <section class="g-aside-section">
+                        <div class="row">
+                            <img id="logoMarca" class="g-img" src="" alt="">
+                        </div>
+                        <div class="row">
+                            <img src="" id="silueta"  class="g-img-modelo g-img"/>    
+                        </div>
+                    </section>
+                    <section class="g-aside-section">
+                        <div class="row">
+                            <div class="col-sm-6">Combustible</div>
+                            <div id="combustibleMotor" class="col-sm-6 g-text"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">Cilindrada</div>
+                            <div id="cilindradaMotor" class="col-sm-6 g-text"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">Potencia</div>
+                            <div id="kwMotor" class="col-sm-6 g-text"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">Fabricante</div>
+                            <div id="nombreFabricanteMotor" class="col-sm-6 g-text"></div>
+                        </div>
+                    </section>
+                </aside>
 
 
 

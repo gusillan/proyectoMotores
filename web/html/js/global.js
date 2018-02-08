@@ -196,6 +196,7 @@ function consultaMotor() {
         respuestaConsultaMotor);
     } else {
         $("#descripcionMotor").val("");
+        $("#combustibleMotor,#cilindradaMotor,#kwMotor,#nombreFabricanteMotor").html("");
     }
 }
 
@@ -209,6 +210,7 @@ function respuestaConsultaMotor(listaObjetos) {
     } else if (listaObjetos.length < 1) {
         console.log("No existe ningun Motor con este codigo");
         $("#descripcionMotor").val("");
+        $("#combustibleMotor,#cilindradaMotor,#kwMotor,#nombreFabricanteMotor").html("");
         darAltaMotor();
     }
 }
@@ -253,7 +255,6 @@ function consultaReferencia() {
         console.log("Vamos a consultar la Referencia " + referencia);        
         $.getJSON('../consultaReferencia.htm', {referencia: referencia}, respuestaConsultaReferencia);
     } else {
-        console.log("borrar")
         $("#descripcionRecambio").val("");
     }
 }
@@ -335,7 +336,7 @@ function inicio() {
 
 /*  Mover el foco con las flechas
  *********************************************************/
-var focusablesPrincipales = "button:not(:disabled), textarea, select, input:not(:disabled):not([readonly])";
+var focusablesPrincipales = "button:not(:disabled), textarea, select, input:not(:disabled):not([readonly]):not([type='hidden'])";
 var focusablesModal = ".modal tr[tabindex]:visible, .modal .g-input, .modal button";
 function updateFocusables() {                                   //Funciona para actualizar los elementos enfocables
     if ($('.modal').is(':visible')) {
