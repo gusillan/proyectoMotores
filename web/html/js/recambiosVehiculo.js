@@ -47,12 +47,14 @@ $("document").ready(function() {
     $("#codigoModelo").change(function(){
         modeloValido = false;
         compruebaAgregarReferencia();
+        $("#g-tablaRecambioVehiculo.g-hideByDefault").hide();
         $("#g-tablaRecambioVehiculo tbody tr").remove();
         consultaModelo();
     });
     $("#codigoMotor").change(function(){
         motorValido = false;
         compruebaAgregarReferencia();
+        $("#g-tablaRecambioVehiculo.g-hideByDefault").hide();
         $("#g-tablaRecambioVehiculo tbody tr").remove();
         consultaMotor();
     });
@@ -157,11 +159,12 @@ function compruebaAgregarReferencia() {
 }
 
 function referenciaUnica(){
+
     if(referenciaValido){
-        referencia = $("#referencia").val();
-        repeticiones = $("tr td:nth-child(3):contains('"+referencia+"')").length;
+        var referencia = $("#referencia").val();
+        var repeticiones = $("#g-tablaRecambioVehiculo tr td:contains('"+referencia+"')").length;
         if( repeticiones > 0 ){
-            console.log("referencia repetida");
+            console.log("Referencia repetida");
             return false;
         } else{
             return true;
@@ -180,7 +183,8 @@ function agregarReferencia() {
             data: data,
             type: 'POST',
             success: mostrarLista
-        });        
+        });
+        limpiarLinea();      
     }
 }
 
@@ -233,6 +237,7 @@ function mostrarLista(listaDesordenada) {
     console.log("listaDesordenada:");
     console.log(listaDesordenada);
 
+    $("#g-tablaRecambioVehiculo").show();
 
     if (listaDesordenada.length > 0) {
         var lista = listaDesordenada.sort(ordenarPorCategoria);
