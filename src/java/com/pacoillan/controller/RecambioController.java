@@ -85,13 +85,11 @@ public class RecambioController {
         } else {
 
             recambioFinal = listaRecambios.get(0);
-            //List<Recambio> lista;
             List<Sustitucion> listaSustitucion;
             do{ 
                 //Retorna una lista de sustituciones no de recambios
                 listaSustitucion = getSustitucion(recambioFinal);
                 if(! listaSustitucion.isEmpty()){
-                    // se necesita el recambio B de esta lista de sustituciones 
                     Sustitucion sustitucion = listaSustitucion.get(0);
                     recambioFinal = sustitucion.getRecambioA();
                 }
