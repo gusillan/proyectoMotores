@@ -44,21 +44,21 @@ var referenciaValido = false;
 $("document").ready(function() {
 
     $("#matricula").change(consultaMatricula);
-    $("#codigoModelo").change(function(){
+    $("#codigoModelo").change(function() {
         modeloValido = false;
         compruebaAgregarReferencia();
         $("#g-tablaRecambioVehiculo.g-hideByDefault").hide();
         $("#g-tablaRecambioVehiculo tbody tr").remove();
         consultaModelo();
     });
-    $("#codigoMotor").change(function(){
+    $("#codigoMotor").change(function() {
         motorValido = false;
         compruebaAgregarReferencia();
         $("#g-tablaRecambioVehiculo.g-hideByDefault").hide();
         $("#g-tablaRecambioVehiculo tbody tr").remove();
         consultaMotor();
     });
-    $("#referencia").change(function(){
+    $("#referencia").change(function() {
         referenciaValido = false;
         compruebaAgregarReferencia();
         consultaReferencia();
@@ -150,32 +150,32 @@ function rellenaRecambio(objeto) {
 
 function compruebaAgregarReferencia() {
     if (motorValido & modeloValido & referenciaValido) {
-        $("#agregar").prop("disabled",false);
+        $("#agregar").prop("disabled", false);
         return true;
     } else {
-        $("#agregar").prop("disabled",true);
+        $("#agregar").prop("disabled", true);
         return false;
     }
 }
 
-function referenciaUnica(){
+function referenciaUnica() {
 
-    if(referenciaValido){
+    if (referenciaValido) {
         var referencia = $("#referencia").val();
-        var repeticiones = $("#g-tablaRecambioVehiculo tr td:contains('"+referencia+"')").length;
-        if( repeticiones > 0 ){
+        var repeticiones = $("#g-tablaRecambioVehiculo tr td:contains('" + referencia + "')").length;
+        if (repeticiones > 0) {
             console.log("Referencia repetida");
             return false;
-        } else{
+        } else {
             return true;
         }
-    }else{
+    } else {
         return false;
     }
 }
 
 function agregarReferencia() {
-    if ( compruebaAgregarReferencia() && referenciaUnica() ){
+    if (compruebaAgregarReferencia() && referenciaUnica()) {
         var data = $("#recambiosVehiculo").serialize();
         console.log("Agregar. Serializado " + data);
         $.ajax({
@@ -184,22 +184,24 @@ function agregarReferencia() {
             type: 'POST',
             success: mostrarLista
         });
-        limpiarLinea();      
+        limpiarLinea();
     }
 }
 
 
 function respuestaConsultaReferencia(listaObjetos) {
-//    console.log(listaObjetos);
-    if (listaObjetos.length === 1) {
-        var objeto = listaObjetos[0];
-        rellenaRecambio(objeto);
+    console.log("Lista objetos recibida : "+listaObjetos);
+    if (listaObjetos.length==0) {
+        console.log("No existe ningun fabricante con ese Codigo");
+        darAltaRecambio();
     } else if (listaObjetos.length > 1) {
         console.log("Existen varias categorias con ese Codigo.Consultar al administrador de la BBDD");
         console.log("Esta es la lista " + listaObjetos);
         ventanaRecambios.abrir(listaObjetos);
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun fabricante con ese Codigo");
+    } else if (listaObjetos.length === 1) {
+        console.log("LIsta de objs");
+        var objeto = listaObjetos[0];
+        rellenaRecambio(objeto);
     }
 }
 
@@ -229,7 +231,7 @@ function listado() {
     });
 }
 
-function ordenarPorCategoria(a,b){
+function ordenarPorCategoria(a, b) {
     return(a.recambio.categoria.codigo > b.recambio.categoria.codigo ? 1 : -1)
 }
 
@@ -241,7 +243,7 @@ function mostrarLista(listaDesordenada) {
 
     if (listaDesordenada.length > 0) {
         var lista = listaDesordenada.sort(ordenarPorCategoria);
-        
+
         var tablaRecambios = '';
         $.each(lista, function(i) {
             tablaRecambios += '<tr>';
@@ -260,8 +262,8 @@ function mostrarLista(listaDesordenada) {
         $(".g-botonEliminarAsignacion").click(function() {
             var idModeloRecambio = $(this).data("idmodelorecambio");
             console.log("Eliminar asignacion de recambio " + idModeloRecambio);
-            
-            var data = "idModelo="+$('#idModelo').val()+"&idMotor="+$('#idMotor').val()+"&idRecambio="+idModeloRecambio;
+
+            var data = "idModelo=" + $('#idModelo').val() + "&idMotor=" + $('#idMotor').val() + "&idRecambio=" + idModeloRecambio;
             console.log("DATA : " + data);
             $.ajax({
                 url: '../quitarRecambio.htm',
@@ -271,7 +273,7 @@ function mostrarLista(listaDesordenada) {
             });
 
         });
-    }else{
+    } else {
         console.log("borra");
         $("#g-tablaRecambioVehiculo tbody tr").remove();
     }

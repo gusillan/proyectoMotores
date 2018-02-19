@@ -8,6 +8,7 @@ import javax.persistence.PersistenceException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.transaction.annotation.Transactional;
 
 //http://sobrejava.com/articulos/ejemplo-de-dao-generico-con-jpa
 public abstract class GenericDAOHibernate<T, Id extends Serializable>
@@ -72,6 +73,7 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
             session.close();
         }
     }
+
     @Override
     public void deleteId(Id id) {
         session = sessionFactory.openSession();
@@ -87,7 +89,7 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
             session.close();
         }
     }
-    
+
     @Override
     public List<T> listAll() {
         String pojo = domainClass.getSimpleName();
@@ -111,6 +113,7 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
     }
 
     @Override
+    @Transactional
     public List<T> listadoPorCampoExacto(String campo, String dato) {
         String pojo = domainClass.getSimpleName();
         List lista;
@@ -120,14 +123,16 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
         session.close();
         return lista;
     }
-    
+
     @Override
-     public List<T> listadoConfigurable(String query) {
+    @Transactional
+    public List<T> listadoConfigurable(String query) {
         List lista;
-        session = sessionFactory.openSession();      
+        session = sessionFactory.openSession();
         lista = session.createQuery(query).list();
-        session.close();
+        //session.close(); Daba error ( no sé por qué)??
         return lista;
+
+
     }
-    
 }

@@ -258,6 +258,18 @@ function consultaReferencia() {
     }
 }
 
+function darAltaRecambio() {
+    var respuesta = confirm("Desea dar de alta este Recambio?");
+    if (respuesta == true) {
+        console.log("Ha pulsado si");
+        window.location = "../html/formularioRecambio.html?referencia=" + $("#referencia").val();
+    } else {
+        console.log("Ha pulsado no");
+        $("#referencia").val("");
+        $("#referencia").focus();
+    }
+}
+
 
 function validarAccion(accion) {
     if (validarFormulario()) {

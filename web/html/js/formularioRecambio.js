@@ -10,6 +10,11 @@ ventanaRecambios = new VentanaEmergente({
 /*  Listener
  *********************************************************/
 $("document").ready(function() {
+    
+    console.log("Referencia "+ getQueryVariable("referencia"));
+    if (getQueryVariable("referencia")){
+        $("#referencia").val(getQueryVariable("referencia"));
+    }
 
     consultarMarca();
 
@@ -117,10 +122,10 @@ function respuestaConsultaReferencia(listaObjetos) {
         var objeto = listaObjetos[0];
         rellenaFormulario(objeto);
     } else if (listaObjetos.length > 1) {
-        console.log("Existen varias categorias con ese Codigo.Consultar al administrador de la BBDD");
+        console.log("Existen varias Referencias con ese Codigo.Consultar al administrador de la BBDD");
         ventanaRecambios.abrir(listaObjetos);
     } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun fabricante con ese Codigo");
+        console.log("No existe ninguna Referencia con ese Codigo");
     }
 }
 

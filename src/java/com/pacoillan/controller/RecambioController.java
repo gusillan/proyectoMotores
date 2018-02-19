@@ -15,6 +15,7 @@ import com.pacoillan.pojo.Recambio;
 import com.pacoillan.pojo.Sustitucion;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +39,6 @@ public class RecambioController {
     CategoriaRecambioDAO categoriaDao;
     @Autowired
     SustitucionDAO sustitucionDao;
-   
 
     @RequestMapping("guardaRecambio.htm")
     public void guardaRecambio(Recambio recambio, HttpServletRequest request, HttpServletResponse response) {
@@ -78,61 +78,46 @@ public class RecambioController {
         String referencia = (request.getParameter("referencia").toUpperCase());
         System.out.println("Referencia -> " + referencia);
 
+        Gson gson = new Gson();
+        String lista = null;
+
         Recambio recambioFinal;
+        List<Recambio> listaFinal = new ArrayList();
 
         List<Recambio> listaRecambios = recambioDao.listadoPorCampoExacto("referencia", referencia);
         if (listaRecambios.isEmpty()) {
-            out.println();
+            System.out.println("Lista recambios vacia "+listaRecambios);
+            //out.println(lista);
+            lista = gson.toJson(listaRecambios);
+        } else if (listaRecambios.size() > 1) {
+            System.out.println("varios recambios con la misma referencia");
+            lista = gson.toJson(listaRecambios); // + ",[{ 'varios' : 'true' }]";              
         } else {
-
             recambioFinal = listaRecambios.get(0);
+            listaFinal.add(recambioFinal);
             List<Sustitucion> listaSustitucion;
-            do{ 
+            do {
                 //Retorna una lista de sustituciones no de recambios
                 listaSustitucion = getSustitucion(recambioFinal);
-                if(! listaSustitucion.isEmpty()){
+                if (!listaSustitucion.isEmpty()) {
                     Sustitucion sustitucion = listaSustitucion.get(0);
                     recambioFinal = sustitucion.getRecambioA();
+                    listaFinal.add(recambioFinal); // Va añadiendo las sustituciones
                 }
-            }while(! listaSustitucion.isEmpty());
-            
-            System.out.println("Recambio final "+recambioFinal.getReferencia() );
-
-
-                /*
-                 for (Recambio recambio : listaRecambios){
-                 System.out.println("Recambio "+recambio.getDescripcion());
-                 String equivalencia1 = "FROM Sustitucion WHERE idRecambioA='"+recambio.getIdRecambio()+"' AND tipoSustitucion='2'";
-                 List<Sustitucion> equivalencias1 = sustitucionDao.listadoConfigurable(equivalencia1);
-                 for (Sustitucion sustitucion : equivalencias1){
-                 System.out.println("Equivalencia "+sustitucion.getRecambioB().getReferencia());
-                 };
-                 String equivalencia2 = "FROM Sustitucion WHERE idRecambioB='"+recambio.getIdRecambio()+"' AND tipoSustitucion='2'";
-                 List<Sustitucion> equivalencias2 = sustitucionDao.listadoConfigurable(equivalencia2);
-                 for (Sustitucion sustitucion : equivalencias2){
-                 System.out.println("Equivalencia "+sustitucion.getRecambioA().getReferencia());
-                 };
-                
-                 String sust = "FROM Sustitucion WHERE idRecambioB='"+recambio.getIdRecambio()+"' AND tipoSustitucion='1'";
-                 List<Sustitucion> sustituciones = sustitucionDao.listadoConfigurable(sust);
-                 for (Sustitucion sustitucion : sustituciones){
-                 System.out.println("Sustituciones "+sustitucion.getRecambioA().getReferencia());
-                 }
-                 }
-             */
-                 Collections.sort(listaRecambios);
-            }
-            Gson gson = new Gson();
-            String lista = gson.toJson(listaRecambios);
-            System.out.println("Lista Respuesta " + lista);
-            out.println(lista);
-        } 
-        private List getSustitucion (Recambio recambio){
-            String sust = "FROM Sustitucion WHERE idRecambioB='" + recambio.getIdRecambio()+ "' AND tipoSustitucion='1'";
-            List<Sustitucion> sustituciones = sustitucionDao.listadoConfigurable(sust);
-            return sustituciones;
+            } while (!listaSustitucion.isEmpty());
+            System.out.println("Recambio final " + recambioFinal.getReferencia());
+            lista = gson.toJson(listaFinal);
+            //listaFinal.add(recambioFinal);
+            //Collections.sort(recambioFinal);
         }
-        
+
+        System.out.println("Lista Respuesta " + lista);
+        out.println(lista);
     }
-    
+
+    private List getSustitucion(Recambio recambio) {
+        String sust = "FROM Sustitucion WHERE idRecambioB='" + recambio.getIdRecambio() + "' AND tipoSustitucion='1'";
+        List<Sustitucion> sustituciones = sustitucionDao.listadoConfigurable(sust);
+        return sustituciones;
+    }
 }
