@@ -72,6 +72,67 @@ public class RecambioController {
     @RequestMapping("consultaReferencia.htm")
     public void consultaReferencia(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        String referencia = (request.getParameter("referencia").toUpperCase());
+        System.out.println("Referencia -> " + referencia);
+
+        Recambio recambioFinal;
+
+        List<Recambio> listaRecambios = recambioDao.listadoPorCampoExacto("referencia", referencia);
+        if (listaRecambios.isEmpty()) {
+            out.println();
+        } else {
+
+            recambioFinal = listaRecambios.get(0);
+            List<Sustitucion> listaSustitucion;
+            do{ 
+                //Retorna una lista de sustituciones no de recambios
+                listaSustitucion = getSustitucion(recambioFinal);
+                if(! listaSustitucion.isEmpty()){
+                    Sustitucion sustitucion = listaSustitucion.get(0);
+                    recambioFinal = sustitucion.getRecambioA();
+                }
+            }while(! listaSustitucion.isEmpty());
+            
+            System.out.println("Recambio final "+recambioFinal.getReferencia() );
+
+
+                /*
+                 for (Recambio recambio : listaRecambios){
+                 System.out.println("Recambio "+recambio.getDescripcion());
+                 String equivalencia1 = "FROM Sustitucion WHERE idRecambioA='"+recambio.getIdRecambio()+"' AND tipoSustitucion='2'";
+                 List<Sustitucion> equivalencias1 = sustitucionDao.listadoConfigurable(equivalencia1);
+                 for (Sustitucion sustitucion : equivalencias1){
+                 System.out.println("Equivalencia "+sustitucion.getRecambioB().getReferencia());
+                 };
+                 String equivalencia2 = "FROM Sustitucion WHERE idRecambioB='"+recambio.getIdRecambio()+"' AND tipoSustitucion='2'";
+                 List<Sustitucion> equivalencias2 = sustitucionDao.listadoConfigurable(equivalencia2);
+                 for (Sustitucion sustitucion : equivalencias2){
+                 System.out.println("Equivalencia "+sustitucion.getRecambioA().getReferencia());
+                 };
+                
+                 String sust = "FROM Sustitucion WHERE idRecambioB='"+recambio.getIdRecambio()+"' AND tipoSustitucion='1'";
+                 List<Sustitucion> sustituciones = sustitucionDao.listadoConfigurable(sust);
+                 for (Sustitucion sustitucion : sustituciones){
+                 System.out.println("Sustituciones "+sustitucion.getRecambioA().getReferencia());
+                 }
+                 }
+             */
+                 Collections.sort(listaRecambios);
+            }
+            Gson gson = new Gson();
+            String lista = gson.toJson(listaRecambios);
+            System.out.println("Lista Respuesta " + lista);
+            out.println(lista);
+        } 
+        private List getSustitucion (Recambio recambio){
+            String sust = "FROM Sustitucion WHERE idRecambioB='" + recambio.getIdRecambio()+ "' AND tipoSustitucion='1'";
+            List<Sustitucion> sustituciones = sustitucionDao.listadoConfigurable(sust);
+            return sustituciones;
+        }
+        
     }
     
 }

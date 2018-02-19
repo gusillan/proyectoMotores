@@ -145,8 +145,9 @@ form{
 
 
 /* tabla recambio vehiculo */
-#g-tablaRecambioVehiculo tbody td:nth-child(4){
-    text-align: center;
+#g-tablaRecambioVehiculo button{
+    margin: 0 auto;
+    display: block;
 }
 
 

@@ -115,17 +115,6 @@
                     </div>
                 </div><!--row-->
 
-                
-
-                <!--<div class="row">
-                    <div class="col-md-4">
-                        <img id="logoMarca" class="g-img previstaImagen" src="">
-                    </div>                  
-                    <div class="col-md-4">
-                        <img id="silueta" class="g-img previstaImagen" src="">
-                    </div> 
-                </div>row-->
-
 
 
                 <div class="row">
@@ -136,7 +125,7 @@
                             <input type="hidden" id="idRecambio" name="idRecambio">
                         </div>
                     </div>  
-                    <div class="col-sm-7">              
+<!--                     <div class="col-sm-7">              
                         <div class="form-group">
                             <label for="descripcionRecambio">Descripcion Recambio</label>
                             <div class="input-group">
@@ -149,20 +138,45 @@
                                 </span>
                             </div>
                         </div>
+                    </div> -->
+                    <div class="col-sm-6">              
+                        <div class="form-group">
+                            <label for="descripcionRecambio">Descripción Recambio</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control g-input" id="descripcionRecambio" title="">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary" id="buscarRecambio">Buscar</button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="form-group">
+                            <label for="agregar">Añadir</label>
+                            <div class="input-group">
+                                    <button type="button" class="btn btn-success g-disabled" id="agregar">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </button>
+                            </div><!-- /input-group -->
+                        </div>
+
                     </div>
                 </div><!--row-->
 
 
+                <br>
+
+
                 <div class="row">
                     <div class="col-md-9">                       
-                        <table id="g-tablaRecambioVehiculo" class="table table-bordered table-striped">
+                        <table id="g-tablaRecambioVehiculo" class="table table-bordered table-striped g-hideByDefault">
                             <thead>
                                 <tr>
                                     <th>Categoria</th>
                                     <th>Marca</th>
                                     <th>Descripcion</th>
                                     <th>Referencia</th>
-                                    <th></th>
+                                    <th>Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody id="@modal-items">
