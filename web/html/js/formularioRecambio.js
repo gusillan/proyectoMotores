@@ -122,8 +122,29 @@ function respuestaConsultaReferencia(listaObjetos) {
         var objeto = listaObjetos[0];
         rellenaFormulario(objeto);
     } else if (listaObjetos.length > 1) {
-        console.log("Existen varias Referencias con ese Codigo.Consultar al administrador de la BBDD");
+        console.log("Lista:");
+        console.log(listaObjetos);
+        var idFabricanteInicial = listaObjetos[0].fabricante.idFabricante;
+        var referenciaInicial = listaObjetos[0].referencia;
+        for (var i = 1; i < listaObjetos.length; i++) {
+            if( referenciaInicial != listaObjetos[i].referencia ){
+                console.log("Tienen distinta referencia");
+                var objeto = listaObjetos[listaObjetos.length-1];
+                rellenaFormulario(objeto);
+                var sustituciones = "";
+                for(var j = 0; j < listaObjetos.length-1; j++){
+                    sustituciones += String( listaObjetos[j].referencia );
+                    sustituciones += " \u2192 "; //U+02192
+                    sustituciones += String( listaObjetos[j+1].referencia );
+                    sustituciones += "\n";
+                }
+                $("#infoSustituciones").prop("title", sustituciones);
+                return 0;
+            }
+        }
+        console.log("Tienen la misma referencia");
         ventanaRecambios.abrir(listaObjetos);
+        
     } else if (listaObjetos.length < 1) {
         console.log("No existe ninguna Referencia con ese Codigo");
     }
@@ -144,6 +165,7 @@ function rellenaFormulario(obj) {
     $("#categoria").val(obj.categoria.categoria);
     $("#informacion").val(obj.informacion);
     $("#nuevoRecambioBoton").show();
+    $("#infoSustituciones").show();
     $("#baja").attr("disabled", false);
     $("#descripcion").focus();
 }
