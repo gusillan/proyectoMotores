@@ -270,6 +270,32 @@ function darAltaRecambio() {
     }
 }
 
+function buscarRecambio() {
+
+    var descripcionRecambio = $("#descripcionRecambio").val()
+    if (descripcionRecambio.length > 3) {
+        console.log("Campo Reacambio RELLENO");
+        $.ajax({
+            url: '../consultaPorDescripcionRecambio.htm',
+            data: {descripcion: descripcionRecambio},
+            type: 'POST',
+            dataType: 'json',
+            success: respuestaBuscarRecambio
+        });
+    }
+}
+
+function respuestaBuscarRecambio(recambios) {
+    if (recambios.length == 0) {
+        console.log("Error: la consulta del recambio no ha obtenido ningun resultado");
+        $("#descripcionRecambio").val("");
+        
+    } else if (recambios.length == 1) {
+        rellenaRecambio(recambios[0]);
+    } else {
+        ventanaRecambios.abrir(recambios); //Abre la ventana Modal con la lista
+    }
+}
 
 function validarAccion(accion) {
     if (validarFormulario()) {

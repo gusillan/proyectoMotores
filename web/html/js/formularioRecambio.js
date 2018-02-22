@@ -50,7 +50,8 @@ $("document").ready(function() {
         updateFocusables();
     });
     
-    $("#sustitucion").click(mostrarSustituciones);
+    $("#sustitucion").click(mostrarSustituciones);   
+    $("#buscarRecambio").click(buscarRecambio);
 
 });
 
@@ -155,7 +156,7 @@ function rellenaFormulario(obj) {
     $("#referencia").val(obj.referencia);
     $("#codigoMarca").val(obj.fabricante.codigo);
     rellenaMarca(obj.fabricante);
-    $("#descripcion").val(obj.descripcion);
+    $("#descripcionRecambio").val(obj.descripcion);
     $("#pvp").val(obj.pvp.toFixed(2));
     $("#descuento").val(obj.descuento.toFixed(2));
     calcularNeto();

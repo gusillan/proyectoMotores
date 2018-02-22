@@ -72,7 +72,7 @@ $("document").ready(function() {
     //Botones de busqueda
     $("#buscarModelo").click(buscarModelo);
     $("#buscarMotor").click(buscarMotor);
-    //Y buscar recambio
+    $("#buscarRecambio").click(buscarRecambio);
 
 
 

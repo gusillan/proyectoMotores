@@ -120,4 +120,28 @@ public class RecambioController {
         List<Sustitucion> sustituciones = sustitucionDao.listadoConfigurable(sust);
         return sustituciones;
     }
+    
+     @RequestMapping("consultaPorDescripcionRecambio.htm")
+    public void consultaPorDescripcionRecambio(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+
+        System.out.println("Descripcion " + request.getParameter("descripcion"));
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        String descripcionRecambio = (request.getParameter("descripcion").toUpperCase());
+        List<Recambio> listaRecambios = recambioDao.listadoPorCampo("descripcion", descripcionRecambio);
+        System.out.println("Listado" + listaRecambios);
+        if (listaRecambios.isEmpty()) {
+            out.println();
+        } else {
+            Collections.sort(listaRecambios);
+        }
+        Gson gson = new Gson();
+        String lista = gson.toJson(listaRecambios);
+        System.out.println("Lista Respuesta " + lista);
+        out.println(lista);
+    }
+    
 }
+
