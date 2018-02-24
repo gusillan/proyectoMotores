@@ -80,6 +80,10 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
+    <bean id="categoriaMO" class="com.pacoillan.DAOHibernate.CategoriaMODAOHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
     <bean id="recambio" class="com.pacoillan.DAOHibernate.RecambioDAOHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
