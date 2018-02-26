@@ -11,27 +11,29 @@
     <body>
         <h1>Ficheros Maestros</h1>
         <br>
-        <a href ="html/formularioFabricante.html">1 - Formulario de Fabricante</a><br>        
+        <a href ="html/formularioFabricante.html">1 - Fabricantes</a><br>        
         <br>        
-        <a href ="html/formularioMotor.html">2 - Formulario de Motor</a><br>        
+        <a href ="html/formularioMotor.html">2 - Motores</a><br>        
         <br>
-        <a href ="html/formularioModelo.html">3 - Formulario de Modelo</a><br>        
+        <a href ="html/formularioModelo.html">3 - Modelos de Vehículos</a><br>        
         <br>
-        <a href="html/formularioEntidad.html">4 - Formulario de Entidad</a><br>
+        <a href="html/formularioEntidad.html">4 - Entidades (Clientes/Proveedores)</a><br>
         <br>
-        <a href="html/formularioCpostal.html">5 - Formulario de Códigod Postales</a><br>        
+        <a href="html/formularioCpostal.html">5 - Códigos Postales</a><br>        
         <br>
-        <a href="html/formularioVehiculo.html">6 - Formulario de Vehículos</a><br> 
+        <a href="html/formularioVehiculo.html">6 - Vehículos</a><br> 
         <br>
-        <a href="html/formularioCategoriaRecambio.html">7 - Formulario de Categorías de Recambio</a><br>     
+        <a href="html/formularioCategoriaRecambio.html">7 - Categorías de Recambio</a><br>     
         <br>
-        <a href="html/formularioCategoriaMO.html">8 - Formulario de Categorías de Mano de Obra</a><br>  
+        <a href="html/formularioCategoriaMO.html">8 - Categorías de Mano de Obra</a><br>  
         <br>
-        <a href="html/formularioRecambio.html">9 - Formulario de Recambio</a><br>        
+        <a href="html/formularioRecambio.html">9 - Recambios</a><br>    
         <br>
-        <a href="html/recambiosVehiculo.html">10 - Asigncion de Recambios a Vehículos</a><br>        
+        <a href="html/formularioManoObra.html">10 - Mano de Obra</a><br>        
         <br>
-        <a href="html/formularioSustitucion.html">11 - Sustituciones de Recambios</a><br>        
+        <a href="html/recambiosVehiculo.html">11 - Asignación de Recambios a Vehículos</a><br>        
+        <br>
+        <a href="html/formularioSustitucion.html">12 - Sustituciones de Recambios</a><br>        
         <br>
     </body>
 </html>

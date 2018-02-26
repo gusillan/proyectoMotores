@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+        <title>Formulario Mano de Obra</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- ESTILOS CSS -->
+        <!--         <link rel="stylesheet" href="css/fonts/fonts.css"/> -->
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/global.css"/>
+        <link rel="stylesheet" href="css/overload.css"/>
+
+        <!-- JAVASCRIPT -->
+        <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>  
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap-confirmation.min.js" type="text/javascript"></script> 
+        <script src="js/global.js" type="text/javascript"></script> 
+        <script src="js/formularioManoObra.js" type="text/javascript"></script> 
+        <script src="js/jquery.maskedinput.js" type="text/javascript"></script> 
+    </head>
+
+
+    <body>
+
+        <div class="container">
+
+            <div class="page-header">
+                <h1>Formulario Mano de Obrao</h1>      
+            </div>
+
+            <form name="formManoObra" id="formManoObra">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="idRecambio" class="">ID Mano Obra</label>
+                            <input type="text" class="form-control" id="idManoObra" name="idManoObra" size="11" maxlength="11" readonly="readonly">
+                        </div>               
+                    </div>
+                </div><!--row-->
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>
+                                <input type="radio" name="tipoMO" value="1">Asociada a una categoría de Recambio
+                            </label>
+                            <label>
+                                <input type="radio" name="tipoMO" value="2" id="libre">Mano de obra libre
+                            </label>
+                        </div>               
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="codigoMO" class="">Codigo de Mano Obra</label>
+                                <input type="text" class="form-control" id="codigoMOLibre" name="codigoMO" >
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="codigoMO" class="">Select categoria Recambio</label>
+                                <input type="text" class="form-control" id="codigoMOCategoria" name="codigoMO">
+                            </div> 
+                        </div>   
+                    </div>
+                </div><!--row-->
+
+
+
+
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="codigo">Referencia
+                                <a href="#" id="nuevoRecambioBoton" class="g-hideByDefault" title="Nuevo recambio con la misma referencia">
+                                    <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>
+                                </a>
+                                <a href="#" id="infoSustituciones" class="g-hideByDefault" title="No tiene sustituciones">
+                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                </a>
+                            </label>
+                            <div class="input-group">
+                                <input type="text" class="form-control g-input" id="referencia" name="referencia"  maxlength="25" required>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary" id="sustitucion" title="Sustituciones o Equivalencias">(S)</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>  
+
+                    <div class="col-md-1">              
+                        <div class="form-group">
+                            <label for="codigoMarca">C.Fab.<a href="formularioFabricante.html" title="Formulario Fabricante"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
+                            <input type="text" class="form-control g-input" id="codigoMarca" name="codigoMarca" maxlength="2" required title="Código 2 letras" data-toggle="popover">
+                        </div>
+                    </div>  
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="marca">Fabricante</label>
+                            <input type="text" class="form-control" id="marca" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <img id="logoMarca" class="g-img previstaImagen" src="">
+                    </div>
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="col-md-8">              
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control g-input" id="descripcionRecambio" name="descripcion" maxlength="40" required title="Descripción recambio" data-toggle="popover">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary" id="buscarRecambio">Buscar</button>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div><!--row-->
+
+
+                <div class="row">
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="pvp">Precio Venta </label>
+                            <input type="text" step=".01" class="form-control g-input" id="pvp" name="pvp" pattern="[0-9]{1,6}\.[0-9]{2}" placeholder="0.00" maxlength="9" title="Precio en euros" data-toggle="popover" required>
+                        </div>
+                    </div>
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="descuento">Descuento %</label>
+                            <input type="text" step=".01" class="form-control g-input" id="descuento" name="descuento" pattern="[0-9]{1,2}\.[0-9]{2}" placeholder="0.00" maxlength="5" title="Porcentaje en formato 0.00" data-toggle="popover" required>
+                        </div>
+                    </div>
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="neto">Precio Neto Calculado</label>
+                            <input type="text" class="form-control" id="neto" readonly="readonly">
+                        </div>
+                    </div>
+                </div><!--row-->
+                <div class="row">
+                    <div class="col-md-1">              
+                        <div class="form-group">
+                            <label for="stock">Stock</label>
+                            <input type="text" step=".1" class="form-control g-input" id="stock" name="stock" pattern="[0-9]{1,}\.[0-9]{1}" placeholder="0.0" maxlength="10"  title="Cantidad actual en Stock" data-toggle="popover" required>
+                        </div>
+                    </div>
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="ubicacion">Ubicación</label>
+                            <input type="text" class="form-control g-input" id="ubicacion" name="ubicacion" maxlength="15" title="Descripción motor" data-toggle="popover">
+                        </div>
+                    </div>                    
+                    <div class="col-md-2">              
+                        <div class="form-group">
+                            <label for="codigoCategoria">Código Categoría<a href="formularioCategoriaRecambio.html" title="Formulario Categoria de recambio"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
+                            <input type="text" class="form-control g-input" id="codigoCategoria" name="codigoCategoria" maxlength="2" required title="Código de dos letras" data-toggle="popover">
+                        </div>
+                    </div>  
+                    <div class="col-md-3">              
+                        <div class="form-group">
+                            <label for="categoria">Categoría</label>
+                            <input type="text" class="form-control" id="categoria" readonly="readonly">
+                        </div>
+                    </div>
+
+                </div><!--row-->
+
+                <div class="row">
+                    <div class="col-md-8">              
+                        <div class="form-group">
+                            <label for="informacion">Información</label>
+                            <textarea class="form-control g-textarea" id="informacion" name="informacion" rows="3"></textarea>
+                        </div>               
+                    </div>
+                </div><!--row-->
+
+
+                <div class="g-space"></div>
+
+                <nav class="navbar navbar-inverse navbar-fixed-bottom">
+                    <div class="container">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Guardar" id="guardar" >
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Baja" id="baja" disabled>
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Limpiar Formulario" id="limpiar">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Listado" id="listado">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Volver" id="volver">
+                        <input type="button" class="btn btn-primary navbar-btn o-navbar-btn" value="Inicio" id="inicio">
+                    </div>
+                </nav>
+
+
+
+            </form>
+        </div>
+    </body>
+
+
+</html>
