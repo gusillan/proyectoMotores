@@ -274,5 +274,6 @@ tr.striped{
     position: absolute;
 }
 
-
-
+.oculto{
+    display: none;
+}

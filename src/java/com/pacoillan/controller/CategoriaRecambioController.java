@@ -56,4 +56,18 @@ public class CategoriaRecambioController {
         }
 
     }
+    
+    @RequestMapping("listadoCategoriaRecambio.htm")
+    public void listadoCategoriaRecambio(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();        
+        List<CategoriaRecambio> listaCategorias = categoriaRecambioDao.listAll();
+        System.out.println(listaCategorias);
+
+        Gson gson = new Gson();
+        String lista = gson.toJson(listaCategorias);
+        System.out.println(lista);
+        out.println(lista);       
+    }
 }

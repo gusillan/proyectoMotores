@@ -2,14 +2,14 @@
  *********************************************************/
 $("document").ready(function() {
 
-    //consultaCategoriaRecambio();
+    listadoCategoriaRecambio();
        
 
     //$("#fechaInicio").mask("99/9999"); // sin lineas("99/9999", {placeholder: " "})
     //$("#fechaFin").mask("99/9999");
 
     $("input[name='tipoMO']").change(tipoMO);   
-
+    $("#listaCategorias").change(codigoCategoria);
 
 });
 
@@ -47,27 +47,19 @@ function baja() {
 /* Funciones adicionales
  ********************************************************/
 
-function consultaCategoriaRecambio() {
+function listadoCategoriaRecambio() {
     
-        $.getJSON('../consultaTodasCategorias.htm', respuestaConsultaCategoria);
+        $.getJSON('../listadoCategoriaRecambio.htm', respuestaConsultaCategoria);
 
     
 }
 
 function respuestaConsultaCategoria(listaObjetos) {
 
-    if (listaObjetos.length === 1) {
-        var objeto = listaObjetos[0];
-        rellenaFormulario(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
-        console.log("Esta es la lista " + listaObjetos);
-        $('#myModal').modal('show');    //Abre la ventana Modal con la lista
-        rellenaListaMotores(listaObjetos);
-    } else if (listaObjetos.length < 1) {
-        console.log("Error al consultar categorias.Consulte al administrador de BBDD");
+    $.each(listaObjetos,function(key,registro){
+        $("#listaCategorias").append('<option value='+registro.idCategoria+'>'+registro.categoria+'</option>');
         
-    }
+    });
 }
 
 function tipoMO(){
@@ -75,16 +67,29 @@ function tipoMO(){
     if ($("#libre").is(':checked')){
         
         console.log("MANO DE OBRA LIBRE");        
-        $("#codigoMOLibre").show();
-        $("#codigoMOCategoria").hide();
+        $("#ocultoMO").show();
+        $("#ocultoCat").hide();
         
     }else{
         
         console.log("ASOCIADO A CATEGORIA");
-        $("#codigoMOCategoria").show();
-        $("#codigoMOLibre").hide();
+        $("#ocultoCat").show();
+        $("#ocultoMO").hide();
     }
 }
+
+function codigoCategoria(){
+    var codigoPrincipal = $(this).val();
+    console.log("cambio en select "+codigoPrincipal);
+    $("#codigoMO").val(pad(codigoPrincipal,3));   
+    
+}
+
+function pad (str, max) {
+  str = str.toString();
+  return str.length < max ? pad("0" + str, max) : str;
+}
+
 /*function rellenaFormulario(obj) {
     $("#idModelo").val(obj.idModelo);
     $("#codigo").val(obj.codigo);
