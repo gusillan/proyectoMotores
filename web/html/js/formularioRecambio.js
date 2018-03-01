@@ -94,7 +94,7 @@ function baja() {
 function consultarCategoria() {
     var categoria = $("#codigoCategoria").val();
     $.ajax({
-        url: '../consultaCategoriaRecambio.htm',
+        url: '../consultaCategoria.htm',
         data: {codigo: categoria},
         type: 'POST',
         success: respuestaConsultaCategoria

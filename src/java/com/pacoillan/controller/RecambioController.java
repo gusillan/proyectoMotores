@@ -5,11 +5,11 @@
 package com.pacoillan.controller;
 
 import com.google.gson.Gson;
-import com.pacoillan.DAO.CategoriaRecambioDAO;
+import com.pacoillan.DAO.CategoriaDAO;
 import com.pacoillan.DAO.FabricanteDAO;
 import com.pacoillan.DAO.RecambioDAO;
 import com.pacoillan.DAO.SustitucionDAO;
-import com.pacoillan.pojo.CategoriaRecambio;
+import com.pacoillan.pojo.Categoria;
 import com.pacoillan.pojo.Fabricante;
 import com.pacoillan.pojo.Recambio;
 import com.pacoillan.pojo.Sustitucion;
@@ -36,7 +36,7 @@ public class RecambioController {
     @Autowired
     FabricanteDAO fabricanteDao;
     @Autowired
-    CategoriaRecambioDAO categoriaDao;
+    CategoriaDAO categoriaDao;
     @Autowired
     SustitucionDAO sustitucionDao;
 
@@ -49,7 +49,7 @@ public class RecambioController {
         List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMarca"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         List categorias = categoriaDao.listadoPorCampoExacto("codigo", request.getParameter("codigoCategoria"));
-        CategoriaRecambio categoria = (CategoriaRecambio) categorias.get(0);
+        Categoria categoria = (Categoria) categorias.get(0);
         recambio.setFabricante(fabricante);
         recambio.setCategoria(categoria);
         recambioDao.create(recambio);
@@ -64,7 +64,7 @@ public class RecambioController {
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         recambio.setFabricante(fabricante);
         List categorias = categoriaDao.listadoPorCampoExacto("codigo", request.getParameter("codigoCategoria"));
-        CategoriaRecambio categoria = (CategoriaRecambio) categorias.get(0);
+        Categoria categoria = (Categoria) categorias.get(0);
         recambio.setCategoria(categoria);
         recambioDao.delete(recambio);
     }

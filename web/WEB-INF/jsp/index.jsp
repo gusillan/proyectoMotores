@@ -23,17 +23,15 @@
         <br>
         <a href="html/formularioVehiculo.html">6 - Vehículos</a><br> 
         <br>
-        <a href="html/formularioCategoriaRecambio.html">7 - Categorías de Recambio</a><br>     
+        <a href="html/formularioCategoria.html">7 - Categorías</a><br>     
         <br>
-        <a href="html/formularioCategoriaMO.html">8 - Categorías de Mano de Obra</a><br>  
+        <a href="html/formularioRecambio.html">8 - Recambios</a><br>    
         <br>
-        <a href="html/formularioRecambio.html">9 - Recambios</a><br>    
+        <a href="html/formularioManoObra.html">9 - Mano de Obra</a><br>        
         <br>
-        <a href="html/formularioManoObra.html">10 - Mano de Obra</a><br>        
+        <a href="html/recambiosVehiculo.html">10 - Asignación de Recambios a Vehículos</a><br>        
         <br>
-        <a href="html/recambiosVehiculo.html">11 - Asignación de Recambios a Vehículos</a><br>        
-        <br>
-        <a href="html/formularioSustitucion.html">12 - Sustituciones de Recambios</a><br>        
+        <a href="html/formularioSustitucion.html">11 - Sustituciones de Recambios</a><br>        
         <br>
     </body>
 </html>

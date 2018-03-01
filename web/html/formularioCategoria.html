@@ -3,7 +3,7 @@
 <html lang="es">
 
     <head>
-        <title>Categorías de Recambio</title>
+        <title>Categorías</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +19,7 @@
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script src="js/bootstrap-confirmation.min.js" type="text/javascript"></script> 
         <script src="js/global.js" type="text/javascript"></script> 
-        <script src="js/formularioCategoriaRecambio.js" type="text/javascript"></script> 
+        <script src="js/formularioCategoria.js" type="text/javascript"></script> 
 
 
     </head>
@@ -28,10 +28,10 @@
 
         <div class="container">
             <div class="page-header">
-                <h1>Categorías de Recambio</h1>
+                <h1>Categorías</h1>
             </div>
 
-            <form name="formCategoriaRecambio" id="formCategoriaRecambio">
+            <form name="formCategoria" id="formCategoria">
 
                 <div class="row">  
                     <div class="col-md-2">
@@ -58,20 +58,15 @@
                 </div>
                 
                 <div class="row">
-                    <div class="col-md-9">                       
-                        <table id="g-tablaCategoriaRecambio" class="table table-bordered table-striped g-hideByDefault">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Código</th>
-                                    <th>Categoría</th>                                   
-                                </tr>
-                            </thead>
-                            <tbody id="@modal-items">
-
-                            </tbody>
-                        </table>
-                    </div>
+                    <div class="col-md-4">              
+                        <div class="form-group">
+                            <label for="tipo">Tipo de categoría</label>
+                            <select class="form-control g-select" id="tipo" name="tipo">
+                                <option value="RE">RECAMBIO</option>
+                                <option value="MO">MANO DE OBRA</option>                                                    
+                            </select> 
+                        </div>               
+                    </div>             
                 </div>
                
                 <div class="g-space"></div>

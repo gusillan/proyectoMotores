@@ -8,19 +8,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "categoriaMO", catalog = "pacoillan2")
-public class CategoriaMO implements java.io.Serializable {
+@Table(name = "categoria", catalog = "pacoillan2")
+public class Categoria implements java.io.Serializable {
 
     private Integer idCategoria;
     private String codigo;
     private String categoria;
+    private String tipo;
 
-    public CategoriaMO() {
+    public Categoria() {
     }
 
-    public CategoriaMO(String codigo, String categoria) {
+    public Categoria(String codigo, String categoria, String tipo) {
         this.codigo = codigo;
         this.categoria = categoria;
+        this.tipo = tipo;
     }
 
     @Id
@@ -51,4 +53,15 @@ public class CategoriaMO implements java.io.Serializable {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+    
+    @Column(name = "tipo", nullable = false, length = 5)
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    
 }

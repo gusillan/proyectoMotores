@@ -4,13 +4,13 @@
  */
 package com.pacoillan.DAO;
 
-import com.pacoillan.pojo.CategoriaRecambio;
+import com.pacoillan.pojo.Categoria;
 
 /**
  *
  * @author Gustavo
  */
 
-public interface CategoriaRecambioDAO extends GenericDAO<CategoriaRecambio,Integer> {
+public interface CategoriaDAO extends GenericDAO<Categoria,Integer> {
     
 }

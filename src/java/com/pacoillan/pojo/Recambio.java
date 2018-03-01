@@ -30,14 +30,14 @@ public class Recambio implements java.io.Serializable, Comparable {
     private Float descuento;
     private Float stock;
     private String ubicacion;
-    private CategoriaRecambio categoria;
+    private Categoria categoria;
     private String informacion;
     
     
     public Recambio() {
     }
     
-    public Recambio(String referencia, Fabricante fabricante, String descripcion, Float pvp, Float descuento, Float stock, String ubicacion, CategoriaRecambio categoria, String informacion) {
+    public Recambio(String referencia, Fabricante fabricante, String descripcion, Float pvp, Float descuento, Float stock, String ubicacion, Categoria categoria, String informacion) {
         this.referencia = referencia;
         this.fabricante = fabricante;
         this.descripcion = descripcion;
@@ -125,11 +125,11 @@ public class Recambio implements java.io.Serializable, Comparable {
     
     @OneToOne
     @JoinColumn(name = "idCategoria", nullable = false)
-    public CategoriaRecambio getCategoria() {
+    public Categoria getCategoria() {
         return this.categoria;
     }
 
-    public void setCategoria(CategoriaRecambio categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 

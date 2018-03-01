@@ -13,9 +13,9 @@ $("document").ready(function() {
 function guardar() {
 
     if (validarFormulario()) {
-        var data = $("#formCategoriaRecambio").serialize();
+        var data = $("#formCategoria").serialize();
         $.ajax({
-            url: '../guardaCategoriaRecambio.htm',
+            url: '../guardaCategoria.htm',
             data: data,
             type: 'POST',
             success: limpiar
@@ -27,9 +27,9 @@ function guardar() {
 
 function baja() {
 
-    var data = $("#formCategoriaRecambio").serialize();
+    var data = $("#formCategoria").serialize();
     $.ajax({
-        url: '../bajaCategoriaRecambio.htm',
+        url: '../bajaCategoria.htm',
         data: data,
         type: 'POST',
         success: limpiar,
@@ -46,7 +46,7 @@ function consultaCodigo() {
     if ($("#codigo").val().length > 0) {
         console.log("vamos a consultar el código " + this.value);
         var codigo = this.value;
-        $.getJSON('../consultaCategoriaRecambio.htm', {codigo: codigo}, respuestaConsultaCategoria);
+        $.getJSON('../consultaCategoria.htm', {codigo: codigo}, respuestaConsultaCategoria);
 
     }
 }
@@ -70,6 +70,7 @@ function rellenaFormulario(obj) {
     $("#idCategoria").val(obj.idCategoria);
     $("#codigo").val(obj.codigo);
     $("#categoria").val(obj.categoria);
+    $("#tipo").val(obj.tipo);
     $("#baja").attr("disabled",false);
 }
 

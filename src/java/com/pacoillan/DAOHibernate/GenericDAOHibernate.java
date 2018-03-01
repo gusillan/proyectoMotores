@@ -120,7 +120,7 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
         session = sessionFactory.openSession();
         String query = "FROM " + pojo + " as e WHERE e." + campo + " LIKE '" + dato + "'";
         lista = session.createQuery(query).list();
-        session.close();
+        //session.close(); Daba error ( no sé por qué)??
         return lista;
     }
 

@@ -3,6 +3,7 @@
 $("document").ready(function() {
 
     listadoCategoriaRecambio();
+    listadoCategoriaMO();
        
 
     //$("#fechaInicio").mask("99/9999"); // sin lineas("99/9999", {placeholder: " "})
@@ -10,9 +11,12 @@ $("document").ready(function() {
 
     $("input[name='tipoMO']").change(tipoMO);   
     $("#listaCategorias").change(codigoCategoria);
+    $("#categoriaMO").change(categoriaMO);
 
 });
 
+var cMOCategoria="0";
+var cMOPrincipal="0";
 
 /* Funciones Básicas Botones
  **********************************************************/
@@ -49,18 +53,29 @@ function baja() {
 
 function listadoCategoriaRecambio() {
     
-        $.getJSON('../listadoCategoriaRecambio.htm', respuestaConsultaCategoria);
-
-    
+        $.getJSON('../listadoCategoriaRecambio.htm', respuestaConsultaCategoriaRecambio);    
 }
 
-function respuestaConsultaCategoria(listaObjetos) {
+function respuestaConsultaCategoriaRecambio(listaObjetos) {
 
     $.each(listaObjetos,function(key,registro){
-        $("#listaCategorias").append('<option value='+registro.idCategoria+'>'+registro.categoria+'</option>');
-        
+        $("#listaCategorias").append('<option value='+registro.idCategoria+'>'+registro.categoria+'</option>');        
     });
 }
+
+function listadoCategoriaMO() {
+    
+        $.getJSON('../listadoCategoriaMO.htm', respuestaConsultaCategoriaMO);    
+}
+
+function respuestaConsultaCategoriaMO(listaObjetos) {
+
+    $.each(listaObjetos,function(key,registro){
+        $("#categoriaMO").append('<option value='+registro.idCategoria+'>'+registro.codigo+" - "+registro.categoria+'</option>');        
+    });
+}
+
+
 
 function tipoMO(){
     console.log("Evento localizado");
@@ -80,11 +95,17 @@ function tipoMO(){
 
 function codigoCategoria(){
     var codigoPrincipal = $(this).val();
+    cMOPrincipal = pad(codigoPrincipal,3);
     console.log("cambio en select "+codigoPrincipal);
-    $("#codigoMO").val(pad(codigoPrincipal,3));   
+    $("#codigoMO").val(cMOCategoria+"."+cMOPrincipal);   
     
 }
 
+function categoriaMO(){
+    cMOCategoria = $(this).val();
+    console.log("cambio en select "+cMOCategoria);
+    $("#codigoMO").val(cMOCategoria+"."+cMOPrincipal);
+}
 function pad (str, max) {
   str = str.toString();
   return str.length < max ? pad("0" + str, max) : str;
