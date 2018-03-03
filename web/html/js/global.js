@@ -258,6 +258,45 @@ function consultaReferencia() {
     }
 }
 
+function respuestaConsultaReferencia(listaObjetos) {
+    if (listaObjetos.length === 1) {
+        var objeto = listaObjetos[0];
+        //rellenaFormulario(objeto);
+        rellenaRecambio(objeto);
+    } else if (listaObjetos.length > 1) {
+        console.log("Lista:");
+        console.log(listaObjetos);
+        var idFabricanteInicial = listaObjetos[0].fabricante.idFabricante;
+        var referenciaInicial = listaObjetos[0].referencia;
+        for (var i = 1; i < listaObjetos.length; i++) {
+            if( referenciaInicial != listaObjetos[i].referencia ){
+                console.log("Tienen distinta referencia");
+                var objeto = listaObjetos[listaObjetos.length-1];
+                //rellenaFormulario(objeto);
+                console.log("objeto ultimo");
+                console.log(objeto);
+                rellenaRecambio(objeto);
+                var sustituciones = "";
+                for(var j = 0; j < listaObjetos.length-1; j++){
+                    sustituciones += String( listaObjetos[j].referencia );
+                    sustituciones += " \u2192 "; //U+02192
+                    sustituciones += String( listaObjetos[j+1].referencia );
+                    sustituciones += "\n";
+                }
+                $("#infoSustituciones").prop("title", sustituciones);
+                return 0;
+            }
+        }
+        console.log("Tienen la misma referencia");
+        ventanaRecambios.abrir(listaObjetos);
+        
+    } else if (listaObjetos.length < 1) {
+        console.log("No existe ninguna Referencia con ese Codigo");
+    }
+}
+
+
+
 function darAltaRecambio() {
     var respuesta = confirm("Desea dar de alta este Recambio?");
     if (respuesta == true) {
@@ -655,3 +694,4 @@ function getQueryVariable(variable) {
     }
     return(false);
 }
+

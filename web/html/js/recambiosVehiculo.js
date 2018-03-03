@@ -141,8 +141,10 @@ function rellenaMotor(motor) {
 }
 
 function rellenaRecambio(objeto) {
-    $("#descripcionRecambio").val(objeto.descripcion);
     $("#idRecambio").val(objeto.idRecambio);
+    $("#referencia").val(objeto.referencia);
+    $("#descripcionRecambio").val(objeto.descripcion);
+    $("#infoSustituciones").show();
     referenciaValido = true;
     compruebaAgregarReferencia();
 }
@@ -189,7 +191,7 @@ function agregarReferencia() {
 }
 
 
-function respuestaConsultaReferencia(listaObjetos) {
+/*function respuestaConsultaReferencia(listaObjetos) {
     console.log("Lista objetos recibida : "+listaObjetos);
     if (listaObjetos.length==0) {
         console.log("No existe ningun fabricante con ese Codigo");
@@ -203,7 +205,7 @@ function respuestaConsultaReferencia(listaObjetos) {
         var objeto = listaObjetos[0];
         rellenaRecambio(objeto);
     }
-}
+}*/
 
 
 
@@ -344,3 +346,4 @@ function respuestaBuscarMotor(motores) {
         ventanaMotor.abrir(motores); //Abre la ventana Modal con la lista
     }
 }
+
