@@ -261,7 +261,6 @@ function consultaReferencia() {
 function respuestaConsultaReferencia(listaObjetos) {
     if (listaObjetos.length === 1) {
         var objeto = listaObjetos[0];
-        //rellenaFormulario(objeto);
         rellenaRecambio(objeto);
     } else if (listaObjetos.length > 1) {
         console.log("Lista:");
@@ -272,9 +271,6 @@ function respuestaConsultaReferencia(listaObjetos) {
             if( referenciaInicial != listaObjetos[i].referencia ){
                 console.log("Tienen distinta referencia");
                 var objeto = listaObjetos[listaObjetos.length-1];
-                //rellenaFormulario(objeto);
-                console.log("objeto ultimo");
-                console.log(objeto);
                 rellenaRecambio(objeto);
                 var sustituciones = "";
                 for(var j = 0; j < listaObjetos.length-1; j++){
@@ -292,6 +288,7 @@ function respuestaConsultaReferencia(listaObjetos) {
         
     } else if (listaObjetos.length < 1) {
         console.log("No existe ninguna Referencia con ese Codigo");
+        darAltaRecambio();
     }
 }
 
@@ -300,10 +297,8 @@ function respuestaConsultaReferencia(listaObjetos) {
 function darAltaRecambio() {
     var respuesta = confirm("Desea dar de alta este Recambio?");
     if (respuesta == true) {
-        console.log("Ha pulsado si");
         window.location = "../html/formularioRecambio.html?referencia=" + $("#referencia").val();
     } else {
-        console.log("Ha pulsado no");
         $("#referencia").val("");
         $("#referencia").focus();
     }
@@ -694,4 +689,5 @@ function getQueryVariable(variable) {
     }
     return(false);
 }
+
 

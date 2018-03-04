@@ -64,9 +64,6 @@ $("document").ready(function() {
         consultaReferencia();
     });
     $("#agregar").click(agregarReferencia);
-    $("#limpiarLinea").click(limpiarLinea);
-
-    //$("#agregar").prop("disabled",true);
 
 
     //Botones de busqueda
@@ -144,6 +141,7 @@ function rellenaRecambio(objeto) {
     $("#idRecambio").val(objeto.idRecambio);
     $("#referencia").val(objeto.referencia);
     $("#descripcionRecambio").val(objeto.descripcion);
+    $("#infoSustituciones").prop("title", "No tiene sustituciones");
     $("#infoSustituciones").show();
     referenciaValido = true;
     compruebaAgregarReferencia();
@@ -190,22 +188,6 @@ function agregarReferencia() {
     }
 }
 
-
-/*function respuestaConsultaReferencia(listaObjetos) {
-    console.log("Lista objetos recibida : "+listaObjetos);
-    if (listaObjetos.length==0) {
-        console.log("No existe ningun fabricante con ese Codigo");
-        darAltaRecambio();
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varias categorias con ese Codigo.Consultar al administrador de la BBDD");
-        console.log("Esta es la lista " + listaObjetos);
-        ventanaRecambios.abrir(listaObjetos);
-    } else if (listaObjetos.length === 1) {
-        console.log("LIsta de objs");
-        var objeto = listaObjetos[0];
-        rellenaRecambio(objeto);
-    }
-}*/
 
 
 
@@ -346,4 +328,5 @@ function respuestaBuscarMotor(motores) {
         ventanaMotor.abrir(motores); //Abre la ventana Modal con la lista
     }
 }
+
 
