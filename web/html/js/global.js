@@ -43,6 +43,13 @@ $("document").ready(function() {
     $(".g-disabled").prop("disabled", true);
 
 
+    //Los botons de subir ficheros
+    $('#archivo').change(function() {
+      $('#imagen').val( $('#archivo')[0].files[0].name );
+    });
+
+
+
     /* Utilizar ENTER para pasar al siguiente input*/
     $(".g-input, .g-select, .g-textarea").enterKey(function() {
         var inputs = $(".g-input, .g-select, .g-textarea");

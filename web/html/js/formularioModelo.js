@@ -36,7 +36,7 @@ $("document").ready(function() {
 
         var files = $('#archivo')[0].files;
         console.log("Funcion change " + files[0].value);
-        $('#imagen').val(files[0].name);
+        var nombreFichero = $('#archivo')[0].files[0].name
         for (var i = 0; i < files.length; i++) {
             resizeAndUpload(files[i]);
         }

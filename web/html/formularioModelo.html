@@ -64,18 +64,18 @@
                 <div class="row">
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="codigoFabricante">Código Marca <a href="formularioFabricante.html" title="Formulario Fabricante"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
+                            <label for="codigoMarca">Código Marca <a href="formularioFabricante.html" title="Formulario Fabricante"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
                             <input type="text" class="form-control g-input" id="codigoMarca" name="codigoMarca" size="2" maxlength="2" required title="Ponga código de 2 letras" >
                         </div>               
                     </div>
                     <div class="col-md-4">              
                         <div class="form-group">
-                            <label for="marcaModelo">Marca Modelo</label>
+                            <label for="marca">Marca Modelo</label>
                             <input type="text" class="form-control" id="marca" name="marca" size="25" maxlength="25" readonly >
                         </div>               
                     </div>
                     <div class="col-md-2">
-                        <img id="logoMarca" class="g-img previstaImagen" src="">
+                        <img id="logoMarca" class="g-img" src="">
                     </div>
                 </div><!--row-->
 
@@ -98,10 +98,14 @@
                     <div class="col-md-2">              
                         <img src="" id="imagenModelo" class="g-img-modelo g-img" alt="Imagen Modelo"/>    
                     </div>
-                    <div class="col-md-2">
-                        <label for="imagen">Subir Imagen</label>
-                        <input type="file" accept="image/*" id="archivo" name="archivo"/>
-                        <input type="text" id="imagen" name="imagen" readonly>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="imagen">Subir Imagen</label>
+                            <input type="file" accept="image/*" id="archivo" name="archivo"/>
+                            <input type="button" class="btn btn-primary" value="Elegir fichero" id="botonArchivo" onclick="$('#archivo').click();">
+                            <br>
+                            <input type="text" class="form-control g-input" id="imagen" name="imagen" readonly>
+                        </div>
                     </div>
                 </div><!--row-->
 
