@@ -10,8 +10,9 @@ $("document").ready(function() {
     //$("#fechaFin").mask("99/9999");
 
     $("input[name='tipoMO']").change(tipoMO);   
-    $("#listaCategorias").change(codigoCategoria);
-    $("#categoriaMO").change(categoriaMO);
+    $("#listaCategorias").blur(codigoCategoria);
+    $("#categoriaMO").blur(categoriaMO);
+    $("#codigoMOLibre").blur(comprobarCodigoMOLibre);
 
 });
 
@@ -71,8 +72,10 @@ function listadoCategoriaMO() {
 function respuestaConsultaCategoriaMO(listaObjetos) {
 
     $.each(listaObjetos,function(key,registro){
-        $("#categoriaMO").append('<option value='+registro.idCategoria+'>'+registro.codigo+" - "+registro.categoria+'</option>');        
+        $("#categoriaMO").append('<option value='+registro.codigo+'>'+registro.codigo+" - "+registro.categoria+'</option>'); 
+        
     });
+    $("#categoriaMO option[value='10']").attr("selected",true);
 }
 
 
@@ -96,6 +99,7 @@ function tipoMO(){
 function codigoCategoria(){
     var codigoPrincipal = $(this).val();
     cMOPrincipal = pad(codigoPrincipal,3);
+    $("#codigoMOLibre").val(cMOPrincipal);
     console.log("cambio en select "+codigoPrincipal);
     $("#codigoMO").val(cMOCategoria+"."+cMOPrincipal);   
     
@@ -111,6 +115,15 @@ function pad (str, max) {
   return str.length < max ? pad("0" + str, max) : str;
 }
 
+function comprobarCodigoMOLibre(){
+    
+    rango = $("#categoriaMO").val()*10;
+    cMOPrincipal = $(this).val();
+    console.log("Comprobamos "+$(this).val())
+    console.log ("Rango "+rango+" - "+rango+99);
+    $("#codigoMO").val(cMOCategoria+"."+cMOPrincipal);
+    
+}
 /*function rellenaFormulario(obj) {
     $("#idModelo").val(obj.idModelo);
     $("#codigo").val(obj.codigo);
