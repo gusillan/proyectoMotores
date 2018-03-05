@@ -18,6 +18,8 @@ $("document").ready(function() {
 
 var cMOCategoria="0";
 var cMOPrincipal="0";
+var cModelo="0";
+var cMotor="0";
 
 /* Funciones Básicas Botones
  **********************************************************/
@@ -101,15 +103,21 @@ function codigoCategoria(){
     cMOPrincipal = pad(codigoPrincipal,3);
     $("#codigoMOLibre").val(cMOPrincipal);
     console.log("cambio en select "+codigoPrincipal);
-    $("#codigoMO").val(cMOCategoria+"."+cMOPrincipal);   
+    mostrarCodigoMO(); 
     
 }
 
 function categoriaMO(){
     cMOCategoria = $(this).val();
     console.log("cambio en select "+cMOCategoria);
-    $("#codigoMO").val(cMOCategoria+"."+cMOPrincipal);
+    mostrarCodigoMO();
+   
 }
+
+function mostrarCodigoMO(){
+     $("#codigoMO").val(cMOCategoria+"."+cMOPrincipal+"."+cModelo+"."+cMotor);
+}
+
 function pad (str, max) {
   str = str.toString();
   return str.length < max ? pad("0" + str, max) : str;
@@ -121,7 +129,7 @@ function comprobarCodigoMOLibre(){
     cMOPrincipal = $(this).val();
     console.log("Comprobamos "+$(this).val())
     console.log ("Rango "+rango+" - "+rango+99);
-    $("#codigoMO").val(cMOCategoria+"."+cMOPrincipal);
+    mostrarCodigoMO();
     
 }
 /*function rellenaFormulario(obj) {
