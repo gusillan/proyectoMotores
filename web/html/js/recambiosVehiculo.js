@@ -235,6 +235,8 @@ function mostrarLista(listaDesordenada) {
             tablaRecambios += '<td>' + lista[i].recambio.fabricante.codigo + '</td>';
             tablaRecambios += '<td>' + lista[i].recambio.descripcion + '</td>';
             tablaRecambios += '<td>' + lista[i].recambio.referencia + '</td>';
+            //Si quieres añadir ya el valor, se pone value='+ .....value +'....
+            tablaRecambios += '<td><input type="text" class="form-control g-input g-tiempoRecambio" size="8" id="tiempoRecambio'+i+'" title="Tiempo asociado a mano de obra en centesimal"></td>';
             tablaRecambios += '<td><button type="button" data-idModeloRecambio="' + lista[i].idModeloRecambio + '" class="btn btn-danger btn-xs g-botonEliminarAsignacion" >'
             tablaRecambios += '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>';
             tablaRecambios += '</tr>'
