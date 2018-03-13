@@ -5,14 +5,12 @@ $("document").ready(function() {
     listadoCategoriaRecambio();
     listadoCategoriaMO();
        
-
-    //$("#fechaInicio").mask("99/9999"); // sin lineas("99/9999", {placeholder: " "})
-    //$("#fechaFin").mask("99/9999");
-
+    
     $("input[name='tipoMO']").change(tipoMO);   
     $("#listaCategorias").blur(codigoCategoria);
     $("#categoriaMO").blur(categoriaMO);
-    $("#codigoMOLibre").blur(comprobarCodigoMOLibre);
+    $("#codigoMOLibre").change(comprobarCodigoMOLibre);
+    $("#tiempo").blur(formatearTiempo);
 
 });
 
@@ -125,13 +123,29 @@ function pad (str, max) {
 
 function comprobarCodigoMOLibre(){
     
-    rango = $("#categoriaMO").val()*10;
-    cMOPrincipal = $(this).val();
+    rango = parseInt($("#categoriaMO").val()*10);
+    cMOPrincipal = parseInt($(this).val());
     console.log("Comprobamos "+$(this).val())
-    console.log ("Rango "+rango+" - "+rango+99);
-    mostrarCodigoMO();
+    var rangoInf = rango;
+    var rangoSup = rango+99;
+    console.log ("Rango "+rangoInf+" - "+rangoSup);
+    if (cMOPrincipal>=rangoInf && cMOPrincipal<=rangoSup){
+        console.log("Damos del alta");
+        mostrarCodigoMO();
+    }else{
+        console.log("Rango NO valido");
+        alert ("El codigo debe ser un numero de 3 cifras entre "+rangoInf+" y "+rangoSup);
+        $("#codigoMOLibre").focus();
+    }
+   
     
 }
+
+function formatearTiempo(){
+    var tiempoDecimal = parseFloat($("#tiempo").val());
+    $("#tiempo").val(tiempoDecimal.toFixed(2));
+}
+
 /*function rellenaFormulario(obj) {
     $("#idModelo").val(obj.idModelo);
     $("#codigo").val(obj.codigo);

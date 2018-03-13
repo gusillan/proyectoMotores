@@ -5,7 +5,6 @@ import com.pacoillan.DAO.FabricanteDAO;
 import com.pacoillan.DAO.ModeloDAO;
 import com.pacoillan.pojo.Fabricante;
 import com.pacoillan.pojo.Modelo;
-import com.pacoillan.util.UploadedFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
