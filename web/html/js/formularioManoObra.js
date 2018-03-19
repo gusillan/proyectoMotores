@@ -11,6 +11,8 @@ $("document").ready(function() {
     $("#categoriaMO").blur(categoriaMO);
     $("#codigoMOLibre").change(comprobarCodigoMOLibre);
     $("#tiempo").blur(formatearTiempo);
+    $("#codigoModelo").change(consultaModelo);
+    $("#codigoMotor").change(consultaMotor);
 
 });
 

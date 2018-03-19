@@ -1,7 +1,7 @@
 
 
 /*  Variables globales
- *********************************************************/
+ ******************************************************************************/
 var confirmationOpt = {
     rootSelector: 'input[type=button]',
     title: '¿Seguro?',
@@ -12,20 +12,19 @@ var confirmationOpt = {
     singleton: true
 };
 
-
-
 /*  Listener
- *********************************************************/
+ ******************************************************************************/
 $("document").ready(function() {
 
-    /* Hacer mayusculas */
+    // Hacer mayusculas **************************
     $(".g-input[type=text]").blur(function() {
         this.value = this.value.toUpperCase();
     });
     $(".g-input[type=text]").keyup(function() {
         this.value = this.value.toUpperCase();
     });
-
+    
+    // Formateo de fechas ************************
     $(".g-input[type=date]").on("change", function() {
         this.setAttribute(
                 "data-date",
@@ -33,24 +32,20 @@ $("document").ready(function() {
                 .format("DD/MM/YYYY")
                 )
     });
-
+    
     // Refresca que elementos son enfocables y pone el foco en el primero;
     updateFocusables();
     $(".g-focusable").first().focus();
-
-
-    // Botones deshabilitados por defecto
+    
+    // Botones deshabilitados por defecto ********
     $(".g-disabled").prop("disabled", true);
-
-
-    //Los botons de subir ficheros
+    
+    //Los botones de subir ficheros **************
     $('#archivo').change(function() {
       $('#imagen').val( $('#archivo')[0].files[0].name );
     });
 
-
-
-    /* Utilizar ENTER para pasar al siguiente input*/
+    // Utilizar ENTER para pasar al siguiente input
     $(".g-input, .g-select, .g-textarea").enterKey(function() {
         var inputs = $(".g-input, .g-select, .g-textarea");
         var index = inputs.index(this);
@@ -63,9 +58,7 @@ $("document").ready(function() {
         inputs[index + 1].focus();
     });
 
-
-
-    /* Botones de las funciones básicas del formulario*/
+    // Botones de las funciones básicas del formulario
     $("#guardar").click(function() {
         validarAccion(guardar);
     });
@@ -78,7 +71,7 @@ $("document").ready(function() {
     $("#inicio").click(inicio);
 
 
-    /* Atajos de teclado */
+    // Atajos de teclado *************************
     $("body").keydown(function(ev) {
         var keycode = (ev.keyCode ? ev.keyCode : ev.which);
         if (ev.altKey) {                                       // Shift + ...
@@ -101,12 +94,12 @@ $("document").ready(function() {
         }
     });
 
-
 });
 
 /*Consultas comunes
- *************************************************************/
+ ******************************************************************************/
 
+//Marca*******************************************
 function consultarMarca() {
     if (!vacio($("#codigoMarca"))) {
         var marca = $("#codigoMarca").val();
@@ -140,6 +133,7 @@ function rellenaMarca(marca) {
     $("#logoMarca").attr("src", "img/marcas/" + marca.logo);
 }
 
+//Modelo *****************************************
 function consultaModelo() {
     if (!vacio($("#codigoModelo"))) {
         var modelo = $("#codigoModelo").val();
@@ -192,6 +186,7 @@ function darAltaModelo() {
     }
 }
 
+//Motor ******************************************
 function consultaMotor() {
     if (!vacio($("#codigoMotor"))) {
         var motor = $("#codigoMotor").val();
@@ -221,6 +216,8 @@ function respuestaConsultaMotor(listaObjetos) {
     }
 }
 
+//function rellenaMotor(){}
+
 function darAltaMotor() {
     var respuesta = confirm("Desea dar de alta este Motor?");
     if (respuesta == true) {
@@ -233,6 +230,7 @@ function darAltaMotor() {
     }
 }
 
+// Matricula *************************************
 function consultaMatricula() {
     if ($("#matricula").val().length>3) {
         var matricula = $("#matricula").val();
@@ -255,6 +253,7 @@ function respuestaConsultaMatricula(listaObjetos) {
     }
 }
 
+// Recambio **************************************
 function consultaReferencia() {
     if (!vacio($("#referencia"))) {
         var referencia = $("#referencia").val();
@@ -299,8 +298,7 @@ function respuestaConsultaReferencia(listaObjetos) {
     }
 }
 
-
-
+//function rellenaRecambio(){}
 function darAltaRecambio() {
     var respuesta = confirm("Desea dar de alta este Recambio?");
     if (respuesta == true) {
@@ -337,6 +335,9 @@ function respuestaBuscarRecambio(recambios) {
         ventanaRecambios.abrir(recambios); //Abre la ventana Modal con la lista
     }
 }
+
+/* Funciones de Utilidad
+ *****************************************************************************/ 
 
 function validarAccion(accion) {
     if (validarFormulario()) {
@@ -408,12 +409,8 @@ function inicio() {
     window.location = "../index.htm";
 }
 
-
-
-
-
 /*  Mover el foco con las flechas
- *********************************************************/
+ *****************************************************************************/
 var focusablesPrincipales = "button:not(:disabled), textarea, select, input:not(:disabled):not([readonly]):not([type='hidden'])";
 var focusablesModal = ".modal tr[tabindex]:visible, .modal .g-input, .modal button";
 function updateFocusables() {                                   //Funciona para actualizar los elementos enfocables
@@ -449,7 +446,7 @@ function focusableMove(ev) {                                    //flechas arriba
 
 
 /*  Ventana emergente (modal)
- *********************************************************/
+ *****************************************************************************/
 function VentanaEmergente(opciones) {
 
     /*    this.opciones = $.extend({
@@ -665,7 +662,7 @@ VentanaEmergente.prototype.abrir = function(json) {
 };
 
 /*  Plugins para Jquery
- *********************************************************/
+ *****************************************************************************/
 $.fn.enterKey = function(fnc) {
     return this.each(function() {
         $(this).keypress(function(ev) {
@@ -678,7 +675,7 @@ $.fn.enterKey = function(fnc) {
 };
 
 /*  Helpers
- *********************************************************/
+ *****************************************************************************/
 //Poner en mayuscula la primera letra del string
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
