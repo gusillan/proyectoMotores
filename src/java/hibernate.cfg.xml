@@ -4,13 +4,7 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/pacoillan2</property>
-    <property name="hibernate.connection.username">root</property>
-    <mapping class="com.pacoillan.pojo.Fabricante" file="" jar="" package="" resource=""/>
-    <mapping class="com.pacoillan.pojo.Motor" file="" jar="" package="" resource=""/>
-    <mapping class="com.pacoillan.pojo.Fabricante" file="" jar="" package="" resource="l"/>
-    <mapping class="com.pacoillan.pojo.Entidad" file="" jar="" package="" resource=""/>
-    <mapping class="com.pacoillan.pojo.Vehiculo" file="" jar="" package="" resource=""/>
-    <mapping class="com.pacoillan.pojo.Cpostal" file="" jar="" package="" resource=""/>
+    <property name="hibernate.connection.url">jdbc:mysql://mybasedatos.cu475nghgj8u.eu-west-2.rds.amazonaws.com:3306?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">illan</property>
   </session-factory>
 </hibernate-configuration>

@@ -91,5 +91,9 @@
     <bean id="sustitucion" class="com.pacoillan.DAOHibernate.SustitucionDAOHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+    
+    <bean id="manoObra" class="com.pacoillan.DAOHibernate.ManoObraDAOHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
 </beans>

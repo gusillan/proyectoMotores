@@ -1,82 +1,64 @@
 /*  Listener
- *********************************************************/
+ *****************************************************************************/
 $("document").ready(function() {
 
-    $("#codigo").blur(consultaCodigo);
-    $("#logo").focus(rellenarLogo);
+    $("#codigo").change(consultaCodigo);
+    $("#logo").change(rellenarLogo);
 
 });
 
-/* Funciones Básicas Botones
- **********************************************************/
-
+/* Funciones Menú Principal
+ *****************************************************************************/
 
 function guardar() {
-
     if (validarFormulario()) {
-        var data = $("#formFabricante").serialize();
-        $.ajax({
-            url: '../guardaFabricante.htm',
-            data: data,
-            type: 'POST',
-            success: limpiar
-        });
+        envioFormulario('../guardaFabricante.htm');
     } else {
-        console.log("Formulario no válido");
+        console.log("ERROR - Formulario no válido");
     }
 }
 
 function baja() {
-    // Confirmar Baja
-    var data = $("#formFabricante").serialize();
-    $.ajax({
-        url: '../bajaFabricante.htm',
-        data: data,
-        type: 'POST',
-        success: limpiar
-    });
+    envioFormulario('../bajaFabricante.htm');
 }
 
-
 /* Funciones adicionales
- ********************************************************/
+ *****************************************************************************/
 
 function consultaCodigo() {
     if ($("#codigo").val().length > 0) {
         console.log("vamos a consultar el código " + this.value);
         var codigo = this.value;
-        $.getJSON('../consultaFabricante.htm', {codigo: codigo}, respuestaConsultaFabricante);
-
+        peticionAjax('../consultaFabricante.htm', codigo, respuestaConsultaCampo);
+    } else {
+        borraFormulario();
     }
 }
 
-function respuestaConsultaFabricante(listaObjetos) {
-    console.log("Respuesta lista de Objetos "+listaObjetos);
-    if (listaObjetos.length == 1) {
-        var objeto = listaObjetos[0];
-        rellenaFormulario(objeto);
-    } else if (listaObjetos.length > 1) {
-        alert("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun fabricante con ese Codigo");
-        $("#idFabricante").val("");
-        $("#nombre").val("");
-        $("#logo").val("");
-        $("#imgLogo").attr("src", "");
-        
-    }
+function borraFormulario() {
+    $("#idFabricante").val("");
+    $("#nombre").val("");
+    $("#logo").val("");
+    $("#imgLogo").attr("src", "");
+}
+function respuestaCeroObjetos(){
+     borraFormulario();
 }
 
-function rellenaFormulario(obj){
+function respuestaVariosObjetos(){
+    console.log("ERROR - No puede haber códigos repetidos en esta BBDD.Consultar al administrador");
+}
+
+function rellenaFormulario(obj) {
     $("#idFabricante").val(obj.idFabricante);
     $("#codigo").val(obj.codigo);
     $("#nombre").val(obj.nombre);
     $("#logo").val(obj.logo);
     $('#imgLogo').attr("src", "img/marcas/" + obj.logo);
-    $("#baja").attr("disabled",false);
+    $("#baja").attr("disabled", false);
     updateFocusables();
 }
 
-function rellenarLogo(){
+function rellenarLogo() {
     console.log("Vamos a rellenarlo con ");//+$("#nombre").val()+".PNG");
 }

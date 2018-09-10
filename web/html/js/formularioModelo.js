@@ -5,11 +5,14 @@ $("document").ready(function() {
     console.log("Codigo " + getQueryVariable("codigo"));
     if (getQueryVariable("codigo")) {
         $("#codigo").val(getQueryVariable("codigo"));
+        //consultarMarca();
+        //muestraImagen();
+
     }
 
     consultarMarca();
     muestraImagen();
-    
+
 
     $("#fechaInicio").mask("99/9999"); // sin lineas("99/9999", {placeholder: " "})
     $("#fechaFin").mask("99/9999");
@@ -45,67 +48,52 @@ $("document").ready(function() {
 
 });
 
-/* Funciones Básicas Botones
- **********************************************************/
+/* Funciones Menú Principal
+ ******************************************************************************/
 
 function guardar() {
 
     if (validarFormulario()) {
-        var data = $("#formModelo").serialize();
-        console.log("Serializada " + data);
-        $.ajax({
-            url: '../guardaModelo.htm',
-            data: data,
-            type: 'POST',
-            success: limpiar
-        });
+        envioFormulario('../guardaModelo.htm');
     } else {
-        console.log("Formulario no valido");
+        console.log("ERROR - Formulario no válido");
     }
 }
 
 function baja() {
-
-    var data = $("#formModelo").serialize();
-    $.ajax({
-        url: '../bajaModelo.htm',
-        data: data,
-        type: 'POST',
-        success: limpiar
-    });
+    envioFormulario('../bajaModelo.htm');
 }
 
 /* Funciones adicionales
- ********************************************************/
+ ******************************************************************************/
 
 function consultaCodigo() {
     if (!vacio($("#codigo"))) {
-        console.log("vamos a consultar el código " + this.value);
+        console.log("vamos a consultar el código " + this.value); //Borrar
         console.log($("#codigo").val().length);
         var codigo = this.value;
-        $.getJSON('../consultaModelo.htm', {codigo: codigo}, respuestaConsultaModelo);
-
+        peticionAjax('../consultaModelo.htm', codigo, respuestaConsultaCampo);
+    } else {
+        borraFormulario();
     }
 }
 
-function respuestaConsultaModelo(listaObjetos) {
-
-    if (listaObjetos.length === 1) {
-        var objeto = listaObjetos[0];
-        rellenaFormulario(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
-        console.log("Esta es la lista " + listaObjetos);
-        $('#myModal').modal('show');    //Abre la ventana Modal con la lista
-        rellenaListaMotores(listaObjetos);
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun fabricante con ese Codigo");
-        $("#descripcion").val("");
-        $("#idModelo").val("")
-
-
-    }
+function borraFormulario() {
+    $("#descripcion").val("");
+    $("#idModelo").val("");
 }
+
+function respuestaCeroObjetos() {    
+    borraFormulario();
+}
+
+function respuestaVariosObjetos(listaObjetos) {
+    console.log("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
+    console.log("Esta es la lista " + listaObjetos);
+    $('#myModal').modal('show');    //Abre la ventana Modal con la lista
+    rellenaListaMotores(listaObjetos);
+}
+
 function rellenaFormulario(obj) {
     $("#idModelo").val(obj.idModelo);
     $("#codigo").val(obj.codigo);
@@ -123,37 +111,6 @@ function rellenaFormulario(obj) {
 
 }
 
-function consultarMarca() {
-    var marca = $("#codigoMarca").val();
-    console.log("Consultar marca " + marca);
-    $.ajax({
-        url: '../consultaFabricante.htm',
-        data: {codigo: marca},
-        type: 'POST',
-        success: respuestaConsultaMarca
-    });
-}
-
-function respuestaConsultaMarca(listaObjetos) {
-
-    if (listaObjetos.length === 1) {
-        var objeto = listaObjetos[0];
-        rellenaMarca(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun fabricante con ese Codigo");
-        $("#fabricante").val('');
-        $("#codigoMarca").val('');
-    }
-}
-
-function rellenaMarca(marca) {
-    $("#marca").val(marca.nombre);
-    $("#logoMarca").attr("src", "img/marcas/" + marca.logo);
-}
-
-
 function muestraImagen() {
     if (!vacio($("#imagen"))) {
         $("#imagenModelo").attr("src", "img/imagenesVehiculos/" + $("#imagen").val());
@@ -161,7 +118,7 @@ function muestraImagen() {
 }
 
 /* Subir imagen
- **********************************************************/
+ ******************************************************************************/
 function resizeAndUpload(file) {
 
     console.log("Redimension de imagen");

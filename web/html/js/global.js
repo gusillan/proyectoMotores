@@ -12,8 +12,8 @@ var confirmationOpt = {
     singleton: true
 };
 
-/*  Listener
- ******************************************************************************/
+// 1 Listener *****************************************************************
+
 $("document").ready(function() {
 
     // Hacer mayusculas **************************
@@ -23,7 +23,7 @@ $("document").ready(function() {
     $(".g-input[type=text]").keyup(function() {
         this.value = this.value.toUpperCase();
     });
-    
+
     // Formateo de fechas ************************
     $(".g-input[type=date]").on("change", function() {
         this.setAttribute(
@@ -32,17 +32,17 @@ $("document").ready(function() {
                 .format("DD/MM/YYYY")
                 )
     });
-    
+
     // Refresca que elementos son enfocables y pone el foco en el primero;
     updateFocusables();
     $(".g-focusable").first().focus();
-    
+
     // Botones deshabilitados por defecto ********
     $(".g-disabled").prop("disabled", true);
-    
+
     //Los botones de subir ficheros **************
     $('#archivo').change(function() {
-      $('#imagen').val( $('#archivo')[0].files[0].name );
+        $('#imagen').val($('#archivo')[0].files[0].name);
     });
 
     // Utilizar ENTER para pasar al siguiente input
@@ -95,26 +95,82 @@ $("document").ready(function() {
     });
 
 });
+// FUNCIONES BASICAS **********************************************************
 
-/*Consultas comunes
- ******************************************************************************/
+/*function guardarUrl(url){
+ if (validarFormulario()){
+ var data = $("#formulario").serialize();
+ console.log("Formulario serializado "+data); // Borrar
+ $.ajax({
+ url: url,
+ data : data,
+ type : 'POST',
+ success : limpiar            
+ });
+ }else{
+ console.log("Formulario no válido");
+ 
+ 
+ }
+ }
+ function bajaUrl(url){
+ console.log("Damos de baja "+url );
+ var data = $("#formulario").serialize();
+ console.log("Formulario serializado "+data); // Borrar
+ $.ajax({
+ url: url,
+ data : data,
+ type : 'POST',
+ success : limpiar
+ });
+ }*/
+// 2 Consultas ****************************************************************
 
-//Marca*******************************************
+//FUNCION GLOBAL PETICIONES AJAX ********************
+function peticionAjax(url, data, funcion) {
+    $.ajax({
+        url: url,
+        data: {parametro: data},
+        type: 'POST',
+        dataType: 'json',
+        success: funcion
+    });
+}
+
+function envioFormulario(url) {
+    console.log("Enviamos formulario a " + url); //borrar
+    var data = $("#formulario").serialize();
+    console.log("Formulario serializado " + data); //borrar
+    $.ajax({
+        url: url,
+        data: data,
+        type: 'POST',
+        success: limpiar
+    });
+}
+
+function respuestaConsultaCampo(listaObjetos) {
+    if (listaObjetos.length == 1) {
+        var objeto = listaObjetos[0];
+        rellenaFormulario(objeto);
+    } else if (listaObjetos.length > 1) {
+        respuestaVariosObjetos(listaObjetos);
+    } else if (listaObjetos.length < 1) {
+        respuestaCeroObjetos();
+    }
+}
+//Consultas para rellenar una sola linea **************************************/
+
+// Marca ***************************************
 function consultarMarca() {
     if (!vacio($("#codigoMarca"))) {
         var marca = $("#codigoMarca").val();
-        console.log("Consultar marca " + marca);
-        $.ajax({
-            url: '../consultaFabricante.htm',
-            data: {codigo: marca},
-            type: 'POST',
-            success: respuestaConsultaMarca
-        });
+        console.log("Consultar marca " + marca); // borrar
+        peticionAjax('../consultaFabricante.htm', marca, respuestaConsultaMarca);
     }
 }
 
 function respuestaConsultaMarca(listaObjetos) {
-
     if (listaObjetos.length === 1) {
         var objeto = listaObjetos[0];
         rellenaMarca(objeto);
@@ -133,11 +189,11 @@ function rellenaMarca(marca) {
     $("#logoMarca").attr("src", "img/marcas/" + marca.logo);
 }
 
-//Modelo *****************************************
+//Modelo ***************************************
 function consultaModelo() {
     if (!vacio($("#codigoModelo"))) {
         var modelo = $("#codigoModelo").val();
-        console.log("Modelo " + modelo);
+        console.log("Modelo " + modelo);  // borrar
         $.getJSON(
                 '../consultaModelo.htm',
                 {codigo: modelo},
@@ -216,7 +272,29 @@ function respuestaConsultaMotor(listaObjetos) {
     }
 }
 
-//function rellenaMotor(){}
+function rellenaMotor(motor) {
+    $("#descripcionMotor").val(motor.descripcion);
+    $("#codigoMotor").val(motor.codigo);
+    var combustible = "";
+    switch (motor.combustible) {
+        case "D":
+            combustible = "Diesel";
+            break;
+        case "G":
+            combustible = "Gasolina";
+            break;
+        case "H":
+            combustible = "Híbrido";
+            break;
+        case "E":
+            combustible = "Eléctrico";
+            break;
+    }
+    $("#combustibleMotor").text(combustible);
+    $("#cilindradaMotor").text(motor.cilindrada + " c.c.");
+    $("#kwMotor").text(motor.kw + " Kw");
+    $("#nombreFabricanteMotor").text(motor.fabricante.nombre);
+}
 
 function darAltaMotor() {
     var respuesta = confirm("Desea dar de alta este Motor?");
@@ -232,7 +310,7 @@ function darAltaMotor() {
 
 // Matricula *************************************
 function consultaMatricula() {
-    if ($("#matricula").val().length>3) {
+    if ($("#matricula").val().length > 3) {
         var matricula = $("#matricula").val();
         console.log("Vamos a consultar la matricula " + matricula);
         $.getJSON(
@@ -257,7 +335,7 @@ function respuestaConsultaMatricula(listaObjetos) {
 function consultaReferencia() {
     if (!vacio($("#referencia"))) {
         var referencia = $("#referencia").val();
-        console.log("Vamos a consultar la Referencia " + referencia);        
+        console.log("Vamos a consultar la Referencia " + referencia);
         $.getJSON('../consultaReferencia.htm', {referencia: referencia}, respuestaConsultaReferencia);
     } else {
         $("#descripcionRecambio").val("");
@@ -274,15 +352,15 @@ function respuestaConsultaReferencia(listaObjetos) {
         var idFabricanteInicial = listaObjetos[0].fabricante.idFabricante;
         var referenciaInicial = listaObjetos[0].referencia;
         for (var i = 1; i < listaObjetos.length; i++) {
-            if( referenciaInicial != listaObjetos[i].referencia ){
+            if (referenciaInicial != listaObjetos[i].referencia) {
                 console.log("Tienen distinta referencia");
-                var objeto = listaObjetos[listaObjetos.length-1];
+                var objeto = listaObjetos[listaObjetos.length - 1];
                 rellenaRecambio(objeto);
                 var sustituciones = "";
-                for(var j = 0; j < listaObjetos.length-1; j++){
-                    sustituciones += String( listaObjetos[j].referencia );
+                for (var j = 0; j < listaObjetos.length - 1; j++) {
+                    sustituciones += String(listaObjetos[j].referencia);
                     sustituciones += " \u2192 "; //U+02192
-                    sustituciones += String( listaObjetos[j+1].referencia );
+                    sustituciones += String(listaObjetos[j + 1].referencia);
                     sustituciones += "\n";
                 }
                 $("#infoSustituciones").prop("title", sustituciones);
@@ -291,7 +369,7 @@ function respuestaConsultaReferencia(listaObjetos) {
         }
         console.log("Tienen la misma referencia");
         ventanaRecambios.abrir(listaObjetos);
-        
+
     } else if (listaObjetos.length < 1) {
         console.log("No existe ninguna Referencia con ese Codigo");
         darAltaRecambio();
@@ -328,7 +406,7 @@ function respuestaBuscarRecambio(recambios) {
     if (recambios.length == 0) {
         console.log("Error: la consulta del recambio no ha obtenido ningun resultado");
         $("#descripcionRecambio").val("");
-        
+
     } else if (recambios.length == 1) {
         rellenaRecambio(recambios[0]);
     } else {
@@ -337,7 +415,7 @@ function respuestaBuscarRecambio(recambios) {
 }
 
 /* Funciones de Utilidad
- *****************************************************************************/ 
+ *****************************************************************************/
 
 function validarAccion(accion) {
     if (validarFormulario()) {

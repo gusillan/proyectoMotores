@@ -6,20 +6,21 @@ $("document").ready(function() {
     listadoCategoriaMO();
        
     
-    $("input[name='tipoMO']").change(tipoMO);   
-    $("#listaCategorias").blur(codigoCategoria);
-    $("#categoriaMO").blur(categoriaMO);
-    $("#codigoMOLibre").change(comprobarCodigoMOLibre);
+     
+    $("#listaCategorias").blur(consultarMOAsociada);    
+    $("#codigo").change(mostrarCodigoMO);
     $("#tiempo").blur(formatearTiempo);
     $("#codigoModelo").change(consultaModelo);
     $("#codigoMotor").change(consultaMotor);
+    
+    $("#codigo").mask("99.99");
+    
 
 });
 
 var cMOCategoria="0";
 var cMOPrincipal="0";
-var cModelo="0";
-var cMotor="0";
+
 
 /* Funciones Básicas Botones
  **********************************************************/
@@ -60,10 +61,11 @@ function listadoCategoriaRecambio() {
 }
 
 function respuestaConsultaCategoriaRecambio(listaObjetos) {
-
+    $("#listaCategorias").append('<option value=0>'+"--");
     $.each(listaObjetos,function(key,registro){
-        $("#listaCategorias").append('<option value='+registro.idCategoria+'>'+registro.categoria+'</option>');        
+        $("#listaCategorias").append('<option value='+registro.idCategoria+'>'+'('+registro.codigo+') '+registro.categoria+'</option>');        
     });
+    $("#listaCategorias option[value='0']").attr("selected",true);
 }
 
 function listadoCategoriaMO() {
@@ -72,17 +74,18 @@ function listadoCategoriaMO() {
 }
 
 function respuestaConsultaCategoriaMO(listaObjetos) {
-
+    $("#categoriaMO").append('<option value=0>'+"--");
     $.each(listaObjetos,function(key,registro){
+        
         $("#categoriaMO").append('<option value='+registro.codigo+'>'+registro.codigo+" - "+registro.categoria+'</option>'); 
         
     });
-    $("#categoriaMO option[value='10']").attr("selected",true);
+    $("#categoriaMO option[value='0']").attr("selected",true);
 }
 
 
 
-function tipoMO(){
+/*function tipoMO(){
     console.log("Evento localizado");
     if ($("#libre").is(':checked')){
         
@@ -97,7 +100,7 @@ function tipoMO(){
         $("#ocultoMO").hide();
     }
 }
-
+*/
 function codigoCategoria(){
     var codigoPrincipal = $(this).val();
     cMOPrincipal = pad(codigoPrincipal,3);
@@ -115,7 +118,7 @@ function categoriaMO(){
 }
 
 function mostrarCodigoMO(){
-     $("#codigoMO").val(cMOCategoria+"."+cMOPrincipal+"."+cModelo+"."+cMotor);
+     $("#codigoMO").val($("#codigo").val()+"."+$("#idModelo").val()+"."+$("#idMotor").val());
 }
 
 function pad (str, max) {
@@ -123,7 +126,7 @@ function pad (str, max) {
   return str.length < max ? pad("0" + str, max) : str;
 }
 
-function comprobarCodigoMOLibre(){
+/*function comprobarCodigoMOLibre(){
     
     rango = parseInt($("#categoriaMO").val()*10);
     cMOPrincipal = parseInt($(this).val());
@@ -141,19 +144,46 @@ function comprobarCodigoMOLibre(){
     }
    
     
-}
+}*/
 
 function formatearTiempo(){
     var tiempoDecimal = parseFloat($("#tiempo").val());
     $("#tiempo").val(tiempoDecimal.toFixed(2));
 }
 
-/*function rellenaFormulario(obj) {
-    $("#idModelo").val(obj.idModelo);
-    $("#codigo").val(obj.codigo);
+function consultarMOAsociada(){
+    var categoriaAsociada = $("#listaCategorias").val();
+    if (categoriaAsociada ==0){
+        $("#codigo").focus();
+    }else{        
+        console.log("Vamos a consultar la MO asociada a " + categoriaAsociada);
+        $.getJSON('../consultaManoObraAsociada.htm', {categoria: categoriaAsociada}, respuestaConsultaCategoriaAsociada);
+       
+    }
+    
+}
+function respuestaConsultaCategoriaAsociada(listaObjetos){
+    console.log("llegaste AQUI");
+    if (listaObjetos.length === 1) {
+        var objeto = listaObjetos[0];
+        console.log("llego 1 objeto "+objeto);
+        rellenaFormulario(objeto);
+    } else if (listaObjetos.length > 1) {
+        console.log("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
+        
+    } else if (listaObjetos.length < 1) {
+        console.log("No existe ningun fabricante con ese Codigo");
+    }
+        
+}
+function rellenaFormulario(obj) {
+    $("#idManoObra").val(obj.idManoObra);
+    $("#codigoMO").val(obj.codigo);
     $("#descripcion").val(obj.descripcion);
-    $("#codigoMarca").val(obj.fabricante.codigo);
-    rellenaMarca(obj.fabricante);
+    $("#codigo").val(obj.codigo);
+    $("#descripcionMO").val(obj.descripcion);
+    $("#tiempo").val(obj.tiempo);
+    /*rellenaMarca(obj.fabricante);
     //$("#marca").val(obj.fabricante.nombre);
     $("#fechaInicio").val(obj.fechaInicio);
     $("#fechaFin").val(obj.fechaFin);
@@ -161,10 +191,10 @@ function formatearTiempo(){
     muestraImagen();
     //$("#imagenModelo").attr("src", "img/imagenesVehiculos/" + obj.imagen);
     $("#baja").attr("disabled", false);
-    updateFocusables();
+    updateFocusables();*/
 
 }
-
+/*
 function consultarMarca() {
     var marca = $("#codigoMarca").val();
     console.log("Consultar marca " + marca);

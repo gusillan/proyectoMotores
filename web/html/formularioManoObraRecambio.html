@@ -29,51 +29,49 @@
         <div class="container">
 
             <div class="page-header">
-                <h1>Formulario Mano de Obra</h1>      
+                <h1>Mano de Obra asignada a Recambios</h1>      
             </div>
 
-            <form name="formManoObra" id="formManoObra">
+            <form name="formManoObraRecambio" id="formManoObraRecambio">
 
                 <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="idRecambio" class="">ID Mano Obra</label>
-                            <input type="text" class="form-control" id="idManoObra" name="idManoObra" size="11" maxlength="11" readonly="readonly">                            
-                        </div>
-                    </div>
-                    <div class="col-md-2">  
-                        <div class="form-group">
-                            <label for="codigoMO" class="">Código Mano Obra</label>
-                            <input type="text" class="form-control" id="codigoMO" name="codigoMO" readonly="readonly">                            
-                        </div>
-                    </div>
-                </div><!--row-->
-
-                 <div class="row">
-
-
                     <div class="col-md-4">
-
-                        <div class="form-group" id="codigoRecambio">
-                            <div class="form-group">
-                                <label for="listaCategorias">Recambio asociado a Mano de Obra</label>
-                                <select class="form-control g-select" id="listaCategorias" name="codigoRecambio"></select>
-                            </div> 
-                        </div>
-
-
+                        <div class="form-group">
+                            <label for="idRManoObra" class="">ID Mano Obra</label>
+                            <input type="text" class="form-control" id="idManoObra" name="idManoObra" readonly="readonly">
+                        </div>               
                     </div>
-                </div><!--row-->
-                
-                <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <div class="form-group"> 
-                            <label for="codigo">Código Principal</label>
-                            <input type="text" class="form-control g-input" id="codigo" name="codigo">  
+                            <label for="codigoMO">Código Mano Obra</label>
+                            <input type="text" class="form-control g-input" id="codigoMO" name="codigoMO" readonly>  
                         </div>
                     </div>  
+                </div><!--row-->
 
-                    <div class="col-md-6">  
+
+                <div class="row">
+                    <div class="col-md-4"> 
+                        <div class="form-group">
+                            <label for="listaCategorias">Selección Categoría Recambio</label>
+                            <select class="form-control g-select" id="listaCategorias" name="codigoMO"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">              
+                        <div class="form-group">
+                            <label for="categoriaMO">Categoría Mano de Obra</label>
+                            <select class="form-control g-select" id="categoriaMO" name="categoriaMO"></select>                             
+                        </div>               
+                    </div>     
+
+
+                </div><!--row-->
+
+                <div class="row">
+
+
+                    <div class="col-md-8">  
                         <div class="form-group">
                             <label for="descripcion">Descripción Mano Obra</label>
                             <div class="input-group">
@@ -84,6 +82,9 @@
                             </div>
                         </div>
                     </div> 
+
+                </div><!--row-->
+                <div class="row">
                     <div class="col-md-2">
                         <div class="form-group"> 
                             <label for="tiempo">Tiempo Genérico</label>
@@ -91,9 +92,6 @@
                         </div>
                     </div>
                 </div><!--row-->
-
-
-               
 
                 <div class="row">
                     <div class="col-sm-2">              
@@ -116,7 +114,7 @@
                     <div class="col-sm-2">              
                         <div class="form-group">
                             <label for="idModelo">ID Modelo</label>
-                            <input type="text" class="form-control g-input" id="idModelo" name="idModelo" value="0000" readonly>                            
+                            <input type="text" class="form-control g-input" id="idModelo" name="idModelo" readonly>                            
                         </div>               
                     </div>
                 </div><!--row-->
@@ -142,23 +140,16 @@
                     <div class="col-sm-2">              
                         <div class="form-group">
                             <label for="idMotor">ID Motor</label>
-                            <input type="text" class="form-control g-input" id="idMotor" name="idMotor" value="0000" readonly>                            
+                            <input type="text" class="form-control g-input" id="idMotor" name="idMotor" readonly>                            
                         </div>               
                     </div>
                 </div><!--row-->
 
 
-
-
-
-
-
-
-
                 <div class="row">
                     <div class="col-md-8">              
                         <div class="form-group">
-                            <label for="informacion">Descripcion Mano de Obra adicional</label>
+                            <label for="informacion">Información</label>
                             <textarea class="form-control g-textarea" id="informacion" name="informacion" rows="3"></textarea>
                         </div>               
                     </div>

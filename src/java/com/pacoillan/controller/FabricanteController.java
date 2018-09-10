@@ -27,34 +27,34 @@ public class FabricanteController {
     ModelAndView mv = new ModelAndView();
     @Autowired
     FabricanteDAO fabricanteDao;
-    
-    @RequestMapping("guardaFabricante.htm")
-    public void guardaFabricante(Fabricante fabricante, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String logoMinuscula = fabricante.getLogo().toLowerCase();
-        fabricante.setLogo(logoMinuscula);
-        fabricanteDao.update(fabricante);
-    }
+       
 
     @RequestMapping("consultaFabricante.htm")
     public void consultaFabricante(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        String codigoFabricante = request.getParameter("codigo");
+        String codigoFabricante = request.getParameter("parametro");
         List<Fabricante> listaFabricantes = fabricanteDao.listadoPorCampoExacto("codigo", codigoFabricante);
         System.out.println(listaFabricantes);
-        //if (listaFabricantes.isEmpty()) {
-        //    out.println();
-        //} else {
-            Gson gson = new Gson();
-            String lista = gson.toJson(listaFabricantes);
-            System.out.println(lista);
-            out.println(lista);
-        //}
+        
+        Gson gson = new Gson();
+        String lista = gson.toJson(listaFabricantes); //Borrar
+        System.out.println(lista);
+        out.println(lista);       
     }
 
+    @RequestMapping("guardaFabricante.htm")
+    public void guardaFabricante(Fabricante fabricante, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("Fabricante "+fabricante.getLogo());
+        String logoMinuscula = fabricante.getLogo().toLowerCase();
+        fabricante.setLogo(logoMinuscula);
+        fabricanteDao.update(fabricante);
+    }
+    
     @RequestMapping("bajaFabricante.htm")
-    public void bajaFabricante(Fabricante fabricante, HttpServletRequest request, HttpServletResponse response) {        
+    public void bajaFabricante(Fabricante fabricante, HttpServletRequest request, HttpServletResponse response) {    
+        System.out.println("Vamos a dar de baja al fabricante "+fabricante.getNombre());
         try{
          fabricanteDao.delete(fabricante);
         }catch (Exception ex){            

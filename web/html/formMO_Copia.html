@@ -38,64 +38,49 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="idRecambio" class="">ID Mano Obra</label>
-                            <input type="text" class="form-control" id="idManoObra" name="idManoObra" size="11" maxlength="11" readonly="readonly">                            
-                        </div>
-                    </div>
-                    <div class="col-md-2">  
-                        <div class="form-group">
-                            <label for="codigoMO" class="">Código Mano Obra</label>
-                            <input type="text" class="form-control" id="codigoMO" name="codigoMO" readonly="readonly">                            
-                        </div>
+                            <input type="text" class="form-control" id="idManoObra" name="idManoObra" size="11" maxlength="11" readonly="readonly">
+                        </div>               
                     </div>
                 </div><!--row-->
 
-                 <div class="row">
 
+                <div class="row">
+                    <div class="col-md-4">              
+                        <div class="form-group">
+                            <label for="categoriaMO">Categoría Mano de Obra</label>
+                            <select class="form-control g-select" id="categoriaMO" name="categoriaMO"></select>                             
+                        </div>               
+                    </div>                     
 
                     <div class="col-md-4">
-
-                        <div class="form-group" id="codigoRecambio">
+                        <div class="form-group">
+                            <label>
+                                <input type="radio" name="tipoMO" value="1">Asociada a una categoría de Recambio
+                            </label>
+                            <label>
+                                <input type="radio" name="tipoMO" value="2" id="libre">Mano de obra libre
+                            </label>
+                        </div>               
+                    </div>
+                    <div class="col-md-4">
+                        
+                        <div class="form-group oculto" id="ocultoCat">
                             <div class="form-group">
-                                <label for="listaCategorias">Recambio asociado a Mano de Obra</label>
-                                <select class="form-control g-select" id="listaCategorias" name="codigoRecambio"></select>
+                                <label for="listaCategorias">Selección Categoría Recambio</label>
+                                <select class="form-control g-select" id="listaCategorias" name="codigoMO1"></select>
                             </div> 
                         </div>
-
-
-                    </div>
-                </div><!--row-->
-                
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group"> 
-                            <label for="codigo">Código Principal</label>
-                            <input type="text" class="form-control g-input" id="codigo" name="codigo">  
-                        </div>
-                    </div>  
-
-                    <div class="col-md-6">  
-                        <div class="form-group">
-                            <label for="descripcion">Descripción Mano Obra</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control g-input" id="descripcionMO" name="descripcionMO" maxlength="40" required title="Descripción trabajo realizado" data-toggle="popover">
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-primary" id="buscarMO">Buscar</button>
-                                </span>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="col-md-2">
-                        <div class="form-group"> 
-                            <label for="tiempo">Tiempo Genérico</label>
-                            <input type="text" class="form-control g-input" id="tiempo" name="tiempo">  
-                        </div>
+                        <div class="form-group oculto" id="ocultoMO">
+                            <div class="form-group">
+                                <label for="codigoMOLibre">Código de Mano Obra</label>
+                                <input type="text" class="form-control" id="codigoMOLibre" name="codigoMO2" >
+                            </div> 
+                        </div>                        
+                        
                     </div>
                 </div><!--row-->
 
-
-               
-
-                <div class="row">
+                  <div class="row">
                     <div class="col-sm-2">              
                         <div class="form-group">
                             <label for="codigoModelo">Código Modelo<a href="formularioModelo.html" title="Formulario Modelo"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
@@ -113,10 +98,10 @@
                             </div><!-- /input-group -->
                         </div>               
                     </div>
-                    <div class="col-sm-2">              
-                        <div class="form-group">
+                      <div class="col-sm-2">              
+                          <div class="form-group">
                             <label for="idModelo">ID Modelo</label>
-                            <input type="text" class="form-control g-input" id="idModelo" name="idModelo" value="0000" readonly>                            
+                            <input type="text" class="form-control g-input" id="idModelo" name="idModelo" readonly>                            
                         </div>               
                     </div>
                 </div><!--row-->
@@ -140,9 +125,9 @@
                         </div>
                     </div>
                     <div class="col-sm-2">              
-                        <div class="form-group">
+                          <div class="form-group">
                             <label for="idMotor">ID Motor</label>
-                            <input type="text" class="form-control g-input" id="idMotor" name="idMotor" value="0000" readonly>                            
+                            <input type="text" class="form-control g-input" id="idMotor" name="idMotor" readonly>                            
                         </div>               
                     </div>
                 </div><!--row-->
@@ -151,14 +136,39 @@
 
 
 
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group"> 
+                            <label for="codigoMO">Código Mano Obra</label>
+                            <input type="text" class="form-control g-input" id="codigoMO" name="codigoMO" readonly>  
+                        </div>
+                    </div>  
 
+                    <div class="col-md-7">  
+                        <div class="form-group">
+                            <label for="descripcion">Descripción Mano Obra</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control g-input" id="descripcionMO" name="descripcionMO" maxlength="40" required title="Descripción trabajo realizado" data-toggle="popover">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary" id="buscarMO">Buscar</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-2">
+                        <div class="form-group"> 
+                            <label for="tiempo">Tiempo</label>
+                            <input type="text" class="form-control g-input" id="tiempo" name="tiempo">  
+                        </div>
+                    </div>
+                </div><!--row-->
 
 
 
                 <div class="row">
                     <div class="col-md-8">              
                         <div class="form-group">
-                            <label for="informacion">Descripcion Mano de Obra adicional</label>
+                            <label for="informacion">Información</label>
                             <textarea class="form-control g-textarea" id="informacion" name="informacion" rows="3"></textarea>
                         </div>               
                     </div>

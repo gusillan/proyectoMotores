@@ -1,7 +1,80 @@
 
+// 1 Listener *****************************************************************
 
-/*  Variables globales
- *********************************************************/
+$("document").ready(function() {
+
+    consultaModelo();
+    consultaMotor();
+    consultaCliente();
+
+    $("#fechaMatricula").mask("99/99/9999"); // sin lineas("99/9999", {placeholder: " "})
+
+    $("#matricula").change(consultaMatricula);
+    $("#codigoModelo").change(consultaModelo);
+    $("#codigoMotor").change(consultaMotor);
+    $("#codigoCliente").change(consultaCliente);
+    //Botones de busqueda ***************************
+    $("#buscarEntidad").click(buscarEntidad);
+    $("#buscarModelo").click(buscarModelo);
+    $("#buscarMotor").click(buscarMotor);
+
+    //Ventana lateral *******************************
+    $(".g-button-aside-close").click(function() {
+        $(".g-aside").hide();
+        $(".g-button-aside-open").show();
+    });
+    $(".g-button-aside-open").click(function() {
+        $(".g-aside").show();
+        $(".g-button-aside-open").hide();
+    });
+});
+
+// 2 Botones Básicos **********************************************************
+
+function guardar() {
+    if (validarFormulario()) {
+        var data = $("#formVehiculo").serialize();
+        console.log("Serializada " + data);
+        $.ajax({
+            url: '../guardaVehiculo.htm',
+            data: data,
+            type: 'POST',
+            success: limpiar
+        });
+    }
+}
+
+function baja() {
+    var data = $("#formVehiculo").serialize();
+    console.log("Serializada " + data);
+    $.ajax({
+        url: '../bajaVehiculo.htm',
+        data: data,
+        type: 'POST',
+        success: limpiar
+    });
+}
+
+// 3 Rellenar Formulario ******************************************************
+
+function rellenaFormulario(obj) {
+    $("#idVehiculo").val(obj.idVehiculo);
+    $("#matricula").val(obj.matricula);
+    $("#chasis").val(obj.chasis);
+    $("#fechaMatricula").val(obj.fechaMatricula);
+    $("#informacion").val(obj.informacion);
+    $("#baja").attr("disabled", false);
+
+    rellenaModelo(obj.modelo);
+    rellenaMotor(obj.motor);
+    rellenaCliente(obj.entidad);
+
+    $(".g-aside").show();
+    $(".g-button-aside-open").hide();
+}
+
+// 4 Ventanas Modales *********************************************************
+
 var ventanaEntidad = new VentanaEmergente({
     modal: 'entidadModal',
     titulo: 'Búsqueda por nombre',
@@ -33,67 +106,6 @@ var ventanaMatricula = new VentanaEmergente({
     campoID: 'idVehiculo'
 });
 
-
-/*  Listener
- ***********************************************************/
-$("document").ready(function() {
-
-    consultaModelo();
-    consultaMotor();
-    consultaCliente();
-
-    $("#fechaMatricula").mask("99/99/9999"); // sin lineas("99/9999", {placeholder: " "})
-
-    $("#matricula").change(consultaMatricula);
-    $("#codigoModelo").change(consultaModelo);
-    $("#codigoMotor").change(consultaMotor);
-    $("#codigoCliente").change(consultaCliente);
-    //Botones de busqueda
-    $("#buscarEntidad").click(buscarEntidad);
-    $("#buscarModelo").click(buscarModelo);
-    $("#buscarMotor").click(buscarMotor);
-
-
-    /* Ventana lateral */
-    $(".g-button-aside-close").click(function() {
-        $(".g-aside").hide();
-        $(".g-button-aside-open").show();
-    });
-    $(".g-button-aside-open").click(function() {
-        $(".g-aside").show();
-        $(".g-button-aside-open").hide();
-    });
-
-});
-/* Funciones Básicas Botones
- *************************************************************/
-
-function guardar() {
-
-    if (validarFormulario()) {
-        var data = $("#formVehiculo").serialize();
-        console.log("Serializada " + data);
-        $.ajax({
-            url: '../guardaVehiculo.htm',
-            data: data,
-            type: 'POST',
-            success: limpiar
-        });
-    }
-}
-
-function baja() {
-    var data = $("#formVehiculo").serialize();
-    console.log("Serializada " + data);
-    $.ajax({
-        url: '../bajaVehiculo.htm',
-        data: data,
-        type: 'POST',
-        success: limpiar
-    });
-}
-
-
 /* Funciones de Consulta de codigos
  ************************************************************/
 
@@ -111,54 +123,6 @@ function consultaCliente() {
 
 }
 
-/* Funciones operativas
- ************************************************************/
-
-
-
-function rellenaFormulario(obj) {
-    $("#idVehiculo").val(obj.idVehiculo);
-    $("#matricula").val(obj.matricula);
-    $("#chasis").val(obj.chasis);
-    $("#fechaMatricula").val(obj.fechaMatricula);
-    $("#informacion").val(obj.informacion);
-    $("#baja").attr("disabled", false);
-
-    rellenaModelo(obj.modelo);
-    rellenaMotor(obj.motor);
-    rellenaCliente(obj.entidad);
-
-    $(".g-aside").show();
-    $(".g-button-aside-open").hide();
-}
-
-
-
-
-
-function rellenaMotor(motor) {
-    $("#descripcionMotor").val(motor.descripcion);
-    $("#codigoMotor").val(motor.codigo);
-    var combustible = "";
-    switch (motor.combustible) {
-        case "D":
-            combustible = "Diesel";
-            break;
-        case "G":
-            combustible = "Gasolina";
-            break;
-        case "H":
-            combustible = "Híbrido";
-            break;
-        case "E":
-            combustible = "Eléctrico";
-            break;
-    }
-    $("#combustibleMotor").text(combustible);
-    $("#cilindradaMotor").text(motor.cilindrada + " c.c.");
-    $("#kwMotor").text(motor.kw + " Kw");
-    $("#nombreFabricanteMotor").text(motor.fabricante.nombre);
-}
 
 function respuestaConsultaCliente(listaObjetos) {
     if (listaObjetos.length == 1) {

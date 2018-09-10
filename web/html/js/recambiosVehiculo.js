@@ -39,8 +39,8 @@ var motorValido = false;
 var referenciaValido = false;
 
 
-/*  Listener
- ***********************************************************/
+// 1  Listener ****************************************************************
+
 $("document").ready(function() {
 
     $("#matricula").change(consultaMatricula);
@@ -65,15 +65,12 @@ $("document").ready(function() {
     });
     $("#agregar").click(agregarReferencia);
 
-
-    //Botones de busqueda
+    //Botones de busqueda**************************
     $("#buscarModelo").click(buscarModelo);
     $("#buscarMotor").click(buscarMotor);
     $("#buscarRecambio").click(buscarRecambio);
 
-
-
-    /* Ventana lateral */
+    //Ventana lateral *****************************
     $(".g-button-aside-close").click(function() {
         $(".g-aside").hide();
         $(".g-button-aside-open").show();
@@ -82,7 +79,6 @@ $("document").ready(function() {
         $(".g-aside").show();
         $(".g-button-aside-open").hide();
     });
-
 
 });
 

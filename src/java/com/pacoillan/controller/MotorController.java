@@ -35,7 +35,7 @@ public class MotorController {
         List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMarca"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         motor.setFabricante(fabricante);
-        motorDao.create(motor);
+        motorDao.update(motor);
 
     }
 
@@ -56,7 +56,7 @@ public class MotorController {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        String codigoMotor = (request.getParameter("codigo").toUpperCase());
+        String codigoMotor = (request.getParameter("parametro").toUpperCase());
         System.out.println("Codigo -> " + codigoMotor);
         List<Motor> listaMotores = motorDao.listadoPorCampoExacto("codigo", codigoMotor);
         if (listaMotores.isEmpty()) {
