@@ -1,7 +1,5 @@
-
-
 /*  Variables globales
- *********************************************************/
+ ******************************************************************************/
 ventanaEntidad = new VentanaEmergente({
         modal: 'entidadModal',
         titulo: 'Busqueda por nombre',
@@ -9,9 +7,8 @@ ventanaEntidad = new VentanaEmergente({
         campoID: 'idEntidad'       
     });
 
-
 /*  Listener
- *********************************************************/
+ ******************************************************************************/
 $("document").ready(function() {
 
     $('.g-input[data-toggle="popover"]').blur(function() {
@@ -28,48 +25,30 @@ $("document").ready(function() {
         }
     });
 
-
-
-    $("#cpostal").blur(consultaCpostal);
+    $("#cpostal").change(consultaCpostal);
     $("#telefono").mask("999 999 999", {placeholder: " "});
     $("#movil").mask("999 999 999", {placeholder: " "});
-
-
-    //Busquedas
     $("#buscarNombre").click(consultaNombre);
-
 
 });
 
-/* Funciones Básicas Botones
- **********************************************************/
+/* Funciones Menú Principal
+ ******************************************************************************/
 
 function guardar() {
     if (validarFormulario()) {
-        console.log("Accion de guardar");
-        var data = $("#formEntidad").serialize();
-        $.ajax({
-            url: '../altaEntidad.htm',
-            data: data,
-            type: 'POST',
-            success: limpiar
-        });
+        envioFormulario('../altaEntidad.htm');        
+    }else{
+        console.log("ERROR - Formulario no válido");
     }
 }
 
 function baja() {
-    console.log("Accion de baja");
-    var data = $("#formEntidad").serialize();
-    $.ajax({
-        url: '../bajaEntidad.htm',
-        data: data,
-        type: 'POST',
-        success: limpiar
-    });
+    envioFormulario('../bajaEntidad.htm');   
 }
 
 /*  Validaciones
- *********************************************************/
+ ******************************************************************************/
 function validarCampoConPatron(inputToValidate) {
     if (inputToValidate.validity.valid) {
         $(inputToValidate).popover('destroy');
@@ -77,7 +56,7 @@ function validarCampoConPatron(inputToValidate) {
 }
 
 /*  Campo DNI
- *********************************************************/
+ ******************************************************************************/
 function rellenaDNI(dniField) {
     dniValue = dniField.value
     var customMessage = ""
@@ -201,7 +180,6 @@ function respuestaConsultaNombre(responseJson) {
     }
 }
 
-
 function rellenaFormulario(obj) {
     $("#idEntidad").val(obj.idEntidad);
     $("#nombre").val(obj.nombre);
@@ -220,11 +198,10 @@ function rellenaFormulario(obj) {
     $("#informacion").val(obj.informacion);
     $("#baja").attr("disabled", false);
     updateFocusables();
-
 }
 
 /* Codigo Postal
- * ********************************************************/
+ * ***************************************************************************/
 
 function consultaCpostal() {
     var cpost = $("#cpostal").val();

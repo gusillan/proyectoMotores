@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.pacoillan.controller;
 
 import com.google.gson.Gson;
@@ -98,36 +95,23 @@ public class EntidadController {
         Gson gson = new Gson();
         String lista = gson.toJson(listaEntidades);
         System.out.println("Lista Respuesta " + lista);
-        out.println(lista);
-       
+        out.println(lista);       
         
-        
-    }
-            
+    }            
 
     @RequestMapping("altaEntidad.htm")
-    public void altaEntidad( Entidad entidad, HttpServletRequest request, HttpServletResponse response) {
-                
+    public void altaEntidad( Entidad entidad, HttpServletRequest request, HttpServletResponse response) {            
         
-        System.out.println("Dar de alta a : "+entidad.getNombre());
-        entidadDao.create(entidad);
+        System.out.println("Dar de alta a : "+entidad.getNombre()); // Borrar
+        entidadDao.update(entidad);
         
     }
 
     @RequestMapping("bajaEntidad.htm")
     public void bajaEntidad(Entidad entidad,HttpServletRequest request, HttpServletResponse response) {
         
-        System.out.println("Dar de baja la entidad n "+entidad.getIdEntidad()+" nombre "+entidad.getNombre());
+        System.out.println("Dar de baja la entidad n "+entidad.getIdEntidad()+" nombre "+entidad.getNombre()); // Borrar
         entidadDao.delete(entidad);
     }
 
-    @RequestMapping("modificaEntidad.htm")
-    public void modificaEntidad(Entidad entidad, HttpServletRequest request, HttpServletResponse response) {
-         
-        System.out.println("Id "+entidad.getIdEntidad());
-        System.out.println("Entidad "+entidad.getNombre());
-        System.out.println("Direccion "+entidad.getDireccion()+" poblacion "+entidad.getPoblacion());
-        entidadDao.update(entidad);
-        
-    }    
 }

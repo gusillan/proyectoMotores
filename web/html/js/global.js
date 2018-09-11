@@ -11,8 +11,8 @@ var confirmationOpt = {
     btnCancelLabel: 'No',
     singleton: true
 };
-
-// 1 Listener *****************************************************************
+/* Listener 
+ ******************************************************************************/
 
 $("document").ready(function() {
 
@@ -95,38 +95,9 @@ $("document").ready(function() {
     });
 
 });
-// FUNCIONES BASICAS **********************************************************
+// FUNCIONES BASICAS **********************************************************/
 
-/*function guardarUrl(url){
- if (validarFormulario()){
- var data = $("#formulario").serialize();
- console.log("Formulario serializado "+data); // Borrar
- $.ajax({
- url: url,
- data : data,
- type : 'POST',
- success : limpiar            
- });
- }else{
- console.log("Formulario no válido");
- 
- 
- }
- }
- function bajaUrl(url){
- console.log("Damos de baja "+url );
- var data = $("#formulario").serialize();
- console.log("Formulario serializado "+data); // Borrar
- $.ajax({
- url: url,
- data : data,
- type : 'POST',
- success : limpiar
- });
- }*/
-// 2 Consultas ****************************************************************
-
-//FUNCION GLOBAL PETICIONES AJAX ********************
+/*Funcion Global Peticiones Ajax********************/
 function peticionAjax(url, data, funcion) {
     $.ajax({
         url: url,

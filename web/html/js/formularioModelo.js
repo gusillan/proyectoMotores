@@ -1,5 +1,5 @@
 /*  Listener
- *********************************************************/
+ ******************************************************************************/
 $("document").ready(function() {
 
     console.log("Codigo " + getQueryVariable("codigo"));
@@ -10,41 +10,15 @@ $("document").ready(function() {
 
     }
 
-    consultarMarca();
-    muestraImagen();
-
+    consultarMarca(); //??
+    muestraImagen();  //??
 
     $("#fechaInicio").mask("99/9999"); // sin lineas("99/9999", {placeholder: " "})
     $("#fechaFin").mask("99/9999");
 
     $("#codigo").change(consultaCodigo);
     $("#codigoMarca").change(consultarMarca);
-
-
-    $('#archivo').change(function() {
-
-        var dataFile = new FormData();
-        var files = document.getElementById("archivo").files;
-        var file = files[0];
-        console.log("FIles " + file.size);
-        dataFile.append("file", file);
-
-        $.ajax({
-            url: '../guardaImagen.htm',
-            type: 'POST',
-            data: dataFile,
-            processData: false,
-            contentType: false,
-        });
-
-        var files = $('#archivo')[0].files;
-        console.log("Funcion change " + files[0].value);
-        var nombreFichero = $('#archivo')[0].files[0].name
-        for (var i = 0; i < files.length; i++) {
-            resizeAndUpload(files[i]);
-        }
-    });
-
+    $('#archivo').change(subirImagen);
 
 });
 
@@ -83,7 +57,7 @@ function borraFormulario() {
     $("#idModelo").val("");
 }
 
-function respuestaCeroObjetos() {    
+function respuestaCeroObjetos() {
     borraFormulario();
 }
 
@@ -119,6 +93,31 @@ function muestraImagen() {
 
 /* Subir imagen
  ******************************************************************************/
+function subirImagen() {
+
+    var dataFile = new FormData();
+    var files = document.getElementById("archivo").files;
+    var file = files[0];
+    console.log("FIles " + file.size);
+    dataFile.append("file", file);
+
+    $.ajax({
+        url: '../guardaImagen.htm',
+        type: 'POST',
+        data: dataFile,
+        processData: false,
+        contentType: false,
+    });
+
+    var files = $('#archivo')[0].files;
+    console.log("Funcion change " + files[0].value);
+    var nombreFichero = $('#archivo')[0].files[0].name
+    for (var i = 0; i < files.length; i++) {
+        resizeAndUpload(files[i]);
+    }
+
+}
+
 function resizeAndUpload(file) {
 
     console.log("Redimension de imagen");
