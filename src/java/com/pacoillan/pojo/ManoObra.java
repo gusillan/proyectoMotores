@@ -25,20 +25,16 @@ public class ManoObra implements java.io.Serializable, Comparable {
     private Categoria categoria;
     private String codigo;
     private String descripcion;
-    private Modelo modelo;
-    private Motor motor;
     private Float tiempo;
     private String infoDescripcion;
 
     public ManoObra() {
     }
 
-    public ManoObra(Categoria categoria, String codigo, String descripcion, Modelo modelo, Motor motor, Float tiempo, String infoDescripcion) {
+    public ManoObra(Categoria categoria, String codigo, String descripcion, Float tiempo, String infoDescripcion) {
         this.categoria = categoria;
         this.codigo = codigo;
         this.descripcion = descripcion;
-        this.modelo = modelo;
-        this.motor = motor;
         this.tiempo = tiempo;
         this.infoDescripcion = infoDescripcion;
     }
@@ -80,26 +76,6 @@ public class ManoObra implements java.io.Serializable, Comparable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "idModelo", nullable = false)
-    public Modelo getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(Modelo modelo) {
-        this.modelo = modelo;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "idMotor", nullable = false)
-    public Motor getMotor() {
-        return motor;
-    }
-
-    public void setMotor(Motor motor) {
-        this.motor = motor;
     }
 
     @Column(name = "tiempo", precision = 12, scale = 0)

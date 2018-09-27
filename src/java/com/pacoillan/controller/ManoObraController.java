@@ -7,11 +7,8 @@ import com.pacoillan.DAO.CategoriaDAO;
 import com.pacoillan.DAO.ManoObraDAO;
 import com.pacoillan.pojo.Categoria;
 import com.pacoillan.pojo.ManoObra;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,16 +26,16 @@ public class ManoObraController {
     @Autowired
     ManoObraDAO  manoObraDao;
     
-    @RequestMapping("consultaManoObraAsociada.htm")
-    public void consultaManoObraAsociada(HttpServletRequest request, HttpServletResponse response)throws IOException{
+    @RequestMapping("consultaManoObra.htm")
+    public void consultaManoObra(HttpServletRequest request, HttpServletResponse response)throws IOException{
         
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         
-        String categoria = request.getParameter("categoria");
-        System.out.println("Vamos a consultar la MO asociada a la categoria "+ categoria);
-        List<ManoObra> listaManoObra = manoObraDao.listadoPorCampoExacto("categoria", categoria);
+        String codigo = request.getParameter("parametro");
+        System.out.println("Vamos a consultar la MO "+ codigo);
+        List<ManoObra> listaManoObra = manoObraDao.listadoPorCampoExacto("codigo", codigo);
         if (listaManoObra.isEmpty()) {
             System.out.println("No hay coincidencia");
             out.println();
@@ -54,43 +51,20 @@ public class ManoObraController {
     }
     
     @RequestMapping("guardaManoObra.htm")
-    public void guardaManoObra(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void guardaManoObra(ManoObra manoObra,HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("ESTAMOS EN GUARDAR MANO DE OBRA !!!!");
-        String codigoMO;
-        String tipoMO = request.getParameter("tipoMO");
-        if (tipoMO.equals("1")){
-            codigoMO = request.getParameter("codigoMO1");
-        }else{
-            codigoMO = request.getParameter("codigoMO2");
-        }
-        System.out.println("Codigo MO pricipal "+codigoMO);
-        
-        
-        
-        String categoriaMO = request.getParameter("categoriaMO");
-        List<Categoria> listaCat = categoriaDao.listadoPorCampoExacto("codigo", categoriaMO);
-        Categoria cat = listaCat.get(0);
-        System.out.println("Categoria "+cat.getIdCategoria()+" "+cat.getCodigo()+" "+cat.getCategoria());
+        System.out.println("Codigo "+manoObra.getCodigo());
+                
+        String codigoRecambio = request.getParameter("codigoCategoria");
+        System.out.println("Codigo Recambio "+codigoRecambio);
+        List<Categoria> listaCat = categoriaDao.listadoPorCampoExacto("idCategoria", codigoRecambio);
+        Categoria cat = listaCat.get(0);       
+        System.out.println("Categoria de Recambio "+cat.getIdCategoria()+" "+cat.getCodigo()+" "+cat.getCategoria());
+        manoObra.setCategoria(cat);      
+        manoObraDao.update(manoObra);
     }
 
-    /*@RequestMapping("consultaFabricante.htm")
-    public void consultaFabricante(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        PrintWriter out = response.getWriter();
-        String codigoFabricante = request.getParameter("codigo");
-        List<Fabricante> listaFabricantes = fabricanteDao.listadoPorCampoExacto("codigo", codigoFabricante);
-        System.out.println(listaFabricantes);
-        //if (listaFabricantes.isEmpty()) {
-        //    out.println();
-        //} else {
-            Gson gson = new Gson();
-            String lista = gson.toJson(listaFabricantes);
-            System.out.println(lista);
-            out.println(lista);
-        //}
-    }
-
+/*
     @RequestMapping("bajaFabricante.htm")
     public void bajaFabricante(Fabricante fabricante, HttpServletRequest request, HttpServletResponse response) {        
         try{

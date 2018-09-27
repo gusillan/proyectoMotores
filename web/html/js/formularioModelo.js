@@ -53,8 +53,11 @@ function consultaCodigo() {
 }
 
 function borraFormulario() {
-    $("#descripcion").val("");
-    $("#idModelo").val("");
+    var codigo = $("#codigo").val();
+    $("#formulario")[0].reset();
+    $("#codigo").val(codigo);
+    $("#imagenModelo").attr("src", ""); 
+    $("#logoMarca").attr("src", "");
 }
 
 function respuestaCeroObjetos() {

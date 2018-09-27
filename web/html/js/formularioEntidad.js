@@ -111,8 +111,7 @@ function rellenaDNI(dniField) {
         }
 
     }
-
-
+    
     dniField.setCustomValidity(customMessage);
     dniField.title = customMessage;
     $(dniField).popover({template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title o-popover-title"></h3><div class="popover-content o-popover-content"></div></div>'});

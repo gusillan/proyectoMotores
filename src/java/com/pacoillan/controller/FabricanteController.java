@@ -39,8 +39,8 @@ public class FabricanteController {
         System.out.println(listaFabricantes);
         
         Gson gson = new Gson();
-        String lista = gson.toJson(listaFabricantes); //Borrar
-        System.out.println(lista);
+        String lista = gson.toJson(listaFabricantes);
+        System.out.println(lista); //Borrar
         out.println(lista);       
     }
 

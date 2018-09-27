@@ -149,8 +149,8 @@ function respuestaConsultaMarca(listaObjetos) {
         console.log("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
     } else if (listaObjetos.length < 1) {
         console.log("No existe ningun fabricante con ese Codigo");
-        $("#marca").val('');
-        $("#codigoMarca").val('');
+        $("#marca").val("");
+        $("#codigoMarca").val("");
         $("#logoMarca").attr("src", "");
     }
 }
@@ -165,10 +165,7 @@ function consultaModelo() {
     if (!vacio($("#codigoModelo"))) {
         var modelo = $("#codigoModelo").val();
         console.log("Modelo " + modelo);  // borrar
-        $.getJSON(
-                '../consultaModelo.htm',
-                {codigo: modelo},
-        respuestaConsultaModelo);
+        peticionAjax('../consultaModelo.htm',modelo,respuestaConsultaModelo);
     } else {
         $("#descripcionModelo").val("");
         $("#logoMarca").attr("src", "");
@@ -218,10 +215,7 @@ function consultaMotor() {
     if (!vacio($("#codigoMotor"))) {
         var motor = $("#codigoMotor").val();
         console.log("Motor " + motor);
-        $.getJSON(
-                '../consultaCodigoMotor.htm',
-                {codigo: motor},
-        respuestaConsultaMotor);
+        peticionAjax('../consultaCodigoMotor.htm', motor,respuestaConsultaMotor);
     } else {
         $("#descripcionMotor").val("");
         $("#combustibleMotor,#cilindradaMotor,#kwMotor,#nombreFabricanteMotor").html("");

@@ -58,8 +58,7 @@ function baja() {
  ******************************************************************************/
 
 function consultaCodigo() {
-    if ($("#codigo").val().length > 0) {
-        console.log("vamos a consultar el código " + this.value); //Borrar
+    if (!vacio($("#codigo"))) {
         var codigo = this.value;
         peticionAjax('../consultaCodigoMotor.htm', codigo, respuestaConsultaCampo);
     } else {
@@ -68,7 +67,10 @@ function consultaCodigo() {
 }
 
 function borraFormulario() {
-    console.log("Borrar formulario? ");
+    var codigo=$("#codigo").val();
+    $("#formulario")[0].reset(); 
+    $("#logoMarca").attr("src", "");    
+    $("#codigo").val(codigo);    
 }
 
 function respuestaCeroObjetos() {

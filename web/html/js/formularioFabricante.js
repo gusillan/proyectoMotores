@@ -26,8 +26,7 @@ function baja() {
  *****************************************************************************/
 
 function consultaCodigo() {
-    if ($("#codigo").val().length > 0) {
-        console.log("vamos a consultar el código " + this.value);
+    if (!vacio($("#codigo"))) {
         var codigo = this.value;
         peticionAjax('../consultaFabricante.htm', codigo, respuestaConsultaCampo);
     } else {
@@ -36,11 +35,12 @@ function consultaCodigo() {
 }
 
 function borraFormulario() {
-    $("#idFabricante").val("");
-    $("#nombre").val("");
-    $("#logo").val("");
-    $("#imgLogo").attr("src", "");
+    var codigo=$("#codigo").val();
+    $("#formulario")[0].reset();
+    $("#codigo").val(codigo);    
+    $("#imgLogo").attr("src", "");        
 }
+
 function respuestaCeroObjetos(){
      borraFormulario();
 }

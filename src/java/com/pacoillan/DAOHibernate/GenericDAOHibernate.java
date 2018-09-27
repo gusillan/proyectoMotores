@@ -120,7 +120,7 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
         session = sessionFactory.openSession();
         String query = "FROM " + pojo + " as e WHERE e." + campo + " LIKE '" + dato + "'";
         lista = session.createQuery(query).list();
-        //session.close(); Daba error ( no sé por qué)??
+        session.close(); //Daba error ( no sé por qué)??
         return lista;
     }
 
@@ -130,7 +130,7 @@ public abstract class GenericDAOHibernate<T, Id extends Serializable>
         List lista;
         session = sessionFactory.openSession();
         lista = session.createQuery(query).list();
-        //session.close(); Daba error ( no sé por qué)??
+        session.close();// Daba error ( no sé por qué)??
         return lista;
 
 
