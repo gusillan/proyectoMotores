@@ -23,28 +23,14 @@ var cMOPrincipal = "0";
 function guardar() {
 
     if (validarFormulario()) {
-        var data = $("#formManoObra").serialize();
-        console.log("Serializada " + data);
-        $.ajax({
-            url: '../guardaManoObra.htm',
-            data: data,
-            type: 'POST',
-            success: limpiar
-        });
+        envioFormulario('../guardaManoObra.htm');
     } else {
-        console.log("Formulario no valido");
+        console.log("ERROR - Formulario no Válido");
     }
 }
 
 function baja() {
-
-    var data = $("#formManoObra").serialize();
-    $.ajax({
-        url: '../bajaManoObra.htm',
-        data: data,
-        type: 'POST',
-        success: limpiar
-    });
+    envioFormulario('../bajaManoObra.htm');
 }
 
 /* Funciones adicionales
@@ -52,12 +38,26 @@ function baja() {
 function consultaCodigo() {
     if (!vacio($("#codigo"))) {
         var codigo = this.value;
-        console.log("Vamos a consultar " + codigo);
+        console.log("Vamos a consultar " + codigo); // Borrar
         peticionAjax('../consultaManoObra.htm', codigo, respuestaConsultaCampo);
     } else {
         borrarFormulario();
     }
+}
 
+function borrarFormulario() {
+    var codigo = $("#codigo").val();
+    $("#formulario")[0].reset();
+    $("#codigo").val(codigo);
+}
+
+function respuestaCeroObjetos(){
+    console.log("Zero Obj");
+    borrarFormulario();
+}
+
+function respuestaVariosObjetos(){
+    console.log("ERROR - No puede haber codigo repetidos en esta BBDD.Consultar al administrador");
 }
 
 function listadoCategoriaRecambio() {
@@ -92,37 +92,16 @@ function formatearTiempo() {
     $("#tiempo").val(tiempoDecimal.toFixed(2));
 }
 
-/*function consultarMOAsociada() {
-    var categoriaAsociada = $("#listaCategorias").val();
-    if (categoriaAsociada == 0) {
-        $("#codigo").focus();
-    } else {
-        console.log("Vamos a consultar la MO asociada a " + categoriaAsociada);
-        $.getJSON('../consultaManoObraAsociada.htm', {categoria: categoriaAsociada}, respuestaConsultaCategoriaAsociada);
-    }
-}
 
-function respuestaConsultaCategoriaAsociada(listaObjetos) {
-    console.log("llegaste AQUI");
-    if (listaObjetos.length === 1) {
-        var objeto = listaObjetos[0];
-        console.log("llego 1 objeto " + objeto);
-        rellenaFormulario(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
-
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun fabricante con ese Codigo");
-    }
-}
-*/
 function rellenaFormulario(obj) {
     $("#idManoObra").val(obj.idManoObra);
     $("#codigo").val(obj.codigo);
     $("#descripcion").val(obj.descripcion);
     $("#infoDescripcion").val(obj.infoDescripcion);
     $("#tiempo").val(obj.tiempo);
+    formatearTiempo();
     $('#listaCategorias option[value="' + obj.categoria.idCategoria + '"]').prop('selected', true);
+    $("#baja").attr("disabled", false);
 }
 
 

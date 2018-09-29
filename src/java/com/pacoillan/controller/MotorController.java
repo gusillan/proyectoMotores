@@ -56,21 +56,18 @@ public class MotorController {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+        
         String codigoMotor = (request.getParameter("parametro").toUpperCase());
-        System.out.println("Codigo -> " + codigoMotor);
+        System.out.println("Codigo -> " + codigoMotor); // Borrar
         List<Motor> listaMotores = motorDao.listadoPorCampoExacto("codigo", codigoMotor);
         if (listaMotores.isEmpty()) {
-            //Motor m = new Motor(codigoMotor);
-            //Fabricante f = new Fabricante();
-            //m.setFabricante(f);
-            //listaMotores.add(m);
             out.println();
         } else {
             Collections.sort(listaMotores);
         }
         Gson gson = new Gson();
         String lista = gson.toJson(listaMotores);
-        System.out.println("Lista Respuesta " + lista);
+        System.out.println("Lista Respuesta " + lista); // Borrar
         out.println(lista);
     }
 

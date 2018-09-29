@@ -121,6 +121,7 @@ function envioFormulario(url) {
 }
 
 function respuestaConsultaCampo(listaObjetos) {
+    console.log("lista de objetos "+listaObjetos); // borrar
     if (listaObjetos.length == 1) {
         var objeto = listaObjetos[0];
         rellenaFormulario(objeto);

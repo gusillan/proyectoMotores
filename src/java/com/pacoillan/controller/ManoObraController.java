@@ -9,6 +9,7 @@ import com.pacoillan.pojo.Categoria;
 import com.pacoillan.pojo.ManoObra;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,30 +27,6 @@ public class ManoObraController {
     @Autowired
     ManoObraDAO  manoObraDao;
     
-    @RequestMapping("consultaManoObra.htm")
-    public void consultaManoObra(HttpServletRequest request, HttpServletResponse response)throws IOException{
-        
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        PrintWriter out = response.getWriter();
-        
-        String codigo = request.getParameter("parametro");
-        System.out.println("Vamos a consultar la MO "+ codigo);
-        List<ManoObra> listaManoObra = manoObraDao.listadoPorCampoExacto("codigo", codigo);
-        if (listaManoObra.isEmpty()) {
-            System.out.println("No hay coincidencia");
-            out.println();
-        } else {     
-        ManoObra mo = listaManoObra.get(0);
-        System.out.println("Mano de obra "+mo.getCodigo()+" "+mo.getDescripcion());
-        Gson gson = new Gson();
-        String lista = gson.toJson(listaManoObra);
-        System.out.println("Lista Respuesta " + lista);
-        out.println(lista);
-        }
-        
-    }
-    
     @RequestMapping("guardaManoObra.htm")
     public void guardaManoObra(ManoObra manoObra,HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("ESTAMOS EN GUARDAR MANO DE OBRA !!!!");
@@ -62,16 +39,36 @@ public class ManoObraController {
         System.out.println("Categoria de Recambio "+cat.getIdCategoria()+" "+cat.getCodigo()+" "+cat.getCategoria());
         manoObra.setCategoria(cat);      
         manoObraDao.update(manoObra);
-    }
+    }    
+    
+    @RequestMapping("bajaManoObra.htm")
+    public void bajaManoObra (ManoObra manoObra, HttpServletRequest request, HttpServletResponse response) {
 
-/*
-    @RequestMapping("bajaFabricante.htm")
-    public void bajaFabricante(Fabricante fabricante, HttpServletRequest request, HttpServletResponse response) {        
-        try{
-         fabricanteDao.delete(fabricante);
-        }catch (Exception ex){            
-            System.out.println("Excepcion al dar de baja el registro" +ex);
-        }       
-       
-    }    */
+        List<Categoria> listaCat = categoriaDao.listadoPorCampoExacto("idCategoria", request.getParameter("codigoCategoria"));
+        Categoria cat = listaCat.get(0);
+        manoObra.setCategoria(cat);
+        manoObraDao.delete(manoObra);
+    }
+    
+    @RequestMapping("consultaManoObra.htm")
+    public void consultaManoObra(HttpServletRequest request, HttpServletResponse response)throws IOException{
+        
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        
+        String codigo = (request.getParameter("parametro").toUpperCase());
+        System.out.println("Vamos a consultar la MO "+ codigo); //Borrar
+        List<ManoObra> listaManoObra = manoObraDao.listadoPorCampoExacto("codigo", codigo);
+        if (listaManoObra.isEmpty()) {
+            System.out.println("No hay coincidencia"); // Borrar
+            out.println();
+        } else { 
+            Collections.sort(listaManoObra);
+        }
+        Gson gson = new Gson();
+        String lista = gson.toJson(listaManoObra);
+        System.out.println("Lista Respuesta " + lista);  // Borrar
+        out.println(lista);       
+    }
 }
