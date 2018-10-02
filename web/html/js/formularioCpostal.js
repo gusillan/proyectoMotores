@@ -1,65 +1,57 @@
 /* Listener
- * *******************************************************/
+ * ****************************************************************************/
 
 $(function() {
 
     $("#codigo").focus();
-
-    $("#codigo").blur(function() {
-        if ($("#codigo").val().length > 0) {
-            console.log("Codigor " + this.value);
-            consultaCpostal(this.value);
-        } else {
-            console.log("Codigo Postal vacio");
-        }
-    });
-
+    $("#codigo").change(consultaCpostal);
+    
 });
 
-/* Funciones Básicas Botones
- **********************************************************/
+/* Funciones Menú Principal
+ ******************************************************************************/
 
-function guardar() {
-    var data = $("#formCpostal").serialize();
-    $.ajax({
-        url: '../guardarCpostal.htm',
-        data: data,
-        type: 'POST',
-        success: limpiar
-    });
+function guardar(){
+    if (validarFormulario()){
+        envioFormulario('../guardaCpostal.htm');
+    }else{
+        console.log("ERROR - Formulario no válido");
+    }
 }
 
-function baja() {
-    var data = $("#formCpostal").serialize();
-    $.ajax({
-        url: '../bajaCpostal.htm',
-        data: data,
-        type: 'POST',
-        success: limpiar
-    });
+function baja(){
+    envioFormulario('../bajaCpostal.htm');
 }
 
 
-/* Funciones de interaccion con Back-End */
+/* Funciones principales
+ ******************************************************************************/
 
-function consultaCpostal(cpost) {
-
-    console.log("Consultar " + cpost);
-    $.ajax({
-        url: '../consultaCpostal.htm',
-        data: {codigo: cpost},
-        type: 'POST',
-        success: rellenarCpostal
-    });
+function consultaCpostal() {
+    
+    if (!vacio($("#codigo"))){
+        var codigo = this.value;
+        peticionAjax('../consultaCpostal.htm',codigo,respuestaConsultaCampo);
+    }
 }
-function rellenarCpostal(respuesta) {
-    if (respuesta.length > 0) {
-        poblacion = respuesta[0];
-        $("#poblacion").val(poblacion.poblacion);
+    function borraFormulario(){
+        $("#poblacion").val("");
+    }
+    
+    function respuestaCeroObjetos(){
+        borraFormulario();
+    }
+    
+    function respuestaVariosObjetos(){
+        console.log("ERROR - No puede haber codigos postales duplicados");
+    }
+    
+function rellenaFormulario(obj) {       
+        $("#poblacion").val(obj.poblacion);
         $("#baja").attr("disabled", false);
         updateFocusables();
     }
-}
+
 
 
 

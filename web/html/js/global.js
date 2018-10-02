@@ -196,6 +196,9 @@ function rellenaModelo(modelo) {
     $("#logoMarca").attr("src", "img/marcas/" + modelo.fabricante.logo);
     $("#silueta").attr("src", "img/imagenesVehiculos/" + modelo.imagen);
     /*$("#nombreFabricanteModelo").text(modelo.fabricante.nombre);*/
+    $("#codigoMarca").val(modelo.fabricante.codigo); //prueba
+    console.log("Estas aki");
+    $("#fechainicio").val(modelo.fechaInicio);//prueba
 
 }
 

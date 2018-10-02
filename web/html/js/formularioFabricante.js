@@ -2,8 +2,7 @@
  *****************************************************************************/
 $("document").ready(function() {
 
-    $("#codigo").change(consultaCodigo);
-    $("#logo").change(rellenarLogo);
+    $("#codigo").change(consultaCodigo);   
 
 });
 
@@ -34,19 +33,19 @@ function consultaCodigo() {
     }
 }
 
-function borraFormulario() {
-    var codigo=$("#codigo").val();
-    $("#formulario")[0].reset();
-    $("#codigo").val(codigo);    
-    $("#imgLogo").attr("src", "");        
+function respuestaCeroObjetos() {
+    borraFormulario();
 }
 
-function respuestaCeroObjetos(){
-     borraFormulario();
-}
-
-function respuestaVariosObjetos(){
+function respuestaVariosObjetos() {
     console.log("ERROR - No puede haber códigos repetidos en esta BBDD.Consultar al administrador");
+}
+
+function borraFormulario() {
+    var codigo = $("#codigo").val();
+    $("#formulario")[0].reset();
+    $("#codigo").val(codigo);
+    $("#imgLogo").attr("src", "");
 }
 
 function rellenaFormulario(obj) {
@@ -57,8 +56,4 @@ function rellenaFormulario(obj) {
     $('#imgLogo').attr("src", "img/marcas/" + obj.logo);
     $("#baja").attr("disabled", false);
     updateFocusables();
-}
-
-function rellenarLogo() {
-    console.log("Vamos a rellenarlo con ");//+$("#nombre").val()+".PNG");
 }

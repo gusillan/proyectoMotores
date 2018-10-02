@@ -4,21 +4,15 @@ $("document").ready(function() {
 
     console.log("Codigo " + getQueryVariable("codigo"));
     if (getQueryVariable("codigo")) {
-        $("#codigo").val(getQueryVariable("codigo"));
-        //consultarMarca();
-        //muestraImagen();
-
+        $("#codigo").val(getQueryVariable("codigo"));        
     }
-
-    consultarMarca(); //??
-    muestraImagen();  //??
 
     $("#fechaInicio").mask("99/9999"); // sin lineas("99/9999", {placeholder: " "})
     $("#fechaFin").mask("99/9999");
 
     $("#codigo").change(consultaCodigo);
     $("#codigoMarca").change(consultarMarca);
-    $('#archivo').change(subirImagen);
+    $('#archivo').change(subirImagen);           
 
 });
 
@@ -43,13 +37,21 @@ function baja() {
 
 function consultaCodigo() {
     if (!vacio($("#codigo"))) {
-        console.log("vamos a consultar el código " + this.value); //Borrar
-        console.log($("#codigo").val().length);
         var codigo = this.value;
         peticionAjax('../consultaModelo.htm', codigo, respuestaConsultaCampo);
     } else {
         borraFormulario();
     }
+}
+
+function respuestaCeroObjetos() {
+    borraFormulario();
+}
+
+function respuestaVariosObjetos(listaObjetos) {
+   
+    $('#myModal').modal('show');    //Abre la ventana Modal con la lista
+    rellenaListaMotores(listaObjetos);
 }
 
 function borraFormulario() {
@@ -60,29 +62,16 @@ function borraFormulario() {
     $("#logoMarca").attr("src", "");
 }
 
-function respuestaCeroObjetos() {
-    borraFormulario();
-}
-
-function respuestaVariosObjetos(listaObjetos) {
-    console.log("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
-    console.log("Esta es la lista " + listaObjetos);
-    $('#myModal').modal('show');    //Abre la ventana Modal con la lista
-    rellenaListaMotores(listaObjetos);
-}
-
 function rellenaFormulario(obj) {
     $("#idModelo").val(obj.idModelo);
     $("#codigo").val(obj.codigo);
     $("#descripcion").val(obj.descripcion);
     $("#codigoMarca").val(obj.fabricante.codigo);
     rellenaMarca(obj.fabricante);
-    //$("#marca").val(obj.fabricante.nombre);
     $("#fechaInicio").val(obj.fechaInicio);
     $("#fechaFin").val(obj.fechaFin);
     $("#imagen").val(obj.imagen);
     muestraImagen();
-    //$("#imagenModelo").attr("src", "img/imagenesVehiculos/" + obj.imagen);
     $("#baja").attr("disabled", false);
     updateFocusables();
 

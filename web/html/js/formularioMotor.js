@@ -48,7 +48,6 @@ function guardar() {
         console.log("ERROR - Formulario no válido");
     }
 }
-;
 
 function baja() {
     envioFormulario('../bajaMotor.htm');
@@ -78,8 +77,7 @@ function respuestaCeroObjetos() {
 }
 
 function respuestaVariosObjetos(listaObjetos) {
-    console.log("Existen varios fabricantes con ese Codigo"); //Borrar
-    console.log("Esta es la lista " + listaObjetos);          //Borrar
+   
     ventanaMotores.abrir(listaObjetos);
 }
 

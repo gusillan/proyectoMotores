@@ -29,31 +29,62 @@ $("document").ready(function() {
     });
 });
 
-// 2 Botones Básicos **********************************************************
+/* Funciones Menú Principal
+ ******************************************************************************/
 
 function guardar() {
     if (validarFormulario()) {
-        var data = $("#formVehiculo").serialize();
-        console.log("Serializada " + data);
-        $.ajax({
-            url: '../guardaVehiculo.htm',
-            data: data,
-            type: 'POST',
-            success: limpiar
-        });
+        envioFormulario('../guardaVehiculo.htm');
+    }else{
+        console.log("ERROR - Formulario no válido");
     }
 }
 
 function baja() {
-    var data = $("#formVehiculo").serialize();
-    console.log("Serializada " + data);
-    $.ajax({
-        url: '../bajaVehiculo.htm',
-        data: data,
-        type: 'POST',
-        success: limpiar
-    });
+    envioFormulario('../bajaVehiculo.htm');
 }
+
+/* Funciones Principales
+ ******************************************************************************/
+
+function consultaCliente() {
+    if (!vacio($("#codigoCliente"))) {
+        var cliente = $("#codigoCliente").val();
+        console.log("Cliente " + cliente);
+        $.getJSON(
+                '../consultaClientePorCodigo.htm',
+                {codigo: cliente},
+        respuestaConsultaCliente);
+    } else {
+        $("#nombreCliente").val("");
+    }
+
+}
+
+
+function respuestaConsultaCliente(listaObjetos) {
+    if (listaObjetos.length == 1) {
+        var objeto = listaObjetos[0];
+        rellenaCliente(objeto);
+    } else if (listaObjetos.length > 1) {
+        console.log("Existen varios Clientes con el mismo codigo.Consultar con el administrador de la BBDD");
+    } else if (listaObjetos.length < 1) {
+        console.log("No existe ningun Cliente con este codigo");
+        $("#nombreCliente").val("");
+        darAltaCliente();
+    }
+}
+
+function rellenaCliente(cliente) {
+    $("#codigoCliente").val(cliente.idEntidad);
+    $("#nombreCliente").val(cliente.nombre);
+    $("#poblacionEntidad").text(cliente.poblacion);
+    $("#telefonoEntidad").text(cliente.telefono);
+    $("#movilEntidad").text(cliente.movil);
+}
+
+
+
 
 // 3 Rellenar Formulario ******************************************************
 
@@ -109,41 +140,6 @@ var ventanaMatricula = new VentanaEmergente({
 /* Funciones de Consulta de codigos
  ************************************************************/
 
-function consultaCliente() {
-    if (!vacio($("#codigoCliente"))) {
-        var cliente = $("#codigoCliente").val();
-        console.log("Cliente " + cliente);
-        $.getJSON(
-                '../consultaClientePorCodigo.htm',
-                {codigo: cliente},
-        respuestaConsultaCliente);
-    } else {
-        $("#nombreCliente").val("");
-    }
-
-}
-
-
-function respuestaConsultaCliente(listaObjetos) {
-    if (listaObjetos.length == 1) {
-        var objeto = listaObjetos[0];
-        rellenaCliente(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varios Clientes con el mismo codigo.Consultar con el administrador de la BBDD");
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun Cliente con este codigo");
-        $("#nombreCliente").val("");
-        darAltaCliente();
-    }
-}
-
-function rellenaCliente(cliente) {
-    $("#codigoCliente").val(cliente.idEntidad);
-    $("#nombreCliente").val(cliente.nombre);
-    $("#poblacionEntidad").text(cliente.poblacion);
-    $("#telefonoEntidad").text(cliente.telefono);
-    $("#movilEntidad").text(cliente.movil);
-}
 
 
 /*  Busquedas
@@ -213,7 +209,6 @@ function buscarMotor() {
             type: 'POST',
             dataType: 'json',
             success: respuestaBuscarMotor
-
         });
     }
 }
@@ -239,3 +234,4 @@ function darAltaCliente() {
         $("#codigoCliente").focus();
     }
 }
+
