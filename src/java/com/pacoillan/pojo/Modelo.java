@@ -18,23 +18,23 @@ import javax.persistence.Table;
 public class Modelo implements java.io.Serializable, Comparable {
 
     private Integer idModelo;
-    private String codigo;
+    private String codigoModelo;
     private Fabricante fabricante;
-    private String descripcion;
-    private String fechaInicio;
-    private String fechaFin;
-    private String imagen;
+    private String descripcionModelo;
+    private String inicioModelo;
+    private String finModelo;
+    private String imagenModelo;
 
     public Modelo() {
     }
 
-    public Modelo(String codigo, Fabricante fabricante, String descripcion, String fechaInicio, String fechaFin, String imagen) {
-        this.codigo = codigo;
+    public Modelo(String codigoModelo, Fabricante fabricante, String descripcionModelo, String inicioModelo, String finModelo, String imagenModelo) {
+        this.codigoModelo = codigoModelo;
         this.fabricante = fabricante;
-        this.descripcion = descripcion;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.imagen = imagen;
+        this.descripcionModelo = descripcionModelo;
+        this.inicioModelo = inicioModelo;
+        this.finModelo = finModelo;
+        this.imagenModelo = imagenModelo;
     }
 
     @Id
@@ -48,13 +48,13 @@ public class Modelo implements java.io.Serializable, Comparable {
         this.idModelo = idModelo;
     }
 
-    @Column(name = "codigo", nullable = false, length = 10)
-    public String getCodigo() {
-        return this.codigo;
+    @Column(name = "codigoModelo", nullable = false, length = 10)
+    public String getCodigoModelo() {
+        return this.codigoModelo;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoModelo(String codigoModelo) {
+        this.codigoModelo = codigoModelo;
     }
 
     @OneToOne
@@ -67,45 +67,45 @@ public class Modelo implements java.io.Serializable, Comparable {
         this.fabricante = fabricante;
     }
 
-    @Column(name = "descripcion", nullable = false, length = 30)
-    public String getDescripcion() {
-        return this.descripcion;
+    @Column(name = "descripcionModelo", nullable = false, length = 30)
+    public String getDescripcionModelo() {
+        return this.descripcionModelo;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescripcionModelo(String descripcionModelo) {
+        this.descripcionModelo = descripcionModelo;
     }
 
-    @Column(name = "fechaInicio", nullable = false)
-    public String getFechaInicio() {
-        return this.fechaInicio;
+    @Column(name = "inicioModelo", nullable = false)
+    public String getInicioModelo() {
+        return this.inicioModelo;
     }
 
-    public void setFechaInicio(String fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setInicioModelo(String inicioModelo) {
+        this.inicioModelo = inicioModelo;
     }
 
-    @Column(name = "fechaFin", nullable = false)
-    public String getFechaFin() {
-        return this.fechaFin;
+    @Column(name = "finModelo", nullable = false)
+    public String getFinModelo() {
+        return this.finModelo;
     }
 
-    public void setFechaFin(String fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setFinModelo(String finModelo) {
+        this.finModelo = finModelo;
     }
 
-    @Column(name = "imagen", nullable = false, length = 20)
-    public String getImagen() {
-        return this.imagen;
+    @Column(name = "imagenModelo", nullable = false, length = 20)
+    public String getImagenModelo() {
+        return this.imagenModelo;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setImagenModelo(String imagenModelo) {
+        this.imagenModelo = imagenModelo;
     }
 
     @Override
     public int compareTo(Object t) {
         Modelo otroModelo = (Modelo) t;
-        return codigo.compareTo(otroModelo.getCodigo());
+        return codigoModelo.compareTo(otroModelo.getCodigoModelo());
     }
 }

@@ -33,7 +33,7 @@
                 <h1>Formulario Modelo</h1>      
             </div>
 
-            <form name="formulario" id="formulario" enctype="multipart/form-data">
+            <form name="formularioModelo" id="formulario" enctype="multipart/form-data">
 
                 <div class="row">
                     <div class="col-md-2">
@@ -47,15 +47,15 @@
                 <div class="row">
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="codigo">Código</label>
-                            <input type="text" class="form-control g-input" id="codigo" name="codigo"  maxlength="9" required title="Complete el código de fabricante">
+                            <label for="codigoModelo">Código</label>
+                            <input type="text" class="form-control g-input" id="codigoModelo" name="codigoModelo"  maxlength="9" required title="Complete el código de fabricante">
                         </div>               
                     </div>   
                     <div class="col-md-6">              
                         <div class="form-group">
-                            <label for="descripcion">Descripción</label>
+                            <label for="descripcionModelo">Descripción</label>
                             <div class="form-group">
-                                <input type="text" class="form-control g-input" id="descripcion" name="descripcion" size="45" maxlength="40" required title="Complete la descripción">
+                                <input type="text" class="form-control g-input" id="descripcionModelo" name="descripcionModelo" size="45" maxlength="40" required title="Complete la descripción">
                             </div><!-- /input-group -->
                         </div>               
                     </div>             
@@ -64,32 +64,32 @@
                 <div class="row">
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="codigoMarca">Código Marca<a href="formularioFabricante.html" title="Formulario Marca"><span class="glyphicon glyphicon-new-window" aria-hidden="true" ></span></a></label>
-                            <input type="text" class="form-control g-input" id="codigoMarca" name="codigoMarca" size="2" maxlength="2" required title="Ponga código de 2 letras" >
+                            <label for="codigoFabricante">Código Marca<a href="formularioFabricante.html" title="Formulario Marca"><span class="glyphicon glyphicon-new-window" aria-hidden="true" ></span></a></label>
+                            <input type="text" class="form-control g-input" id="codigoFabricante" name="codigoFabricante" size="2" maxlength="2" required title="Ponga código de 2 letras" >
                         </div>               
                     </div>
                     <div class="col-md-4">              
                         <div class="form-group">
-                            <label for="marca">Marca Modelo</label>
-                            <input type="text" class="form-control" id="marca" name="marca" size="25" maxlength="25" readonly >
+                            <label for="nombreFabricante">Marca Modelo</label>
+                            <input type="text" class="form-control" id="nombreFabricante" name="nombreFabricante" size="25" maxlength="25" readonly >
                         </div>               
                     </div>
                     <div class="col-md-2">
-                        <img id="logoMarca" class="g-img" src="">
+                        <img id="logoFabricante" class="g-img" src="">
                     </div>
                 </div><!--row-->
 
                 <div class="row">
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="fechaInicio">Fecha Inicio</label>
-                            <input type="text" class="form-control g-input" id="fechaInicio" name="fechaInicio" title="Debe de tener formato mm/aaaa" pattern="(0[1-9]|1[012])/(19|20)\d\d">
+                            <label for="inicioModelo">Fecha Inicio</label>
+                            <input type="text" class="form-control g-input" id="inicioModelo" name="inicioModelo" title="Debe de tener formato mm/aaaa" pattern="(0[1-9]|1[012])/(19|20)\d\d">
                         </div>
                     </div>  
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="fechaFin">Fecha Fin</label>
-                            <input type="text" class="form-control g-input" id="fechaFin" name="fechaFin" title="Debe de tener formatoo mm/aaaa" pattern="(0[1-9]|1[012])/(19|20)\d\d">
+                            <label for="finModelo">Fecha Fin</label>
+                            <input type="text" class="form-control g-input" id="finModelo" name="finModelo" title="Debe de tener formatoo mm/aaaa" pattern="(0[1-9]|1[012])/(19|20)\d\d">
                         </div>
                     </div>
                 </div><!--row-->
@@ -104,7 +104,7 @@
                             <input type="file" accept="image/*" id="archivo" name="archivo"/>
                             <input type="button" class="btn btn-primary" value="Elegir fichero" id="botonArchivo" onclick="$('#archivo').click();">
                             <br>
-                            <input type="text" class="form-control g-input" id="imagen" name="imagen" readonly>
+                            <input type="text" class="form-control g-input" id="imagen" name="imagenModelo" readonly>
                         </div>
                     </div>
                 </div><!--row-->
@@ -127,7 +127,6 @@
             </form>
         </div>
     </body>
-
 
 
 
@@ -174,7 +173,7 @@
     </div>
 
 
-
+   
 
 
 </html>

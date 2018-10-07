@@ -4,8 +4,9 @@
 ventanaMotores = new VentanaEmergente({
     modal: 'motoresModal',
     titulo: 'Seleccionar motor',
-    campos: ['codigo', 'descripcion', 'kw', 'fabricante.nombre'], //,'fabricante.nombre'],
-    campoID: 'idMotor'
+    campos: ['codigoMotor', 'descripcionMotor', 'kwMotor', 'fabricante.nombreFabricante'], //,'fabricante.nombre'],
+    campoID: 'idMotor',
+    callback : rellenaFormularioMotor
 });
 
 /*  Listener
@@ -19,20 +20,20 @@ $("document").ready(function() {
 
     //consultarMarca();
 
-    $("#codigo").change(consultaCodigo);
-    $("#codigoMarca").change(consultarMarca);
+    $("#codigoMotor").change(consultaCodigoMotor);
+    $("#codigoFabricante").change(consultaCodigoFabricanteCampos);
 
-    $('#kw').change(function() {
-        var kw = this.value;
-        var cv = kw * 1.36;
+    $('#kwMotor').change(function() {
+        var kwMotor = this.value;
+        var cv = kwMotor * 1.36;
         $('#cv').val(cv.toFixed(2));
     });
 
     $("#nuevoMotorBoton").click(function() {
-        var codigo = $("#codigo").val();
+        var codigo = $("#codigoMotor").val();
         limpiar();
-        $('#descripcion').focus();
-        $("#codigo").val(codigo);
+        $('#descripcionMotor').focus();
+        $("#codigoMotor").val(codigo);
         $("#nuevoMotorBoton").hide();
         updateFocusables();
     });
@@ -51,11 +52,71 @@ function guardar() {
 
 function baja() {
     envioFormulario('../bajaMotor.htm');
+    $("#codigoMotor").focus();
 }
 
 /* Funciones adicionales
  ******************************************************************************/
 
+function consultaCodigoMotor(){
+    if(!vacio($("#codigoMotor"))){
+        var codigoMotor = this.value;
+        peticionAjax("../consultaMotor.htm",codigoMotor,respuestaConsultaMotor)
+    }else{
+        borraFormularioMotor();
+    }
+} 
+
+function respuestaConsultaMotor(listaMotores){
+    if (listaMotores.length === 1){
+        var motor = listaMotores[0];
+        rellenaFormularioMotor(motor);
+    }else if (listaMotores.length>1){
+        console.log("HAY QUE MOSTRAR LOS DIFERENTES MOTORES");
+        ventanaMotores.abrir(listaMotores);
+    }else if (listaMotores.length<1){
+        console.log("No existe ningun motor con ese codigo"); // Borrar
+        borraFormularioMotor();
+        desactivarBajaMotor();
+    }
+}
+
+function rellenaFormularioMotor(motor) {
+    $("#idMotor").val(motor.idMotor);
+    $("#codigoMotor").val(motor.codigoMotor);
+    $("#descripcionMotor").val(motor.descripcionMotor);
+    $('#combustibleMotor option[value="' + motor.combustibleMotor + '"]').prop('selected', true);
+    $("#cilindradaMotor").val(motor.cilindradaMotor);
+    $("#kwMotor").val(motor.kwMotor);
+    var kwMotor = $('#kwMotor').val();
+    var cv = kwMotor * 1.36;
+    $('#cv').val(cv.toFixed(2));
+    $("#idFabricante").val(motor.idFabricante);
+    $("#codigoFabricante").val(motor.fabricante.codigoFabricante);
+    $("#nombreFabricante").val(motor.fabricante.nombreFabricante);
+    $("#logoFabricante").attr("src", "img/marcas/" + motor.fabricante.logoFabricante);
+    $("#infoMotor").val(motor.infoMotor);
+    $("#nuevoMotorBoton").show();    
+    updateFocusables();
+    activarBajaMotor();
+}
+
+function borraFormularioMotor() {
+    var codigoMotor = $("#codigoMotor").val();
+    $("#formulario")[0].reset();
+    $("#codigoMotor").val(codigoMotor);
+    $("#logoFabricante").attr("src", "");
+}
+
+function desactivarBajaMotor() {    
+    $("#baja").attr("disabled", true);
+}
+
+function activarBajaMotor() {
+    $("#baja").attr("disabled", false);
+}
+
+/*
 function consultaCodigo() {
     if (!vacio($("#codigo"))) {
         var codigo = this.value;
@@ -79,27 +140,9 @@ function respuestaCeroObjetos() {
 function respuestaVariosObjetos(listaObjetos) {
    
     ventanaMotores.abrir(listaObjetos);
-}
+}*/
 
-function rellenaFormulario(obj) {
-    $("#idMotor").val(obj.idMotor);
-    $("#codigo").val(obj.codigo);
-    $("#descripcion").val(obj.descripcion);
-    $('#combustible option[value="' + obj.combustible + '"]').prop('selected', true);
-    $("#cilindrada").val(obj.cilindrada);
-    $("#kw").val(obj.kw);
-    var kw = $('#kw').val();
-    var cv = kw * 1.36;
-    $('#cv').val(cv.toFixed(2));
-    $("#idMarca").val(obj.idMotor);
-    $("#codigoMarca").val(obj.fabricante.codigo);
-    $("#marca").val(obj.fabricante.nombre);
-    $("#logoMarca").attr("src", "img/marcas/" + obj.fabricante.logo);
-    $("#informacion").val(obj.informacion);
-    $("#nuevoMotorBoton").show();
-    $("#baja").attr("disabled", false);
-    updateFocusables();
-}
+
 
 
 

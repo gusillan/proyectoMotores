@@ -31,18 +31,36 @@ public class ModeloController {
     @Autowired
     ModeloDAO modeloDao;
 
+    @RequestMapping("guardaModelo.htm")
+    public void guardaModelo(Modelo modelo, HttpServletRequest request, HttpServletResponse response) throws IOException, IllegalStateException, ServletException {
+
+        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigoFabricante", request.getParameter("codigoFabricante"));
+        Fabricante fabricante = (Fabricante) fabricantes.get(0);
+        modelo.setFabricante(fabricante);
+        String imagenMinuscula = modelo.getImagenModelo().toLowerCase();
+        modelo.setImagenModelo(imagenMinuscula);
+        modeloDao.update(modelo);
+    }
+
+    @RequestMapping("bajaModelo.htm")
+    public void bajaModelo(Modelo modelo, HttpServletRequest request, HttpServletResponse response) {
+
+        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigoFabricante", request.getParameter("codigoFabricante"));
+        Fabricante fabricante = (Fabricante) fabricantes.get(0);
+        modelo.setFabricante(fabricante);
+        modeloDao.delete(modelo);
+    }
+
     @RequestMapping("consultaModelo.htm")
     public void consultaModelo(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        System.out.println("Codigo " + request.getParameter("parametro"));
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+        
         String codigoModelo = (request.getParameter("parametro").toUpperCase());
-        System.out.println("Codigo -> " + codigoModelo);
-        List<Modelo> listaModelos = modeloDao.listadoPorCampoExacto("codigo", codigoModelo);
-        System.out.println("Listado" + listaModelos);
+        List<Modelo> listaModelos = modeloDao.listadoPorCampoExacto("codigoModelo", codigoModelo);
         if (listaModelos.isEmpty()) {
             out.println();
         } else {
@@ -50,29 +68,7 @@ public class ModeloController {
         }
         Gson gson = new Gson();
         String lista = gson.toJson(listaModelos);
-        System.out.println("Lista Respuesta " + lista);
         out.println(lista);
-    }
-
-    @RequestMapping("guardaModelo.htm")
-    public void guardaModelo(Modelo modelo, HttpServletRequest request, HttpServletResponse response) throws IOException, IllegalStateException, ServletException {
-
-        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMarca"));
-        Fabricante fabricante = (Fabricante) fabricantes.get(0);
-        System.out.println(fabricante.getNombre());
-        modelo.setFabricante(fabricante);
-        String imagenMinuscula = modelo.getImagen().toLowerCase();
-        modelo.setImagen(imagenMinuscula);
-        modeloDao.update(modelo);
-    }
-
-    @RequestMapping("bajaModelo.htm")
-    public void bajaModelo(Modelo modelo, HttpServletRequest request, HttpServletResponse response) {
-
-        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMarca"));
-        Fabricante fabricante = (Fabricante) fabricantes.get(0);
-        modelo.setFabricante(fabricante);
-        modeloDao.delete(modelo);
     }
 
     @RequestMapping("guardaImagen.htm")
@@ -86,17 +82,17 @@ public class ModeloController {
         System.out.println("Bytes " + mpf.getBytes());
         System.out.println("tipo " + mpf.getContentType());
         ServletContext contexto = request.getServletContext();
-        System.out.println("Cont "+contexto.getContextPath());
+        System.out.println("Cont " + contexto.getContextPath());
         String rutaI = contexto.getRealPath("/html");
-        System.out.println("Ruta I "+rutaI);
+        System.out.println("Ruta I " + rutaI);
         Integer pos = rutaI.indexOf("build");
-        String rutaR = rutaI.substring(0, pos-1);
-        System.out.println("RutaR "+rutaR);
-        
-        String ruta = rutaR+("/web/html/img/imagenesVehiculos");
-        System.out.println("Ruta "+ruta);
+        String rutaR = rutaI.substring(0, pos - 1);
+        System.out.println("RutaR " + rutaR);
 
-        File localFile = new File(ruta +"/"+ mpf.getOriginalFilename());      
+        String ruta = rutaR + ("/web/html/img/imagenesVehiculos");
+        System.out.println("Ruta " + ruta);
+
+        File localFile = new File(ruta + "/" + mpf.getOriginalFilename());
         FileOutputStream os = null;
 
         try {

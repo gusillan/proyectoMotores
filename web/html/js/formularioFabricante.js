@@ -1,13 +1,13 @@
 /*  Listener
- *****************************************************************************/
+ ******************************************************************************/
 $("document").ready(function() {
 
-    $("#codigo").change(consultaCodigo);   
+    $("#codigoFabricante").change(consultaCodigoFabricante);
 
 });
 
 /* Funciones Menú Principal
- *****************************************************************************/
+ ******************************************************************************/
 
 function guardar() {
     if (validarFormulario()) {
@@ -22,38 +22,49 @@ function baja() {
 }
 
 /* Funciones adicionales
- *****************************************************************************/
-
-function consultaCodigo() {
-    if (!vacio($("#codigo"))) {
-        var codigo = this.value;
-        peticionAjax('../consultaFabricante.htm', codigo, respuestaConsultaCampo);
-    } else {
-        borraFormulario();
+ ******************************************************************************/
+function consultaCodigoFabricante(){
+    if(!vacio($("#codigoFabricante"))){
+        var codigoFabricante = this.value;
+        peticionAjax("../consultaFabricante.htm",codigoFabricante,respuestaConsultaFabricante);
+    }else{
+        borraFormularioFabricante();
+    }
+}
+function respuestaConsultaFabricante(listaFabricantes){
+    if (listaFabricantes.length === 1){
+        var fabricante = listaFabricantes[0];
+        rellenaFormularioFabricante(fabricante);
+    }else if (listaFabricantes.length>1){
+        console.log("ERROR - No puede haber codigos repetidos.Consulte al administrador de la BBDD");
+    }else if (listaFabricantes.length<1){
+        console.log("No existe ningun fabricante con ese codigo"); // Borrar
+        borraFormularioFabricante();
+        desactivarBajaFabricante();
     }
 }
 
-function respuestaCeroObjetos() {
-    borraFormulario();
+function rellenaFormularioFabricante(fabricante) {
+    $("#idFabricante").val(fabricante.idFabricante);
+    $("#codigoFabricante").val(fabricante.codigoFabricante);
+    $("#nombreFabricante").val(fabricante.nombreFabricante);
+    $("#logoFabricante").val(fabricante.logoFabricante);
+    $('#imgLogo').attr("src", "img/marcas/" + fabricante.logoFabricante);
+    activarBajaFabricante();
+    updateFocusables();
 }
 
-function respuestaVariosObjetos() {
-    console.log("ERROR - No puede haber códigos repetidos en esta BBDD.Consultar al administrador");
-}
-
-function borraFormulario() {
-    var codigo = $("#codigo").val();
+function borraFormularioFabricante() {
+    var codigoFabricante = $("#codigoFabricante").val();
     $("#formulario")[0].reset();
-    $("#codigo").val(codigo);
+    $("#codigoFabricante").val(codigoFabricante);
     $("#imgLogo").attr("src", "");
 }
 
-function rellenaFormulario(obj) {
-    $("#idFabricante").val(obj.idFabricante);
-    $("#codigo").val(obj.codigo);
-    $("#nombre").val(obj.nombre);
-    $("#logo").val(obj.logo);
-    $('#imgLogo').attr("src", "img/marcas/" + obj.logo);
+function desactivarBajaFabricante() {    
+    $("#baja").attr("disabled", true);
+}
+
+function activarBajaFabricante() {
     $("#baja").attr("disabled", false);
-    updateFocusables();
 }

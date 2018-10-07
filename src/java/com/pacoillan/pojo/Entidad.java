@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name="entidad"
     ,catalog="pacoillan2"
 )
-public class Entidad  implements java.io.Serializable {
+public class Entidad  implements java.io.Serializable, Comparable {
 
 
      private Integer idEntidad;
@@ -136,8 +136,12 @@ public class Entidad  implements java.io.Serializable {
         this.informacion = informacion;
     }
 
-
-
+    @Override
+    public int compareTo(Object t) {
+        Entidad otraEntidad = (Entidad) t;
+        return nombre.compareTo(otraEntidad.getNombre()); // Ordena alfabeticamente por nombre
+       
+    }
 
 }
 

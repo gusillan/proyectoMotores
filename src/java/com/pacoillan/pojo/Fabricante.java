@@ -20,17 +20,17 @@ public class Fabricante  implements java.io.Serializable {
 
 
      private Integer idFabricante;
-     private String codigo;
-     private String nombre;
-     private String logo;
+     private String codigoFabricante;
+     private String nombreFabricante;
+     private String logoFabricante;
 
     public Fabricante() {
     }
 
-    public Fabricante(String codigo, String nombre, String logo) {
-       this.codigo = codigo;
-       this.nombre = nombre;
-       this.logo = logo;
+    public Fabricante(String codigoFabricante, String nombreFabricante, String logoFabricante) {
+       this.codigoFabricante = codigoFabricante;
+       this.nombreFabricante = nombreFabricante;
+       this.logoFabricante = logoFabricante;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -44,31 +44,31 @@ public class Fabricante  implements java.io.Serializable {
         this.idFabricante = idFabricante;
     }
     
-    @Column(name="codigo", nullable=false, length=5)
-    public String getCodigo() {
-        return this.codigo;
+    @Column(name="codigoFabricante", nullable=false, length=5)
+    public String getCodigoFabricante() {
+        return this.codigoFabricante;
     }
     
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoFabricante(String codigoFabricante) {
+        this.codigoFabricante = codigoFabricante;
     }
     
-    @Column(name="nombre", nullable=false, length=30)
-    public String getNombre() {
-        return this.nombre;
+    @Column(name="nombreFabricante", nullable=false, length=30)
+    public String getNombreFabricante() {
+        return this.nombreFabricante;
     }
     
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreFabricante(String nombreFabricante) {
+        this.nombreFabricante = nombreFabricante;
     }
     
-    @Column(name="logo", nullable=false, length=30)
-    public String getLogo() {
-        return this.logo;
+    @Column(name="logoFabricante", nullable=false, length=30)
+    public String getLogoFabricante() {
+        return this.logoFabricante;
     }
     
-    public void setLogo(String logo) {
-        this.logo = logo;
+    public void setLogoFabricante(String logoFabricante) {
+        this.logoFabricante = logoFabricante;
     }
 
 

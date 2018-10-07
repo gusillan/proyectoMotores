@@ -18,34 +18,34 @@ import javax.persistence.Table;
 public class Motor implements java.io.Serializable, Comparable {
 
     private Integer idMotor;
-    private String codigo;
-    private String descripcion;
-    private String combustible;
-    private String cilindrada;
-    private Float kw;
+    private String codigoMotor;
+    private String descripcionMotor;
+    private String combustibleMotor;
+    private String cilindradaMotor;
+    private Float kwMotor;
     private Fabricante fabricante;
-    private String informacion;
-    
+    private String infoMotor;
+
     public Motor() {
     }
-    
-    public Motor(String codigo){
-        this.codigo = codigo;
+
+    public Motor(String codigoMotor) {
+        this.codigoMotor = codigoMotor;
     }
 
-    public Motor(String codigo, String descripcion) {  // Constructor necesario para line en blanco listados
-        this.codigo = codigo;
-        this.descripcion = descripcion;
+    public Motor(String codigoMotor, String descripcionMotor) {  // Constructor necesario para line en blanco listados
+        this.codigoMotor = codigoMotor;
+        this.descripcionMotor = descripcionMotor;
     }
 
-    public Motor(String codigo, String descripcion, String combustible, String cilindrada, Float kw, Fabricante fabricante, String informacion) {
-        this.codigo = codigo;
-        this.descripcion = descripcion;
-        this.combustible = combustible;
-        this.cilindrada = cilindrada;
-        this.kw = kw;
+    public Motor(String codigoMotor, String descripcionMotor, String combustibleMotor, String cilindradaMotor, Float kwMotor, Fabricante fabricante, String infoMotor) {
+        this.codigoMotor = codigoMotor;
+        this.descripcionMotor = descripcionMotor;
+        this.combustibleMotor = combustibleMotor;
+        this.cilindradaMotor = cilindradaMotor;
+        this.kwMotor = kwMotor;
         this.fabricante = fabricante;
-        this.informacion = informacion;
+        this.infoMotor = infoMotor;
     }
 
     @Id
@@ -59,49 +59,49 @@ public class Motor implements java.io.Serializable, Comparable {
         this.idMotor = idMotor;
     }
 
-    @Column(name = "codigo", nullable = false, length = 10)
-    public String getCodigo() {
-        return this.codigo;
+    @Column(name = "codigoMotor", nullable = false, length = 10)
+    public String getCodigoMotor() {
+        return this.codigoMotor;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoMotor(String codigoMotor) {
+        this.codigoMotor = codigoMotor;
     }
 
-    @Column(name = "descripcion", nullable = false, length = 40)
-    public String getDescripcion() {
-        return this.descripcion;
+    @Column(name = "descripcionMotor", nullable = false, length = 40)
+    public String getDescripcionMotor() {
+        return this.descripcionMotor;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescripcionMotor(String descripcionMotor) {
+        this.descripcionMotor = descripcionMotor;
     }
 
-    @Column(name = "combustible", nullable = false, length = 2)
-    public String getCombustible() {
-        return this.combustible;
+    @Column(name = "combustibleMotor", nullable = false, length = 2)
+    public String getCombustibleMotor() {
+        return this.combustibleMotor;
     }
 
-    public void setCombustible(String combustible) {
-        this.combustible = combustible;
+    public void setCombustibleMotor(String combustibleMotor) {
+        this.combustibleMotor = combustibleMotor;
     }
 
-    @Column(name = "cilindrada", length = 5)
-    public String getCilindrada() {
-        return this.cilindrada;
+    @Column(name = "cilindradaMotor", length = 5)
+    public String getCilindradaMotor() {
+        return this.cilindradaMotor;
     }
 
-    public void setCilindrada(String cilindrada) {
-        this.cilindrada = cilindrada;
+    public void setCilindradaMotor(String cilindradaMotor) {
+        this.cilindradaMotor = cilindradaMotor;
     }
 
-    @Column(name = "kw", precision = 12, scale = 0)
-    public Float getKw() {
-        return this.kw;
+    @Column(name = "kwMotor", precision = 12, scale = 0)
+    public Float getKwMotor() {
+        return this.kwMotor;
     }
 
-    public void setKw(Float kw) {
-        this.kw = kw;
+    public void setKwMotor(Float kwMotor) {
+        this.kwMotor = kwMotor;
     }
 
     @OneToOne
@@ -113,24 +113,19 @@ public class Motor implements java.io.Serializable, Comparable {
     public void setFabricante(Fabricante fabricante) {
         this.fabricante = fabricante;
     }
-    
-    @Column(name = "informacion", length = 2000)
-    public String getInformacion() {
-        return informacion;
+
+    @Column(name = "infoMotor", length = 2000)
+    public String getInfoMotor() {
+        return infoMotor;
     }
 
-    public void setInformacion(String informacion) {
-        this.informacion = informacion;
+    public void setInfoMotor(String infoMotor) {
+        this.infoMotor = infoMotor;
     }
-    
 
     @Override
     public int compareTo(Object t) {
-        Motor otraMotor = (Motor) t;
-        return codigo.compareTo(otraMotor.getCodigo());
+        Motor otroMotor = (Motor) t;
+        return codigoMotor.compareTo(otroMotor.getCodigoMotor());
     }
-
-    
-    
-    
 }

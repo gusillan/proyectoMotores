@@ -29,10 +29,8 @@ public class MotorController {
     
     @RequestMapping("guardaMotor.htm")
     public void guardaMotor(Motor motor,HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("Codigo Marca "+request.getParameter("codigoMarca"));
-        System.out.println("Motor "+motor.getDescripcion());
-        //System.out.println("motor "+motor.getDescripcion()+" marca "+motor.getFabricante().getCodigo());
-        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMarca"));
+        
+        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigoFabricante", request.getParameter("codigoFabricante"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         motor.setFabricante(fabricante);
         motorDao.update(motor);
@@ -42,14 +40,13 @@ public class MotorController {
     @RequestMapping("bajaMotor.htm")
     public void bajaMotor(Motor motor, HttpServletRequest request, HttpServletResponse response) {
 
-        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMarca"));
+        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigoFabricante", request.getParameter("codigoFabricante"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         motor.setFabricante(fabricante);
         motorDao.delete(motor);
     }
-
    
-    @RequestMapping("consultaCodigoMotor.htm")
+    @RequestMapping("consultaMotor.htm")
     public void consultaCodigoMotor(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
@@ -59,7 +56,7 @@ public class MotorController {
         
         String codigoMotor = (request.getParameter("parametro").toUpperCase());
         System.out.println("Codigo -> " + codigoMotor); // Borrar
-        List<Motor> listaMotores = motorDao.listadoPorCampoExacto("codigo", codigoMotor);
+        List<Motor> listaMotores = motorDao.listadoPorCampoExacto("codigoMotor", codigoMotor);
         if (listaMotores.isEmpty()) {
             out.println();
         } else {

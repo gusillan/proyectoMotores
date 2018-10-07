@@ -131,38 +131,40 @@ function respuestaConsultaCampo(listaObjetos) {
         respuestaCeroObjetos();
     }
 }
-//Consultas para rellenar una sola linea **************************************/
 
-// Marca ***************************************
-function consultarMarca() {
-    if (!vacio($("#codigoMarca"))) {
-        var marca = $("#codigoMarca").val();
-        console.log("Consultar marca " + marca); // borrar
-        peticionAjax('../consultaFabricante.htm', marca, respuestaConsultaMarca);
+
+//Consultas para rellenar varios campos de un formulario***********************/
+
+// Fabricante *****************************************/
+function consultaCodigoFabricanteCampos() {
+    if (!vacio($("#codigoFabricante"))) {
+        var fabricante = this.value;
+        console.log("Consultar fabricante " + fabricante); // borrar
+        peticionAjax('../consultaFabricante.htm', fabricante, respuestaConsultaFabricanteCampos);
     }
 }
 
-function respuestaConsultaMarca(listaObjetos) {
-    if (listaObjetos.length === 1) {
-        var objeto = listaObjetos[0];
-        rellenaMarca(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun fabricante con ese Codigo");
-        $("#marca").val("");
-        $("#codigoMarca").val("");
-        $("#logoMarca").attr("src", "");
+function respuestaConsultaFabricanteCampos(listaFabricantes) {
+    if (listaFabricantes.length === 1) {
+        var fabricante = listaFabricantes[0];
+        rellenaFabricanteCampos(fabricante);
+    } else if (listaFabricantes.length > 1) {
+        console.log("ERROR - Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
+    } else if (listaFabricantes.length < 1) {
+        console.log("No existe ningun fabricante con ese Codigo"); // Borrar
+        $("#nombreFabricante").val("");
+        $("#codigoFabricante").val("");
+        $("#logoFabricante").attr("src", "");
     }
 }
 
-function rellenaMarca(marca) {
-    $("#marca").val(marca.nombre);
-    $("#logoMarca").attr("src", "img/marcas/" + marca.logo);
+function rellenaFabricanteCampos(fabricante) {
+    $("#nombreFabricante").val(fabricante.nombreFabricante);
+    $("#logoFabricante").attr("src", "img/marcas/" + fabricante.logoFabricante);
 }
 
-//Modelo ***************************************
-function consultaModelo() {
+//Modelo **********************************************/
+function consultaCodigoModeloCampos() {
     if (!vacio($("#codigoModelo"))) {
         var modelo = $("#codigoModelo").val();
         console.log("Modelo " + modelo);  // borrar
@@ -174,22 +176,9 @@ function consultaModelo() {
     }
 }
 
-function respuestaConsultaModelo(listaObjetos) {
-    if (listaObjetos.length == 1) {
-        var objeto = listaObjetos[0];
-        rellenaModelo(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varios Modelos con el mismo codigo.Consultar con el administrador de la BBDD");
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningún modelo con ese código");
-        $("#descripcionModelo").val("");
-        $("#logoMarca").attr("src", "");
-        $("#silueta").attr("src", "");
-        darAltaModelo();
-    }
-}
 
-function rellenaModelo(modelo) {
+
+function rellenaModeloCampos(modelo) {
     $("#idModelo").val(modelo.idModelo);
     $("#descripcionModelo").val(modelo.descripcion).change();
     $("#codigoModelo").val(modelo.codigo);
@@ -215,55 +204,6 @@ function darAltaModelo() {
 }
 
 //Motor ******************************************
-function consultaMotor() {
-    if (!vacio($("#codigoMotor"))) {
-        var motor = $("#codigoMotor").val();
-        console.log("Motor " + motor);
-        peticionAjax('../consultaCodigoMotor.htm', motor,respuestaConsultaMotor);
-    } else {
-        $("#descripcionMotor").val("");
-        $("#combustibleMotor,#cilindradaMotor,#kwMotor,#nombreFabricanteMotor").html("");
-    }
-}
-
-function respuestaConsultaMotor(listaObjetos) {
-    if (listaObjetos.length == 1) {
-        var objeto = listaObjetos[0];
-        rellenaMotor(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varios Motores con el mismo codigo");
-        ventanaMotor.abrir(listaObjetos);
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun Motor con este codigo");
-        $("#descripcionMotor").val("");
-        $("#combustibleMotor,#cilindradaMotor,#kwMotor,#nombreFabricanteMotor").html("");
-        darAltaMotor();
-    }
-}
-
-function rellenaMotor(motor) {
-    $("#descripcionMotor").val(motor.descripcion);
-    $("#codigoMotor").val(motor.codigo);
-    var combustible = "";
-    switch (motor.combustible) {
-        case "D":
-            combustible = "Diesel";
-            break;
-        case "G":
-            combustible = "Gasolina";
-            break;
-        case "H":
-            combustible = "Híbrido";
-            break;
-        case "E":
-            combustible = "Eléctrico";
-            break;
-    }
-    $("#combustibleMotor").text(combustible);
-    $("#cilindradaMotor").text(motor.cilindrada + " c.c.");
-    $("#kwMotor").text(motor.kw + " Kw");
-    $("#nombreFabricanteMotor").text(motor.fabricante.nombre);
-}
 
 function darAltaMotor() {
     var respuesta = confirm("Desea dar de alta este Motor?");

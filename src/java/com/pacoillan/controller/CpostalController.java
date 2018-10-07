@@ -15,24 +15,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-/**
- *
- * @author Gustabo
- */
+
 @Controller
 public class CpostalController {
-
-    ModelAndView mv = new ModelAndView();
+    
     @Autowired
     CpostalDAO CpostalDao;
 
-    @RequestMapping("guardarCpostal.htm")
+    @RequestMapping("guardaCpostal.htm")
     public void altaCpostal(Cpostal cpostal, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String codigo = request.getParameter("codigo");
-        String poblacion = request.getParameter("poblacion");
-        System.out.println("Alta de " + codigo + " " + poblacion);
+      
         CpostalDao.update(cpostal);
     }
 
@@ -45,16 +38,19 @@ public class CpostalController {
     @RequestMapping("consultaCpostal.htm")
     public void consultaCpostal(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        System.out.println("Codigo Postal " + request.getParameter("codigo"));
-
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        String codigo = request.getParameter("codigo");
+        
+        String codigo = request.getParameter("parametro");
         List<Cpostal> listaCpostal = CpostalDao.listadoPorCampoExacto("codigo", codigo);
+        if (listaCpostal.isEmpty()){
+            out.println();
+        }else{
+            
+        }
         Gson gson = new Gson();
         String lista = gson.toJson(listaCpostal);
-        System.out.println(lista);
         out.println(lista);
 
     }

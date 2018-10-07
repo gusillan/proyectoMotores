@@ -31,7 +31,7 @@
                 <h1>Formulario Motores</h1>      
             </div>
 
-            <form name="formulario" id="formulario">
+            <form name="formularioMotor" id="formulario">
 
                 <div class="row">
                     <div class="col-md-2">
@@ -45,14 +45,14 @@
                 <div class="row">
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="codigo">Código<a href="#" id="nuevoMotorBoton" class="g-hideByDefault" title="Nuevo motor con mismo código"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span></a></label>
-                            <input type="text" class="form-control g-input" id="codigo" name="codigo"  maxlength="10" required>
+                            <label for="codigoMotor">Código<a href="#" id="nuevoMotorBoton" class="g-hideByDefault" title="Nuevo motor con mismo código"><span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span></a></label>
+                            <input type="text" class="form-control g-input" id="codigoMotor" name="codigoMotor"  maxlength="10" required>
                         </div>
                     </div>  
                     <div class="col-md-6">              
                         <div class="form-group">
-                            <label for="descripcion">Descripción</label>
-                            <input type="text" class="form-control g-input" id="descripcion" name="descripcion" maxlength="40" required title="Descripción motor" data-toggle="popover">
+                            <label for="descripcionMotor">Descripción</label>
+                            <input type="text" class="form-control g-input" id="descripcionMotor" name="descripcionMotor" maxlength="40" required title="Descripción motor" data-toggle="popover">
                         </div>
                     </div>
                 </div><!--row-->
@@ -60,8 +60,8 @@
                 <div class="row">
                     <div class="col-md-4">              
                         <div class="form-group">
-                            <label for="codigo">Combustible</label>
-                            <select class="form-control g-select" id="combustible" name="combustible">
+                            <label for="combustibleMotor">Combustible</label>
+                            <select class="form-control g-select" id="combustibleMotor" name="combustibleMotor">
                                 <option value="A"></option>
                                 <option value="D">DIESEL</option>
                                 <option value="G">GASOLINA</option>
@@ -75,14 +75,14 @@
                 <div class="row">
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="cilindrada">Cilindrada (c.c.)</label>
-                            <input type="text" class="form-control g-input" id="cilindrada" name="cilindrada" pattern="[0-9]{3,4}" maxlength="4" title="nº de c.c." data-toggle="popover">
+                            <label for="cilindradaMotor">Cilindrada (c.c.)</label>
+                            <input type="text" class="form-control g-input" id="cilindradaMotor" name="cilindradaMotor" pattern="[0-9]{3,4}" maxlength="4" title="nº de c.c." data-toggle="popover">
                         </div>
                     </div>
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="kw">Potencia (KW)</label>
-                            <input type="text" class="form-control g-input" id="kw" name="kw" pattern="[0-9.]{2,5}" maxlength="5" title="Potencia en KW" data-toggle="popover" title="Potencia en KW" required>
+                            <label for="kwMotor">Potencia (KW)</label>
+                            <input type="text" class="form-control g-input" id="kwMotor" name="kwMotor" pattern="[0-9.]{2,5}" maxlength="5" title="Potencia en KW" data-toggle="popover" title="Potencia en KW" required>
                         </div>
                     </div>
                     <div class="col-md-2">              
@@ -95,26 +95,26 @@
                 <div class="row">
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="codigoMarca">Código Marca <a href="formularioFabricante.html" title="Formulario Fabricante"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
-                            <input type="text" class="form-control g-input" id="codigoMarca" name="codigoMarca" maxlength="2" required title="Código 2 letras" data-toggle="popover">
+                            <label for="codigoFabricante">Código Marca <a href="formularioFabricante.html" title="Formulario Fabricante"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
+                            <input type="text" class="form-control g-input" id="codigoFabricante" name="codigoFabricante" maxlength="2" required title="Código 2 letras" data-toggle="popover">
                         </div>
                     </div>  
                     <div class="col-md-4">              
                         <div class="form-group">
-                            <label for="descripcion">Marca Motor</label>
-                            <input type="text" class="form-control" id="marca" readonly="readonly">
+                            <label for="nombreFabricante">Marca Motor</label>
+                            <input type="text" class="form-control" id="nombreFabricante" readonly="readonly">
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <img id="logoMarca" class="g-img previstaImagen" src="">
+                        <img id="logoFabricante" class="g-img previstaImagen" src="">
                     </div>
                 </div><!--row-->
 
                 <div class="row">
                     <div class="col-md-8">              
                         <div class="form-group">
-                            <label for="informacion">Información</label>
-                            <textarea class="form-control g-textarea" id="informacion" name="informacion" rows="3"></textarea>
+                            <label for="infoMotor">Información</label>
+                            <textarea class="form-control g-textarea" id="infoMotor" name="infoMotor" rows="3"></textarea>
                         </div>               
                     </div>
                 </div><!--row-->

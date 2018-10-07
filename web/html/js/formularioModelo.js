@@ -7,11 +7,11 @@ $("document").ready(function() {
         $("#codigo").val(getQueryVariable("codigo"));        
     }
 
-    $("#fechaInicio").mask("99/9999"); // sin lineas("99/9999", {placeholder: " "})
-    $("#fechaFin").mask("99/9999");
+    $("#inicioModelo").mask("99/9999"); // sin lineas("99/9999", {placeholder: " "})
+    $("#finModelo").mask("99/9999");
 
-    $("#codigo").change(consultaCodigo);
-    $("#codigoMarca").change(consultarMarca);
+    $("#codigoModelo").change(consultaCodigoModelo);
+    $("#codigoFabricante").change(consultaCodigoFabricanteCampos);
     $('#archivo').change(subirImagen);           
 
 });
@@ -35,47 +35,51 @@ function baja() {
 /* Funciones adicionales
  ******************************************************************************/
 
-function consultaCodigo() {
-    if (!vacio($("#codigo"))) {
-        var codigo = this.value;
-        peticionAjax('../consultaModelo.htm', codigo, respuestaConsultaCampo);
+function consultaCodigoModelo() {
+    if (!vacio($("#codigoModelo"))) {
+        var codigoModelo = this.value;
+        peticionAjax('../consultaModelo.htm', codigoModelo, respuestaConsultaModelo);
     } else {
-        borraFormulario();
+        borraFormularioModelo();
     }
 }
 
-function respuestaCeroObjetos() {
-    borraFormulario();
+function respuestaConsultaModelo(listaModelos) {
+    if (listaModelos.length == 1) {
+        var modelo = listaModelos[0];
+        rellenaFormularioModelo(modelo);
+    } else if (listaModelos.length > 1) {
+        console.log("Existen varios Modelos con el mismo codigo.Consultar con el administrador de la BBDD");
+    } else if (listaModelos.length < 1) {
+        console.log("No existe ningún modelo con ese código"); //Borrar
+        borraFormularioModelo();
+        //darAltaModelo();
+    }
 }
 
-function respuestaVariosObjetos(listaObjetos) {
-   
-    $('#myModal').modal('show');    //Abre la ventana Modal con la lista
-    rellenaListaMotores(listaObjetos);
-}
-
-function borraFormulario() {
-    var codigo = $("#codigo").val();
-    $("#formulario")[0].reset();
-    $("#codigo").val(codigo);
-    $("#imagenModelo").attr("src", ""); 
-    $("#logoMarca").attr("src", "");
-}
-
-function rellenaFormulario(obj) {
-    $("#idModelo").val(obj.idModelo);
-    $("#codigo").val(obj.codigo);
-    $("#descripcion").val(obj.descripcion);
-    $("#codigoMarca").val(obj.fabricante.codigo);
-    rellenaMarca(obj.fabricante);
-    $("#fechaInicio").val(obj.fechaInicio);
-    $("#fechaFin").val(obj.fechaFin);
-    $("#imagen").val(obj.imagen);
+function rellenaFormularioModelo(modelo) {
+    $("#idModelo").val(modelo.idModelo);
+    $("#codigoModelo").val(modelo.codigoModelo);
+    $("#descripcionModelo").val(modelo.descripcionModelo);
+    $("#codigoFabricante").val(modelo.fabricante.codigoFabricante);
+    rellenaFabricanteCampos(modelo.fabricante);
+    $("#inicioModelo").val(modelo.inicioModelo);
+    $("#finModelo").val(modelo.finModelo);
+    $("#imagen").val(modelo.imagenModelo);
     muestraImagen();
     $("#baja").attr("disabled", false);
     updateFocusables();
 
 }
+
+function borraFormularioModelo() {
+    var codigoModelo = $("#codigoModelo").val();
+    $("#formulario")[0].reset();
+    $("#codigoModelo").val(codigoModelo);
+    $("#imagen").attr("src", ""); 
+    $("#logoFabricante").attr("src", "");
+}
+
 
 function muestraImagen() {
     if (!vacio($("#imagen"))) {
@@ -101,9 +105,9 @@ function subirImagen() {
         contentType: false,
     });
 
-    var files = $('#archivo')[0].files;
+    var files = $('#archivo')[0].files; //archivo
     console.log("Funcion change " + files[0].value);
-    var nombreFichero = $('#archivo')[0].files[0].name
+    var nombreFichero = $('#archivo')[0].files[0].name //archivo
     for (var i = 0; i < files.length; i++) {
         resizeAndUpload(files[i]);
     }
