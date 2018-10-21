@@ -34,11 +34,13 @@ public class CategoriaController {
 
     @RequestMapping("consultaCategoria.htm")
     public void consultaCategoria(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        String codigo = request.getParameter("codigo");
-        List<Categoria> listaCategorias = categoriaDao.listadoPorCampoExacto("codigo", codigo);
+        
+        String codigo = request.getParameter("parametro");
+        List<Categoria> listaCategorias = categoriaDao.listadoPorCampoExacto("codigoCategoria", codigo);
         System.out.println(listaCategorias);
 
         Gson gson = new Gson();

@@ -39,27 +39,7 @@ public class VehiculoController {
     @Autowired
     EntidadDAO entidadDao;
 
-    @RequestMapping("consultaMatricula.htm")
-    public void consultaMatricula(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        PrintWriter out = response.getWriter();
-        String matricula = request.getParameter("matricula");
-        System.out.println("Comprobamos la matricula " + matricula);
-        List<Vehiculo> listaVehiculos = vehiculoDao.listadoPorCampo("matricula", matricula);
-
-        final String FORMATO_FECHA = "dd/MM/yyyy";
-
-        System.out.println("Lista Vehiculos (" + listaVehiculos.size() + ") " + listaVehiculos);
-        //if (listaFabricantes.isEmpty()) {
-        //    out.println();
-        //} else {
-        Gson gson = new GsonBuilder().setDateFormat(FORMATO_FECHA).create();
-        String lista = gson.toJson(listaVehiculos);
-        System.out.println(lista);
-        out.println(lista);
-        //}
-    }
+    
 
     @RequestMapping("guardaVehiculo.htm")
     public void guardaVehiculo(Vehiculo vehiculo, HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -71,9 +51,9 @@ public class VehiculoController {
         System.out.println("Modelo " + request.getParameter("codigoModelo"));
         System.out.println("Motor " + request.getParameter("codigoMotor"));
 
-        List modelos = modeloDao.listadoPorCampoExacto("codigo", request.getParameter("codigoModelo"));
-        List motores = motorDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMotor"));
-        List entidades = entidadDao.listadoPorCampoExacto("idEntidad", request.getParameter("codigoCliente"));
+        List modelos = modeloDao.listadoPorCampoExacto("codigoModelo", request.getParameter("codigoModelo"));
+        List motores = motorDao.listadoPorCampoExacto("codigoMotor", request.getParameter("codigoMotor"));
+        List entidades = entidadDao.listadoPorCampoExacto("idEntidad", request.getParameter("codigoEntidad"));
 
         Modelo modelo = (Modelo) modelos.get(0);
         Motor motor = (Motor) motores.get(0);
@@ -91,9 +71,9 @@ public class VehiculoController {
 
         System.out.println("Vamos a dar de baja el siguiente vehiculo " + vehiculo.getMatricula());
 
-        List modelos = modeloDao.listadoPorCampoExacto("codigo", request.getParameter("codigoModelo"));
-        List motores = motorDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMotor"));
-        List entidades = entidadDao.listadoPorCampoExacto("idEntidad", request.getParameter("codigoCliente"));
+        List modelos = modeloDao.listadoPorCampoExacto("codigoModelo", request.getParameter("codigoModelo"));
+        List motores = motorDao.listadoPorCampoExacto("codigoMotor", request.getParameter("codigoMotor"));
+        List entidades = entidadDao.listadoPorCampoExacto("idEntidad", request.getParameter("codigoEntidad"));
 
         Modelo modelo = (Modelo) modelos.get(0);
         Motor motor = (Motor) motores.get(0);
@@ -104,5 +84,29 @@ public class VehiculoController {
         vehiculo.setEntidad(entidad);        
         
         vehiculoDao.delete(vehiculo);
+    }
+    
+    @RequestMapping("consultaMatricula.htm")
+    public void consultaMatricula(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        
+        String matricula = request.getParameter("parametro");
+        System.out.println("Comprobamos la matricula " + matricula); // Borrar
+        List<Vehiculo> listaVehiculos = vehiculoDao.listadoPorCampo("matricula", matricula);
+
+        final String FORMATO_FECHA = "dd/MM/yyyy";
+
+        System.out.println("Lista Vehiculos (" + listaVehiculos.size() + ") " + listaVehiculos);
+        //if (listaFabricantes.isEmpty()) {
+        //    out.println();
+        //} else {
+        Gson gson = new GsonBuilder().setDateFormat(FORMATO_FECHA).create();
+        String lista = gson.toJson(listaVehiculos);
+        System.out.println(lista);
+        out.println(lista);
+        //}
     }
 }

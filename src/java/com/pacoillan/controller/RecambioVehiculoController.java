@@ -56,11 +56,11 @@ public class RecambioVehiculoController {
 
         Integer idModelo = Integer.parseInt(request.getParameter("idModelo"));
         Modelo modelo = modeloDao.read(idModelo);
-        System.out.println("Modelo " + modelo.getDescripcion());
+        System.out.println("Modelo " + modelo.getDescripcionModelo());
 
         Integer idMotor = Integer.parseInt(request.getParameter("idMotor"));
         Motor motor = motorDao.read(idMotor);
-        System.out.println("Motor " + motor.getDescripcion());
+        System.out.println("Motor " + motor.getDescripcionMotor());
 
         mr.setModelo(modelo);
         mr.setMotor(motor);

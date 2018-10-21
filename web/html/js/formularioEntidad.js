@@ -3,8 +3,9 @@
 ventanaEntidad = new VentanaEmergente({
     modal: 'entidadModal',
     titulo: 'Busqueda por nombre',
-    campos: ['nombre', 'poblacion'],
-    campoID: 'idEntidad'
+    campos: ['nombreEntidad', 'poblacionEntidad'],
+    campoID: 'idEntidad',
+    callback: rellenaFormularioEntidad
 });
 
 /*  Listener
@@ -18,16 +19,16 @@ $("document").ready(function() {
         validarCampoConPatron(this);
     });
 
-    $("#dni").change(function() {
+    $("#dniEntidad").change(function() {
         if (this.value != null) {
             this.value = rellenaDNI(this);
             consultaDNI(this.value);
         }
     });
 
-    $("#cpostal").change(consultaCpostal);
-    $("#telefono").mask("999 999 999", {placeholder: " "});
-    $("#movil").mask("999 999 999", {placeholder: " "});
+    $("#cPostalEntidad").change(consultaCpostal);
+    $("#telefonoEntidad").mask("999 999 999", {placeholder: " "});
+    $("#movilEntidad").mask("999 999 999", {placeholder: " "});
     $("#buscarNombre").click(consultaNombre);
 
 });
@@ -51,74 +52,69 @@ function baja() {
  ******************************************************************************/
 function consultaDNI(dni) {
 
-    peticionAjax('../consultaDni.htm', dni, respuestaConsultaCampo);
-
+    promesa = peticionAjax('../consultaDni.htm', dni);
+    promesa.then(function(listaEntidades) {
+        if (listaEntidades.length == 1) {
+            var entidad = listaEntidades[0];
+            rellenaFormularioEntidad(entidad);
+        } else if (listaEntidades.length > 1) {
+            console.log("ERROR - No puede haber DNIs/CIFs repetidos.Condultar administrador BBDD");
+        } else if (listaEntidades.length < 1) {
+            borraFormularioEntidad();
+        }
+    });
 }
 
-function borraFormulario() {
-    
-    var dni = $("#dni").val();
-    $("#formulario")[0].reset();
-    $("#dni").val(dni);
-
-}
-
-function respuestaCeroObjetos() {
-    borraFormulario();
-}
-
-function respuestaVariosObjetos() {
-    console.log("ERROR - No puede haber DNI/CIF duplicados.Consultar con admisnistrador de BBDD");
-}
-
-function rellenaFormulario(obj) {
-    $("#idEntidad").val(obj.idEntidad);
-    $("#nombre").val(obj.nombre);
-    $("#direccion").val(obj.direccion);
-    $("#cpostal").val(obj.cpostal);
-    $("#poblacion").val(obj.poblacion);
-    $("#dni").val(obj.dni);
+function rellenaFormularioEntidad(entidad) {
+    $("#idEntidad").val(entidad.idEntidad);
+    $("#nombreEntidad").val(entidad.nombreEntidad);
+    $("#direccionEntidad").val(entidad.direccionEntidad);
+    $("#cPostalEntidad").val(entidad.cPostalEntidad);
+    $("#poblacionEntidad").val(entidad.poblacionEntidad);
+    $("#dniEntidad").val(entidad.dniEntidad);
     /*Hay que forzar otra vez la comprobacion del dni porque el evento change
      no detecta el cambio al hacerlo automaticamente por codigo*/
-    $("#dni").each(function() {
+    $("#dniEntidad").each(function() {
         this.value = rellenaDNI(this);
     });
-    $("#telefono").val(obj.telefono);
-    $("#movil").val(obj.movil);
-    $("#email").val(obj.email);
-    $("#informacion").val(obj.informacion);
+    $("#telefonoEntidad").val(entidad.telefonoEntidad);
+    $("#movilEntidad").val(entidad.movilEntidad);
+    $("#emailEntidad").val(entidad.emailEntidad);
+    $("#infoEntidad").val(entidad.infoEntidad);
     $("#baja").attr("disabled", false);
     updateFocusables();
+}
+
+function borraFormularioEntidad() {
+    var dni = $("#dniEntidad").val();
+    $("#formulario")[0].reset();
+    $("#dniEntidad").val(dni);
 }
 
 /*  Busqueda por nombre
  ******************************************************************************/
 
 function consultaNombre() {
-    if ($("#nombre").val().length > 2) {
-        console.log("Campo nombre RELLENO " + $("#nombre").val().length);
-        $.ajax({
-            url: '../consultaPorNombre.htm',
-            data: {nombre: $('#nombre').val()},
-            type: 'POST',
-            dataType: 'json',
-            success: respuestaConsultaNombre
+    if ($("#nombreEntidad").val().length > 2) {
+        var nombre = $("#nombreEntidad").val();
+        console.log("Campo nombre RELLENO " + nombre + " " + nombre.length);
+        promesa = peticionAjax('../consultaEntidadPorNombre.htm', nombre);
+        promesa.then(function(listaEntidades) {
+            if (listaEntidades.length == 0) {
+                alert("Error: la consulta del nombre no ha obtenido ningun resultado");
+                $("#formulario")[0].reset();
+                $("#dniEntidad").focus();
+            } else if (listaEntidades.length == 1) {
+                rellenaFormularioEntidad(listaEntidades[0]);
+            } else {
+                ventanaEntidad.abrir(listaEntidades);   //Abre la ventana Modal con la lista
+            }
         });
     } else {
         console.log("Campo nombre debe tener 3 o mas caracteres");
     }
 }
 
-function respuestaConsultaNombre(responseJson) {
-    clientesJson = responseJson;
-    if (clientesJson.length == 0) {
-        alert("Error: la consulta del nombre no ha obtenido ningun resultado");        
-    } else if (clientesJson.length == 1) {
-        rellenaFormulario(clientesJson[0]);
-    } else {
-        ventanaEntidad.abrir(responseJson);   //Abre la ventana Modal con la lista
-    }
-}
 
 /*  Validaciones
  ******************************************************************************/
@@ -208,11 +204,11 @@ function dniLetra(dni) {
  * ***************************************************************************/
 
 function consultaCpostal() {
-    var cpost = $("#cpostal").val();
+    var cpost = $("#cPostalEntidad").val();
     console.log("Consultar " + cpost);
     $.ajax({
         url: '../consultaCpostal.htm',
-        data: {codigo: cpost},
+        data: {parametro: cpost},
         type: 'POST',
         success: rellenarCpostal
     });
@@ -221,9 +217,9 @@ function consultaCpostal() {
 function rellenarCpostal(respuesta) {
     if (respuesta.length > 0) {
         poblacion = respuesta[0];
-        $("#poblacion").val(poblacion.poblacion);
+        $("#poblacionEntidad").val(poblacion.poblacion);
     } else {
-        $("#poblacion").val("");
+        $("#poblacionEntidad").val("");
     }
 }
 

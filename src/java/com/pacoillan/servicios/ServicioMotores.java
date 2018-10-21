@@ -21,7 +21,7 @@ public class ServicioMotores {
         this.listaMotores = listaMotores;
     }
 
-    public StringBuilder getXml() {
+   /* public StringBuilder getXml() {
         //getJson();
         
         StringBuilder tXML = new StringBuilder("<?xml version='1.0'?>");
@@ -83,7 +83,7 @@ public class ServicioMotores {
             tXML.append("</datos>");
         }
         return tXML;
-    }
+    }*/
     public void getJson(){
         Gson gson = new Gson();
         System.out.println("Formato JSON : "+gson.toJson(listaMotores));

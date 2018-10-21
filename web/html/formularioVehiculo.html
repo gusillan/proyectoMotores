@@ -33,7 +33,7 @@
                 <h1>Formulario Vehículo</h1>      
             </div>
 
-            <form name="formulario" id="formulario">
+            <form name="formularioVehiculo" id="formulario">
 
                 <div class="row">
                     <div class="col-sm-2">
@@ -70,7 +70,13 @@
                             <input type="text" class="form-control g-input" id="codigoModelo" name="codigoModelo" size="5" maxlength="5"  title="Ponga código válido" required>
                         </div>               
                     </div>
-                    <div class="col-sm-6">              
+                    <div class="col-sm-2">              
+                        <div class="form-group">
+                            <label for="nombreFabricanteModelo">Marca</label>
+                            <input type="text" class="form-control g-input" id="nombreFabricanteModelo" readonly="readonly">
+                        </div>               
+                    </div>
+                    <div class="col-sm-4">              
                         <div class="form-group">
                             <label for="descripcionModelo">Descripción Modelo</label>            
                             <div class="input-group">
@@ -116,15 +122,15 @@
                 <div class="row">
                     <div class="col-sm-2">              
                         <div class="form-group">
-                            <label for="codigoCliente">Código Cliente <a href="formularioEntidad.html" title="Formulario Entidad"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
-                            <input type="text" class="form-control g-input" id="codigoCliente" name="codigoCliente" title="Ponga código válido" required>
+                            <label for="codigoEntidad">Código Cliente <a href="formularioEntidad.html" title="Formulario Entidad"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
+                            <input type="text" class="form-control g-input" id="codigoEntidad" name="codigoEntidad" title="Ponga código válido" required>
                         </div>
                     </div>  
                     <div class="col-sm-6">              
                         <div class="form-group">
-                            <label for="nombreCliente">Nombre Cliente</label>
+                            <label for="nombreEntidad">Nombre Cliente</label>
                             <div class="input-group">
-                                <input type="text" class="form-control g-input" id="nombreCliente" title="Debe haber un cliente creado" required>
+                                <input type="text" class="form-control g-input" id="nombreEntidad" title="Debe haber un cliente creado" required>
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-primary" id="buscarEntidad">Buscar</button>
                                 </span>
@@ -136,8 +142,8 @@
                 <div class="row">
                     <div class="col-sm-8">              
                         <div class="form-group">
-                            <label for="informacion">Información</label>
-                            <textarea class="form-control g-textarea" id="informacion" name="informacion" rows="3"></textarea>
+                            <label for="infoVehiculo">Información</label>
+                            <textarea class="form-control g-textarea" id="infoVehiculo" name="infoVehiculo" rows="3"></textarea>
                         </div>               
                     </div>
                 </div><!--row-->
@@ -170,21 +176,24 @@
                     </section>
                     <section class="g-aside-section">
                         <div class="row">
+                            <div class="col-sm-6">Motor</div>
+                            <div id="fabricanteMotor" class="col-sm-6 g-text"></div>
+                        </div>
+                        <div class="row">
                             <div class="col-sm-6">Combustible</div>
                             <div id="combustibleMotor" class="col-sm-6 g-text"></div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-6">Cilindrada</div>
-                            <div id="cilindradaMotor" class="col-sm-6 g-text"></div>
-                        </div>
+                            <div class="col-sm-6">c.c.</div>
+                            <div id="cilindradaMotor" class="col-sm-6 g-text"></div>                                          
+                        </div>                      
                         <div class="row">
-                            <div class="col-sm-6">Potencia</div>
-                            <div id="kwMotor" class="col-sm-6 g-text"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">Fabricante</div>
-                            <div id="nombreFabricanteMotor" class="col-sm-6 g-text"></div>
-                        </div>
+                            <div class="col-sm-6">Kw</div>
+                            <div id="kwMotor" class="col-sm-6 g-text"></div>                           
+                        </div>    
+                        
+                        
+                        
                     </section>
                     <section class="g-aside-section">
                         <div class="row">

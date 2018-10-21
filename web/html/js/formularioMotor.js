@@ -1,12 +1,12 @@
 
 /*  Variables globales
  ******************************************************************************/
-ventanaMotores = new VentanaEmergente({
+ventanaMotor = new VentanaEmergente({
     modal: 'motoresModal',
     titulo: 'Seleccionar motor',
     campos: ['codigoMotor', 'descripcionMotor', 'kwMotor', 'fabricante.nombreFabricante'], //,'fabricante.nombre'],
     campoID: 'idMotor',
-    callback : rellenaFormularioMotor
+    callback: rellenaFormularioMotor
 });
 
 /*  Listener
@@ -20,8 +20,8 @@ $("document").ready(function() {
 
     //consultarMarca();
 
-    $("#codigoMotor").change(consultaCodigoMotor);
-    $("#codigoFabricante").change(consultaCodigoFabricanteCampos);
+    $("#codigoMotor").change(consultaMotor);
+    $("#codigoFabricante").change(consultaFabricanteMin);
 
     $('#kwMotor').change(function() {
         var kwMotor = this.value;
@@ -58,26 +58,26 @@ function baja() {
 /* Funciones adicionales
  ******************************************************************************/
 
-function consultaCodigoMotor(){
-    if(!vacio($("#codigoMotor"))){
+function consultaMotor() {
+    if (!vacio($("#codigoMotor"))) {
         var codigoMotor = this.value;
-        peticionAjax("../consultaMotor.htm",codigoMotor,respuestaConsultaMotor)
-    }else{
-        borraFormularioMotor();
-    }
-} 
+        promesa = peticionAjax("../consultaMotor.htm", codigoMotor);
+        promesa.then(function(listaMotores) {
+            if (listaMotores.length === 1) {
+                var motor = listaMotores[0];
+                rellenaFormularioMotor(motor);
+            } else if (listaMotores.length > 1) {
+                console.log("HAY QUE MOSTRAR LOS DIFERENTES MOTORES");
+                ventanaMotor.abrir(listaMotores);
+            } else if (listaMotores.length < 1) {
+                console.log("No existe ningun motor con ese codigo"); // Borrar
+                borraFormularioMotor();
+                desactivarBajaMotor();
+            }
+        })
 
-function respuestaConsultaMotor(listaMotores){
-    if (listaMotores.length === 1){
-        var motor = listaMotores[0];
-        rellenaFormularioMotor(motor);
-    }else if (listaMotores.length>1){
-        console.log("HAY QUE MOSTRAR LOS DIFERENTES MOTORES");
-        ventanaMotores.abrir(listaMotores);
-    }else if (listaMotores.length<1){
-        console.log("No existe ningun motor con ese codigo"); // Borrar
+    } else {
         borraFormularioMotor();
-        desactivarBajaMotor();
     }
 }
 
@@ -96,7 +96,7 @@ function rellenaFormularioMotor(motor) {
     $("#nombreFabricante").val(motor.fabricante.nombreFabricante);
     $("#logoFabricante").attr("src", "img/marcas/" + motor.fabricante.logoFabricante);
     $("#infoMotor").val(motor.infoMotor);
-    $("#nuevoMotorBoton").show();    
+    $("#nuevoMotorBoton").show();
     updateFocusables();
     activarBajaMotor();
 }
@@ -108,39 +108,13 @@ function borraFormularioMotor() {
     $("#logoFabricante").attr("src", "");
 }
 
-function desactivarBajaMotor() {    
+function desactivarBajaMotor() {
     $("#baja").attr("disabled", true);
 }
 
 function activarBajaMotor() {
     $("#baja").attr("disabled", false);
 }
-
-/*
-function consultaCodigo() {
-    if (!vacio($("#codigo"))) {
-        var codigo = this.value;
-        peticionAjax('../consultaCodigoMotor.htm', codigo, respuestaConsultaCampo);
-    } else {
-        borraFormulario();
-    }
-}
-
-function borraFormulario() {
-    var codigo=$("#codigo").val();
-    $("#formulario")[0].reset(); 
-    $("#logoMarca").attr("src", "");    
-    $("#codigo").val(codigo);    
-}
-
-function respuestaCeroObjetos() {
-    borraFormulario();
-}
-
-function respuestaVariosObjetos(listaObjetos) {
-   
-    ventanaMotores.abrir(listaObjetos);
-}*/
 
 
 

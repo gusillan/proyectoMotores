@@ -40,7 +40,6 @@ public class EntidadController {
         entidadDao.delete(entidad);
     }
     
-
     @RequestMapping("consultaDni.htm")
     public void consultaDni(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -49,8 +48,8 @@ public class EntidadController {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
               
-        String dni = (request.getParameter("parametro"));//.toUpperCase());
-        List<Entidad> listaEntidades = entidadDao.listadoPorCampoExacto("dni", dni);
+        String dniEntidad = (request.getParameter("parametro"));//.toUpperCase());
+        List<Entidad> listaEntidades = entidadDao.listadoPorCampoExacto("dniEntidad", dniEntidad);
         if (listaEntidades.isEmpty()) {
             out.println();
         } else {
@@ -61,7 +60,7 @@ public class EntidadController {
         out.println(lista);
     }    
     
-    @RequestMapping("consultaPorNombre.htm")
+    @RequestMapping("consultaEntidadPorNombre.htm")
     public void consultaPorNombre(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
@@ -69,8 +68,8 @@ public class EntidadController {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         
-        String nombre = (request.getParameter("nombre").toUpperCase());
-        List<Entidad> listaEntidades = entidadDao.listadoPorCampo("nombre", nombre);
+        String nombreEntidad = (request.getParameter("parametro").toUpperCase());
+        List<Entidad> listaEntidades = entidadDao.listadoPorCampo("nombreEntidad", nombreEntidad);
         if (listaEntidades.isEmpty()) {
             out.println();
         } else {

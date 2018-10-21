@@ -4,15 +4,15 @@ $("document").ready(function() {
 
     console.log("Codigo " + getQueryVariable("codigo"));
     if (getQueryVariable("codigo")) {
-        $("#codigo").val(getQueryVariable("codigo"));        
+        $("#codigo").val(getQueryVariable("codigo"));
     }
 
     $("#inicioModelo").mask("99/9999"); // sin lineas("99/9999", {placeholder: " "})
     $("#finModelo").mask("99/9999");
 
-    $("#codigoModelo").change(consultaCodigoModelo);
-    $("#codigoFabricante").change(consultaCodigoFabricanteCampos);
-    $('#archivo').change(subirImagen);           
+    $("#codigoModelo").change(consultaModelo);
+    $("#codigoFabricante").change(consultaFabricanteMin);
+    $('#archivo').change(subirImagen);
 
 });
 
@@ -35,25 +35,25 @@ function baja() {
 /* Funciones adicionales
  ******************************************************************************/
 
-function consultaCodigoModelo() {
+function consultaModelo() {
     if (!vacio($("#codigoModelo"))) {
-        var codigoModelo = this.value;
-        peticionAjax('../consultaModelo.htm', codigoModelo, respuestaConsultaModelo);
+        var modelo = this.value;
+        console.log("Consultamos " + modelo); // Borrar
+        promesa = peticionAjax('../consultaModelo.htm', modelo);
+        promesa.then(function(listaModelos) {
+            if (listaModelos.length == 1) {
+                var modelo = listaModelos[0];
+                rellenaFormularioModelo(modelo);
+            } else if (listaModelos.length > 1) {
+                console.log("Existen varios Modelos con el mismo codigo.Consultar con el administrador de la BBDD");
+            } else if (listaModelos.length < 1) {
+                console.log("No existe ningún modelo con ese código"); //Borrar
+                borraFormularioModelo();
+                //darAltaModelo();
+            }
+        });
     } else {
         borraFormularioModelo();
-    }
-}
-
-function respuestaConsultaModelo(listaModelos) {
-    if (listaModelos.length == 1) {
-        var modelo = listaModelos[0];
-        rellenaFormularioModelo(modelo);
-    } else if (listaModelos.length > 1) {
-        console.log("Existen varios Modelos con el mismo codigo.Consultar con el administrador de la BBDD");
-    } else if (listaModelos.length < 1) {
-        console.log("No existe ningún modelo con ese código"); //Borrar
-        borraFormularioModelo();
-        //darAltaModelo();
     }
 }
 
@@ -76,10 +76,9 @@ function borraFormularioModelo() {
     var codigoModelo = $("#codigoModelo").val();
     $("#formulario")[0].reset();
     $("#codigoModelo").val(codigoModelo);
-    $("#imagen").attr("src", ""); 
+    $("#imagen").attr("src", "");
     $("#logoFabricante").attr("src", "");
 }
-
 
 function muestraImagen() {
     if (!vacio($("#imagen"))) {

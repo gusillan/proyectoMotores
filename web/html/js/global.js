@@ -98,15 +98,34 @@ $("document").ready(function() {
 // FUNCIONES BASICAS **********************************************************/
 
 /*Funcion Global Peticiones Ajax********************/
-function peticionAjax(url, data, funcion) {
-    $.ajax({
-        url: url,
-        data: {parametro: data},
-        type: 'POST',
-        dataType: 'json',
-        success: funcion
-    });
+function peticionAjax(url, data) {
+    return new Promise(function(resolve, reject) {
+        $.ajax({
+            url: url,
+            data: {parametro: data},
+            type: 'POST',
+            dataType: 'json',
+            success: function(data) {
+                resolve(data)
+            },
+            error: function(error) {
+                reject(error)
+            }
+        });
+    })
+
 }
+
+function consultaAjax(url, data) {
+    var respuesta;
+    $.getJSON(url, {parametro: data}, function(response) {
+        console.log("motor " + response[0].descripcionMotor);
+        respuesta = response;
+        return resuesta;
+    });
+
+}
+
 
 function envioFormulario(url) {
     console.log("Enviamos formulario a " + url); //borrar
@@ -121,7 +140,7 @@ function envioFormulario(url) {
 }
 
 function respuestaConsultaCampo(listaObjetos) {
-    console.log("lista de objetos "+listaObjetos); // borrar
+    console.log("lista de objetos " + listaObjetos); // borrar
     if (listaObjetos.length == 1) {
         var objeto = listaObjetos[0];
         rellenaFormulario(objeto);
@@ -136,25 +155,24 @@ function respuestaConsultaCampo(listaObjetos) {
 //Consultas para rellenar varios campos de un formulario***********************/
 
 // Fabricante *****************************************/
-function consultaCodigoFabricanteCampos() {
+function consultaFabricanteMin() {
     if (!vacio($("#codigoFabricante"))) {
         var fabricante = this.value;
-        console.log("Consultar fabricante " + fabricante); // borrar
-        peticionAjax('../consultaFabricante.htm', fabricante, respuestaConsultaFabricanteCampos);
-    }
-}
-
-function respuestaConsultaFabricanteCampos(listaFabricantes) {
-    if (listaFabricantes.length === 1) {
-        var fabricante = listaFabricantes[0];
-        rellenaFabricanteCampos(fabricante);
-    } else if (listaFabricantes.length > 1) {
-        console.log("ERROR - Existen varios fabricantes con ese Codigo.Consultar al administrador de la BBDD");
-    } else if (listaFabricantes.length < 1) {
-        console.log("No existe ningun fabricante con ese Codigo"); // Borrar
-        $("#nombreFabricante").val("");
-        $("#codigoFabricante").val("");
-        $("#logoFabricante").attr("src", "");
+        console.log("Consultamos " + fabricante);  //Borrar
+        promesa = peticionAjax('../consultaFabricante.htm', fabricante);
+        promesa.then(function(listaFabricantes) {
+            if (listaFabricantes.length === 1) {
+                var fabricante = listaFabricantes[0];
+                rellenaFabricanteCampos(fabricante);
+            } else if (listaFabricantes.length > 1) {
+                console.log("ERROR - No puede haber codigos repetidos.Consulte al administrador de la BBDD");
+            } else if (listaFabricantes.length < 1) {
+                console.log("No existe ningun fabricante con ese Codigo"); // Borrar
+                borraFabricanteCampos();
+            }
+        });
+    } else {
+        borraFabricanteCampos();
     }
 }
 
@@ -163,32 +181,92 @@ function rellenaFabricanteCampos(fabricante) {
     $("#logoFabricante").attr("src", "img/marcas/" + fabricante.logoFabricante);
 }
 
-//Modelo **********************************************/
-function consultaCodigoModeloCampos() {
-    if (!vacio($("#codigoModelo"))) {
-        var modelo = $("#codigoModelo").val();
-        console.log("Modelo " + modelo);  // borrar
-        peticionAjax('../consultaModelo.htm',modelo,respuestaConsultaModelo);
+function borraFabricanteCampos() {
+    $("#nombreFabricante").val("");
+    $("#codigoFabricante").val("");
+    $("#logoFabricante").attr("src", "");
+}
+// Motor **********************************************/
+function consultaMotorMin() {
+    if (!vacio($("#codigoMotor"))) {
+        var motor = this.value;
+        console.log("Consultamos " + motor);// Borrar
+        promesa = peticionAjax('../consultaMotor.htm', motor);
+        promesa.then(function(listaMotores) {
+            if (listaMotores.length === 1) {
+                var motor = listaMotores[0];
+                rellenaMotorCampos(motor);
+            } else if (listaMotores.length > 1) {
+                console.log('Existen varios motores');// Borrar
+                ventanaMotor.abrir(listaMotores);
+            } else if (listaMotores.length < 1) {
+                console.log("No extiste motor con ese codigo"); // Borrar
+                borraMotorCampos();
+            }
+        });
+
     } else {
-        $("#descripcionModelo").val("");
-        $("#logoMarca").attr("src", "");
-        $("#silueta").attr("src", "");
+        borraMotorCampos();
     }
 }
 
+function rellenaMotorCampos(motor) {
+    $("#codigoMotor").val(motor.codigoMotor);
+    $("#descripcionMotor").val(motor.descripcionMotor);
+    $("#combustibleMotor").text(motor.combustibleMotor);
+    $("#cilindradaMotor").text(motor.cilindradaMotor);
+    $("#kwMotor").text(motor.kwMotor);
+    $("#fabricanteMotor").text(motor.fabricante.nombreFabricante);    
+}
 
+function borraMotorCampos() {
+    $("#codigoMotor").val("");
+    $("#descripcionMotor").val("");
+    $("#cilindradaMotor").text("");
+    $("#kwMotor").text("");
+    $("#fabricanteMotor").text("");
+}
+//Modelo **********************************************/
+
+function consultaModeloMin() {
+    if (!vacio($("#codigoModelo"))) {
+        var modelo = this.value;
+        console.log("Consultamos " + modelo);  //Borrar
+        promesa = peticionAjax('../consultaModelo.htm', modelo);
+        promesa.then(function(listaModelos) {
+            if (listaModelos.length === 1) {
+                var modelo = listaModelos[0];
+                rellenaModeloCampos(modelo);
+            } else if (listaModelos.length > 1) {
+                console.log("Existen varios Modelos - Consulte administrador BBDD");
+            } else if (listaModelos.length < 1) {
+                console.log("No existe ningun modelo con ese Codigo"); // Borrar
+                borraModeloCampos();
+            }
+        });
+    } else {
+        borraModeloCampos();
+    }
+}
 
 function rellenaModeloCampos(modelo) {
+    console.log("Modelo llega aki " + modelo.decripcionModelo);
     $("#idModelo").val(modelo.idModelo);
-    $("#descripcionModelo").val(modelo.descripcion).change();
-    $("#codigoModelo").val(modelo.codigo);
-    $("#logoMarca").attr("src", "img/marcas/" + modelo.fabricante.logo);
-    $("#silueta").attr("src", "img/imagenesVehiculos/" + modelo.imagen);
+    $("#descripcionModelo").val(modelo.descripcionModelo).change();
+    $("#codigoModelo").val(modelo.codigoModelo);
+    $("#logoMarca").attr("src", "img/marcas/" + modelo.fabricante.logoFabricante);
+    $("#silueta").attr("src", "img/imagenesVehiculos/" + modelo.imagenModelo);
     /*$("#nombreFabricanteModelo").text(modelo.fabricante.nombre);*/
-    $("#codigoMarca").val(modelo.fabricante.codigo); //prueba
-    console.log("Estas aki");
-    $("#fechainicio").val(modelo.fechaInicio);//prueba
+    $("#codigoMarca").val(modelo.fabricante.codigoFabricante); //prueba
+    $("#nombreFabricanteModelo").val(modelo.fabricante.nombreFabricante);
+    $("#fechainicio").val(modelo.inicioModelo);//prueba
 
+}
+
+function borraModeloCampos() {
+    $("#descripcionModelo").val("");
+    $("#logoMarca").attr("src", "");
+    $("#silueta").attr("src", "");
 }
 
 function darAltaModelo() {
@@ -203,7 +281,8 @@ function darAltaModelo() {
     }
 }
 
-//Motor ******************************************
+//Motor ******************************************/
+
 
 function darAltaMotor() {
     var respuesta = confirm("Desea dar de alta este Motor?");
@@ -217,28 +296,41 @@ function darAltaMotor() {
     }
 }
 
-// Matricula *************************************
-function consultaMatricula() {
-    if ($("#matricula").val().length > 3) {
-        var matricula = $("#matricula").val();
-        console.log("Vamos a consultar la matricula " + matricula);
-        $.getJSON(
-                '../consultaMatricula.htm',
-                {matricula: matricula},
-        respuestaConsultaMatricula);
+
+
+// Entidad ******************************************/
+function consultaEntidadCampos(entidad) {
+
+}
+function consultaEntidadMin() {
+    if ($("#nombreEntidad").val().length > 2) {
+        var nombre = $("#nombreEntidad").val();
+        console.log("Campo nombre RELLENO " + nombre + " " + nombre.length);
+        promesa = peticionAjax('../consultaEntidadPorNombre.htm', nombre);
+        promesa.then(function(listaEntidades) {
+            if (listaEntidades.length == 0) {
+                alert("Error: la consulta del nombre no ha obtenido ningun resultado");
+            } else if (listaEntidades.length == 1) {
+                rellenaEntidadCampos(listaEntidades[0]);
+            } else {
+                ventanaEntidad.abrir(listaEntidades);   //Abre la ventana Modal con la lista
+            }
+        });
+    } else {
+        console.log("Campo nombre debe tener 3 o mas caracteres");
     }
 }
 
-function respuestaConsultaMatricula(listaObjetos) {
-    if (listaObjetos.length == 1) {
-        var objeto = listaObjetos[0];
-        rellenaFormulario(objeto);
-    } else if (listaObjetos.length > 1) {
-        ventanaMatricula.abrir(listaObjetos)
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun vehiculo con esta matricula ");
-    }
+function rellenaEntidadCampos(entidad) {
+    $("#codigoEntidad").val(entidad.idEntidad);
+    $("#nombreEntidad").val(entidad.nombreEntidad);
+    $("#poblacionEntidad").text(entidad.poblacionEntidad);
+    $("#telefonoEntidad").text(entidad.telefonoEntidad);
+    $("#movilEntidad").text(entidad.movilEntidad);
 }
+
+// Matricula *************************************
+
 
 // Recambio **************************************
 function consultaReferencia() {

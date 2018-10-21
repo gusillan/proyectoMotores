@@ -1,22 +1,19 @@
 
-// 1 Listener *****************************************************************
+/*  Listener 
+ *****************************************************************************/
 
 $("document").ready(function() {
-
-    consultaModelo();
-    consultaMotor();
-    consultaCliente();
-
+    
     $("#fechaMatricula").mask("99/99/9999"); // sin lineas("99/9999", {placeholder: " "})
 
-    $("#matricula").change(consultaMatricula);
-    $("#codigoModelo").change(consultaModelo);
-    $("#codigoMotor").change(consultaMotor);
-    $("#codigoCliente").change(consultaCliente);
+    $("#matricula").change(consultaMatriculaVehiculo);
+    $("#codigoModelo").change(consultaModeloMin);
+    $("#codigoMotor").change(consultaMotorMin);
+    $("#codigoCliente").change(consultaEntidadCampos);
     //Botones de busqueda ***************************
-    $("#buscarEntidad").click(buscarEntidad);
-    $("#buscarModelo").click(buscarModelo);
-    $("#buscarMotor").click(buscarMotor);
+    $("#buscarEntidad").click(consultaEntidadMin);
+    $("#buscarModelo").click(buscarModeloDescripcion);
+    $("#buscarMotor").click(buscarMotorDescripcion);
 
     //Ventana lateral *******************************
     $(".g-button-aside-close").click(function() {
@@ -35,7 +32,7 @@ $("document").ready(function() {
 function guardar() {
     if (validarFormulario()) {
         envioFormulario('../guardaVehiculo.htm');
-    }else{
+    } else {
         console.log("ERROR - Formulario no válido");
     }
 }
@@ -47,61 +44,47 @@ function baja() {
 /* Funciones Principales
  ******************************************************************************/
 
-function consultaCliente() {
-    if (!vacio($("#codigoCliente"))) {
-        var cliente = $("#codigoCliente").val();
-        console.log("Cliente " + cliente);
-        $.getJSON(
-                '../consultaClientePorCodigo.htm',
-                {codigo: cliente},
-        respuestaConsultaCliente);
+
+function consultaMatriculaVehiculo() {
+    if ($("#matricula").val().length > 3) {
+        var matricula = this.value;
+        promesa = peticionAjax('../consultaMatricula.htm', matricula);
+        promesa.then(function(listaVehiculos) {
+            if (listaVehiculos.length === 1) {
+                var vehiculo = listaVehiculos[0];
+                rellenaFormularioVehiculo(vehiculo);
+            } else if (listaVehiculos.length > 1) {
+                ventanaMatricula.abrir(listaVehiculos)
+            } else if (listaVehiculos.length < 1) {
+                borraFormularioVehiculo();
+                desactivarBajaVehiculo();
+            }
+        });
     } else {
-        $("#nombreCliente").val("");
-    }
-
-}
-
-
-function respuestaConsultaCliente(listaObjetos) {
-    if (listaObjetos.length == 1) {
-        var objeto = listaObjetos[0];
-        rellenaCliente(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varios Clientes con el mismo codigo.Consultar con el administrador de la BBDD");
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun Cliente con este codigo");
-        $("#nombreCliente").val("");
-        darAltaCliente();
+        borraFormularioVehiculo();
     }
 }
 
-function rellenaCliente(cliente) {
-    $("#codigoCliente").val(cliente.idEntidad);
-    $("#nombreCliente").val(cliente.nombre);
-    $("#poblacionEntidad").text(cliente.poblacion);
-    $("#telefonoEntidad").text(cliente.telefono);
-    $("#movilEntidad").text(cliente.movil);
-}
-
-
-
-
-// 3 Rellenar Formulario ******************************************************
-
-function rellenaFormulario(obj) {
-    $("#idVehiculo").val(obj.idVehiculo);
-    $("#matricula").val(obj.matricula);
-    $("#chasis").val(obj.chasis);
-    $("#fechaMatricula").val(obj.fechaMatricula);
-    $("#informacion").val(obj.informacion);
+function rellenaFormularioVehiculo(vehiculo) {
+    $("#idVehiculo").val(vehiculo.idVehiculo);
+    $("#matricula").val(vehiculo.matricula);
+    $("#chasis").val(vehiculo.chasis);
+    $("#fechaMatricula").val(vehiculo.fechaMatricula);
+    $("#informacion").val(vehiculo.infoVehiculo);
     $("#baja").attr("disabled", false);
 
-    rellenaModelo(obj.modelo);
-    rellenaMotor(obj.motor);
-    rellenaCliente(obj.entidad);
+    rellenaModeloCampos(vehiculo.modelo);
+    rellenaMotorCampos(vehiculo.motor);
+    rellenaEntidadCampos(vehiculo.entidad);
 
     $(".g-aside").show();
     $(".g-button-aside-open").hide();
+}
+
+function borraFormularioCliente() {
+    var matricula = $("#matricula").val();
+    $("#formulario")[0].reset();
+    $("#matricula").val(matricula);
 }
 
 // 4 Ventanas Modales *********************************************************
@@ -109,129 +92,95 @@ function rellenaFormulario(obj) {
 var ventanaEntidad = new VentanaEmergente({
     modal: 'entidadModal',
     titulo: 'Búsqueda por nombre',
-    campos: ['nombre', 'poblacion'],
+    campos: ['nombreEntidad', 'poblacionEntidad'],
     campoID: 'idEntidad',
-    callback: rellenaCliente
+    callback: rellenaEntidadCampos
 });
 
 var ventanaModelo = new VentanaEmergente({
     modal: 'modeloModal',
     titulo: 'Búsqueda por modelo',
-    campos: ['codigo', 'descripcion'],
+    campos: ['codigoModelo', 'descripcionModelo'],
     campoID: 'idModelo',
-    callback: rellenaModelo
+    callback: rellenaModeloCampos
 });
 
 var ventanaMotor = new VentanaEmergente({
     modal: 'motorModal',
     titulo: 'Búsqueda por motor',
-    campos: ['codigo', 'descripcion'],
+    campos: ['codigoMotor', 'descripcionMotor'],
     campoID: 'idMotor',
-    callback: rellenaMotor
+    callback: rellenaMotorCampos
 });
 
 var ventanaMatricula = new VentanaEmergente({
     modal: 'matriculaModal',
     titulo: 'Busqueda de matrícula',
-    campos: ['matricula', 'modelo.descripcion', 'motor.descripcion'],
-    campoID: 'idVehiculo'
+    campos: ['matricula', 'modelo.descripcionModelo', 'motor.descripcionMotor'],
+    campoID: 'idVehiculo',
+    callback: rellenaFormularioVehiculo
 });
-
-/* Funciones de Consulta de codigos
- ************************************************************/
-
-
 
 /*  Busquedas
  *********************************************************/
+
 function buscarEntidad() {
-    if ($("#nombreCliente").val().length > 2) {
-        console.log("Campo nombre RELLENO " + $("#nombreCliente").val().length);
-        $.ajax({
-            url: '../consultaPorNombre.htm',
-            data: {nombre: $('#nombreCliente').val()},
-            type: 'POST',
-            dataType: 'json',
-            success: respuestaBuscarEntidad
+    if ($("#nombreEntidad").val().length > 2) {
+        var nombreEntidad = $("#nombreEntidad").val();
+        promesa = peticionAjax('../consultaEntidadPorNombre.htm', nombreEntidad);
+        promesa.then(function(listaEntidades) {
+            if (listaEntidades.length == 0) {
+                console.log("Error: la consulta entidad no ha obtenido ningun resultado");                             
+            } else if (listaEntidades.length == 1) {
+                rellenaEntidadCampos(listaEntidades[0]);
+            } else {
+                ventanaEntidad.abrir(listaEntidades); //Abre la ventana Modal con la lista
+            }
         });
     } else {
         console.log("Campo nombre debe tener 3 o mas caracteres");
     }
 }
 
-function respuestaBuscarEntidad(clientesJson) {
-    if (clientesJson.length == 0) {
-        console.log("Error: la consulta del nombre no ha obtenido ningun resultado");
-    } else if (clientesJson.length == 1) {
-        rellenaCliente(clientesJson[0]);
-    } else {
-        ventanaEntidad.abrir(clientesJson); //Abre la ventana Modal con la lista
-        console.log("Abrir modal");
-    }
-}
-
-function buscarModelo() {
-
-    var descripcionModelo = $("#descripcionModelo").val()
-    if (descripcionModelo.length > 1) {
-        console.log("Campo modelo RELLENO");
-        $.ajax({
-            url: '../consultaPorDescripcionModelo.htm',
-            data: {descripcion: descripcionModelo},
-            type: 'POST',
-            dataType: 'json',
-            success: respuestaBuscarModelo
+function buscarModeloDescripcion() {
+    if ($("#descripcionModelo").val().length > 2) {
+        var descripcionModelo = $("#descripcionModelo").val();
+        console.log("Campo modelo RELLENO " + descripcionModelo + " " + descripcionModelo.length);
+        promesa = peticionAjax('../consultaModeloPorDescripcion.htm', descripcionModelo);
+        promesa.then(function(listaModelos) {
+            if (listaModelos.length == 0) {
+                console.log("Error: la consulta del modelo no ha obtenido ningun resultado");
+                $("#descripcionModelo").val("");
+                $("#logoMarca").remove();
+            } else if (listaModelos.length == 1) {
+                rellenaModeloCampos(listaModelos[0]);
+            } else {
+                ventanaModelo.abrir(listaModelos); //Abre la ventana Modal con la lista
+            }
         });
-    }
-}
-
-function respuestaBuscarModelo(modelos) {
-    if (modelos.length == 0) {
-        console.log("Error: la consulta del modelo no ha obtenido ningun resultado");
-        $("#descripcionModelo").val("");
-        $("#logoMarca").remove();
-
-    } else if (modelos.length == 1) {
-        rellenaModelo(modelos[0]);
     } else {
-        ventanaModelo.abrir(modelos); //Abre la ventana Modal con la lista
+        console.log("Campo nombre debe tener 3 o mas caracteres");
     }
 }
 
-function buscarMotor() {
-
-    var descripcionMotor = $("#descripcionMotor").val()
-    if (descripcionMotor.length > 2) {
-        console.log("Campo motor RELLENO");
-        $.ajax({
-            url: '../consultaPorDescripcionMotor.htm',
-            data: {descripcion: descripcionMotor},
-            type: 'POST',
-            dataType: 'json',
-            success: respuestaBuscarMotor
+function buscarMotorDescripcion() {
+    if ($("#descripcionMotor").val().length > 2) {
+        var descripcionMotor = $("#descripcionMotor").val();
+        console.log("Campo motor RELLENO " + descripcionMotor + " " + descripcionMotor.length);
+        promesa = peticionAjax('../consultaMotorPorDescripcion.htm', descripcionMotor);
+        promesa.then(function(listaMotores) {
+            if (listaMotores.length == 0) {
+                console.log("Error: la consulta del motor no ha obtenido ningun resultado");
+                $("#descripcionMotor").val("");
+            } else if (listaMotores.length == 1) {
+                rellenaModeloCampos(listaMotores[0]);
+            } else {
+                ventanaMotor.abrir(listaMotores); //Abre la ventana Modal con la lista
+            }
         });
+    } else {
+        console.log("Campo nombre debe tener 3 o mas caracteres");
     }
 }
 
-function respuestaBuscarMotor(motores) {
-    if (motores.length == 0) {
-        console.log("Error: la consulta del motor no ha obtenido ningun resultado");
-    } else if (motores.length == 1) {
-        rellenaMotor(motores[0]);
-    } else {
-        ventanaMotor.abrir(motores); //Abre la ventana Modal con la lista
-    }
-}
-
-function darAltaCliente() {
-    var respuesta = confirm("Desea dar de alta este Cliente?");
-    if (respuesta == true) {
-        console.log("Ha pulsado si");
-        window.location = "../html/formularioEntidad.html";
-    } else {
-        console.log("Ha pulsado no");
-        $("#codigoCliente").val("");
-        $("#codigoCliente").focus();
-    }
-}
 

@@ -36,7 +36,7 @@ public class ManoObraController {
         System.out.println("Codigo Recambio "+codigoRecambio);
         List<Categoria> listaCat = categoriaDao.listadoPorCampoExacto("idCategoria", codigoRecambio);
         Categoria cat = listaCat.get(0);       
-        System.out.println("Categoria de Recambio "+cat.getIdCategoria()+" "+cat.getCodigo()+" "+cat.getCategoria());
+        System.out.println("Categoria de Recambio "+cat.getIdCategoria()+" "+cat.getCodigoCategoria()+" "+cat.getCategoria());
         manoObra.setCategoria(cat);      
         manoObraDao.update(manoObra);
     }    

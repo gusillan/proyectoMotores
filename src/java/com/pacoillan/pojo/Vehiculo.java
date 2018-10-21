@@ -27,35 +27,35 @@ public class Vehiculo implements java.io.Serializable {
     private Motor motor;
     private Date fechaMatricula;
     private Entidad entidad;
-    private String informacion;
+    private String infoVehiculo;
 
     public Vehiculo() {
     }
 
-    public Vehiculo(String matricula, String chasis, Date fechaMatricula, String informacion) {
+    public Vehiculo(String matricula, String chasis, Date fechaMatricula, String infoVehiculo) {
         this.matricula = matricula;
         this.chasis = chasis;
         this.fechaMatricula = fechaMatricula;
-        this.informacion = informacion;
+        this.infoVehiculo = infoVehiculo;
     }
 
-    public Vehiculo(String matricula, String chasis, Modelo modelo, Motor motor, Entidad entidad, String informacion) {
+    public Vehiculo(String matricula, String chasis, Modelo modelo, Motor motor, Entidad entidad, String infoVehiculo) {
         this.matricula = matricula;
         this.chasis = chasis;
         this.modelo = modelo;
         this.motor = motor;
         this.entidad = entidad;
-        this.informacion = informacion;
+        this.infoVehiculo = infoVehiculo;
     }
 
-    public Vehiculo(String matricula, String chasis, Modelo modelo, Motor motor, Date fechaMatricula, Entidad entidad, String informacion) {
+    public Vehiculo(String matricula, String chasis, Modelo modelo, Motor motor, Date fechaMatricula, Entidad entidad, String infoVehiculo) {
         this.matricula = matricula;
         this.chasis = chasis;
         this.modelo = modelo;
         this.motor = motor;
         this.fechaMatricula = fechaMatricula;
         this.entidad = entidad;
-        this.informacion = informacion;
+        this.infoVehiculo = infoVehiculo;
     }
 
     @Id
@@ -127,12 +127,12 @@ public class Vehiculo implements java.io.Serializable {
         this.entidad = entidad;
     }
 
-    @Column(name = "informacion", length = 2000)
-    public String getInformacion() {
-        return informacion;
+    @Column(name = "infoVehiculo", length = 2000)
+    public String getInfoVehiculo() {
+        return infoVehiculo;
     }
 
-    public void setInformacion(String informacion) {
-        this.informacion = informacion;
+    public void setInfoVehiculo(String infoVehiculo) {
+        this.infoVehiculo = infoVehiculo;
     }
 }

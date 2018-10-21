@@ -32,7 +32,7 @@
                 <h1>Formulario Entidades</h1>      
             </div>
 
-            <form name="formulario" id="formulario">
+            <form name="formularioEntidad" id="formulario">
 
                 <div class="row">
                     <div class="col-md-2">
@@ -43,8 +43,8 @@
                     </div>
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="dni">DNI/CIF</label>
-                            <input type="text" class="form-control g-input" id="dni" name="dni" pattern="[0-9]{8}[A-Z]{1}|[ABCDEFGHJNPQRSUVW]{1}[0-9]{7}[0-9A-Z]{1}" maxlength="9" required title="Debe de contener 9 dígitos númericos y una letra" data-toggle="popover">
+                            <label for="dniEntidad">DNI/CIF</label>
+                            <input type="text" class="form-control g-input" id="dniEntidad" name="dniEntidad" pattern="[0-9]{8}[A-Z]{1}|[ABCDEFGHJNPQRSUVW]{1}[0-9]{7}[0-9A-Z]{1}" maxlength="9" required title="Debe de contener 9 dígitos númericos y una letra" data-toggle="popover">
                         </div>               
                     </div>         
                 </div><!--row-->
@@ -52,9 +52,9 @@
                 <div class="row">
                     <div class="col-md-8">              
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
+                            <label for="nombreEntidad">Nombre</label>
                             <div class="input-group">
-                                <input type="text" class="form-control g-input" id="nombre" name="nombre" size="45" maxlength="40" required title="Complete el nombre">
+                                <input type="text" class="form-control g-input" id="nombreEntidad" name="nombreEntidad" size="45" maxlength="40" required title="Complete el nombre">
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-primary" id="buscarNombre">Buscar</button>
                                 </span>
@@ -66,8 +66,8 @@
                 <div class="row">
                     <div class="col-md-8">              
                         <div class="form-group">
-                            <label for="direccion">Dirección</label>
-                            <input type="text" class="form-control g-input" id="direccion" name="direccion" size="55" maxlength="50">
+                            <label for="direccionEntidad">Dirección</label>
+                            <input type="text" class="form-control g-input" id="direccionEntidad" name="direccionEntidad" size="55" maxlength="50">
                         </div>               
                     </div>
                 </div><!--row-->
@@ -75,14 +75,14 @@
                 <div class="row">
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="cpostal">Código Postal <a href="formularioCpostal.html" title="Formulario Código Postal"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
-                            <input type="text" class="form-control g-input" id="cpostal" name="cpostal" pattern="[0-9]{5}" maxlength="5" title="Debe de contener 5 dígitos númericos" data-toggle="popover">
+                            <label for="cPostalEntidad">Código Postal <a href="formularioCpostal.html" title="Formulario Código Postal"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
+                            <input type="text" class="form-control g-input" id="cPostalEntidad" name="cPostalEntidad" pattern="[0-9]{5}" maxlength="5" title="Debe de contener 5 dígitos númericos" data-toggle="popover">
                         </div>
                     </div>  
                     <div class="col-md-6">              
                         <div class="form-group">
-                            <label for="poblacion">Población</label>
-                            <input type="text" class="form-control g-input" id="poblacion" name="poblacion" size="40" maxlength="35">
+                            <label for="poblacionEntidad">Población</label>
+                            <input type="text" class="form-control g-input" id="poblacionEntidad" name="poblacionEntidad" size="40" maxlength="35">
                         </div>
                     </div>
                 </div><!--row-->
@@ -90,20 +90,20 @@
                 <div class="row">
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="telefono">Teléfono</label>
-                            <input type="tel" class="form-control g-input" id="telefono" name="telefono" pattern="[0-9 ]+"  title="Debe de contener 9 dígitos númericos" data-toggle="popover">
+                            <label for="telefonoEntidad">Teléfono</label>
+                            <input type="tel" class="form-control g-input" id="telefonoEntidad" name="telefonoEntidad" pattern="[0-9 ]+"  title="Debe de contener 9 dígitos númericos" data-toggle="popover">
                         </div>
                     </div>
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="movil">Móvil</label>
-                            <input type="tel" class="form-control g-input" id="movil" name="movil" pattern="[0-9 ]+"  title="Debe de contener 9 dígitos númericos" data-toggle="popover">
+                            <label for="movilEntidad">Móvil</label>
+                            <input type="tel" class="form-control g-input" id="movilEntidad" name="movilEntidad" pattern="[0-9 ]+"  title="Debe de contener 9 dígitos númericos" data-toggle="popover">
                         </div>
                     </div>
                     <div class="col-md-4">              
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control g-input" id="email" name="email" size="55" maxlength="50" title="Debe de tener el formato de email con @ y terminación .com o .es" data-toggle="popover">
+                            <label for="emailEntidad">Email</label>
+                            <input type="email" class="form-control g-input" id="emailEntidad" name="emailEntidad" size="55" maxlength="50" title="Debe de tener el formato de email con @ y terminación .com o .es" data-toggle="popover">
                         </div>
                     </div>
                 </div><!--row-->
@@ -113,8 +113,8 @@
                 <div class="row">
                     <div class="col-md-8">              
                         <div class="form-group">
-                            <label for="informacion">Información</label>
-                            <textarea class="form-control g-textarea" id="informacion" name="informacion" rows="3"></textarea>
+                            <label for="infoEntidad">Información</label>
+                            <textarea class="form-control g-textarea" id="infoEntidad" name="infoEntidad" rows="3"></textarea>
                         </div>               
                     </div>
                 </div><!--row-->

@@ -110,16 +110,16 @@ public class ModeloController {
         }
     }
 
-    @RequestMapping("consultaPorDescripcionModelo.htm")
-    public void consultaPorDescripcionModelo(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping("consultaModeloPorDescripcion.htm")
+    public void consultaModeloPorDescripcion(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        System.out.println("Descripcion " + request.getParameter("descripcion"));
+        System.out.println("Descripcion " + request.getParameter("parametro"));
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        String descripcionModelo = (request.getParameter("descripcion").toUpperCase());
-        List<Modelo> listaModelos = modeloDao.listadoPorCampo("descripcion", descripcionModelo);
+        String descripcionModelo = (request.getParameter("parametro").toUpperCase());
+        List<Modelo> listaModelos = modeloDao.listadoPorCampo("descripcionModelo", descripcionModelo);
         System.out.println("Listado" + listaModelos);
         if (listaModelos.isEmpty()) {
             out.println();

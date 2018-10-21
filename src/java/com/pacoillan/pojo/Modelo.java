@@ -106,6 +106,6 @@ public class Modelo implements java.io.Serializable, Comparable {
     @Override
     public int compareTo(Object t) {
         Modelo otroModelo = (Modelo) t;
-        return codigoModelo.compareTo(otroModelo.getCodigoModelo());
+        return codigoModelo.compareTo(otroModelo.getDescripcionModelo());
     }
 }

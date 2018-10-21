@@ -20,29 +20,31 @@ public class Entidad  implements java.io.Serializable, Comparable {
 
 
      private Integer idEntidad;
-     private String nombre;
-     private String direccion;
-     private String cpostal;
-     private String poblacion;
-     private String dni;
-     private String telefono;
-     private String movil;
-     private String email;
-     private String informacion;
+     private String nombreEntidad;
+     private String direccionEntidad;
+     private String cPostalEntidad;
+     private String poblacionEntidad;
+     private String dniEntidad;
+     private String telefonoEntidad;
+     private String movilEntidad;
+     private String emailEntidad;
+     private String infoEntidad;
 
     public Entidad() {
     }
 
-    public Entidad(String nombre, String direccion, String cpostal, String poblacion, String dni, String telefono, String movil, String email, String informacion) {
-       this.nombre = nombre;
-       this.direccion = direccion;
-       this.cpostal = cpostal;
-       this.poblacion = poblacion;
-       this.dni = dni;
-       this.telefono = telefono;
-       this.movil = movil;
-       this.email = email;
-       this.informacion = informacion;
+    public Entidad(String nombreEntidad, String direccionEntidad, String cPostalEntidad,
+            String poblacionEntidad, String dniEntidad, String telefonoEntidad,
+            String movilEntidad, String emailEntidad, String infoEntidad) {
+       this.nombreEntidad = nombreEntidad;
+       this.direccionEntidad = direccionEntidad;
+       this.cPostalEntidad = cPostalEntidad;
+       this.poblacionEntidad = poblacionEntidad;
+       this.dniEntidad = dniEntidad;
+       this.telefonoEntidad = telefonoEntidad;
+       this.movilEntidad = movilEntidad;
+       this.emailEntidad = emailEntidad;
+       this.infoEntidad = infoEntidad;
     }
    
     @Id @GeneratedValue(strategy=IDENTITY)    
@@ -55,91 +57,91 @@ public class Entidad  implements java.io.Serializable, Comparable {
         this.idEntidad = idEntidad;
     }
     
-    @Column(name="nombre", length=35)
-    public String getNombre() {
-        return this.nombre;
+    @Column(name="nombreEntidad", length=35)
+    public String getNombreEntidad() {
+        return this.nombreEntidad;
     }
     
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreEntidad(String nombreEntidad) {
+        this.nombreEntidad = nombreEntidad;
     }
     
-    @Column(name="direccion", length=25)
-    public String getDireccion() {
-        return this.direccion;
+    @Column(name="direccionEntidad", length=25)
+    public String getDireccionEntidad() {
+        return this.direccionEntidad;
     }
     
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setDireccionEntidad(String direccionEntidad) {
+        this.direccionEntidad = direccionEntidad;
     }
     
-    @Column(name="cPostal", length=5)
-    public String getCpostal() {
-        return this.cpostal;
+    @Column(name="cPostalEntidad", length=5)
+    public String getCPostalEntidad() {
+        return this.cPostalEntidad;
     }
     
-    public void setCpostal(String cpostal) {
-        this.cpostal = cpostal;
+    public void setCPostalEntidad(String cPostalEntidad) {
+        this.cPostalEntidad = cPostalEntidad;
     }
     
-    @Column(name="poblacion", length=25)
-    public String getPoblacion() {
-        return this.poblacion;
+    @Column(name="poblacionEntidad", length=25)
+    public String getPoblacionEntidad() {
+        return this.poblacionEntidad;
     }
     
-    public void setPoblacion(String poblacion) {
-        this.poblacion = poblacion;
+    public void setPoblacionEntidad(String poblacionEntidad) {
+        this.poblacionEntidad = poblacionEntidad;
     }
     
-    @Column(name="dni", length=9)
-    public String getDni() {
-        return this.dni;
+    @Column(name="dniEntidad", length=9)
+    public String getDniEntidad() {
+        return this.dniEntidad;
     }
     
-    public void setDni(String dni) {
-        this.dni = dni;
+    public void setDniEntidad(String dniEntidad) {
+        this.dniEntidad = dniEntidad;
     }
     
-    @Column(name="telefono", length=12)
-    public String getTelefono() {
-        return this.telefono;
+    @Column(name="telefonoEntidad", length=12)
+    public String getTelefonoEntidad() {
+        return this.telefonoEntidad;
     }
     
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setTelefonoEntidad(String telefonoEntidad) {
+        this.telefonoEntidad = telefonoEntidad;
     }
     
-    @Column(name="movil", length=12)
-    public String getMovil() {
-        return this.movil;
+    @Column(name="movilEntidad", length=12)
+    public String getMovilEntidad() {
+        return this.movilEntidad;
     }
     
-    public void setMovil(String movil) {
-        this.movil = movil;
+    public void setMovilEntidad(String movilEntidad) {
+        this.movilEntidad= movilEntidad;
     }
     
-    @Column(name="email", length=30)
-    public String getEmail() {
-        return this.email;
+    @Column(name="emailEntidad", length=30)
+    public String getEmailEntidad() {
+        return this.emailEntidad;
     }
     
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailEntidad(String emailEntidad) {
+        this.emailEntidad = emailEntidad;
     }
     
-    @Column(name="informacion", length=2000)
-    public String getInformacion() {
-        return this.informacion;
+    @Column(name="infoEntidad", length=2000)
+    public String getInfoEntidad() {
+        return this.infoEntidad;
     }
     
-    public void setInformacion(String informacion) {
-        this.informacion = informacion;
+    public void setInfoEntidad(String infoEntidad) {
+        this.infoEntidad = infoEntidad;
     }
 
     @Override
     public int compareTo(Object t) {
         Entidad otraEntidad = (Entidad) t;
-        return nombre.compareTo(otraEntidad.getNombre()); // Ordena alfabeticamente por nombre
+        return nombreEntidad.compareTo(otraEntidad.getNombreEntidad()); // Ordena alfabeticamente por nombre
        
     }
 

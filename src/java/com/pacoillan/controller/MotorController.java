@@ -74,9 +74,9 @@ public class MotorController {
         Gson gson = new Gson();
         Motor m = gson.fromJson(jsonEntrada, Motor.class);
         System.out.println("Objeto recibido " + jsonEntrada);
-        System.out.println("Objeto JAVA " + m.getCodigo() + " " + m.getDescripcion());
+        System.out.println("Objeto JAVA " + m.getCodigoMotor() + " " + m.getDescripcionMotor());
         List<Motor> listaMotores;
-        listaMotores = motorDao.listadoPorCampo("codigo", m.getCodigo());
+        listaMotores = motorDao.listadoPorCampo("codigo", m.getCodigoMotor());
         //listaMotores = motorDao.listAll();       
         Collections.sort(listaMotores);
 
@@ -87,16 +87,17 @@ public class MotorController {
         out.println(lista);
     }
     
-    @RequestMapping("consultaPorDescripcionMotor.htm")
-    public void consultaPorDescripcionMotor(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping("consultaMotorPorDescripcion.htm")
+    public void consultaMotorPorDescripcion(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        System.out.println("Descripcion " + request.getParameter("descripcion"));
+        System.out.println("Descripcion " + request.getParameter("parametro")); // Borrar
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        String descripcionMotor = (request.getParameter("descripcion").toUpperCase());        
-        List<Motor> listaMotores = motorDao.listadoPorCampo("descripcion", descripcionMotor);
+        
+        String descripcionMotor = (request.getParameter("parametro").toUpperCase());        
+        List<Motor> listaMotores = motorDao.listadoPorCampo("descripcionMotor", descripcionMotor);
         System.out.println("Listado" + listaMotores);
         if (listaMotores.isEmpty()) {
             out.println();
