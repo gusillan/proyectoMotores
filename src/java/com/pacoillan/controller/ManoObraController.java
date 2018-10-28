@@ -30,7 +30,7 @@ public class ManoObraController {
     @RequestMapping("guardaManoObra.htm")
     public void guardaManoObra(ManoObra manoObra,HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("ESTAMOS EN GUARDAR MANO DE OBRA !!!!");
-        System.out.println("Codigo "+manoObra.getCodigo());
+        System.out.println("Codigo "+manoObra.getCodigoManoObra());
                 
         String codigoRecambio = request.getParameter("codigoCategoria");
         System.out.println("Codigo Recambio "+codigoRecambio);
@@ -57,9 +57,9 @@ public class ManoObraController {
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         
-        String codigo = (request.getParameter("parametro").toUpperCase());
-        System.out.println("Vamos a consultar la MO "+ codigo); //Borrar
-        List<ManoObra> listaManoObra = manoObraDao.listadoPorCampoExacto("codigo", codigo);
+        String codigoManoObra = (request.getParameter("parametro").toUpperCase());
+        System.out.println("Vamos a consultar la MO "+ codigoManoObra); //Borrar
+        List<ManoObra> listaManoObra = manoObraDao.listadoPorCampoExacto("codigoManoObra", codigoManoObra);
         if (listaManoObra.isEmpty()) {
             System.out.println("No hay coincidencia"); // Borrar
             out.println();

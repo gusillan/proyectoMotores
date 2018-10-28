@@ -5,10 +5,10 @@ $("document").ready(function() {
     listadoCategoriaRecambio();
 
     //$("#listaCategorias").change(consultarMOAsociada);
-    $("#codigo").blur(consultaCodigo);
-    $("#tiempo").change(formatearTiempo);
+    $("#codigoManoObra").change(consultaManoObra);
+    $("#tiempoManoObra").change(formatearTiempo);
 
-    $("#codigo").mask("99.99");
+    $("#codigoManoObra").mask("99.99");
 
 
 });
@@ -35,30 +35,52 @@ function baja() {
 
 /* Funciones adicionales
  ********************************************************/
-function consultaCodigo() {
-    if (!vacio($("#codigo"))) {
-        var codigo = this.value;
-        console.log("Vamos a consultar " + codigo); // Borrar
-        peticionAjax('../consultaManoObra.htm', codigo, respuestaConsultaCampo);
+function consultaManoObra() {
+    if (!vacio($("#codigoManoObra"))) {
+        var codigoManoObra = this.value;
+        promesa =  peticionAjax('../consultaManoObra.htm', codigoManoObra);
+        promesa.then(function(listaManoObra){
+            if (listaManoObra.length === 1){
+                var manoObra = listaManoObra[0];
+                rellenaFormularioManoObra(manoObra);
+            }else if (listaManoObra.length > 1){
+                console.log ("ERROR - No puede haber codigos de mano de obra repetidos")
+            }else if (listaManoObra.length <1){
+                console.log("No existe Mano Obra con ese codigo"); // Borrar
+                borrarFormularioManoObra();
+                desactivarBajaManoObra();
+            }
+        });
     } else {
-        borrarFormulario();
+        borrarFormularioManoObra();
     }
 }
 
-function borrarFormulario() {
-    var codigo = $("#codigo").val();
+function rellenaFormularioManoObra (manoObra) {
+    $("#idManoObra").val(manoObra.idManoObra);
+    $("#codigoManoObra").val(manoObra.codigoManoObra);
+    $("#descripcionManoObra").val(manoObra.descripcionManoObra);
+    $("#infoManoObra").val(manoObra.infoManoObra);
+    $("#tiempoManoObra").val(manoObra.tiempoManoObra);
+    formatearTiempo();
+    $('#listaCategorias option[value="' + manoObra.categoria.idCategoria + '"]').prop('selected', true);
+    $("#baja").attr("disabled", false);
+}
+
+function borrarFormularioManoObra() {
+    var codigoManoObra = $("#codigoManoObra").val();
     $("#formulario")[0].reset();
-    $("#codigo").val(codigo);
+    $("#codigoManoObra").val(codigoManoObra);
 }
 
-function respuestaCeroObjetos(){
-    console.log("Zero Obj");
-    borrarFormulario();
+function desactivarBajaManoObra(){
+    $("#baja").attr("disabled",true);
 }
 
-function respuestaVariosObjetos(){
-    console.log("ERROR - No puede haber codigo repetidos en esta BBDD.Consultar al administrador");
+function activarBajaManoObra(){
+    $("#baja").attr("disabled",false);
 }
+
 
 function listadoCategoriaRecambio() {
     console.log("Listado categorias de recambio"); // borrar    
@@ -68,7 +90,7 @@ function listadoCategoriaRecambio() {
 function respuestaConsultaCategoriaRecambio(listaObjetos) {
     //$("#listaCategorias").append('<option value=0>' + "--");
     $.each(listaObjetos, function(key, registro) {
-        $("#listaCategorias").append('<option value=' + registro.idCategoria + '>' + '(' + registro.codigo + ') ' + registro.categoria + '</option>');
+        $("#listaCategorias").append('<option value=' + registro.idCategoria + '>' + '(' + registro.codigoCategoria + ') ' + registro.categoria + '</option>');
     });
     $("#listaCategorias option[value='35']").attr("selected", true); // Es el codigo de Varios
 }
@@ -88,20 +110,11 @@ function pad(str, max) {
 }
 
 function formatearTiempo() {
-    var tiempoDecimal = parseFloat($("#tiempo").val());
-    $("#tiempo").val(tiempoDecimal.toFixed(2));
+    var tiempoDecimal = parseFloat($("#tiempoManoObra").val());
+    $("#tiempoManoObra").val(tiempoDecimal.toFixed(2));
 }
 
 
-function rellenaFormulario(obj) {
-    $("#idManoObra").val(obj.idManoObra);
-    $("#codigo").val(obj.codigo);
-    $("#descripcion").val(obj.descripcion);
-    $("#infoDescripcion").val(obj.infoDescripcion);
-    $("#tiempo").val(obj.tiempo);
-    formatearTiempo();
-    $('#listaCategorias option[value="' + obj.categoria.idCategoria + '"]').prop('selected', true);
-    $("#baja").attr("disabled", false);
-}
+
 
 

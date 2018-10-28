@@ -23,20 +23,20 @@ public class ManoObra implements java.io.Serializable, Comparable {
 
     private Integer idManoObra;
     private Categoria categoria;
-    private String codigo;
-    private String descripcion;
-    private Float tiempo;
-    private String infoDescripcion;
+    private String codigoManoObra;
+    private String descripcionManoObra;
+    private Float tiempoManoObra;
+    private String infoManoObra;
 
     public ManoObra() {
     }
 
-    public ManoObra(Categoria categoria, String codigo, String descripcion, Float tiempo, String infoDescripcion) {
+    public ManoObra(Categoria categoria, String codigoManoObra, String descripcionManoObra, Float tiempoManoObra, String infoManoObra) {
         this.categoria = categoria;
-        this.codigo = codigo;
-        this.descripcion = descripcion;
-        this.tiempo = tiempo;
-        this.infoDescripcion = infoDescripcion;
+        this.codigoManoObra = codigoManoObra;
+        this.descripcionManoObra = descripcionManoObra;
+        this.tiempoManoObra = tiempoManoObra;
+        this.infoManoObra = infoManoObra;
     }
 
     @Id
@@ -60,45 +60,45 @@ public class ManoObra implements java.io.Serializable, Comparable {
         this.categoria = categoria;
     }
 
-    @Column(name = "codigo", nullable = false, length = 20)
-    public String getCodigo() {
-        return codigo;
+    @Column(name = "codigoManoObra", nullable = false, length = 20)
+    public String getCodigoManoObra() {
+        return codigoManoObra;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoManoObra(String codigoManoObra) {
+        this.codigoManoObra = codigoManoObra;
     }
 
-    @Column(name = "descripcion", nullable = false, length = 45)
-    public String getDescripcion() {
-        return descripcion;
+    @Column(name = "descripcionManoObra", nullable = false, length = 45)
+    public String getDescripcionManoObra() {
+        return descripcionManoObra;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescripcionManoObra(String descripcionManoObra) {
+        this.descripcionManoObra = descripcionManoObra;
     }
 
-    @Column(name = "tiempo", precision = 12, scale = 0)
-    public Float getTiempo() {
-        return tiempo;
+    @Column(name = "tiempoManoObra", precision = 12, scale = 0)
+    public Float getTiempoManoObra() {
+        return tiempoManoObra;
     }
 
-    public void setTiempo(Float tiempo) {
-        this.tiempo = tiempo;
+    public void setTiempoManoObra(Float tiempoManoObra) {
+        this.tiempoManoObra = tiempoManoObra;
     }
 
-    @Column(name = "infoDescripcion", length = 2000)
-    public String getInfoDescripcion() {
-        return infoDescripcion;
+    @Column(name = "infoManoObra", length = 2000)
+    public String getInfoManoObra() {
+        return infoManoObra;
     }
 
-    public void setInfoDescripcion(String infoDescripcion) {
-        this.infoDescripcion = infoDescripcion;
+    public void setInfoManoObra(String infoManoObra) {
+        this.infoManoObra = infoManoObra;
     }
 
     @Override
     public int compareTo(Object t) {
         ManoObra otraMO = (ManoObra) t;
-        return codigo.compareTo(otraMO.getCodigo());
+        return codigoManoObra.compareTo(otraMO.getCodigoManoObra());
     }
 }

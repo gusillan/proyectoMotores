@@ -23,30 +23,31 @@ import javax.persistence.OneToOne;
 public class Recambio implements java.io.Serializable, Comparable {
 
     private Integer idRecambio;
-    private String referencia;
+    private String referenciaRecambio;
     private Fabricante fabricante;
-    private String descripcion;
-    private Float pvp;
-    private Float descuento;
-    private Float stock;
-    private String ubicacion;
+    private String descripcionRecambio;
+    private Float pvpRecambio;
+    private Float dtoRecambio;
+    private Float stockRecambio;
+    private String ubicacionRecambio;
     private Categoria categoria;
-    private String informacion;
+    private String infoRecambio;
     
     
     public Recambio() {
     }
     
-    public Recambio(String referencia, Fabricante fabricante, String descripcion, Float pvp, Float descuento, Float stock, String ubicacion, Categoria categoria, String informacion) {
-        this.referencia = referencia;
+    public Recambio(String referenciaRecambio, Fabricante fabricante, String descripcionRecambio, Float pvpRecambio,
+            Float dtoRecambio, Float stockRecambio, String ubicacionRecambio, Categoria categoria, String infoRecambio) {
+        this.referenciaRecambio = referenciaRecambio;
         this.fabricante = fabricante;
-        this.descripcion = descripcion;
-        this.pvp = pvp;
-        this.descuento = descuento;
-        this.stock = stock;
-        this.ubicacion = ubicacion;
+        this.descripcionRecambio = descripcionRecambio;
+        this.pvpRecambio = pvpRecambio;
+        this.dtoRecambio = dtoRecambio;
+        this.stockRecambio = stockRecambio;
+        this.ubicacionRecambio= ubicacionRecambio;
         this.categoria = categoria;
-        this.informacion = informacion;
+        this.infoRecambio = infoRecambio;
     }    
 
     @Id
@@ -60,13 +61,13 @@ public class Recambio implements java.io.Serializable, Comparable {
         this.idRecambio = idRecambio;
     }
 
-    @Column(name = "referencia", nullable = false, length = 25)
-    public String getReferencia() {
-        return this.referencia;
+    @Column(name = "referenciaRecambio", nullable = false, length = 25)
+    public String getReferenciaRecambio() {
+        return this.referenciaRecambio;
     }
 
-    public void setReferencia(String referencia) {
-        this.referencia = referencia;
+    public void setReferenciaRecambio(String referenciaRecambio) {
+        this.referenciaRecambio = referenciaRecambio;
     }
 
     @OneToOne
@@ -79,48 +80,48 @@ public class Recambio implements java.io.Serializable, Comparable {
         this.fabricante = fabricante;
     }
 
-    @Column(name = "descripcion", nullable = false, length = 35)
-    public String getDescripcion() {
-        return this.descripcion;
+    @Column(name = "descripcionRecambio", nullable = false, length = 35)
+    public String getDescripcionRecambio() {
+        return this.descripcionRecambio;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescripcionRecambio(String descripcionRecambio) {
+        this.descripcionRecambio = descripcionRecambio;
     }
    
-    @Column(name = "pvp", precision = 12, scale = 0)
-    public Float getPvp() {
-        return this.pvp;
+    @Column(name = "pvpRecambio", precision = 12, scale = 0)
+    public Float getPvpRecambio() {
+        return this.pvpRecambio;
     }
 
-    public void setPvp(Float pvp) {
-        this.pvp = pvp;
+    public void setPvpRecambio(Float pvpRecambio) {
+        this.pvpRecambio = pvpRecambio;
     }
     
-    @Column(name = "descuento", precision = 12, scale = 0)
-    public Float getDescuento() {
-        return this.descuento;
+    @Column(name = "dtoRecambio", precision = 12, scale = 0)
+    public Float getDtoRecambio() {
+        return this.dtoRecambio;
     }
 
-    public void setDescuento(Float descuento) {
-        this.descuento = descuento;
+    public void setDtoRecambio(Float dtoRecambio) {
+        this.dtoRecambio = dtoRecambio;
     }
     
-    @Column(name = "stock", precision = 12, scale = 0)
-    public Float getStock() {
-        return this.stock;
+    @Column(name = "stockRecambio", precision = 12, scale = 0)
+    public Float getStockRecambio() {
+        return this.stockRecambio;
     }
 
-    public void setStock(Float stock) {
-        this.stock = stock;
+    public void setStockRecambio(Float stockRecambio) {
+        this.stockRecambio = stockRecambio;
     }
-    @Column(name = "ubicacion", nullable = false, length = 15)
-    public String getUbicacion() {
-        return this.ubicacion;
+    @Column(name = "ubicacionRecambio", nullable = false, length = 15)
+    public String getUbicacionRecambio() {
+        return this.ubicacionRecambio;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setUbicacionRecambio(String ubicacionRecambio) {
+        this.ubicacionRecambio = ubicacionRecambio;
     }
     
     @OneToOne
@@ -133,19 +134,19 @@ public class Recambio implements java.io.Serializable, Comparable {
         this.categoria = categoria;
     }
 
-     @Column(name = "informacion", length = 2000)
-    public String getInformacion() {
-        return informacion;
+     @Column(name = "infoRecambio", length = 2000)
+    public String getInfoRecambio() {
+        return infoRecambio;
     }
 
-    public void setInformacion(String informacion) {
-        this.informacion = informacion;
+    public void setInfoRecambio(String infoRecambio) {
+        this.infoRecambio = infoRecambio;
     }
     
     @Override
     public int compareTo(Object t) {
         Recambio otroRecambio = (Recambio) t;
-        return referencia.compareTo(otroRecambio.getReferencia());
+        return referenciaRecambio.compareTo(otroRecambio.getReferenciaRecambio());
     }
     
     

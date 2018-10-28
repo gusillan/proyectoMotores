@@ -32,7 +32,7 @@
                 <h1>Formulario Recambio</h1>      
             </div>
 
-            <form name="formRecambio" id="formRecambio">
+            <form name="formRecambio" id="formulario">
 
                 <div class="row">
                     <div class="col-md-2">
@@ -44,7 +44,7 @@
                 </div><!--row-->
 
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="codigo">Referencia
                                 <a href="#" id="nuevoRecambioBoton" class="g-hideByDefault" title="Nuevo recambio con la misma referencia">
@@ -55,9 +55,11 @@
                                 </a>
                             </label>
                             <div class="input-group">
-                                <input type="text" class="form-control g-input" id="referencia" name="referencia"  maxlength="25" required>
+                                <input type="text" class="form-control g-input" id="referenciaRecambio" name="referenciaRecambio"  maxlength="25" required>
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-primary" id="sustitucion" title="Sustituciones o Equivalencias">(S)</button>
+                                    <button type="button" class="btn btn-primary" id="duplicarReferencia" title="Añadir misma referencia con distrinto fabricante">(+)</button>
+                                    <button type="button" class="btn btn-primary" id="equivalencia" title="Equivalencias">(E)</button>
+                                    <button type="button" class="btn btn-primary" id="sustitucion" title="Sustituciones">(S)</button>
                                 </span>
                             </div>
                         </div>
@@ -65,27 +67,28 @@
 
                     <div class="col-md-1">              
                         <div class="form-group">
-                            <label for="codigoMarca">C.Fab.<a href="formularioFabricante.html" title="Formulario Fabricante"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
-                            <input type="text" class="form-control g-input" id="codigoMarca" name="codigoMarca" maxlength="2" required title="Código 2 letras" data-toggle="popover">
+                            <label for="codigoFabricante">C.Fab.<a href="formularioFabricante.html" title="Formulario Fabricante"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>
+                            <input type="text" class="form-control g-input" id="codigoFabricante" name="codigoFabricante" maxlength="2" required title="Código 2 letras" data-toggle="popover">
+                            <input type="hidden" name="idFabricante" id="idFabricante">
                         </div>
                     </div>  
                     <div class="col-md-2">              
                         <div class="form-group">
                             <label for="marca">Fabricante</label>
-                            <input type="text" class="form-control" id="marca" readonly="readonly">
+                            <input type="text" class="form-control" id="nombreFabricante" readonly="readonly">
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <img id="logoMarca" class="g-img previstaImagen" src="">
+                        <img id="logoFabricante" class="g-img previstaImagen" src="">
                     </div>
                 </div><!--row-->
 
                 <div class="row">
                     <div class="col-md-8">              
                         <div class="form-group">
-                            <label for="descripcion">Descripción</label>
+                            <label for="descripcionRecambio">Descripción</label>
                             <div class="input-group">
-                                <input type="text" class="form-control g-input" id="descripcionRecambio" name="descripcion" maxlength="40" required title="Descripción recambio" data-toggle="popover">
+                                <input type="text" class="form-control g-input" id="descripcionRecambio" name="descripcionRecambio" maxlength="40" required title="Descripción recambio" data-toggle="popover">
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-primary" id="buscarRecambio">Buscar</button>
                                 </span>
@@ -99,14 +102,14 @@
                 <div class="row">
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="pvp">Precio Venta </label>
-                            <input type="text" step=".01" class="form-control g-input" id="pvp" name="pvp" pattern="[0-9]{1,6}\.[0-9]{2}" placeholder="0.00" maxlength="9" title="Precio en euros" data-toggle="popover" required>
+                            <label for="pvpRecambio">Precio Venta </label>
+                            <input type="text" step=".01" class="form-control g-input" id="pvpRecambio" name="pvpRecambio" pattern="[0-9]{1,6}\.[0-9]{2}" placeholder="0.00" maxlength="9" title="Precio en euros" data-toggle="popover" required>
                         </div>
                     </div>
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="descuento">Descuento %</label>
-                            <input type="text" step=".01" class="form-control g-input" id="descuento" name="descuento" pattern="[0-9]{1,2}\.[0-9]{2}" placeholder="0.00" maxlength="5" title="Porcentaje en formato 0.00" data-toggle="popover" required>
+                            <label for="dtoRecambio">Descuento %</label>
+                            <input type="text" step=".01" class="form-control g-input" id="dtoRecambio" name="dtoRecambio" pattern="[0-9]{1,2}\.[0-9]{2}" placeholder="0.00" maxlength="5" title="Porcentaje en formato 0.00" data-toggle="popover" required>
                         </div>
                     </div>
                     <div class="col-md-2">              
@@ -119,14 +122,14 @@
                 <div class="row">
                     <div class="col-md-1">              
                         <div class="form-group">
-                            <label for="stock">Stock</label>
-                            <input type="text" step=".1" class="form-control g-input" id="stock" name="stock" pattern="[0-9]{1,}\.[0-9]{1}" placeholder="0.0" maxlength="10"  title="Cantidad actual en Stock" data-toggle="popover" required>
+                            <label for="stockRecambio">Stock</label>
+                            <input type="text" step=".1" class="form-control g-input" id="stockRecambio" name="stockRecambio" pattern="[0-9]{1,}\.[0-9]{1}" placeholder="0.0" maxlength="10"  title="Cantidad actual en Stock" data-toggle="popover" required>
                         </div>
                     </div>
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="ubicacion">Ubicación</label>
-                            <input type="text" class="form-control g-input" id="ubicacion" name="ubicacion" maxlength="15" title="Descripción motor" data-toggle="popover">
+                            <label for="ubicacionRecambio">Ubicación</label>
+                            <input type="text" class="form-control g-input" id="ubicacionRecambio" name="ubicacionRecambio" maxlength="15" title="Descripción motor" data-toggle="popover">
                         </div>
                     </div>                    
                     <div class="col-md-2">              
@@ -147,8 +150,8 @@
                 <div class="row">
                     <div class="col-md-8">              
                         <div class="form-group">
-                            <label for="informacion">Información</label>
-                            <textarea class="form-control g-textarea" id="informacion" name="informacion" rows="3"></textarea>
+                            <label for="infoRecambio">Información</label>
+                            <textarea class="form-control g-textarea" id="infoRecambio" name="infoRecambio" rows="3"></textarea>
                         </div>               
                     </div>
                 </div><!--row-->

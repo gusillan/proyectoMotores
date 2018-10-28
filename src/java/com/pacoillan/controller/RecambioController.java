@@ -12,10 +12,8 @@ import com.pacoillan.DAO.SustitucionDAO;
 import com.pacoillan.pojo.Categoria;
 import com.pacoillan.pojo.Fabricante;
 import com.pacoillan.pojo.Recambio;
-import com.pacoillan.pojo.Sustitucion;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -42,13 +40,13 @@ public class RecambioController {
 
     @RequestMapping("guardaRecambio.htm")
     public void guardaRecambio(Recambio recambio, HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("Referencia " + request.getParameter("referencia"));
-        System.out.println("Codigo Marca " + request.getParameter("codigoMarca"));
+        System.out.println("Referencia " + request.getParameter("referenciaRecambio"));
+        System.out.println("Codigo Marca " + request.getParameter("codigoFabricante"));
         System.out.println("Categoria " + request.getParameter("codigoCategoria"));
-        System.out.println("Precio " + request.getParameter("pvp") + " descuento " + request.getParameter("descuento"));
-        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMarca"));
+        System.out.println("Precio " + request.getParameter("pvpRecambio") + " descuento " + request.getParameter("dtoRecambio"));
+        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigoFabricante", request.getParameter("codigoFabricante"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
-        List categorias = categoriaDao.listadoPorCampoExacto("codigo", request.getParameter("codigoCategoria"));
+        List categorias = categoriaDao.listadoPorCampoExacto("codigoCategoria", request.getParameter("codigoCategoria"));
         Categoria categoria = (Categoria) categorias.get(0);
         recambio.setFabricante(fabricante);
         recambio.setCategoria(categoria);
@@ -59,78 +57,84 @@ public class RecambioController {
     @RequestMapping("bajaRecambio.htm")
     public void bajaRecambio(Recambio recambio, HttpServletRequest request, HttpServletResponse response) {
 
-        System.out.println("Recambio " + recambio.getDescripcion());
-        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigo", request.getParameter("codigoMarca"));
+        System.out.println("Recambio " + recambio.getDescripcionRecambio());
+        List fabricantes = fabricanteDao.listadoPorCampoExacto("codigoFabricante", request.getParameter("codigoFabricante"));
         Fabricante fabricante = (Fabricante) fabricantes.get(0);
         recambio.setFabricante(fabricante);
-        List categorias = categoriaDao.listadoPorCampoExacto("codigo", request.getParameter("codigoCategoria"));
+        List categorias = categoriaDao.listadoPorCampoExacto("codigoCategoria", request.getParameter("codigoCategoria"));
         Categoria categoria = (Categoria) categorias.get(0);
         recambio.setCategoria(categoria);
         recambioDao.delete(recambio);
     }
 
     @RequestMapping("consultaReferencia.htm")
-    public void consultaReferencia(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void consultaReferencia(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        String referencia = (request.getParameter("referencia").toUpperCase());
-        System.out.println("Referencia -> " + referencia);
 
-        Gson gson = new Gson();
-        String lista = null;
-
-        Recambio recambioFinal;
-        List<Recambio> listaFinal = new ArrayList();
-
-        List<Recambio> listaRecambios = recambioDao.listadoPorCampoExacto("referencia", referencia);
+        String referencia = (request.getParameter("parametro").toUpperCase());
+        System.out.println("Referencia -> " + referencia); // Borrar
+        List<Recambio> listaRecambios = recambioDao.listadoPorCampoExacto("referenciaRecambio", referencia);
         if (listaRecambios.isEmpty()) {
-            System.out.println("Lista recambios vacia "+listaRecambios);
-            //out.println(lista);
-            lista = gson.toJson(listaRecambios);
-        } else if (listaRecambios.size() > 1) {
-            System.out.println("varios recambios con la misma referencia");
-            lista = gson.toJson(listaRecambios); // + ",[{ 'varios' : 'true' }]";              
+            System.out.println("Lista recambios vacia " + listaRecambios);
+            out.println();
         } else {
-            recambioFinal = listaRecambios.get(0);
-            listaFinal.add(recambioFinal);
-            List<Sustitucion> listaSustitucion;
-            do {
-                //Retorna una lista de sustituciones no de recambios
-                listaSustitucion = getSustitucion(recambioFinal);
-                if (!listaSustitucion.isEmpty()) {
-                    Sustitucion sustitucion = listaSustitucion.get(0);
-                    recambioFinal = sustitucion.getRecambioA();
-                    listaFinal.add(recambioFinal); // Va añadiendo las sustituciones
-                }
-            } while (!listaSustitucion.isEmpty());
-            System.out.println("Recambio final " + recambioFinal.getReferencia());
-            lista = gson.toJson(listaFinal);
-            //listaFinal.add(recambioFinal);
-            //Collections.sort(recambioFinal);
+            Collections.sort(listaRecambios);
         }
-
-        System.out.println("Lista Respuesta " + lista);
+        Gson gson = new Gson();
+        String lista = gson.toJson(listaRecambios);
         out.println(lista);
     }
 
-    private List getSustitucion(Recambio recambio) {
-        String sust = "FROM Sustitucion WHERE idRecambioB='" + recambio.getIdRecambio() + "' AND tipoSustitucion='1'";
-        List<Sustitucion> sustituciones = sustitucionDao.listadoConfigurable(sust);
-        return sustituciones;
-    }
-    
-     @RequestMapping("consultaPorDescripcionRecambio.htm")
-    public void consultaPorDescripcionRecambio(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping("consultaReferenciaFabricante.htm")
+    public void consultaReferenciaFabricante(Recambio recambio, HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        System.out.println("Descripcion " + request.getParameter("descripcion"));
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        String descripcionRecambio = (request.getParameter("descripcion").toUpperCase());
-        List<Recambio> listaRecambios = recambioDao.listadoPorCampo("descripcion", descripcionRecambio);
+
+        String referenciaRecambio = recambio.getReferenciaRecambio();
+        System.out.println("Ref Recambio " + referenciaRecambio);
+        String idFabricante = (request.getParameter("idFabricante"));
+        System.out.println("Codigo Fabricante " + idFabricante);
+
+        //List fabricantes = fabricanteDao.listadoPorCampoExacto("codigoFabricante", codigoFabricante);
+        //Fabricante fabricante = (Fabricante) fabricantes.get(0);
+
+
+        System.out.println("Codigo Fabricante " + idFabricante);
+        System.out.println("Referencia -> " + referenciaRecambio); // Borrar
+
+        String query = "FROM Recambio WHERE referenciaRecambio='" + referenciaRecambio + "' AND fabricante.idFabricante='" + idFabricante + "'";
+
+        List<Recambio> listaRecambios = recambioDao.listadoConfigurable(query);
+
+       
+        if (listaRecambios.isEmpty()) {
+            System.out.println("Lista recambios vacia " + listaRecambios);
+            out.println();
+        } else {
+            Collections.sort(listaRecambios);
+        }
+        Gson gson = new Gson();
+        String lista = gson.toJson(listaRecambios);
+        out.println(lista);
+    }
+
+    @RequestMapping("consultaPorDescripcionRecambio.htm")
+    public void consultaPorDescripcionRecambio(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+
+        System.out.println("Descripcion " + request.getParameter("parametro"));
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        String descripcionRecambio = (request.getParameter("parametro").toUpperCase());
+        List<Recambio> listaRecambios = recambioDao.listadoPorCampo("descripcionRecambio", descripcionRecambio);
         System.out.println("Listado" + listaRecambios);
         if (listaRecambios.isEmpty()) {
             out.println();
@@ -142,6 +146,4 @@ public class RecambioController {
         System.out.println("Lista Respuesta " + lista);
         out.println(lista);
     }
-    
 }
-

@@ -157,7 +157,7 @@ function respuestaConsultaCampo(listaObjetos) {
 // Fabricante *****************************************/
 function consultaFabricanteMin() {
     if (!vacio($("#codigoFabricante"))) {
-        var fabricante = this.value;
+        var fabricante = $("#codigoFabricante").val();
         console.log("Consultamos " + fabricante);  //Borrar
         promesa = peticionAjax('../consultaFabricante.htm', fabricante);
         promesa.then(function(listaFabricantes) {
@@ -177,6 +177,7 @@ function consultaFabricanteMin() {
 }
 
 function rellenaFabricanteCampos(fabricante) {
+    $("#idFabricante").val(fabricante.idFabricante);
     $("#nombreFabricante").val(fabricante.nombreFabricante);
     $("#logoFabricante").attr("src", "img/marcas/" + fabricante.logoFabricante);
 }
@@ -333,15 +334,7 @@ function rellenaEntidadCampos(entidad) {
 
 
 // Recambio **************************************
-function consultaReferencia() {
-    if (!vacio($("#referencia"))) {
-        var referencia = $("#referencia").val();
-        console.log("Vamos a consultar la Referencia " + referencia);
-        $.getJSON('../consultaReferencia.htm', {referencia: referencia}, respuestaConsultaReferencia);
-    } else {
-        $("#descripcionRecambio").val("");
-    }
-}
+
 
 function respuestaConsultaReferencia(listaObjetos) {
     if (listaObjetos.length === 1) {
@@ -395,7 +388,7 @@ function buscarRecambio() {
         console.log("Campo Reacambio RELLENO");
         $.ajax({
             url: '../consultaPorDescripcionRecambio.htm',
-            data: {descripcion: descripcionRecambio},
+            data: {parametro: descripcionRecambio},
             type: 'POST',
             dataType: 'json',
             success: respuestaBuscarRecambio

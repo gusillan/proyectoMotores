@@ -34,11 +34,11 @@ public class CategoriaController {
 
     @RequestMapping("consultaCategoria.htm")
     public void consultaCategoria(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        
+
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         String codigo = request.getParameter("parametro");
         List<Categoria> listaCategorias = categoriaDao.listadoPorCampoExacto("codigoCategoria", codigo);
         System.out.println(listaCategorias);
@@ -46,43 +46,29 @@ public class CategoriaController {
         Gson gson = new Gson();
         String lista = gson.toJson(listaCategorias);
         System.out.println(lista);
-        out.println(lista);       
+        out.println(lista);
     }
 
     @RequestMapping("bajaCategoria.htm")
-    public void bajaCategoria( Categoria categoria, HttpServletRequest request, HttpServletResponse response) {
+    public void bajaCategoria(Categoria categoria, HttpServletRequest request, HttpServletResponse response) {
         try {
             categoriaDao.delete(categoria);
         } catch (Exception ex) {
-            System.out.println("Excepcion al dar de baja el registro" + ex);            
+            System.out.println("Excepcion al dar de baja el registro" + ex);
         }
 
     }
-    
+
     @RequestMapping("listadoCategoriaRecambio.htm")
     public void listadoCategoriaRecambio(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        PrintWriter out = response.getWriter();       
-        List<Categoria> listaCategorias = categoriaDao.listadoPorCampoExacto("tipo", "RE");
-        
+        PrintWriter out = response.getWriter();
+        List<Categoria> listaCategorias = categoriaDao.listAll();
+
         Gson gson = new Gson();
         String lista = gson.toJson(listaCategorias);
         System.out.println(lista);
-        out.println(lista);       
+        out.println(lista);
     }
-    
-    @RequestMapping("listadoCategoriaMO.htm")
-    public void listadoCategoriaMO(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        PrintWriter out = response.getWriter();       
-        List<Categoria> listaCategorias = categoriaDao.listadoPorCampoExacto("tipo", "MO");
-        
-        Gson gson = new Gson();
-        String lista = gson.toJson(listaCategorias);
-        System.out.println(lista);
-        out.println(lista);       
-    }
-    
 }
