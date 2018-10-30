@@ -52,7 +52,7 @@ public class RecambioVehiculoController {
 
         Integer idRecambio = Integer.parseInt(request.getParameter("idRecambio"));
         Recambio recambio = recambioDao.read(idRecambio);
-        System.out.println("Recambio " + recambio.getDescripcion());
+        System.out.println("Recambio " + recambio.getDescripcionRecambio());
 
         Integer idModelo = Integer.parseInt(request.getParameter("idModelo"));
         Modelo modelo = modeloDao.read(idModelo);

@@ -32,13 +32,17 @@ public class Recambio implements java.io.Serializable, Comparable {
     private String ubicacionRecambio;
     private Categoria categoria;
     private String infoRecambio;
+    private Integer sustitucion;
+    private Integer equivalencia;
+    
     
     
     public Recambio() {
     }
     
     public Recambio(String referenciaRecambio, Fabricante fabricante, String descripcionRecambio, Float pvpRecambio,
-            Float dtoRecambio, Float stockRecambio, String ubicacionRecambio, Categoria categoria, String infoRecambio) {
+            Float dtoRecambio, Float stockRecambio, String ubicacionRecambio, Categoria categoria, String infoRecambio,
+            Integer sustitucion,Integer equivalencia) {
         this.referenciaRecambio = referenciaRecambio;
         this.fabricante = fabricante;
         this.descripcionRecambio = descripcionRecambio;
@@ -48,6 +52,8 @@ public class Recambio implements java.io.Serializable, Comparable {
         this.ubicacionRecambio= ubicacionRecambio;
         this.categoria = categoria;
         this.infoRecambio = infoRecambio;
+        this.sustitucion = sustitucion;
+        this.equivalencia = equivalencia;
     }    
 
     @Id
@@ -143,6 +149,24 @@ public class Recambio implements java.io.Serializable, Comparable {
         this.infoRecambio = infoRecambio;
     }
     
+    @Column(name = "sustitucion")
+    public Integer getSustitucion() {
+        return this.sustitucion;
+    }
+
+    public void setSustitucion(Integer sustitucion) {
+        this.sustitucion = sustitucion;
+    }
+    
+    @Column(name = "equivalencia")
+    public Integer getEquivalencia() {
+        return this.equivalencia;
+    }
+
+    public void setEquivalencia(Integer equivalencia) {
+        this.equivalencia = equivalencia;
+    }
+        
     @Override
     public int compareTo(Object t) {
         Recambio otroRecambio = (Recambio) t;

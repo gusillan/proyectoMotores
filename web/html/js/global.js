@@ -370,7 +370,15 @@ function respuestaConsultaReferencia(listaObjetos) {
     }
 }
 
-//function rellenaRecambio(){}
+function rellenaRecambioMin(recambio){
+    $("#idRecambio").val(recambio.idRecambio);    
+    $("#referenciaRecambio").val(recambio.referenciaRecambio);
+    $("#codigoFabricante").val(recambio.fabricante.codigoFabricante);
+    rellenaFabricanteCampos(recambio.fabricante);
+    $("#descripcionRecambio").val(recambio.descripcionRecambio);
+    $("#pvpRecambio").val(recambio.pvpRecambio.toFixed(2));
+}
+
 function darAltaRecambio() {
     var respuesta = confirm("Desea dar de alta este Recambio?");
     if (respuesta == true) {

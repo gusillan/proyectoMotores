@@ -38,11 +38,11 @@ public class SustitucionController {
 
         Integer idRecambioA = Integer.parseInt(request.getParameter("idRecambioA"));
         Recambio recambioA = recambioDao.read(idRecambioA);
-        System.out.println("Recambio A " + recambioA.getDescripcion());
+        System.out.println("Recambio A " + recambioA.getDescripcionRecambio());
 
         Integer idRecambioB = Integer.parseInt(request.getParameter("idRecambioB"));
         Recambio recambioB = recambioDao.read(idRecambioB);
-        System.out.println("Recambio B " + recambioB.getDescripcion());
+        System.out.println("Recambio B " + recambioB.getDescripcionRecambio());
 
         Integer tipoSustitucion = Integer.parseInt(request.getParameter("sustitucion"));
         System.out.println("Sustitucion " + sustitucion);

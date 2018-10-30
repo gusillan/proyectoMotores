@@ -21,74 +21,79 @@ ventanaRecambiosB = new VentanaEmergente({
  ***********************************************************/
 $("document").ready(function() {
 
-    $("#referenciaA").change(consultaReferenciaA);
-    $("#referenciaB").change(consultaReferenciaB);
+    $("#referenciaRecambioA").change(consultaReferenciaA);
+    $("#referenciaRecambioB").change(consultaReferenciaB);
 
 });
 
 function consultaReferenciaA() {
 
-    if (!vacio($("#referenciaA"))) {
-        console.log("Vamos a consultar la Referencia " + this.value);
+    if (!vacio($("#referenciaRecambioA"))) {
+        console.log("Vamos a consultar la Referencia " + this.value);// Borrar
         var referencia = this.value;
-        $.getJSON('../consultaReferencia.htm', {referencia: referencia}, respuestaConsultaReferenciaA);
+        promesa = peticionAjax('../consultaReferenciaSinSustitucion.htm', referencia);
+        promesa.then(function(listaRecambios) {
+            if (listaRecambios.length === 1) {
+                var recambio = listaRecambios[0];
+                console.log("Resultado " + recambio);
+                rellenaRecambioA(recambio);
+
+            } else if (listaRecambios.length < 1) {
+                console.log("No existe esa referencia");
+
+            }
+        });
 
     }
 }
 
-function respuestaConsultaReferenciaA(listaObjetos) {
-    console.log(listaObjetos);
-    if (listaObjetos.length === 1) {
-        var objeto = listaObjetos[0];
-        rellenaRecambioA(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varias categorias con ese Codigo.Consultar al administrador de la BBDD");
-        console.log("Esta es la lista " + listaObjetos);
-        ventanaRecambiosA.abrir(listaObjetos);
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun fabricante con ese Codigo");
+function rellenaRecambioA(recambio) {
+    $("#idRecambioA").val(recambio.idRecambio);
+    $("#referenciaRecambioA").val(recambio.referenciaRecambio);
+    $("#codigoFabricanteA").val(recambio.fabricante.codigoFabricante);
+    $("#fabricanteA").val(recambio.fabricante.nombreFabricante);
+    $("#logoFabricanteA").attr("src", "img/marcas/" + recambio.fabricante.logoFabricante);
+    $("#descripcionRecambioA").val(recambio.descripcionRecambio);
+    $("#sustitucion").val(recambio.sustitucion);
+    $("#equivalencia").val(recambio.equivalencia);
+    if (!vacio($("#sustitucion"))){
+        console.log("Recambio con una sustitucion!!");
+        idRecambio = $("#sustitucion").val();
+        promesa = peticionAjax('../consultaRecambioId.htm',idRecambio);
+        promesa.then(function(recambio){
+            console.log(recambio.idRecambio);
+            rellenaRecambioB(recambio);
+        });
     }
-}
-function rellenaRecambioA(objeto) {
-    $("#idRecambioA").val(objeto.idRecambio);
-    $("#descripcionA").val(objeto.descripcion);
-    $("#codigoMarcaA").val(objeto.fabricante.codigo);
-    $("#marcaA").val(objeto.fabricante.nombre);
-    $("#logoMarcaA").attr("src", "img/marcas/" + objeto.fabricante.logo);
-    $("#sustitucion").focus();
 
 }
+
 
 function consultaReferenciaB() {
 
-    if (!vacio($("#referenciaB"))) {
-        console.log("Vamos a consultar la Referencia " + this.value);
+    if (!vacio($("#referenciaRecambioB"))) {
+        console.log("Vamos a consultar la Referencia " + this.value);// Borrar
         var referencia = this.value;
-        $.getJSON('../consultaReferencia.htm', {referencia: referencia}, respuestaConsultaReferenciaB);
-
+        promesa = peticionAjax('../consultaReferencia.htm', referencia);
+        promesa.then(function(listaRecambios) {
+            if (listaRecambios.length === 1) {
+                var recambio = listaRecambios[0];
+                console.log("Resultado " + recambio);
+                rellenaRecambioB(recambio);
+            } else if (listaRecambios.length < 1) {
+                console.log("No existe esa referencia");
+            }
+        });
     }
 }
 
-function respuestaConsultaReferenciaB(listaObjetos) {
-    console.log(listaObjetos);
-    if (listaObjetos.length === 1) {
-        var objeto = listaObjetos[0];
-        rellenaRecambioB(objeto);
-    } else if (listaObjetos.length > 1) {
-        console.log("Existen varias categorias con ese Codigo.Consultar al administrador de la BBDD");
-        console.log("Esta es la lista " + listaObjetos);
-        ventanaRecambiosB.abrir(listaObjetos);
-    } else if (listaObjetos.length < 1) {
-        console.log("No existe ningun fabricante con ese Codigo");
-    }
-}
-function rellenaRecambioB(objeto) {
-    $("#idRecambioB").val(objeto.idRecambio)
-    $("#descripcionB").val(objeto.descripcion);
-    $("#codigoMarcaB").val(objeto.fabricante.codigo);
-    $("#marcaB").val(objeto.fabricante.nombre);
-    $("#logoMarcaB").attr("src", "img/marcas/" + objeto.fabricante.logo);  
-
+function rellenaRecambioB(recambio) {
+    $("#idRecambioB").val(recambio.idRecambio);
+    $("#referenciaRecambioB").val(recambio.referenciaRecambio);
+    $("#codigoFabricanteB").val(recambio.fabricante.codigoFabricante);
+    $("#fabricanteB").val(recambio.fabricante.nombreFabricante);
+    $("#logoFabricanteB").attr("src", "img/marcas/" + recambio.fabricante.logoFabricante);
+    $("#descripcionRecambioB").val(recambio.descripcionRecambio);
 }
 
 /* Funciones Básicas Botones
@@ -99,7 +104,7 @@ function guardar() {
 
     if (validarFormulario()) {
         var data = $("#formSustitucion").serialize();
-        console.log("Serializacion formulario -> : "+data)      
+        console.log("Serializacion formulario -> : " + data)
         $.ajax({
             url: '../guardaSustitucion.htm',
             data: data,

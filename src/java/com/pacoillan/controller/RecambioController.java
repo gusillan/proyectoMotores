@@ -88,6 +88,28 @@ public class RecambioController {
         String lista = gson.toJson(listaRecambios);
         out.println(lista);
     }
+    
+    @RequestMapping("consultaReferenciaSinSustitucion.htm")
+    public void consultaReferenciaSinSustitucion(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
+        String referencia = (request.getParameter("parametro").toUpperCase());
+        System.out.println("Referencia -> " + referencia); // Borrar
+        List<Recambio> listaRecambios = recambioDao.listadoPorCampoExacto("referenciaRecambio", referencia);
+        if (listaRecambios.isEmpty()) {
+            System.out.println("Lista recambios vacia " + listaRecambios);
+            out.println();
+        } else {
+            Collections.sort(listaRecambios);
+        }
+        Gson gson = new Gson();
+        String lista = gson.toJson(listaRecambios);
+        out.println(lista);
+    }
 
     @RequestMapping("consultaReferenciaFabricante.htm")
     public void consultaReferenciaFabricante(Recambio recambio, HttpServletRequest request, HttpServletResponse response)
@@ -146,4 +168,23 @@ public class RecambioController {
         System.out.println("Lista Respuesta " + lista);
         out.println(lista);
     }
+    
+    @RequestMapping("consultaRecambioId.htm")
+    public void consultaRecambioId (HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+
+        System.out.println("Consultar recambio Id " + request.getParameter("parametro")); // borrar
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+        
+        Integer idRecambio = Integer.parseInt(request.getParameter("parametro"));
+        Recambio recambio = recambioDao.read(idRecambio);
+        
+        Gson gson = new Gson();
+        String lista = gson.toJson(recambio);
+        System.out.println("Lista Respuesta " + lista);
+        out.println(lista);
+    }
+    
 }

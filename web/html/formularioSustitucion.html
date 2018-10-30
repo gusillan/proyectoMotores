@@ -31,12 +31,12 @@
                 <h1>Sustituciones y Equivalencias de Recambios</h1>      
             </div>
 
-            <form name="formSustitucion" id="formSustitucion">
+            <form name="formSustitucion" id="formulario">
 
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="idMotor" class="">ID Sustitucion</label>
+                            <label for="idSustitucion" class="">ID Sustitucion</label>
                             <input type="text" class="form-control" id="idSustitucion" name="idSustitucion" readonly="readonly">
                         </div>
                     </div>
@@ -45,34 +45,36 @@
                 <div class="row">
                     <div class="col-md-3">              
                         <div class="form-group">
-                            <label for="referenciaA">Referencia A<a href="formularioRecambio.html" title="Formulario Recambio"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>                            
-                            <input type="text" class="form-control g-input" id="referenciaA" name="referenciaA"  maxlength="25" required>
-                            <input type="text" class="form-control g-input" id="idRecambioA" name="idRecambioA">
+                            <label for="referenciaRecambioA">Referencia A<a href="formularioRecambio.html" title="Formulario Recambio"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>                            
+                            <input type="text" class="form-control g-input" id="referenciaRecambioA" name="referenciaRecambioA"  maxlength="25" required>
+                            <input type="text" class="form-control g-input" id="sustitucion" name="sustitucion" readonly>
                         </div>
                     </div>  
 
                     <div class="col-md-1">              
                         <div class="form-group">
-                            <label for="codigoMarcaA">C.Fab.</label>
-                            <input type="text" class="form-control g-input" id="codigoMarcaA" name="codigoMarcaA" maxlength="2" readonly>
+                            <label for="codigoFabricanteA">C.Fab.</label>
+                            <input type="text" class="form-control g-input" id="codigoFabricanteA" name="codigoFabricanteA" maxlength="2" readonly>
                         </div>
                     </div>  
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="marcaA">Fabricante</label>
-                            <input type="text" class="form-control" id="marcaA" readonly="readonly">
+                            <label for="fabricanteA">Fabricante</label>
+                            <input type="text" class="form-control" id="fabricanteA" readonly="readonly">
+                            <input type="text" class="form-control g-input" id="equivalencia" name="equivalencia" readonly>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <img id="logoMarcaA" class="g-img previstaImagen" src="">
+                        <img id="logoFabricanteA" class="g-img previstaImagen" src="">
+                        <input type="text" class="form-control g-input" id="idRecambioA" name="idRecambioA" readonly>
                     </div>
                 </div><!--row-->
 
                 <div class="row">
                     <div class="col-md-8">              
                         <div class="form-group">
-                            <label for="descripcion">Descripción</label>
-                            <input type="text" class="form-control g-input" id="descripcionA" name="descripcionA" readonly>
+                            <label for="descripcion">Descripción (A)</label>
+                            <input type="text" class="form-control g-input" id="descripcionRecambioA" name="descripcionRecambioA" readonly>
                         </div>
                     </div>
                 </div><!--row-->
@@ -82,8 +84,8 @@
                         <div class="form-group">
                             <label for="sustitucion">Tipo de Sustitución</label>
                             <select class="form-control g-select" id="sustitucion" name="sustitucion">
-                                <option value="1">A SUSTITUYE B</option>
-                                <option value="2">A EQUIVALENTE B</option>                                                              
+                                <option value="1">A es sustituida por B</option>
+                                <option value="2">A equivalente B</option>                                                              
                             </select> 
                         </div>               
                     </div>             
@@ -92,34 +94,34 @@
                 <div class="row">
                     <div class="col-md-3">              
                         <div class="form-group">
-                            <label for="referenciaB">Referencia B<a href="formularioRecambio.html" title="Formulario Recambio"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>                            
-                            <input type="text" class="form-control g-input" id="referenciaB" name="referenciaB"  maxlength="25" required>
+                            <label for="referenciaRecambioB">Referencia B<a href="formularioRecambio.html" title="Formulario Recambio"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></label>                            
+                            <input type="text" class="form-control g-input" id="referenciaRecambioB" name="referenciaRecambioB"  maxlength="25" required>
                             <input type="text" class="form-control g-input" id="idRecambioB" name="idRecambioB">
                         </div>
                     </div>  
 
                     <div class="col-md-1">              
                         <div class="form-group">
-                            <label for="codigoMarcaB">C.Fab.</label>
-                            <input type="text" class="form-control g-input" id="codigoMarcaB" name="codigoMarcaB" maxlength="2" readonly>
+                            <label for="codigoFabricanteB">C.Fab.</label>
+                            <input type="text" class="form-control g-input" id="codigoFabricanteB" name="codigoFabricanteB" maxlength="2" readonly>
                         </div>
                     </div>  
                     <div class="col-md-2">              
                         <div class="form-group">
-                            <label for="marcaB">Fabricante</label>
-                            <input type="text" class="form-control" id="marcaB" readonly="readonly">
+                            <label for="fabricanteB">Fabricante</label>
+                            <input type="text" class="form-control" id="fabricanteB" readonly="readonly">
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <img id="logoMarcaB" class="g-img previstaImagen" src="">
+                        <img id="logoFabricanteB" class="g-img previstaImagen" src="">
                     </div>
                 </div><!--row-->
 
                 <div class="row">
                     <div class="col-md-8">              
                         <div class="form-group">
-                            <label for="descripcion">Descripción</label>
-                            <input type="text" class="form-control g-input" id="descripcionB" name="descripcionB" readonly>
+                            <label for="descripcionRecambioB">Descripción</label>
+                            <input type="text" class="form-control g-input" id="descripcionRecambioB" name="descripcionRecambioB" readonly>
                         </div>
                     </div>
                 </div><!--row-->               
