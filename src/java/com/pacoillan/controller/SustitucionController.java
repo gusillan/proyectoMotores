@@ -55,7 +55,7 @@ public class SustitucionController {
         
     }
     
-    @RequestMapping("buscaSustituciones.htm")
+    /*@RequestMapping("buscaSustituciones.htm")
     public void buscaSustituciones(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         response.setContentType("application/json");
@@ -73,6 +73,6 @@ public class SustitucionController {
         Gson gson = new Gson();
         String lista = gson.toJson(listaRecambios);
         System.out.println("Lista Respuesta " + lista);
-        out.println(lista);*/
-    }
+        out.println(lista);
+    }*/
 }

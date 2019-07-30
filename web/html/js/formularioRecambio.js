@@ -8,6 +8,14 @@ ventanaRecambios = new VentanaEmergente({
     callback: rellenaFormularioRecambio
 });
 
+ventanaEquivalencias = new VentanaEmergente({
+    modal : 'equivalenciaModal',
+    titulo : 'Recambios equivalentes',
+    campos : ['referenciaRecambio', 'fabricante.nombreFabricante', 'descripcionRecambio','pvpRecambio','dtoRecambio','ubicacionRecambio'],
+    campoID : 'idRecambio',
+    callback : rellenaFormularioRecambio
+});
+
 /*  Listener
  *********************************************************/
 $("document").ready(function() {
@@ -40,6 +48,7 @@ $("document").ready(function() {
 
     $("#duplicarReferencia").click(duplicarReferencia);
     $("#sustitucion").click(mostrarSustituciones);
+    $("#equivalencia").click(mostarEquivalencias);
     $("#buscarRecambio").click(buscarRecambio);
 
 });
@@ -201,15 +210,16 @@ function calcularNeto() {
 }
 
 function mostrarSustituciones() {
-    if (!vacio($("#referencia"))) {
-        console.log("Consultar " + $("#idRecambio").val() + " - " + $("#referencia").val());
+    if (!vacio($("#referenciaRecambio"))) {
+        console.log("Consultar " + $("#idRecambio").val() + " - " + $("#referenciaRecambio").val());
         var data = $("#idRecambio").val();
         $.ajax({
             url: '../buscaSustituciones.htm',
-            idRecambio: data,
+            data: {parametro: data},
             type: 'POST',
-            success: mostarListaSustituciones
+            success: mostrarListaSustituciones
         });
+
 
     } else {
         console.log("Referencia vacia");
@@ -217,8 +227,22 @@ function mostrarSustituciones() {
 }
 
 function mostrarListaSustituciones(lista) {
-
+    console.log("--> "+lista);
+    ventanaEquivalencias.abrir(lista);
 }
+
+function mostarEquivalencias() {
+    var idRecambio = $("#idRecambio").val();
+    var referencia = $("#referenciaRecambio").val();
+    console.log("Equivalencias de " + referencia + " " + idRecambio);
+    $.ajax({
+            url: '../buscaEquivalencias.htm',
+            data: {parametro: idRecambio},
+            type: 'POST',
+            success: mostrarListaSustituciones
+        });
+}
+
 /* Botones de la caja de Referencia
  * ****************************************************************************/
 
@@ -229,7 +253,7 @@ function duplicarReferencia() {
 }
 
 function comprobacionFabricante() {
-    console.log ("Comprobamos si el recambio está duplicado");
+    console.log("Comprobamos si el recambio está duplicado");
     if (!vacio($("#referenciaRecambio")) && !vacio($("#codigoFabricante"))) {
         var fabricante = $("#codigoFabricante").val();
         console.log("Consultamos " + fabricante);  //Borrar
@@ -257,17 +281,17 @@ function comprobacionFabricante() {
         });
     } else {
         borraFormularioRecambio();
-    }   
-   
+    }
+
 }
 
-function respuestaComprobacionRecambio(listaRecambios){
-    if (listaRecambios.length < 1){
-        console.log("se puede dar de alta");     
-    }else if (listaRecambios.length === 1){
+function respuestaComprobacionRecambio(listaRecambios) {
+    if (listaRecambios.length < 1) {
+        console.log("se puede dar de alta");
+    } else if (listaRecambios.length === 1) {
         var recambio = listaRecambios[0];
         rellenaFormularioRecambio(recambio);
-        console.log("No se puede duplicar recambios"); 
+        console.log("No se puede duplicar recambios");
         //alert("Esta Referencia ya está dada de alta");
     }
 }

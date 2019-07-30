@@ -77,18 +77,32 @@ public class RecambioController {
 
         String referencia = (request.getParameter("parametro").toUpperCase());
         System.out.println("Referencia -> " + referencia); // Borrar
+
         List<Recambio> listaRecambios = recambioDao.listadoPorCampoExacto("referenciaRecambio", referencia);
         if (listaRecambios.isEmpty()) {
             System.out.println("Lista recambios vacia " + listaRecambios);
             out.println();
         } else {
+            Recambio recambioConsultado = listaRecambios.get(0);
+            System.out.println("Sustituido por " + recambioConsultado.getSustitucion());
+
+            while (recambioConsultado.getSustitucion() != null) {
+                Integer idSustituto = recambioConsultado.getSustitucion();
+                recambioConsultado = recambioDao.read(idSustituto);
+                listaRecambios.clear();
+                listaRecambios.add(recambioConsultado);
+            }
             Collections.sort(listaRecambios);
         }
         Gson gson = new Gson();
         String lista = gson.toJson(listaRecambios);
         out.println(lista);
     }
-    
+
+    private Integer getSustituto(Recambio recambio) {
+        return recambio.getSustitucion();
+    }
+
     @RequestMapping("consultaReferenciaSinSustitucion.htm")
     public void consultaReferenciaSinSustitucion(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -135,7 +149,7 @@ public class RecambioController {
 
         List<Recambio> listaRecambios = recambioDao.listadoConfigurable(query);
 
-       
+
         if (listaRecambios.isEmpty()) {
             System.out.println("Lista recambios vacia " + listaRecambios);
             out.println();
@@ -168,23 +182,71 @@ public class RecambioController {
         System.out.println("Lista Respuesta " + lista);
         out.println(lista);
     }
-    
+
     @RequestMapping("consultaRecambioId.htm")
-    public void consultaRecambioId (HttpServletRequest request, HttpServletResponse response)
+    public void consultaRecambioId(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
         System.out.println("Consultar recambio Id " + request.getParameter("parametro")); // borrar
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         Integer idRecambio = Integer.parseInt(request.getParameter("parametro"));
         Recambio recambio = recambioDao.read(idRecambio);
-        
+
         Gson gson = new Gson();
         String lista = gson.toJson(recambio);
         System.out.println("Lista Respuesta " + lista);
         out.println(lista);
     }
-    
+
+    @RequestMapping("buscaSustituciones.htm")
+    public void buscaSustituciones(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        String sustitucion = request.getParameter("parametro");
+        System.out.println("Sustituciones del id Recambio " + request.getParameter("parametro"));
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        List<Recambio> listaRecambios = recambioDao.listadoPorCampoExacto("sustitucion", sustitucion);
+        Recambio recambio = listaRecambios.get(0);
+        System.out.println("Recambio "+recambio.getReferenciaRecambio());
+
+
+        PrintWriter out = response.getWriter();
+    }
+
+    @RequestMapping("buscaEquivalencias.htm")
+    public void buscaEquivalencias(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        System.out.println("Equivalencias del id Recambio " + request.getParameter("parametro"));
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
+
+        Integer idRecambio = Integer.parseInt(request.getParameter("parametro"));
+        Recambio recambio = recambioDao.read(idRecambio);
+        System.out.println("Equivalencia recambio -* " + recambio.getEquivalencia());
+        Integer equivalenciaRecambio = recambio.getEquivalencia();
+        if (equivalenciaRecambio != null) {
+            String eRecambio = Integer.toString(equivalenciaRecambio);
+            System.out.println("consultamos los equivalencias a " + equivalenciaRecambio);
+
+            List<Recambio> listaRecambios = recambioDao.listadoPorCampoExacto("equivalencia", eRecambio);
+            if (listaRecambios.isEmpty()) {
+                System.out.println("Lista recambios vacia " + listaRecambios);
+                out.println();
+            } else {
+                Collections.sort(listaRecambios);
+            }
+            Gson gson = new Gson();
+            String lista = gson.toJson(listaRecambios);
+            out.println(lista);
+        } else {
+            out.println();
+        }
+
+    }
 }
