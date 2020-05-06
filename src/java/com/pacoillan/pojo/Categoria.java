@@ -52,6 +52,11 @@ public class Categoria implements java.io.Serializable {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+    @Override
+    public String toString() {
+        return "Categoria{" + "idCategoria=" + idCategoria + ", codigoCategoria=" + codigoCategoria + ", categoria=" + categoria + '}';
+    }
       
     
 }

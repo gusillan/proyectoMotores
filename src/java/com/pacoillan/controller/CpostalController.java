@@ -43,14 +43,18 @@ public class CpostalController {
         PrintWriter out = response.getWriter();
         
         String codigo = request.getParameter("parametro");
+        System.out.println("el codigo solicitado es "+codigo);
         List<Cpostal> listaCpostal = CpostalDao.listadoPorCampoExacto("codigo", codigo);
         if (listaCpostal.isEmpty()){
+            System.out.println("VACIO");
             out.println();
         }else{
             
         }
+        System.out.println("REspuesta");
         Gson gson = new Gson();
         String lista = gson.toJson(listaCpostal);
+        System.out.println("Lista "+lista);
         out.println(lista);
 
     }

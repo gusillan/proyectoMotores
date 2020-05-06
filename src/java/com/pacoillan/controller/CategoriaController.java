@@ -28,7 +28,8 @@ public class CategoriaController {
 
     @RequestMapping("guardaCategoria.htm")
     public void guardaCategoria(Categoria categoria, HttpServletRequest request, HttpServletResponse response) {
-
+        
+        System.out.println("Catelgoria es : "+categoria.getIdCategoria()+" "+ categoria.getCategoria()+" "+categoria.getCodigoCategoria());
         categoriaDao.update(categoria);
     }
 
@@ -51,6 +52,9 @@ public class CategoriaController {
 
     @RequestMapping("bajaCategoria.htm")
     public void bajaCategoria(Categoria categoria, HttpServletRequest request, HttpServletResponse response) {
+        
+        System.out.println("Vas a borrar -> "+categoria.toString());
+        
         try {
             categoriaDao.delete(categoria);
         } catch (Exception ex) {
